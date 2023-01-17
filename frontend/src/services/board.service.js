@@ -1,7 +1,7 @@
 import { asyncStorageService } from "./async-storage.service.js"
 import { utilService } from "./util.service.js"
 
-const STORAGE_KEY = "board"
+const STORAGE_BOARD_KEY = "boardDB"
 
 export const boardService = {
   query,
@@ -15,27 +15,27 @@ window.cs = boardService
 _createDemoData()
 
 async function query() {
-  var boards = await asyncStorageService.query(STORAGE_KEY)
+  var boards = await asyncStorageService.query(STORAGE_BOARD_KEY)
   return boards
 }
 
 function getById(boardId) {
-  return asyncStorageService.get(STORAGE_KEY, boardId)
+  return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
 }
 
 async function remove(boardId) {
   // throw new Error('Nope')
-  await asyncStorageService.remove(STORAGE_KEY, boardId)
+  await asyncStorageService.remove(STORAGE_BOARD_KEY, boardId)
 }
 
 async function save(board) {
   var savedBoard
   if (board._id) {
-    savedBoard = await asyncStorageService.put(STORAGE_KEY, board)
+    savedBoard = await asyncStorageService.put(STORAGE_BOARD_KEY, board)
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
-    savedBoard = await asyncStorageService.post(STORAGE_KEY, board)
+    savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
   }
   return savedBoard
 }
