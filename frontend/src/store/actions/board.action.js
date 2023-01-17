@@ -1,13 +1,16 @@
-import { boardService } from "../services/board.service.local.js"
-import { store } from "../store/store.js"
-import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
+import { boardService } from "../../services/board.service.js"
+import { store } from "../store.js"
+import {
+  showSuccessMsg,
+  showErrorMsg,
+} from "../../services/event-bus.service.js"
 import {
   ADD_BOARD,
   REMOVE_BOARD,
   SET_BOARDS,
   UNDO_REMOVE_BOARD,
   UPDATE_BOARD,
-} from "./board.reducer.js"
+} from "../reducers/board.reducer"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {

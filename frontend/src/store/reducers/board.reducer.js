@@ -1,4 +1,4 @@
-export const SET_BOARDS = "SET_boards"
+export const SET_BOARDS = "SET_BAORDS"
 export const REMOVE_BOARD = "REMOVE_BOARD"
 export const ADD_BOARD = "ADD_BOARD"
 export const UPDATE_BOARD = "UPDATE_BOARD"
@@ -9,7 +9,7 @@ const initialState = {
   lastRemovedBoard: null,
 }
 
-export function carReducer(state = initialState, action) {
+export function boardReducer(state = initialState, action) {
   var newState = state
   var boards
   switch (action.type) {
