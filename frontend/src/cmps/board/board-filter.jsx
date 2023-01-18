@@ -1,5 +1,7 @@
 import React from "react"
+import { useState } from "react"
 
-export function BoardFilter() {
-  return <div className="board-filter">BoardFilter</div>
+export function BoardFilter({onSetFilter}) {
+  const [filterByToEdit, setFilterByToEdit] = useState()
+  return <div className="board-filter"></div>
 }
