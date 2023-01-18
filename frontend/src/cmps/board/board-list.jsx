@@ -27,14 +27,25 @@ export function BoardList({ boards }) {
     boardService.save(board)
   }
 
+  function onOpenSettings(ev, board) {
+    ev.stopPropagation()
+    ev.preventDefault()
+
+    console.log(board);
+  }
+
+  if (!boards) return <h2>Loading....</h2>
+
   return (
     <ul className="board-list">
+
       <li ref={buttonRef} onClick={OpenActionModal}>
         {isActionModal && <DynamicActionModal buttonRef={buttonRef.current} type={'create-board'} />}
         <div>
           <p>Create new board</p>
         </div>
       </li>
+
       {boards.map((board) => {
         // console.log(board.style);
         return <li style={board.style} key={board._id}>
@@ -42,7 +53,7 @@ export function BoardList({ boards }) {
 
             <BoardPreview board={board} />
 
-            <button>
+            <button onClick={(ev) => onOpenSettings(ev, board)}>
               <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
             </button>
 

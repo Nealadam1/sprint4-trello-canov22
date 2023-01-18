@@ -1,6 +1,70 @@
 .create-board{
-    position: absolute;
-    z-index: 2;
-    top:50%;
-    right: 50%
+ 
 }
+
+.create-board-header{
+    margin-bottom: 8px;
+    padding: 0 12px;
+    position: relative;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 12px 1fr 12px;
+    i{
+        grid-column: 3;
+        grid-row: 1;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        z-index: 2;
+        outline: none;
+    }
+    h4{
+        grid-column: 1 / span 3;
+        grid-row: 1;
+        border-bottom: 1px solid var(--ds-border, rgba(9, 30, 66, 0.13));
+        color: $clr15;
+        height: 40px;
+        display: block;
+        line-height: 40px;
+        margin: 0;
+        overflow: hidden;
+        padding: 0 32px;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+  
+}
+
+.create-board-preview{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 8px;
+    flex-grow: 1;
+    .background-preview{
+        width: 200px;
+        height: 110px;
+        background: none;
+        background-position: center center;
+        background-size: cover;
+        border-radius: 3px;
+        box-shadow:  0 7px 15px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img{
+            padding: 30px 15px;
+        }
+    }
+}
+
+
+
+
+
+
