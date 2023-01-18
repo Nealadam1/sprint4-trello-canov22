@@ -11,7 +11,9 @@ export function BoardIndex() {
     loadBoards()
   }, [])
 
-  console.log(boards)
+async function onAddBoard(){
+  const board=boardService.getEmptyBoard
+}
 
   return (
     <div className="board-index">
@@ -20,3 +22,5 @@ export function BoardIndex() {
     </div>
   )
 }
+
+
