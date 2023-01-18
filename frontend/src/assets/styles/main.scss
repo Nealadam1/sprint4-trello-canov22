@@ -1,0 +1,21 @@
+// Setup 
+@import "./setup/variables";
+@import "./setup/mixins";
+@import "./setup/typography";
+
+// Views
+@import "./views/home";
+@import "./views/board-index";
+
+
+// Components
+@import "./cmps/app-header";
+@import "./cmps/side-bar";
+
+
+// cmp - Board
+@import "./cmps/board/board-preview";
+
+
+// cmp - Card
+@import "./cmps/card/card-preview";
