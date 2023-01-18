@@ -48,6 +48,7 @@ export function BoardDetails() {
   return (
     <div className="board-details" style={board?.style}>
       <GroupList
+        board={board}
         onDeleteGroup={onDeleteGroup}
         onAddGroup={onAddGroup}
         groups={board.groups}
