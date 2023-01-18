@@ -8,13 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons"
 import { faStar } from "@fortawesome/free-regular-svg-icons"
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
+import { DynamicActionModal } from "../dynamic-modal-cmp"
+import { useSelector } from "react-redux"
+import { OpenActionModal } from "../../store/actions/board.action"
 
 export function BoardList({ boards, onStarBoard }) {
-  const [isCreateBoard, setIsCreateBoard] = useState(false)
+  const isActionModal= useSelector(storeState=> storeState.boardModule.isActionModal)
   console.log(boards)
-  function onOpenCreateBoard() {
-    setIsCreateBoard(true)
-  }
 
   function starBoard(ev, board) {
     ev.stopPropagation()
@@ -25,8 +25,8 @@ export function BoardList({ boards, onStarBoard }) {
 
   return (
     <ul className="board-list">
-      <li onClick={onOpenCreateBoard}>
-        {isCreateBoard && <CreateBoard setIsCreateBoard={setIsCreateBoard} />}
+      <li onClick={OpenActionModal}>
+        {isActionModal && <DynamicActionModal />}
         <p>Create new board</p>
       </li>
       {boards.map((board) => (
