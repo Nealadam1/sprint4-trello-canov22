@@ -27,6 +27,13 @@ export function BoardList({ boards }) {
     boardService.save(board)
   }
 
+  function onOpenSettings(ev, board) {
+    ev.stopPropagation()
+    ev.preventDefault()
+
+    console.log(board);
+  }
+
   return (
     <ul className="board-list">
       <li ref={buttonRef} onClick={OpenActionModal}>
@@ -42,7 +49,7 @@ export function BoardList({ boards }) {
 
             <BoardPreview board={board} />
 
-            <button>
+            <button onClick={(ev) => onOpenSettings(ev, board)}>
               <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
             </button>
 

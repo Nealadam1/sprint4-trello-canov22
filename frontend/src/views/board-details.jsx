@@ -45,6 +45,7 @@ export function BoardDetails() {
   if (!board) return <h1>Loading...</h1>
   return (
     <div className="board-details" style={board?.style}>
+      <h3>{board.title}</h3>
       <GroupList
         onDeleteGroup={onDeleteGroup}
         onAddGroup={onAddGroup}
