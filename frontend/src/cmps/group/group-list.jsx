@@ -51,26 +51,23 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   //   </div>
   // )
 
-
+  // test for d&d for group 
   return (
     <div className="group-list">
-      {groups &&
-        groups.map((group) => (
-          <li className="group" key={group.id}>
-            <GroupPreview
-              updateGroupTitle={updateGroupTitle}
-              cards={group.cards}
-              group={group}
-              groups={groups}
-            />
-            <button
-              className="delete-group-btn"
-              onClick={() => onDeleteGroup(group.id)}
-            >
-              X
-            </button>
-          </li>
-        ))}
+      {groups && groups.map((group) => (
+        <div className="group" key={group.id}>
+          {/* <button
+            className="delete-group-btn"
+            onClick={() => onDeleteGroup(group.id)}
+          >X</button> */}
+          <GroupPreview
+            updateGroupTitle={updateGroupTitle}
+            cards={group.cards}
+            group={group}
+            groups={groups}
+          />
+        </div>
+      ))}
       <button className="add-group-btn" onClick={onAddGroup}>
         + Add another list
       </button>

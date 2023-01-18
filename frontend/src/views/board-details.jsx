@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router"
+import { BoardHeader } from "../cmps/board/board-header"
 import { GroupList } from "../cmps/group/group-list"
 import { boardService } from "../services/board.service"
 import { utilService } from "../services/util.service"
@@ -16,9 +17,7 @@ export function BoardDetails() {
     loadBoard(boardId)
   }, [])
 
-  function handleChange({ target }) {
-    console.log(target);
-  }
+
 
   async function loadBoard(boardId) {
     await boardService.getById(boardId).then((board) => {
@@ -48,7 +47,7 @@ export function BoardDetails() {
   if (!board) return <h1>Loading...</h1>
   return (
     <div className="board-details" style={board?.style}>
-      <h3 contentEditable="true" onChange={handleChange}>{board.title}</h3>
+      <BoardHeader board={board} />
       <GroupList
         board={board}
         onDeleteGroup={onDeleteGroup}
