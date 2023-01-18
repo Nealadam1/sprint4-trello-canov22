@@ -127,7 +127,7 @@ const board = {
                 },
                 {
                     "id": "c107",
-                    "title": "",
+                    "title": "Check PWA",
                     "description": "description",
                     "attachments": [
                         {
