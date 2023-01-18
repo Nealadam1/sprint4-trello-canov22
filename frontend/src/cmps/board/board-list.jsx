@@ -28,12 +28,14 @@ export function BoardList({ boards, onStarBoard }) {
     <ul className="board-list">
       <li onClick={onOpenCreateBoard}>
         {isCreateBoard && <CreateBoard setIsCreateBoard={setIsCreateBoard} />}
-        <p>Create new board</p>
+        <div>
+          <p>Create new board</p>
+        </div>
       </li>
       {boards.map((board) => {
         console.log(board.style);
-        return <li style={board.style}>
-          <Link to={`/board/${board._id}`} key={board._id}>
+        return <li style={board.style} key={board._id}>
+          <Link to={`/board/${board._id}`}>
 
             <BoardPreview board={board} />
 
