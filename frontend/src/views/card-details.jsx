@@ -48,10 +48,14 @@ export function CardDetails() {
           onClick={handleClose}
         >
           <div className="card-details">
-            <header
-              className="card-header"
-              style={{ background: card.style ? card.style.bgColor : "fff" }}
-            ></header>
+            {card.style && (
+              <header
+                className="card-header"
+                style={{
+                  background: card?.style ? card?.style?.bgColor : "fff",
+                }}
+              ></header>
+            )}
             <div className="card-content">
               <h1>{card?.title}</h1>
               <p>{card?.description}</p>
