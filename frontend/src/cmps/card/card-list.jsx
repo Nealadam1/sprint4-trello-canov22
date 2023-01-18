@@ -3,7 +3,11 @@ import { useEffect } from "react"
 import { Link, Outlet, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
-import { setBoard, updateBoard } from "../../store/actions/board.action"
+import {
+  openCardDetail,
+  setBoard,
+  updateBoard,
+} from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
 
 export function CardList({ group, groups }) {
@@ -31,7 +35,7 @@ export function CardList({ group, groups }) {
   }
 
   function onDeleteCard(event, cardId) {
-    event.stopPropagation()
+    event.preventDefault()
     group.cards = group.cards.filter((card) => card.id !== cardId)
     const updatedGroup = { ...group, cards: group.cards }
     const updatedGroups = groups.map((group) =>
@@ -47,7 +51,10 @@ export function CardList({ group, groups }) {
         {group.cards &&
           group.cards.map((card) => (
             <li key={card.id}>
-              <Link to={`/board/${boardId}/${card.id}`}>
+              <Link
+                onClick={openCardDetail}
+                to={`/board/${boardId}/${card.id}`}
+              >
                 <CardPreview card={card} />
                 <div className="delete-card-btn">
                   <button onClick={(event) => onDeleteCard(event, card.id)}>
@@ -58,7 +65,6 @@ export function CardList({ group, groups }) {
             </li>
           ))}
       </div>
-      {cardId ? <Outlet /> : null}
       <button onClick={onAddCard}> + Add card</button>
     </>
   )

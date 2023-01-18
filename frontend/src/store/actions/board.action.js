@@ -12,6 +12,7 @@ import {
   UNDO_REMOVE_BOARD,
   UPDATE_BOARD,
 } from "../reducers/board.reducer"
+import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -32,6 +33,19 @@ export function getActionUpdateBoard(board) {
     board,
   }
 }
+
+export function openCardDetail() {
+  store.dispatch({
+    type: CARD_DETAIL_OPEN,
+  })
+}
+
+export function closeCardDetail() {
+  store.dispatch({
+    type: CARD_DETAIL_CLOSE,
+  })
+}
+
 export function CloseActionModal(ev) {
   ev.preventDefault()
   ev.stopPropagation()
@@ -44,6 +58,12 @@ export function OpenActionModal(ev) {
   ev.stopPropagation()
   store.dispatch({
     type: "MODAL_OPEN",
+  })
+}
+
+export function openDetailModal(ev) {
+  store.dispatch({
+    type: "",
   })
 }
 
@@ -116,7 +136,7 @@ export function getCardById(board, cardId) {
     group?.cards?.find((card) => card.id === cardId)
   )
   const card = cardGroup?.cards.find((card) => card.id === cardId)
-  console.log("found", card)
+  return card
 }
 
 // Demo for Optimistic Mutation

@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { useSelector } from "react-redux"
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { GroupPreview } from "./group-preview"
+import { Outlet, useParams } from "react-router"
 
 export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
-  const [showInput, setShowInput] = useState(false)
+  const { cardId } = useParams()
 
   function updateGroupTitle(group) {
     const newTitle = prompt("Pick new title")
@@ -21,7 +22,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     if (!result.destination) return
 
     const { source, destination } = result
-    console.log(source);
+    console.log(source)
     // handle the drag end event here
     // you can use the result object to determine the source and destination of the drag
   }
@@ -51,7 +52,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   //   </div>
   // )
 
-
   return (
     <div className="group-list">
       {groups &&
@@ -74,9 +74,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
       <button className="add-group-btn" onClick={onAddGroup}>
         + Add another list
       </button>
+      {cardId ? <Outlet /> : null}
     </div>
   )
 }
-
-
-

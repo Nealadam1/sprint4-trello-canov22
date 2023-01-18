@@ -15,17 +15,16 @@
 @import "./views/home";
 @import "./views/board-index";
 @import "./views/board-details";
+@import "./views/card-details";
 
 // Components
 @import "./cmps/app-header";
 @import "./cmps/side-bar";
 @import "./cmps/dynamicAction";
 
-
 // cmp - Board
 @import "./cmps/board/board-preview";
 @import "./cmps/board/board-create";
-
 
 // cmp - Group
 @import "./cmps/group/group-list";
