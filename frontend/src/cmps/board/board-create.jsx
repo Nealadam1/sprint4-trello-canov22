@@ -7,14 +7,14 @@ import { useSelector } from "react-redux"
 import { addBoard } from "../../store/actions/board.action"
 
 
-export function CreateBoard({ onSaveBoard }) {
+export function CreateBoard({setIsCreateBoard  }) {
     const boards = useSelector((storeState) => storeState.boardModule.boards)
     const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
     const [boardPreviewColor, setBoardPreviewColor] = useState('#24AAE2')
 
     function handleColorChange(color) {
         setBoardPreviewColor(color.hex)
-        newBoard.style.background=color.hex
+        newBoard.style.background = color.hex
     }
 
     console.log(newBoard)
@@ -34,13 +34,17 @@ export function CreateBoard({ onSaveBoard }) {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    newBoard.title=values
                     
+                    newBoard.title = values.title
+
+
                     addBoard(newBoard)
+                    setIsCreateBoard(false)
                     
-                
-                        setSubmitting(false);
-                    
+
+
+                    setSubmitting(false);
+
                 }}
             >
                 {({ isSubmitting }) => (

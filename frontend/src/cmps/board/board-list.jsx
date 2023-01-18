@@ -13,7 +13,7 @@ export function BoardList({ boards, onStarBoard }) {
   return (
     <ul className="board-list">
       <li onClick={onOpenCreateBoard}>
-        {isCreateBoard&&<CreateBoard/>}
+        {isCreateBoard&&<CreateBoard setIsCreateBoard={setIsCreateBoard}/>}
         <h2>Create New Board</h2>
       </li>
       {boards.map((board) => (
