@@ -1,13 +1,10 @@
 import React from "react"
+import {Link} from "react-router-dom"
 
 export function Home() {
-<<<<<<< Updated upstream
   return (
     <section>
-      {/* <Link></Link> */}
+      <Link to="/board">Boards</Link>
     </section>
   )
-=======
-  return <div>Home</div> 
->>>>>>> Stashed changes
 }

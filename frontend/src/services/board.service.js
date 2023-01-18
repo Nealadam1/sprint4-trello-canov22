@@ -577,8 +577,23 @@ function _createDemoData() {
 
 function getEmptyBoard() {
   return {
-    vendor: "Susita-" + (Date.now() % 1000),
-    price: utilService.getRandomIntInclusive(1000, 9000),
+    title: '',
+    isStarred: false,
+    archivedAt:'',
+    createdBy: {id:'', fullname:'', imgUrl:''},
+    style:{},
+    labels:[
+      {id:utilService.makeId(), title:'', color:'#7BC86C'},
+      {id:utilService.makeId(), title:'', color:'#F5DD29'},
+      {id:utilService.makeId(), title:'', color:'#DFE1E6'},
+      {id:utilService.makeId(), title:'', color:'#EF7564'}
+    ],
+    members:[],
+    groups:[
+      {id:''
+    }
+    ],
+
   }
 }
 
