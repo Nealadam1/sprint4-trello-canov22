@@ -1,5 +1,5 @@
 import React from "react"
 
 export function AppHeader() {
-  return <div className="app-header">AppHeader</div>
+  return <div className="app-header">Trello</div>
 }
