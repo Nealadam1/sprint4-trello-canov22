@@ -111,6 +111,14 @@ export function updateBoard(board) {
     })
 }
 
+export function getCardById(board, cardId) {
+  const cardGroup = board.groups.find((group) =>
+    group?.cards?.find((card) => card.id === cardId)
+  )
+  const card = cardGroup?.cards.find((card) => card.id === cardId)
+  console.log("found", card)
+}
+
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 export function onRemoveBoardOptimistic(boardId) {
