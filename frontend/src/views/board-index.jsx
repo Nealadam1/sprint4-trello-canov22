@@ -11,16 +11,14 @@ export function BoardIndex() {
     loadBoards()
   }, [])
 
-async function onAddBoard(){
-  const board=boardService.getEmptyBoard
-}
+  async function onAddBoard() {
+    const board = boardService.getEmptyBoard
+  }
 
   return (
     <div className="board-index">
-      <div className="boards-list"></div>
-      <div className="sidebar"></div>
+      <div className="boards-list">list</div>
+      <div className="side-bar">side bar</div>
     </div>
   )
 }
-
-
