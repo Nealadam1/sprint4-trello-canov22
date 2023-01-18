@@ -28,7 +28,7 @@ export function CardList({ cards, group, groups }) {
       <div className="card-list">
         {cards &&
           cards.map((card) => (
-            <li>
+            <li key={card.id}>
               <CardPreview card={card} />
             </li>
           ))}
