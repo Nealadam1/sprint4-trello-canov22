@@ -3,7 +3,7 @@
 }
 
 ::selection {
-  background-color: $clr1;
+  // background-color: $clr1;
   color: $clr6;
 }
 
@@ -48,6 +48,7 @@ p {
 a {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
