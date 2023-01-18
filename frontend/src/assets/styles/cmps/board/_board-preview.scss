@@ -1,0 +1,16 @@
+.board-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    // margin-top: 71px;
+
+    li {
+        background-color: aliceblue;
+        margin-bottom: 5px;
+        width: 10.8em;
+        height: 5.4em;
+        margin-left: 2px;
+        border-radius: 3px;
+    }
+
+}
