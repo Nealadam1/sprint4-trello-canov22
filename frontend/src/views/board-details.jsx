@@ -4,11 +4,7 @@ import { useParams } from "react-router"
 import { GroupList } from "../cmps/group/group-list"
 import { boardService } from "../services/board.service"
 import { utilService } from "../services/util.service"
-import {
-  setBoard,
-  setBoardById,
-  updateBoard,
-} from "../store/actions/board.action"
+import { setBoard, setBoardById, updateBoard, } from "../store/actions/board.action"
 
 export function BoardDetails() {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -52,7 +48,7 @@ export function BoardDetails() {
   if (!board) return <h1>Loading...</h1>
   return (
     <div className="board-details" style={board?.style}>
-      <h3 contenteditable="true" onChange={handleChange}>{board.title}</h3>
+      <h3 contentEditable="true" onChange={handleChange}>{board.title}</h3>
       <GroupList
         board={board}
         onDeleteGroup={onDeleteGroup}
