@@ -7,14 +7,16 @@ import { Home } from "./views/home"
 // import { AppFooter } from "./cmps/app-footer"
 // import { UserDetails } from "./pages/user-details"
 import "./assets/styles/main.scss"
+import { BoardDetails } from "./views/board-details"
 
 export function App() {
   return (
-    <div className="app main-container flex">
+    <div className="app">
       <AppHeader />
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<BoardIndex />} path="/board" />
+        <Route element={<BoardDetails />} path="/board/:boardId" />
       </Routes>
     </div>
   )

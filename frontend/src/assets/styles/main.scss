@@ -2,6 +2,7 @@
 @import "./setup/variables";
 @import "./setup/mixins";
 @import "./setup/typography";
+@import "./setup/functions";
 
 // BASICS
 @import "./basics/helpers";
@@ -22,6 +23,9 @@
 // cmp - Board
 @import "./cmps/board/board-preview";
 @import "./cmps/board/board-create";
+
+// cmp - Group
+@import "./cmps/group/group-list";
 
 // cmp - Card
 @import "./cmps/card/card-preview";

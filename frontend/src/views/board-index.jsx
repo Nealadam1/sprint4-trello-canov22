@@ -12,17 +12,14 @@ export function BoardIndex() {
     loadBoards()
   }, [])
 
-
-
   return (
     <main className="board-index">
       <section className="boards-list">
         <BoardList boards={boards} />
       </section>
 
-
-      {/* <div className="boards-list"></div> */}
       <div className="side-bar"></div>
-    </main >
+
+    </main>
   )
 }

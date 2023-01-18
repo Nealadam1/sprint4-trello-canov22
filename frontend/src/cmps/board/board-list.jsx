@@ -1,10 +1,10 @@
 import React from "react"
-import { BoardPreview } from "./board-preview"
 import { Link } from "react-router-dom"
+import { BoardPreview } from "./board-preview"
 import { useState } from "react"
 import { CreateBoard } from "./board-create"
 
-export function BoardList({boards, onStarBoard}) {
+export function BoardList({ boards, onStarBoard }) {
   const [isCreateBoard,setIsCreateBoard] = useState(false)
   console.log(boards)
   function onOpenCreateBoard(){
@@ -16,16 +16,16 @@ export function BoardList({boards, onStarBoard}) {
         {isCreateBoard&&<CreateBoard/>}
         <h2>Create New Board</h2>
       </li>
-      {boards.map(board =>
+      {boards.map((board) => (
         <li key={board._id}>
           <Link to={`/board/${board._id}`}>
             <BoardPreview board={board} />
           </Link>
           <div>
-            <button onClick={()=>onStarBoard(board._id)}>StarBoard</button>
+            <button onClick={() => onStarBoard(board._id)}>StarBoard</button>
           </div>
-        </li>)}
-
+        </li>
+      ))}
     </ul>
   )
 }

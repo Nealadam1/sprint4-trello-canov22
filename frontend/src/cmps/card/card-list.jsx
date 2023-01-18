@@ -1,10 +1,18 @@
 import React from "react"
 import { CardPreview } from "./card-preview"
 
-export function CardList() {
+export function CardList({ cards, onAddCard }) {
   return (
-    <div className="card-list">
-      <CardPreview />
-    </div>
+    <>
+      <div className="card-list">
+        {cards &&
+          cards.map((card) => (
+            <li>
+              <CardPreview card={card} />
+            </li>
+          ))}
+      </div>
+      <button>Add card +</button>
+    </>
   )
 }
