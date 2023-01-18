@@ -9,7 +9,7 @@ export function DynamicActionModal(props) {
                 position: 'fixed',
                 top: `calc(${buttonRef.getBoundingClientRect().top}px + ${buttonRef.offsetHeight}px)`,
                 left: `calc(${buttonRef.getBoundingClientRect().left}px + ${buttonRef.offsetWidth}px)`,
-                transform: `translate(${buttonRef.offsetWidth/2}px, -${buttonRef.offsetHeight}px)`,
+                transform: `translate(0, -${buttonRef.offsetHeight}px)`,
                 width:'300px'
             }}>
                 <CreateBoard {...props} />

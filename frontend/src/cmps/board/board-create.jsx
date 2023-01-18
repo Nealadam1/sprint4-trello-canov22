@@ -14,12 +14,6 @@ export function CreateBoard() {
         newBoard.style.background = color.hex
     }
 
-    function onCreateBoard(title){
-        newBoard.title = title
-        addBoard(newBoard)
-        CloseActionModal()
-    }
-
     console.log(newBoard)
 
     return (
@@ -34,6 +28,7 @@ export function CreateBoard() {
                     <img src={skeletonBoardPreview} alt="" />
                 </div>
             </div>
+            <h5>Background</h5>
             <TwitterPicker
                 color={boardPreviewColor}
                 onChange={handleColorChange}
@@ -48,15 +43,18 @@ export function CreateBoard() {
                     return errors
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    onCreateBoard(values.title)
+                    newBoard.title = values.title
+                    addBoard(newBoard)
+                    CloseActionModal()
                     setSubmitting(false)
                 }}
             >
                 {({ isSubmitting }) => (
                     <Form>
+                         <h5>Board Title</h5>
                         <Field type="text" name="title" placeholder="Enter a title" />
                         <ErrorMessage name="title" component="div" className="error" />
-                        <button type="submit" disabled={isSubmitting}>
+                        <button id="createbtn" className="board-create-button" type="submit" disabled={isSubmitting}>
                             Create
                         </button>
 
