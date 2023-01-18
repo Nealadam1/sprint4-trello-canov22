@@ -48,7 +48,7 @@ export function CardDetails() {
           onClick={handleClose}
         >
           <div className="card-details">
-            {card.style && (
+            {card && card.style && (
               <header
                 className="card-header"
                 style={{
@@ -60,7 +60,8 @@ export function CardDetails() {
               <h1>{card?.title}</h1>
               <p>{card?.description}</p>
               <ul>
-                {card.checklists &&
+                {card &&
+                  card.checklists &&
                   card?.checklists?.map((checklist) => {
                     return (
                       <div>
