@@ -1,5 +1,7 @@
 import React from "react"
 
-export function CardPreview() {
-  return <div className="card-preview">CardPreview</div>
+export function CardPreview({ card }) {
+  console.log(card)
+
+  return <div className="card-preview">{card.title}</div>
 }

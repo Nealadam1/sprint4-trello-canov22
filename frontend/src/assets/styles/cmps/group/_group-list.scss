@@ -1,0 +1,11 @@
+.group-list {
+  display: flex;
+  list-style: none;
+  li {
+    width: rem(272px);
+  }
+
+  .group-preview {
+    border: 1px solid black;
+  }
+}
