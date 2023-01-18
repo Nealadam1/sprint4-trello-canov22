@@ -1,0 +1,19 @@
+.card-details {
+  header {
+    height: 116px;
+    min-height: 116px;
+  }
+  position: absolute;
+  width: em(768px);
+  min-width: em(768px);
+  min-height: em(900px);
+  background-color: #ebecf0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .card-content {
+    padding: em(20px);
+  }
+}

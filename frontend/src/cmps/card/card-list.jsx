@@ -5,7 +5,11 @@ import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import { utilService } from "../../services/util.service"
-import { setBoard, updateBoard } from "../../store/actions/board.action"
+import {
+  openCardDetail,
+  setBoard,
+  updateBoard,
+} from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
 
 export function CardList({ group, groups }) {
@@ -44,7 +48,7 @@ export function CardList({ group, groups }) {
   }
 
   function onDeleteCard(event, cardId) {
-    event.stopPropagation()
+    event.preventDefault()
     group.cards = group.cards.filter((card) => card.id !== cardId)
     const updatedGroup = { ...group, cards: group.cards }
     const updatedGroups = groups.map((group) =>
@@ -113,7 +117,7 @@ export function CardList({ group, groups }) {
 
                       {(provided) => (
                         <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <Link to={`/board/${boardId}/${card.id}`}>
+                          <Link onClick={openCardDetail} to={`/board/${boardId}/${card.id}`}>
 
                             <CardPreview card={card} />
                             <div className="delete-card-btn">
@@ -139,7 +143,6 @@ export function CardList({ group, groups }) {
 
         </DragDropContext>
       </div>
-      {cardId ? <Outlet /> : null}
       <button onClick={onAddCard}> + Add card</button>
     </>
   )
