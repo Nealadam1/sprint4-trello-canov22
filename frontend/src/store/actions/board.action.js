@@ -32,12 +32,16 @@ export function getActionUpdateBoard(board) {
     board,
   }
 }
-export function CloseActionModal(){
+export function CloseActionModal(ev){
+  ev.preventDefault()
+  ev.stopPropagation()
   store.dispatch({
     type: 'MODAL_CLOSE'
   })
 }
-export function OpenActionModal(){
+export function OpenActionModal(ev){
+  ev.preventDefault()
+  ev.stopPropagation()
   store.dispatch({
     type: 'MODAL_OPEN'
   })

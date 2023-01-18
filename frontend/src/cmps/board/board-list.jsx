@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 
@@ -15,7 +15,10 @@ import { OpenActionModal } from "../../store/actions/board.action"
 import { boardService } from "../../services/board.service"
 
 export function BoardList({ boards }) {
-  const isActionModal = useSelector(storeState => storeState.boardModule.isActionModal)
+  const isActionModal = useSelector(storeState => storeState.systemModule.isActionModal)
+  const buttonRef = useRef(null)
+  console.log(isActionModal)
+
 
   function starBoard(ev, board) {
     ev.stopPropagation()
@@ -26,8 +29,8 @@ export function BoardList({ boards }) {
 
   return (
     <ul className="board-list">
-      <li onClick={OpenActionModal}>
-        {isActionModal && <DynamicActionModal />}
+      <li ref={buttonRef} onClick={OpenActionModal}>
+        {isActionModal && <DynamicActionModal buttonRef={buttonRef.current} type={'create-board'} />}
         <div>
           <p>Create new board</p>
         </div>

@@ -1,10 +1,9 @@
 import { useState } from "react"
 import { boardService } from "../../services/board.service"
-import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 import { TwitterPicker } from "react-color"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import { useSelector } from "react-redux"
 import { addBoard, CloseActionModal } from "../../store/actions/board.action"
+import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
@@ -20,6 +19,7 @@ export function CreateBoard() {
   return (
     <section className="create-board">
       <h2>Create Board</h2>
+      <i onClick={CloseActionModal}>X</i>
       <Formik
         initialValues={{ title: "" }}
         validate={(values) => {
