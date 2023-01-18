@@ -16,8 +16,9 @@ export function BoardIndex() {
   }
 
   return (
-    <div className="board-index">
-      <div className="boards-list">list</div>
+    <div className="board-index ">
+      <div className="boards-list">jklj</div>
+
       <div className="side-bar">side bar</div>
     </div>
   )
