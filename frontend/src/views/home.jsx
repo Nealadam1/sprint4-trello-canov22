@@ -1,10 +1,9 @@
 import React from "react"
-import {Link} from "react-router-dom"
-
+import { Link } from "react-router-dom";
 export function Home() {
   return (
     <section>
-      <Link to="/board">Boards</Link>
+      <Link to="/board" >Board</Link>
     </section>
   )
 }
