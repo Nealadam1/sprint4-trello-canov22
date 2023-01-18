@@ -11,9 +11,15 @@ export function BoardDetails() {
     boardService.getById(boardId).then(setBoard)
   }, [])
 
+  console.log(board)
+
+  function onAddList() {
+    console.log("added list")
+  }
+
   return (
     <div className="board-details">
-      <GroupList groups={board.groups} />
+      <GroupList onAddList={onAddList} groups={board.groups} />
     </div>
   )
 }

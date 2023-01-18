@@ -2,7 +2,6 @@ import React from "react"
 import { CardList } from "../card/card-list"
 
 export function GroupPreview({ group, cards }) {
-  console.log(cards)
   return (
     <div className="group-preview">
       <h4>{group.title}</h4>
