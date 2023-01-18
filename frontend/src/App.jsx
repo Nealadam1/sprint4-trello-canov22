@@ -11,7 +11,7 @@ import { BoardDetails } from "./views/board-details"
 
 export function App() {
   return (
-    <div className="app main-container flex">
+    <div className="app">
       <AppHeader />
       <Routes>
         <Route element={<Home />} path="/" />
