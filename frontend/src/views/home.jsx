@@ -1,5 +1,9 @@
 import React from "react"
 
 export function Home() {
-  return <div>Home</div>
+  return (
+    <section>
+      {/* <Link></Link> */}
+    </section>
+  )
 }

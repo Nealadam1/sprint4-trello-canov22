@@ -41,7 +41,7 @@ async function save(board) {
 }
 
 function _createDemoData() {
-  let demoData = utilService.loadFromStorage(STORAGE_KEY)
+  let demoData = utilService.loadFromStorage(STORAGE_BOARD_KEY)
   if (!demoData) {
     demoData = [
       {
@@ -571,7 +571,7 @@ function _createDemoData() {
         cmpsOrder: ["status-picker", "member-picker", "date-picker"],
       },
     ]
-    utilService.saveToStorage(STORAGE_KEY, demoData)
+    utilService.saveToStorage(STORAGE_BOARD_KEY, demoData)
   }
 }
 
@@ -583,4 +583,4 @@ function getEmptyBoard() {
 }
 
 // TEST DATA
-// asyncStorageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
+// asyncStorageService.post(STORAGE_BOARD_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
