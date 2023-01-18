@@ -30,18 +30,21 @@ export function BoardList({ boards, onStarBoard }) {
         {isCreateBoard && <CreateBoard setIsCreateBoard={setIsCreateBoard} />}
         <p>Create new board</p>
       </li>
-      {boards.map((board) => (
-        <li>
+      {boards.map((board) => {
+        console.log(board.style);
+        return <li style={board.style}>
           <Link to={`/board/${board._id}`} key={board._id}>
+
             <BoardPreview board={board} />
-            {/* <div> */}
+
             <button onClick={(ev) => starBoard(ev, board)}>
               <FontAwesomeIcon className="btn-icon" icon={faStar} />
             </button>
-            {/* </div> */}
+
           </Link>
         </li>
-      ))}
+
+      })}
     </ul>
   )
 }
