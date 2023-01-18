@@ -1,13 +1,18 @@
 .board-index {
-  display: grid;
-  .boards-list {
-    background-color: blue;
-    width: 80%;
-    height: 100%;
-  }
-  .side-bar {
-    background-color: red;
-    width: 20%;
-    height: 100%;
-  }
+    display: flex;
+    flex-direction: row-reverse;
+    min-height: 95vh;
+    background-color: yellow;
+
+    .boards-list {
+        background-color: rgb(73, 73, 221);
+        width: 80%;
+        height: 95vh;
+    }
+
+    .side-bar {
+        background-color: rgb(248, 56, 56);
+        width: 20%;
+        height: 5vh;
+    }
 }

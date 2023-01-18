@@ -10,7 +10,7 @@ import "./assets/styles/main.scss"
 
 export function App() {
   return (
-    <div className="app">
+    <div className="app main-container flex">
       <AppHeader />
       <Routes>
         <Route element={<Home />} path="/" />
