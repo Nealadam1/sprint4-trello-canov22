@@ -1,19 +1,20 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { BoardPreview } from "./board-preview"
 
-export function BoardList(board, onStarBoard) {
+export function BoardList({ board, onStarBoard }) {
   return (
     <ul className="board-list">
-      {board.map(board =>
+      {board.map((board) => (
         <li key={board._id}>
-          <LInk to={`/board/${board._id}`}>
+          <Link to={`/board/${board._id}`}>
             <BoardPreview board={board} />
-          </LInk>
+          </Link>
           <div>
-            <button onClick={()=>onStarBoard(board._id)}>StarBoard</button>
+            <button onClick={() => onStarBoard(board._id)}>StarBoard</button>
           </div>
-        </li>)}
-
+        </li>
+      ))}
     </ul>
   )
 }
