@@ -1,3 +1,5 @@
+import { boardService } from "../../services/board.service"
+
 export const SET_BOARDS = "SET_BAORDS"
 export const SET_BOARD = "SET_BAORD"
 export const REMOVE_BOARD = "REMOVE_BOARD"
@@ -8,6 +10,7 @@ export const SET_IS_CREATE_BOARD = "SET_IS_CREATE_BOARD"
 
 const initialState = {
   boards: [],
+  board: null,
   isCreateBoard: false,
   lastRemovedBoard: null,
 }
@@ -23,7 +26,7 @@ export function boardReducer(state = initialState, action) {
       newState = { ...state, boards: action.boards }
       break
     case SET_BOARD:
-      newState = { ...state, board: action.board }
+      newState = { ...state, board: action.currBoard }
       break
     case REMOVE_BOARD:
       const lastRemovedBoard = state.boards.find(
