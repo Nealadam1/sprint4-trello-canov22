@@ -5,15 +5,16 @@ import { useState } from "react"
 import { CreateBoard } from "./board-create"
 
 export function BoardList({ boards, onStarBoard }) {
-  const [isCreateBoard,setIsCreateBoard] = useState(false)
+  const [isCreateBoard, setIsCreateBoard] = useState(false)
   console.log(boards)
-  function onOpenCreateBoard(){
+  function onOpenCreateBoard() {
     setIsCreateBoard(true)
   }
+
   return (
     <ul className="board-list">
       <li onClick={onOpenCreateBoard}>
-        {isCreateBoard&&<CreateBoard/>}
+        {isCreateBoard && <CreateBoard />}
         <h2>Create New Board</h2>
       </li>
       {boards.map((board) => (

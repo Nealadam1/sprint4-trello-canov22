@@ -1,11 +1,17 @@
 .group-list {
   display: flex;
   list-style: none;
-  li {
+  .group {
     width: rem(272px);
+    position: relative;
+    .delete-group-btn {
+      position: absolute;
+      bottom: 85%;
+      left: 85%;
+    }
   }
+}
 
-  .group-preview {
-    border: 1px solid black;
-  }
+.group-preview {
+  border: 1px solid black;
 }

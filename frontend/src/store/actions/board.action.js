@@ -7,6 +7,7 @@ import {
 import {
   ADD_BOARD,
   REMOVE_BOARD,
+  SET_BOARD,
   SET_BOARDS,
   UNDO_REMOVE_BOARD,
   UPDATE_BOARD,
@@ -42,6 +43,19 @@ export async function loadBoards() {
     })
   } catch (err) {
     console.log("Cannot load boards", err)
+    throw err
+  }
+}
+
+export async function setBoardById(boardId) {
+  try {
+    const board = await boardService.getById(boardId)
+    store.dispatch({
+      type: SET_BOARD,
+      board,
+    })
+  } catch (err) {
+    console.log("Cannot load board", err)
     throw err
   }
 }
