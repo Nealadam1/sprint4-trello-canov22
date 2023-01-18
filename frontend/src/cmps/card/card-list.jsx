@@ -17,11 +17,20 @@ export function CardList({ cards, group, groups }) {
       id: utilService.makeId(),
       title,
     }
-    const updatedCards = (cards = [...cards, newCard])
-    const updatedGroup = { ...group, cards: updatedCards }
-    const updatedGroups = { ...groups, updatedGroup }
-    const updatedBoard = { ...currBoard, groups: updatedGroups }
-    console.log(updatedBoard)
+
+    cards = [...cards, newCard]
+    // console.log("updated Cards", updatedCards)
+
+    const updatedGroup = { ...group, cards }
+
+    console.log({ ...currBoard, groups: [...groups, updatedGroup] })
+
+    // const updatedGroups = { ...groups, group: updatedGroup }
+
+    // console.log("Updated Groups", updatedGroups)
+
+    // const updatedBoard = { ...currBoard, groups: updatedGroups }
+    // console.log(updatedBoard)
   }
 
   return (
