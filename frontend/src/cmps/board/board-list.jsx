@@ -12,6 +12,7 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 export function BoardList({ boards, onStarBoard }) {
   const [isCreateBoard, setIsCreateBoard] = useState(false)
   console.log(boards)
+
   function onOpenCreateBoard() {
     setIsCreateBoard(true)
   }
@@ -27,19 +28,19 @@ export function BoardList({ boards, onStarBoard }) {
     <ul className="board-list">
       <li onClick={onOpenCreateBoard}>
         {isCreateBoard && <CreateBoard setIsCreateBoard={setIsCreateBoard} />}
-        <h2>Create New Board</h2>
+        <p>Create new board</p>
       </li>
       {boards.map((board) => (
-        <Link to={`/board/${board._id}`} key={board._id}>
-          <li>
+        <li>
+          <Link to={`/board/${board._id}`} key={board._id}>
             <BoardPreview board={board} />
             {/* <div> */}
             <button onClick={(ev) => starBoard(ev, board)}>
               <FontAwesomeIcon className="btn-icon" icon={faStar} />
             </button>
             {/* </div> */}
-          </li>
-        </Link>
+          </Link>
+        </li>
       ))}
     </ul>
   )

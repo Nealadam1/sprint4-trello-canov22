@@ -4,9 +4,13 @@
     list-style: none;
     display: flex;
     margin-top: 71px;
+    flex-wrap: wrap;
 
     a {
         text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
 
     button {
@@ -15,6 +19,7 @@
         width: 25px;
         margin: 0;
         padding: 0;
+        align-self: flex-end;
     }
 
     li {
