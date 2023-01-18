@@ -1,0 +1,19 @@
+.card-list {
+  box-sizing: border-box;
+  li {
+    position: relative;
+    box-shadow: (0 1px 0 #091e4240);
+
+    .delete-card-btn {
+      position: absolute;
+      left: 90%;
+      top: 10%;
+    }
+  }
+  .card-preview {
+    color: black;
+    text-decoration: none;
+    margin: 0.5em;
+    cursor: pointer;
+  }
+}

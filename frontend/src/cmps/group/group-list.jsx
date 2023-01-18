@@ -35,7 +35,9 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
             </button>
           </li>
         ))}
-      <button onClick={onAddGroup}>Add another list</button>
+      <button className="add-group-btn" onClick={onAddGroup}>
+        + Add another list
+      </button>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import { Home } from "./views/home"
 // import { UserDetails } from "./pages/user-details"
 import "./assets/styles/main.scss"
 import { BoardDetails } from "./views/board-details"
+import { CardDetails } from "./views/card-details"
 
 export function App() {
   return (
@@ -16,7 +17,9 @@ export function App() {
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<BoardIndex />} path="/board" />
-        <Route element={<BoardDetails />} path="/board/:boardId" />
+        <Route element={<BoardDetails />} path="/board/:boardId">
+          <Route element={<CardDetails />} path="/board/:boardId/:cardId" />
+        </Route>
       </Routes>
     </div>
   )
