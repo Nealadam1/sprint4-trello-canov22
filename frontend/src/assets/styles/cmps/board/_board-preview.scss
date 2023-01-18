@@ -6,6 +6,21 @@
     margin-top: 71px;
     flex-wrap: wrap;
 
+    li:first-child {
+        background-color: $clr11;
+
+        &:hover {
+            background-color: darken($clr11, $amount: 8);
+        }
+
+    }
+
+    div p {
+        margin-top: 5px;
+        margin-left: 7px;
+        white-space: normal;
+    }
+
     a {
         text-decoration: none;
         display: flex;
@@ -13,10 +28,28 @@
         width: 100%;
         justify-content: space-around;
 
+        .board-preview {
+            margin-left: 7px;
+        }
+
         &:Hover {
             background-color: $clr16;
         }
 
+        button {
+            transform: translateX(120px);
+            transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) .33s;
+        }
+
+        &:hover {
+            button {
+                transform: translateX(0);
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
     }
 
     button {
@@ -30,7 +63,6 @@
     }
 
     li {
-        background-color: aliceblue;
         margin-bottom: 5px;
         width: 10.8em;
         height: 6em;
@@ -40,10 +72,6 @@
         font-size: 16px;
         display: flex;
         cursor: pointer;
-
-        &:Hover {
-            background-color: $clr16;
-        }
 
         p {
             font-weight: bold;

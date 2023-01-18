@@ -40,6 +40,25 @@ async function save(board) {
   return savedBoard
 }
 
+function getEmptyBoard() {
+  return {
+    title: '',
+    isStarred: false,
+    archivedAt: '',
+    createdBy: { id: '', fullname: '', imgUrl: '' },
+    style: { background: '#24AAE2' },
+    labels: [
+      { id: utilService.makeId(), title: '', color: '#7BC86C' },
+      { id: utilService.makeId(), title: '', color: '#F5DD29' },
+      { id: utilService.makeId(), title: '', color: '#DFE1E6' },
+      { id: utilService.makeId(), title: '', color: '#EF7564' }
+    ],
+    members: [],
+    groups: [],
+    activities: [],
+  }
+}
+
 function _createDemoData() {
   let demoData = utilService.loadFromStorage(STORAGE_BOARD_KEY)
   if (!demoData) {
@@ -575,24 +594,7 @@ function _createDemoData() {
   }
 }
 
-function getEmptyBoard() {
-  return {
-    title: '',
-    isStarred: false,
-    archivedAt: '',
-    createdBy: { id: '', fullname: '', imgUrl: '' },
-    style: {background:'#24AAE2'},
-    labels: [
-      { id: utilService.makeId(), title: '', color: '#7BC86C' },
-      { id: utilService.makeId(), title: '', color: '#F5DD29' },
-      { id: utilService.makeId(), title: '', color: '#DFE1E6' },
-      { id: utilService.makeId(), title: '', color: '#EF7564' }
-    ],
-    members: [],
-    groups: [],
-    activities:[],
-  }
-}
+
 
 // TEST DATA
 // asyncStorageService.post(STORAGE_BOARD_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

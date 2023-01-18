@@ -32,6 +32,20 @@ export function getActionUpdateBoard(board) {
     board,
   }
 }
+export function CloseActionModal(ev){
+  ev.preventDefault()
+  ev.stopPropagation()
+  store.dispatch({
+    type: 'MODAL_CLOSE'
+  })
+}
+export function OpenActionModal(ev){
+  ev.preventDefault()
+  ev.stopPropagation()
+  store.dispatch({
+    type: 'MODAL_OPEN'
+  })
+}
 
 export async function loadBoards() {
   try {
