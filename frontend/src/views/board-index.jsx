@@ -13,5 +13,10 @@ export function BoardIndex() {
 
   console.log(boards)
 
-  return <h1>board-index</h1>
+  return (
+    <div className="board-index">
+      <div className="boards-list"></div>
+      <div className="sidebar"></div>
+    </div>
+  )
 }
