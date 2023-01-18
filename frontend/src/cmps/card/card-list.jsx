@@ -2,7 +2,7 @@ import React from "react"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
-import { updateBoard } from "../../store/actions/board.action"
+import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
 
 export function CardList({ cards, group, groups }) {
@@ -19,8 +19,8 @@ export function CardList({ cards, group, groups }) {
     const updatedGroups = groups.map((group) =>
       group.id === updatedGroup.id ? updatedGroup : group
     )
-    currBoard = { ...currBoard, groups: updatedGroups }
-    updateBoard(currBoard)
+    setBoard({ ...currBoard, groups: updatedGroups })
+    updateBoard({ ...currBoard, groups: updatedGroups })
   }
 
   return (

@@ -48,11 +48,12 @@ export async function loadBoards() {
 }
 
 export async function setBoard(board) {
+  console.log(store.getState().boardModule.board)
+
   try {
-    const currBoard = await boardService.getById(board._id)
     store.dispatch({
       type: SET_BOARD,
-      currBoard,
+      board,
     })
   } catch (err) {
     console.log("Cannot load board", err)

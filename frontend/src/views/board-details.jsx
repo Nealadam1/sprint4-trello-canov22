@@ -21,7 +21,9 @@ export function BoardDetails() {
   }, [])
 
   async function loadBoard(boardId) {
-    await boardService.getById(boardId).then(setBoard)
+    await boardService.getById(boardId).then((board) => {
+      setBoard(board)
+    })
   }
 
   function onAddGroup() {
