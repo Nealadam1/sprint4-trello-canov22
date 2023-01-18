@@ -21,7 +21,7 @@ export function BoardIndex() {
         <BoardList boards={boards} />
       </section>
 
-      <div className="side-bar"></div>
+      <div className="side-bar">side bar</div>
     </main>
   )
 }

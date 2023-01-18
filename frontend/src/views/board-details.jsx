@@ -20,8 +20,14 @@ export function BoardDetails() {
     loadBoard(boardId)
   }, [])
 
+  function handleChange({ target }) {
+    console.log(target);
+  }
+
   async function loadBoard(boardId) {
-    await boardService.getById(boardId).then(setBoard)
+    await boardService.getById(boardId).then((board) => {
+      setBoard(board)
+    })
   }
 
   function onAddGroup() {
@@ -32,6 +38,7 @@ export function BoardDetails() {
       archivedAt: "",
       card: [],
     }
+
     updateBoard({ ...board, groups: [...board.groups, newGroup] })
     setBoard({ ...board, groups: [...board.groups, newGroup] })
   }
@@ -45,7 +52,9 @@ export function BoardDetails() {
   if (!board) return <h1>Loading...</h1>
   return (
     <div className="board-details" style={board?.style}>
+      <h3 contenteditable="true" onChange={handleChange}>{board.title}</h3>
       <GroupList
+        board={board}
         onDeleteGroup={onDeleteGroup}
         onAddGroup={onAddGroup}
         groups={board.groups}
