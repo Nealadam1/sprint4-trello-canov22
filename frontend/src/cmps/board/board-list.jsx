@@ -27,7 +27,7 @@ export function BoardList({ boards, onStarBoard }) {
     <ul className="board-list">
       <li onClick={onOpenCreateBoard}>
         {isCreateBoard && <CreateBoard setIsCreateBoard={setIsCreateBoard} />}
-        <h2>Create New Board</h2>
+        <p>Create new board</p>
       </li>
       {boards.map((board) => (
         <Link to={`/board/${board._id}`} key={board._id}>
