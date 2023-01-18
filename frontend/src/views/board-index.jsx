@@ -8,6 +8,8 @@ import { loadBoards } from "../store/actions/board.action"
 export function BoardIndex() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
 
+  console.log(boards)
+
   useEffect(() => {
     loadBoards()
   }, [])
@@ -19,7 +21,6 @@ export function BoardIndex() {
       </section>
 
       <div className="side-bar"></div>
-
     </main>
   )
 }

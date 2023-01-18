@@ -8,6 +8,15 @@
 
     a {
         text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: space-around;
+
+        &:Hover {
+            background-color: $clr16;
+        }
+
     }
 
     button {
@@ -16,18 +25,25 @@
         width: 25px;
         margin: 0;
         padding: 0;
+        align-self: flex-end;
+        color: $clr6;
     }
 
     li {
         background-color: aliceblue;
         margin-bottom: 5px;
         width: 10.8em;
-        height: 5.4em;
+        height: 6em;
         margin-left: 2px;
         border-radius: 3px;
         overflow: hidden;
         font-size: 16px;
         display: flex;
+        cursor: pointer;
+
+        &:Hover {
+            background-color: $clr16;
+        }
 
         p {
             font-weight: bold;

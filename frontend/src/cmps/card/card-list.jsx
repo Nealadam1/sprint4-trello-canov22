@@ -6,10 +6,7 @@ import { updateBoard } from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
 
 export function CardList({ cards, group, groups }) {
-  const currBoard = useSelector((storeState) => storeState.boardModule.board)
-
-  console.log("group", group)
-  console.log(currBoard)
+  let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   function onAddCard() {
     const title = prompt("Add a title please")
@@ -17,11 +14,13 @@ export function CardList({ cards, group, groups }) {
       id: utilService.makeId(),
       title,
     }
-    const updatedCards = (cards = [...cards, newCard])
-    const updatedGroup = { ...group, cards: updatedCards }
-    const updatedGroups = { ...groups, updatedGroup }
-    const updatedBoard = { ...currBoard, groups: updatedGroups }
-    console.log(updatedBoard)
+    cards = [...cards, newCard]
+    const updatedGroup = { ...group, cards }
+    const updatedGroups = groups.map((group) =>
+      group.id === updatedGroup.id ? updatedGroup : group
+    )
+    currBoard = { ...currBoard, groups: updatedGroups }
+    updateBoard(currBoard)
   }
 
   return (
