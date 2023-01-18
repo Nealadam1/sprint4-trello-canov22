@@ -1,7 +1,6 @@
 .board-index {
     display: flex;
     flex-direction: row-reverse;
-    // min-height: 95vh;
     justify-content: center;
     background-color: yellow;
     padding: 0;
@@ -10,13 +9,11 @@
         background-color: rgb(73, 73, 221);
         width: 53%;
         height: 95vh;
-        // margin: 40px 16px;
     }
 
     .side-bar {
         background-color: rgb(248, 56, 56);
         width: 17%;
         height: 95vh;
-        // margin: 40px 16px;
     }
 }
