@@ -16,13 +16,13 @@ export function BoardIndex() {
 
   return (
     <main className="board-index">
-      <section>
-        <BoardList boards={boards}/>
+      <section className="boards-list">
+        <BoardList boards={boards} />
       </section>
 
 
-      <div className="boards-list"></div>
-      <div className="sidebar"></div>
+      {/* <div className="boards-list"></div> */}
+      <div className="side-bar"></div>
     </main >
   )
 }
