@@ -34,14 +34,18 @@ export function BoardList({ boards }) {
     console.log(board);
   }
 
+  if (!boards) return <h2>Loading....</h2>
+
   return (
     <ul className="board-list">
+
       <li ref={buttonRef} onClick={OpenActionModal}>
         {isActionModal && <DynamicActionModal buttonRef={buttonRef.current} type={'create-board'} />}
         <div>
           <p>Create new board</p>
         </div>
       </li>
+
       {boards.map((board) => {
         // console.log(board.style);
         return <li style={board.style} key={board._id}>
