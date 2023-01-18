@@ -579,21 +579,18 @@ function getEmptyBoard() {
   return {
     title: '',
     isStarred: false,
-    archivedAt:'',
-    createdBy: {id:'', fullname:'', imgUrl:''},
-    style:{},
-    labels:[
-      {id:utilService.makeId(), title:'', color:'#7BC86C'},
-      {id:utilService.makeId(), title:'', color:'#F5DD29'},
-      {id:utilService.makeId(), title:'', color:'#DFE1E6'},
-      {id:utilService.makeId(), title:'', color:'#EF7564'}
+    archivedAt: '',
+    createdBy: { id: '', fullname: '', imgUrl: '' },
+    style: {background:'#24AAE2'},
+    labels: [
+      { id: utilService.makeId(), title: '', color: '#7BC86C' },
+      { id: utilService.makeId(), title: '', color: '#F5DD29' },
+      { id: utilService.makeId(), title: '', color: '#DFE1E6' },
+      { id: utilService.makeId(), title: '', color: '#EF7564' }
     ],
-    members:[],
-    groups:[
-      {id:''
-    }
-    ],
-
+    members: [],
+    groups: [],
+    activities:[],
   }
 }
 
