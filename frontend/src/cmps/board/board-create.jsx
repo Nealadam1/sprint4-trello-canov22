@@ -6,60 +6,63 @@ import { addBoard, CloseActionModal } from "../../store/actions/board.action"
 import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 
 export function CreateBoard() {
-  const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
-  const [boardPreviewColor, setBoardPreviewColor] = useState("#24AAE2")
+    const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
+    const [boardPreviewColor, setBoardPreviewColor] = useState("#24AAE2")
 
-  function handleColorChange(color) {
-    setBoardPreviewColor(color.hex)
-    newBoard.style.background = color.hex
-  }
+    function handleColorChange(color) {
+        setBoardPreviewColor(color.hex)
+        newBoard.style.background = color.hex
+    }
 
-  console.log(newBoard)
+    function onCreateBoard(title){
+        newBoard.title = title
+        addBoard(newBoard)
+        CloseActionModal()
+    }
 
-  return (
-    <section className="create-board">
-      <h2>Create Board</h2>
-      <i onClick={CloseActionModal}>X</i>
-      <Formik
-        initialValues={{ title: "" }}
-        validate={(values) => {
-          const errors = {}
-          if (!values.title) {
-            errors.title = "Title is required"
-          }
-          return errors
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          newBoard.title = values.title
+    console.log(newBoard)
 
-          addBoard(newBoard)
-          CloseActionModal()
+    return (
+        <section className="create-board">
+            <header className="create-board-header">
+                <h4>Create Board</h4>
+                <i onClick={CloseActionModal}>X</i>
+            </header>
 
-          setSubmitting(false)
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
             <div className="create-board-preview">
-              <div
-                className="background-preview"
-                style={{ backgroundColor: boardPreviewColor }}
-              >
-                <img src={skeletonBoardPreview} alt="" />
-              </div>
-              <TwitterPicker
+                <div className="background-preview" style={{ backgroundColor: boardPreviewColor }}>
+                    <img src={skeletonBoardPreview} alt="" />
+                </div>
+            </div>
+            <TwitterPicker
                 color={boardPreviewColor}
                 onChange={handleColorChange}
-              />
-              <Field type="text" name="title" placeholder="Enter a title" />
-              <ErrorMessage name="title" component="div" className="error" />
-              <button type="submit" disabled={isSubmitting}>
-                Create
-              </button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </section>
-  )
+            />
+            <Formik
+                initialValues={{ title: "" }}
+                validate={(values) => {
+                    const errors = {}
+                    if (!values.title) {
+                        errors.title = "Title is required"
+                    }
+                    return errors
+                }}
+                onSubmit={(values, { setSubmitting }) => {
+                    onCreateBoard(values.title)
+                    setSubmitting(false)
+                }}
+            >
+                {({ isSubmitting }) => (
+                    <Form>
+                        <Field type="text" name="title" placeholder="Enter a title" />
+                        <ErrorMessage name="title" component="div" className="error" />
+                        <button type="submit" disabled={isSubmitting}>
+                            Create
+                        </button>
+
+                    </Form>
+                )}
+            </Formik>
+        </section>
+    )
 }

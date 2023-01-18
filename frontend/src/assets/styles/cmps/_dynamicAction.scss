@@ -1,5 +1,14 @@
 .action-modal{
     font-size: 0.875rem;
-    line-height: 1.25;
+    line-height: $modal-line-height;
+    color: $clr7;
+    box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+    box-sizing: border-box;
+    outline: 0;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: $clr6;
+    
+    
 
 }
