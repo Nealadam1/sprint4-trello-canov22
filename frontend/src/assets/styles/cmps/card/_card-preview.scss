@@ -11,6 +11,7 @@
   }
 
   li {
+    background-color: $clr6;
     position: relative;
     box-shadow: (0 1px 0 $clr17);
 
@@ -19,11 +20,16 @@
       left: 90%;
       top: 10%;
     }
-  }
 
-  .card-preview {
-    color: black;
-    margin: 0.5em;
-    cursor: pointer;
+    .card-preview {
+      // padding-left: 39px;
+      color: black;
+      margin: 0.5em;
+      cursor: pointer;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      // margin: ;
+      white-space: break-spaces;
+    }
   }
 }
