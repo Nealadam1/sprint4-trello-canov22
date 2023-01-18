@@ -21,7 +21,9 @@ export function BoardDetails() {
   }, [])
 
   async function loadBoard(boardId) {
-    await boardService.getById(boardId).then(setBoard)
+    await boardService.getById(boardId).then((board) => {
+      setBoard(board)
+    })
   }
 
   function onAddGroup() {
@@ -47,6 +49,7 @@ export function BoardDetails() {
     <div className="board-details" style={board?.style}>
       <h3>{board.title}</h3>
       <GroupList
+        board={board}
         onDeleteGroup={onDeleteGroup}
         onAddGroup={onAddGroup}
         groups={board.groups}
