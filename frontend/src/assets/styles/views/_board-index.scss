@@ -1,0 +1,13 @@
+.board-index {
+  display: grid;
+  .boards-list {
+    background-color: blue;
+    width: 80%;
+    height: 100%;
+  }
+  .side-bar {
+    background-color: red;
+    width: 20%;
+    height: 100%;
+  }
+}
