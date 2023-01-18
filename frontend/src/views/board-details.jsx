@@ -4,18 +4,25 @@ import { useParams } from "react-router"
 import { GroupList } from "../cmps/group/group-list"
 import { boardService } from "../services/board.service"
 import { utilService } from "../services/util.service"
-import { setBoardById, updateBoard } from "../store/actions/board.action"
+import {
+  setBoard,
+  setBoardById,
+  updateBoard,
+} from "../store/actions/board.action"
 
 export function BoardDetails() {
+  const board = useSelector((storeState) => storeState.boardModule.board)
+
   const { boardId } = useParams()
-  const [board, setBoard] = useState({})
+  // const [board, setBoard] = useState({})
 
   useEffect(() => {
-    boardService.getById(boardId).then((board) => {
-      setBoard(board)
-      setBoardById(board._id)
-    })
+    loadBoard(boardId)
   }, [])
+
+  async function loadBoard(boardId) {
+    await boardService.getById(boardId).then(setBoard)
+  }
 
   function onAddGroup() {
     const title = prompt("add group title")
@@ -35,6 +42,7 @@ export function BoardDetails() {
     setBoard({ ...board, groups: updatedGroups })
   }
 
+  if (!board) return <h1>Loading...</h1>
   return (
     <div className="board-details">
       <GroupList

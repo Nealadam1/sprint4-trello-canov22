@@ -4,10 +4,9 @@ import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 import { TwitterPicker } from "react-color"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { useSelector } from "react-redux"
-import { addBoard } from "../../store/actions/board.action"
+import { addBoard, CloseActionModal } from "../../store/actions/board.action"
 
-export function CreateBoard({ setIsCreateBoard }) {
-  const boards = useSelector((storeState) => storeState.boardModule.boards)
+export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
   const [boardPreviewColor, setBoardPreviewColor] = useState("#24AAE2")
 
@@ -34,7 +33,7 @@ export function CreateBoard({ setIsCreateBoard }) {
           newBoard.title = values.title
 
           addBoard(newBoard)
-          setIsCreateBoard(false)
+          CloseActionModal()
 
           setSubmitting(false)
         }}

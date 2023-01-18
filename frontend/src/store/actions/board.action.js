@@ -32,6 +32,16 @@ export function getActionUpdateBoard(board) {
     board,
   }
 }
+export function CloseActionModal(){
+  store.dispatch({
+    type: 'MODAL_CLOSE'
+  })
+}
+export function OpenActionModal(){
+  store.dispatch({
+    type: 'MODAL_OPEN'
+  })
+}
 
 export async function loadBoards() {
   try {
@@ -47,12 +57,12 @@ export async function loadBoards() {
   }
 }
 
-export async function setBoardById(boardId) {
+export async function setBoard(board) {
   try {
-    const board = await boardService.getById(boardId)
+    const currBoard = await boardService.getById(board._id)
     store.dispatch({
       type: SET_BOARD,
-      board,
+      currBoard,
     })
   } catch (err) {
     console.log("Cannot load board", err)
