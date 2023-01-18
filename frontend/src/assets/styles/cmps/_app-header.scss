@@ -2,6 +2,22 @@
   background-color: $header-index-color;
   padding: 9px;
   color: $clr6;
+  font-weight: bold;
+
+
+  a {
+    color: $clr6;
+    letter-spacing: 2px;
+
+    &:active {
+      color: $clr6;
+    }
+
+    &:visited {
+      color: $clr6;
+    }
+
+  }
 
   .user-info {
     // background-color: $clr2;

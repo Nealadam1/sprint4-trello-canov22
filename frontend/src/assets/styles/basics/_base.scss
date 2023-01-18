@@ -7,12 +7,13 @@
 }
 
 html {
-  font-family: montserrat;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto;
   line-height: 1.6;
-  color: $clr2;
+  // color: $clr2;
 }
 
 body {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: rem(18px);
   margin: 0;
   // max-width: 1024px;
