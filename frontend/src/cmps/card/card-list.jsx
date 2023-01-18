@@ -1,10 +1,15 @@
 import React from "react"
 import { CardPreview } from "./card-preview"
 
-export function CardList() {
+export function CardList({ cards }) {
   return (
     <div className="card-list">
-      <CardPreview />
+      {cards &&
+        cards.map((card) => (
+          <li>
+            <CardPreview card={card} />
+          </li>
+        ))}
     </div>
   )
 }
