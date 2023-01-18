@@ -32,9 +32,7 @@ export function getActionUpdateBoard(board) {
     board,
   }
 }
-export function CloseActionModal(ev) {
-  ev.preventDefault()
-  ev.stopPropagation()
+export function CloseActionModal() {
   store.dispatch({
     type: "MODAL_CLOSE",
   })
@@ -47,9 +45,9 @@ export function OpenActionModal(ev) {
   })
 }
 
-export async function loadBoards() {
+export async function loadBoards(searchBy) {
   try {
-    const boards = await boardService.query()
+    const boards = await boardService.query(searchBy)
     console.log("Boards from DB:", boards)
     store.dispatch({
       type: SET_BOARDS,

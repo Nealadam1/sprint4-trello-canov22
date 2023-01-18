@@ -9,14 +9,22 @@ export const boardService = {
   save,
   remove,
   getEmptyBoard,
+  getDefaultSearch,
 }
 window.cs = boardService
 
 _createDemoData()
 
-async function query() {
+async function query(searchBy) {
   var boards = await asyncStorageService.query(STORAGE_BOARD_KEY)
-  return boards
+  let searchedBoards=boards
+  if(searchBy){
+    const regex = new RegExp(searchBy, 'i')
+    searchedBoards=searchedBoards.filter(board=> regex.test(board.title))
+
+  }
+
+  return searchedBoards
 }
 
 function getById(boardId) {
@@ -57,6 +65,10 @@ function getEmptyBoard() {
     groups: [],
     activities: [],
   }
+}
+
+function getDefaultSearch(){
+  return {title:''}
 }
 
 function _createDemoData() {

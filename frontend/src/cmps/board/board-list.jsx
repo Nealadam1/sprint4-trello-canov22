@@ -34,12 +34,14 @@ export function BoardList({ boards }) {
     console.log(board);
   }
 
+  const dynmOpenModal = !isActionModal ? OpenActionModal : null
+
   if (!boards) return <h2>Loading....</h2>
 
   return (
     <ul className="board-list">
 
-      <li ref={buttonRef} onClick={OpenActionModal}>
+      <li ref={buttonRef} onClick={dynmOpenModal}>
         {isActionModal && <DynamicActionModal buttonRef={buttonRef.current} type={'create-board'} />}
         <div>
           <p>Create new board</p>
