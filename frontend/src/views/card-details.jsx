@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router"
+import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
 import {
   closeCardDetail,
   getCardById,
@@ -10,6 +13,7 @@ import {
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
+  const navigate = useNavigate()
 
   const board = useSelector((storeState) => storeState.boardModule.board)
   const modal = useSelector(
@@ -25,12 +29,12 @@ export function CardDetails() {
   const handleClose = (e) => {
     if (e.target === e.currentTarget) {
       closeCardDetail()
-
-      window.removeEventListener("click", handleClose)
+      window.removeEventListener("click", () => {
+        handleClose()
+      })
     }
+    navigate(`/board/${board._id}`)
   }
-
-  console.log(card)
 
   return (
     <div>
@@ -76,7 +80,9 @@ export function CardDetails() {
                   })}
               </ul>
 
-              <button onClick={handleClose}>Close</button>
+              <button onClick={handleClose}>
+                <Link to={`/board/${board._id}`}>Close</Link>
+              </button>
             </div>
           </div>
         </div>

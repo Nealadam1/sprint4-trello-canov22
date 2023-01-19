@@ -17,11 +17,10 @@ _createDemoData()
 
 async function query(searchBy) {
   var boards = await asyncStorageService.query(STORAGE_BOARD_KEY)
-  let searchedBoards=boards
-  if(searchBy){
-    const regex = new RegExp(searchBy, 'i')
-    searchedBoards=searchedBoards.filter(board=> regex.test(board.title))
-
+  let searchedBoards = boards
+  if (searchBy) {
+    const regex = new RegExp(searchBy, "i")
+    searchedBoards = searchedBoards.filter((board) => regex.test(board.title))
   }
 
   return searchedBoards
@@ -67,8 +66,8 @@ function getEmptyBoard() {
   }
 }
 
-function getDefaultSearch(){
-  return {title:''}
+function getDefaultSearch() {
+  return { title: "" }
 }
 
 function _createDemoData() {
