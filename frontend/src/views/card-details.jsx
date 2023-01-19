@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router"
+import { Link } from "react-router-dom"
 import {
   closeCardDetail,
   getCardById,
@@ -30,8 +31,6 @@ export function CardDetails() {
     }
   }
 
-  console.log(card)
-
   return (
     <div>
       {/* <button onClick={handleOpen}>Open Modal</button> */}
@@ -47,38 +46,42 @@ export function CardDetails() {
           }}
           onClick={handleClose}
         >
-          <div className="card-details">
-            {card && card.style && (
-              <header
-                className="card-header"
-                style={{
-                  background: card?.style ? card?.style?.bgColor : "fff",
-                }}
-              ></header>
-            )}
-            <div className="card-content">
-              <h1>{card?.title}</h1>
-              <p>{card?.description}</p>
-              <ul>
-                {card &&
-                  card.checklists &&
-                  card?.checklists?.map((checklist) => {
-                    return (
-                      <div>
-                        <h3>{checklist.title}</h3>
-                        <ul>
-                          {checklist.todos.map((todo) => (
-                            <li>{todo.title}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )
-                  })}
-              </ul>
+          <Link to={`/board/${board._id}`}>
+            <div className="card-details">
+              {card && card.style && (
+                <header
+                  className="card-header"
+                  style={{
+                    background: card?.style ? card?.style?.bgColor : "fff",
+                  }}
+                ></header>
+              )}
+              <div className="card-content">
+                <h1>{card?.title}</h1>
+                <p>{card?.description}</p>
+                <ul>
+                  {card &&
+                    card.checklists &&
+                    card?.checklists?.map((checklist) => {
+                      return (
+                        <div>
+                          <h3>{checklist.title}</h3>
+                          <ul>
+                            {checklist.todos.map((todo) => (
+                              <li>{todo.title}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )
+                    })}
+                </ul>
 
-              <button onClick={handleClose}>Close</button>
+                <button onClick={handleClose}>
+                  <Link to={`/board/${board._id}`}>Close</Link>
+                </button>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       )}
     </div>
