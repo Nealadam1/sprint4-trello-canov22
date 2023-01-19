@@ -3,11 +3,18 @@
   list-style: none;
   gap: 0.5rem;
   margin: 0.5em 0.5em;
+  overflow-y: hidden;
 
   .test {
     display: flex;
     list-style: none;
     gap: 0.5rem;
+
+    .hello {
+      overflow-y: overlay;
+      overflow-y: auto;
+      // height: 100%;
+    }
 
     .group {
       // background-color: $clr19;
@@ -16,7 +23,6 @@
       max-height: fit-content;
       display: flex;
       flex-direction: column;
-      height: 100%;
       border-radius: $edge-round;
 
       .delete-group-btn {

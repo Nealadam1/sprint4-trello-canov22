@@ -8,8 +8,8 @@ import { loadBoards, setBoard } from "../store/actions/board.action"
 
 export function BoardIndex() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
-  const board=useSelector(storeState=> storeState.boardModule.board)
-  
+  const board = useSelector(storeState => storeState.boardModule.board)
+
 
 
   // console.log(boards)
@@ -19,27 +19,27 @@ export function BoardIndex() {
     loadBoards()
   }, [])
 
-  function onLoadBoards(searchBy){
+  function onLoadBoards(searchBy) {
     loadBoards(searchBy)
-    .catch(err=> {
-      console.log('cannot Load Toys')
-    })
+      .catch(err => {
+        console.log('cannot Load Toys')
+      })
   }
 
-  function setSearch(searchBy){
+  function setSearch(searchBy) {
     onLoadBoards(searchBy)
   }
 
 
   return (
     <main className="board-index">
-      
-     
 
 
-      
+
+
+
       <section className="boards-list">
-      <BoardSearch onSetSearch={setSearch}/>
+        <BoardSearch onSetSearch={setSearch} />
         <BoardList boards={boards} />
       </section>
 

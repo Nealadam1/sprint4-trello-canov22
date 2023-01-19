@@ -1,7 +1,6 @@
 .board-details {
-    height: 100vh;
-    overflow-y: hidden; 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
 }

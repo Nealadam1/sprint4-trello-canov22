@@ -8,6 +8,14 @@
     padding-left: 15px;
     gap: 15px;
 
+    .favorite-list {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 60px;
+    }
+
     li:last-child {
         background-color: darken($clr11, $amount: 8);
 
@@ -88,9 +96,16 @@
         align-items: center;
         cursor: pointer;
 
+        div {
+            p {
+                margin: 0;
+            }
+        }
+
         p {
             font-weight: bold;
             color: $clr7;
+
         }
 
         div p:last-child {

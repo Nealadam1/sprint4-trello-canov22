@@ -95,7 +95,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
               {groups && groups.map((group, idx) => (
                 <Draggable key={group.id} draggableId={group.id} index={idx}>
                   {(provided) => (
-                    <div ref={provided.innerRef} {...provided.draggableProps}>
+                    <div className="hello" ref={provided.innerRef} {...provided.draggableProps}>
                       <div className="group" key={group.id}  {...provided.dragHandleProps}>
                         <button
                           className="delete-group-btn"
