@@ -13,6 +13,9 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const { cardId } = useParams()
   const [isDraggable, setIsDraggable] = useState(false)
   const [currGroup, setCurrGroup] = useState(null)
+  const [groupToInput, setGroupToInput] = useState(false)
+  const [groupTitleToInput, setGroupTitleToInput] = useState(false)
+  const [groupTitle, setGroupTitle] = useState({ title: "" })
 
   function updateGroupTitle(group) {
     const newTitle = prompt("Pick new title")
@@ -38,6 +41,18 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     // updateCards(items)
 
 
+  }
+
+  function handleAddGroup() {
+    const title = groupTitle.title
+    onAddGroup(title)
+    setGroupTitle({ title: "" })
+    setGroupToInput(false)
+  }
+
+  function handleChange({ target }) {
+    const { value } = target
+    setGroupTitle({ title: value })
   }
   console.log(currGroup);
 
@@ -65,7 +80,12 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   //     </button>
   //   </div>
   // )
-  // test for d&d for group 
+  // test for d&d for group
+
+  function handleBlur() {
+    setGroupToInput(false)
+    setGroupTitle({ title: "" })
+  }
   return (
     <div className="group-list">
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -82,10 +102,13 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
                           onClick={() => onDeleteGroup(group.id)}>
                           X</button>
                         <GroupPreview
+                          setGroupTitleToInput={setGroupTitleToInput}
+                          groupTitleToInput={groupTitleToInput}
                           updateGroupTitle={updateGroupTitle}
                           cards={group.cards}
                           group={group}
-                          groups={groups} />
+                          groups={groups}
+                        />
                       </div>
                     </div>
                   )}
@@ -96,9 +119,21 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
           )}
         </Droppable>
 
-        <button className="add-group-btn" onClick={onAddGroup}>
-          <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another list
-        </button>
+        {groupToInput ? (
+          <form onSubmit={handleAddGroup}>
+            <input
+              onChange={handleChange}
+              value={groupTitle.title}
+              type="text"
+              onBlur={handleBlur}
+            />
+          </form>
+        ) : (
+          <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
+            <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another
+            list
+          </button>
+        )}
 
         {cardId ? <Outlet /> : null}
 

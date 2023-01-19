@@ -10,6 +10,8 @@ export const boardService = {
   remove,
   getEmptyBoard,
   getDefaultSearch,
+  createCard,
+  createGroup,
 }
 window.cs = boardService
 
@@ -53,7 +55,7 @@ function getEmptyBoard() {
     isStarred: false,
     archivedAt: "",
     createdBy: { id: "", fullname: "", imgUrl: "" },
-    style: { background: "#24AAE2" },
+    style: {},
     labels: [
       { id: utilService.makeId(), title: "", color: "#7BC86C" },
       { id: utilService.makeId(), title: "", color: "#F5DD29" },
@@ -64,6 +66,14 @@ function getEmptyBoard() {
     groups: [],
     activities: [],
   }
+}
+
+function createCard({ title }) {
+  return { title, id: utilService.makeId() }
+}
+
+function createGroup({ title }) {
+  return { title, id: utilService.makeId(), archivedAt: "", card: [] }
 }
 
 function getDefaultSearch() {
