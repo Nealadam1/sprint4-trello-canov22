@@ -44,7 +44,7 @@ const board = {
         },
         {
             "_id": "u102",
-            "fullname": "Liron Kruchi",
+            "fullname": "Liron Kruchinin",
             "imgUrl": "https://randomuser.me/api/portraits/men/23.jpg"
         },
         {
@@ -77,7 +77,7 @@ const board = {
                     "id": "c104",
                     "title": "Socket implement",
                     "labelIds": ["l104"],
-                    "memberIds": ["u101","u102"],
+                    "memberIds": ["u101", "u102"],
                     "checklists": [
                         {
                             "id": "YEhmF",
@@ -142,7 +142,7 @@ const board = {
                             "createdAt": 1590999817436,
                             "byMember": {
                                 "_id": "u101",
-                                "fullname": "Liron Kruchi",
+                                "fullname": "Liron Kruchinin",
                                 "imgUrl": "https://randomuser.me/api/portraits/men/23.jpg"
                             }
                         }
@@ -200,7 +200,7 @@ const board = {
                             "createdAt": 1590999817436,
                             "byMember": {
                                 "_id": "u101",
-                                "fullname": "Liron Kruchi",
+                                "fullname": "Liron Kruchinin",
                                 "imgUrl": "https://randomuser.me/api/portraits/men/23.jpg"
                             }
                         }
@@ -278,9 +278,9 @@ const user = [
     },
     {
         "_id": "u102",
-        "fullname": "Liron Kruchi",
-        "username": "LironKruchi@gmail.com",
-        "password": "LironKruchi",
+        "fullname": "Liron Kruchinin",
+        "username": "LironKruchinin@gmail.com",
+        "password": "LironKruchinin",
         "imgUrl": "https://randomuser.me/api/portraits/men/23.jpg",
         "mentions": [{ //optional
             "id": "m101",

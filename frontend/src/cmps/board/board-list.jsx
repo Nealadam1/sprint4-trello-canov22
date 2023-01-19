@@ -41,16 +41,9 @@ export function BoardList({ boards }) {
   return (
     <ul className="board-list">
 
-      <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
-        {isActionModal && <DynamicActionModal buttonRef={buttonRef.current} type={'create-board'} />}
-        <div>
-          <p>Create new board</p>
-        </div>
-      </li>
-
       {boards.map((board) => {
         // console.log(board.style);
-        return <li className="list-item" style={{background: `${board.style.thumbnail? `url(${board.style.thumbnail})`:`${board.style.backgroundColor}`}`}} key={board._id}>
+        return <li className="list-item" style={{ background: `${board.style.thumbnail ? `url(${board.style.thumbnail})` : `${board.style.backgroundColor}`}` }} key={board._id}>
           <Link to={`/board/${board._id}`}>
 
             <BoardPreview board={board} />
@@ -67,6 +60,15 @@ export function BoardList({ boards }) {
         </li>
 
       })}
+
+      <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
+        {isActionModal && <DynamicActionModal buttonRef={buttonRef.current} type={'create-board'} />}
+        <div>
+          <p>Create new board</p>
+        </div>
+      </li>
+
+
     </ul>
   )
 }

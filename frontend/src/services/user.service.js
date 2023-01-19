@@ -103,9 +103,9 @@ function _createDemoData() {
             },
             {
                 "_id": "u102",
-                "fullname": "Liron Kruchi",
-                "username": "LironKruchi@gmail.com",
-                "password": "LironKruchi",
+                "fullname": "Liron Kruchinin",
+                "username": "LironKruchinin@gmail.com",
+                "password": "LironKruchinin",
                 "imgUrl": "https://randomuser.me/api/portraits/men/23.jpg",
                 "mentions": [{
                     "id": "m101",

@@ -8,6 +8,15 @@
   a {
     color: $clr6;
     letter-spacing: 2px;
+    padding-left: 34px;
+
+    svg {
+      background-color: transparent;
+    }
+
+    .btn-icon {
+      margin-right: 4px;
+    }
 
     &:active {
       color: $clr6;
@@ -20,8 +29,6 @@
   }
 
   .user-info {
-    // background-color: $clr2;
-    // padding: 2px 8px;
     padding-left: 100px;
 
     .score {
@@ -61,4 +68,3 @@
 
   nav .active {}
 }
-

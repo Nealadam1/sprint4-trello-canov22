@@ -130,7 +130,7 @@ function _createDemoData() {
           },
           {
             _id: "u102",
-            fullname: "Liron Kruchi",
+            fullname: "Liron Kruchinin",
             imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
           },
           {
@@ -226,7 +226,7 @@ function _createDemoData() {
                     createdAt: 1590999817436,
                     byMember: {
                       _id: "u101",
-                      fullname: "Liron Kruchi",
+                      fullname: "Liron Kruchinin",
                       imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
                     },
                   },
@@ -285,7 +285,7 @@ function _createDemoData() {
                     createdAt: 1590999817436,
                     byMember: {
                       _id: "u101",
-                      fullname: "Liron Kruchi",
+                      fullname: "Liron Kruchinin",
                       imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
                     },
                   },
@@ -393,7 +393,7 @@ function _createDemoData() {
           },
           {
             _id: "u102",
-            fullname: "Liron Kruchi",
+            fullname: "Liron Kruchinin",
             imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
           },
           {
@@ -489,7 +489,7 @@ function _createDemoData() {
                     createdAt: 1590999817436,
                     byMember: {
                       _id: "u101",
-                      fullname: "Liron Kruchi",
+                      fullname: "Liron Kruchinin",
                       imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
                     },
                   },
@@ -548,7 +548,7 @@ function _createDemoData() {
                     createdAt: 1590999817436,
                     byMember: {
                       _id: "u101",
-                      fullname: "Liron Kruchi",
+                      fullname: "Liron Kruchinin",
                       imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
                     },
                   },
