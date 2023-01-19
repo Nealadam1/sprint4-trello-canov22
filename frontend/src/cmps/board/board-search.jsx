@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { boardService } from "../../services/board.service";
 import { utilService } from "../../services/util.service";
 
 export function BoardSearch({ onSetSearch }) {
@@ -23,9 +22,9 @@ export function BoardSearch({ onSetSearch }) {
             <form>
                 <label htmlFor="search">Search</label>
                 <input type="text" name="search" id="search"
-                placeholder="Search Boards"
-                value={search}
-                onChange={handleChange} />
+                    placeholder="Search Boards"
+                    value={search}
+                    onChange={handleChange} />
             </form>
         </section>
     )
