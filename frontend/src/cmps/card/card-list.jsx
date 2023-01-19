@@ -3,16 +3,14 @@ import { useEffect } from "react"
 import { Link, Outlet, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus, faX } from "@fortawesome/free-solid-svg-icons"
-
-import { utilService } from "../../services/util.service"
 import {
   addCard,
   deleteCard,
   openCardDetail,
   setBoard,
+  setGroup,
   updateBoard,
 } from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
@@ -73,6 +71,11 @@ export function CardList({ group }) {
     setCardTitle({ title: "" })
   }
 
+  function toCardDetails() {
+    setGroup(group)
+    openCardDetail()
+  }
+
   return (
     <>
       <div className="card-list">
@@ -80,43 +83,44 @@ export function CardList({ group }) {
           <Droppable droppableId="cards">
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {group.cards && group.cards.map((card, idx) => (
-                  <Draggable key={card.id} draggableId={card.id} index={idx}>
-                    {(provided) => (
-                      <li
-                        className={
-                          card.checklists
-                            ? "checklist"
-                            : "" + " " + card.labelIds
+                {group.cards &&
+                  group.cards.map((card, idx) => (
+                    <Draggable key={card.id} draggableId={card.id} index={idx}>
+                      {(provided) => (
+                        <li
+                          className={
+                            card.checklists
+                              ? "checklist"
+                              : "" + " " + card.labelIds
                               ? "labels"
                               : ""
-                        }
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <Link
-                          onClick={openCardDetail}
-                          to={`/board/${boardId}/${card.id}`}
+                          }
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
                         >
-                          <CardPreview card={card} />
-                          <div className="delete-card-btn">
-                            <button
-                              onClick={(event) =>
-                                onDeleteCard(event, card.id)
-                              }
-                            >
-                              <FontAwesomeIcon
-                                className="btn-icon"
-                                icon={faX}
-                              />
-                            </button>
-                          </div>
-                        </Link>
-                      </li>
-                    )}
-                  </Draggable>
-                ))}
+                          <Link
+                            onClick={toCardDetails}
+                            to={`/board/${boardId}/${card.id}`}
+                          >
+                            <CardPreview card={card} />
+                            <div className="delete-card-btn">
+                              <button
+                                onClick={(event) =>
+                                  onDeleteCard(event, card.id)
+                                }
+                              >
+                                <FontAwesomeIcon
+                                  className="btn-icon"
+                                  icon={faX}
+                                />
+                              </button>
+                            </div>
+                          </Link>
+                        </li>
+                      )}
+                    </Draggable>
+                  ))}
                 {provided.placeholder}
               </ul>
             )}

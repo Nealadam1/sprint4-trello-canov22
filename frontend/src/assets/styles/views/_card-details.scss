@@ -1,21 +1,21 @@
 .card-details {
   header {
-    height: rem(147px);
-    min-height: rem(147px);
+    height: rem(115px);
+    min-height: rem(115px);
     grid-area: header;
   }
   display: grid;
-  grid-template-columns: 2.5fr 0.8fr;
-  grid-template-rows: 0.3fr 2fr;
+  grid-template-columns: 30px 2.5fr 0.8fr;
+  grid-template-rows: 0.3fr 3fr;
   grid-template-areas:
-    "header header"
-    "content side-bar";
-  width: em(855px);
-  min-width: em(855px);
-  min-height: em(1020px);
+    "header header header"
+    "content content side-bar";
+  width: em(685px);
+  min-width: em(685px);
+  min-height: em(910px);
   background-color: #ebecf0;
   position: absolute;
-  top: 50%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: $clr7;
@@ -24,13 +24,39 @@
     grid-area: side-bar;
   }
 
+  .card-member {
+    .member-image {
+      height: em(28px);
+      border-radius: 25em;
+      width: em(28px);
+    }
+  }
+
+  .card-comments {
+    .member-image {
+      height: em(28px);
+      border-radius: 25em;
+      width: em(28px);
+    }
+  }
+
+  .card-details-sidebar {
+    .member-image {
+      height: em(28px);
+      border-radius: 25em;
+      width: em(28px);
+    }
+  }
+
   .card-content {
     padding: 0px rem(8px) rem(8px) rem(16px);
     padding: em(20px);
     grid-area: content;
     .card-title {
-      min-height: rem(32px);
-      padding: rem(12px) rem(40px) rem(8px) rem(56px);
+      font-size: rem(20px);
+      .card-icon-title {
+        padding-right: 0.7em;
+      }
     }
   }
 }
