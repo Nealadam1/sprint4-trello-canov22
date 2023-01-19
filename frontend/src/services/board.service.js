@@ -55,7 +55,7 @@ function getEmptyBoard() {
     isStarred: false,
     archivedAt: "",
     createdBy: { id: "", fullname: "", imgUrl: "" },
-    style: { background: "#24AAE2" },
+    style: {},
     labels: [
       { id: utilService.makeId(), title: "", color: "#7BC86C" },
       { id: utilService.makeId(), title: "", color: "#F5DD29" },

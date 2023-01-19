@@ -56,3 +56,8 @@
         }
     }
   }
+
+
+  @mixin darken($color, $amount) {
+    color: darken($color, $amount);
+  }

@@ -1,4 +1,32 @@
 .create-board {
+    .image-select{
+        width: 276px;
+        list-style:  none;
+        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+
+        display: flex;
+        justify-content: space-around;
+        box-shadow: rgb(0 0 0 / 25%) 0px 1px 4px;
+        border-radius: 4px;
+        border: 0px solid rgba(0, 0, 0, 0.25);
+        height: 40px;
+        align-items: center;
+        
+        li{
+            
+            height: 30px;
+            width: 30px;
+        }
+
+        button{
+            border-radius: 4px;
+            height: 30px;
+            width: 30px;
+        }
+        
+    }
 
     form {
         margin-top: 15px;
