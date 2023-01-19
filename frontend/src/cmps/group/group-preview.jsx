@@ -1,11 +1,21 @@
 import React from "react"
 import { CardList } from "../card/card-list"
 
-export function GroupPreview({ group, cards, groups, updateGroupTitle }) {
+export function GroupPreview({
+  group,
+  cards,
+  updateGroupTitle,
+  setGroupTitleToInput,
+  groupTitleToInput,
+}) {
   return (
     <div className="group-preview">
-      <h4 onClick={() => updateGroupTitle(group)}>{group.title}</h4>
-      <CardList cards={cards} group={group} groups={groups} />
+      {groupTitleToInput ? (
+        <input type="text" />
+      ) : (
+        <h4 onClick={() => setGroupTitleToInput(true)}>{group.title}</h4>
+      )}
+      <CardList cards={cards} group={group} />
     </div>
   )
 }

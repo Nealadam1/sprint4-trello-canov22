@@ -34,6 +34,13 @@ export function getActionUpdateBoard(board) {
   }
 }
 
+export function getActionSetBoard(board) {
+  return {
+    type: SET_BOARD,
+    board,
+  }
+}
+
 export function openCardDetail() {
   store.dispatch({
     type: CARD_DETAIL_OPEN,
@@ -106,6 +113,50 @@ export async function addBoard(board) {
   } catch (err) {
     console.log("Cannot add board", err)
     throw err
+  }
+}
+
+export async function addGroup(newGroup) {
+  try {
+    const group = boardService.createGroup(newGroup)
+    const board = structuredClone(store.getState().boardModule.board)
+    board.groups = [...board.groups, group]
+    store.dispatch(getActionSetBoard(board))
+    boardService.save(board)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function deleteGroup(groupId) {
+  const board = structuredClone(store.getState().boardModule.board)
+  board.groups.filter((group) => group.id !== groupId)
+  store.dispatch(getActionSetBoard(board))
+  boardService.save(board)
+}
+
+export async function addCard(newCard, groupId) {
+  try {
+    const card = boardService.createCard(newCard)
+    const board = structuredClone(store.getState().boardModule.board)
+    const group = board.groups.find((group) => group.id === groupId)
+    group.cards = [...group.cards, card]
+    store.dispatch(getActionSetBoard(board))
+    boardService.save(board)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function deleteCard(cardId, groupId) {
+  try {
+    const board = structuredClone(store.getState().boardModule.board)
+    const group = board.groups.find((group) => group.id === groupId)
+    group.cards = group.cards.filter((card) => card.id !== cardId)
+    store.dispatch(getActionSetBoard(board))
+    boardService.save(board)
+  } catch (err) {
+    console.log(err)
   }
 }
 
