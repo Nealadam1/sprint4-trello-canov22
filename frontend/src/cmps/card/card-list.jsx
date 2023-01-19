@@ -4,29 +4,29 @@ import { Link, Outlet, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus, faX } from "@fortawesome/free-solid-svg-icons"
+
 import { utilService } from "../../services/util.service"
-import {
-  openCardDetail,
-  setBoard,
-  updateBoard,
-} from "../../store/actions/board.action"
+import { openCardDetail, setBoard, updateBoard, } from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
 
 export function CardList({ group, groups }) {
   const { boardId, cardId } = useParams()
   const [cards, updateCards] = useState(group.cards)
+  let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   useEffect(() => {
-    console.log(group);
+
     const updatedGroup = { ...group, cards: cards }
     const updatedGroups = groups.map((group) =>
       group.id === updatedGroup.id ? updatedGroup : group
     )
     setBoard({ ...currBoard, groups: updatedGroups })
     updateBoard({ ...currBoard, groups: updatedGroups })
+
   }, [cards])
 
-  let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   function onAddCard() {
     const title = prompt("Add a title please")
@@ -35,9 +35,7 @@ export function CardList({ group, groups }) {
       title,
     }
 
-    group.cards
-      ? (group.cards = [...group.cards, newCard])
-      : (group.cards = [newCard])
+    group.cards ? (group.cards = [...group.cards, newCard]) : (group.cards = [newCard])
 
     const updatedGroup = { ...group, cards: group.cards }
     const updatedGroups = groups.map((group) =>
@@ -116,14 +114,15 @@ export function CardList({ group, groups }) {
                     <Draggable key={card.id} draggableId={card.id} index={idx}>
 
                       {(provided) => (
-                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                        <li className={card.checklists ? 'checklist' : '' + ' ' + card.labelIds ? 'labels' : ''}
+                          ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                           <Link onClick={openCardDetail} to={`/board/${boardId}/${card.id}`}>
 
                             <CardPreview card={card} />
                             <div className="delete-card-btn">
 
                               <button onClick={(event) => onDeleteCard(event, card.id)}>
-                                X
+                                <FontAwesomeIcon className="btn-icon" icon={faX} />
                               </button>
 
                             </div>
@@ -143,7 +142,15 @@ export function CardList({ group, groups }) {
 
         </DragDropContext>
       </div>
-      <button onClick={onAddCard}> + Add card</button>
+
+      <div className="bottom-container">
+        <button className="add-card" onClick={onAddCard}>
+          <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add a card
+        </button>
+
+        {/* <button></button> */}
+      </div>
+
     </>
   )
 }

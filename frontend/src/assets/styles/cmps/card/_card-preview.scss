@@ -11,19 +11,60 @@
   }
 
   li {
+    background-color: $clr6;
     position: relative;
     box-shadow: (0 1px 0 $clr17);
+    height: fit-content;
+    min-height: 33px;
+    border-radius: $edge-round;
+
+    button {
+      opacity: 0;
+    }
+
+    &:hover {
+      button {
+        opacity: 1;
+      }
+    }
+
 
     .delete-card-btn {
       position: absolute;
       left: 90%;
       top: 10%;
     }
-  }
 
-  .card-preview {
-    color: black;
-    margin: 0.5em;
-    cursor: pointer;
+    .card-preview {
+      color: $clr7;
+      margin: 0.5em;
+      cursor: pointer;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      white-space: break-spaces;
+      padding-bottom: 10px;
+
+      p {
+        margin: 0;
+        position: relative;
+        top: 6px;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.bottom-container {
+  // background-color: yellow;
+
+  .add-card {
+    background-color: transparent;
+    width: 80%;
+    border-radius: $edge-round;
+    height: 30px;
+
+    &:hover {
+      background-color: $clr18;
+    }
   }
 }

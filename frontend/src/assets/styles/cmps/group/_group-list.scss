@@ -5,8 +5,14 @@
   margin: 0.5em 0.5em;
 
   .group {
+    background-color: $clr19;
     width: rem(272px);
     position: relative;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: $edge-round;
 
     .delete-group-btn {
       position: absolute;
@@ -19,13 +25,20 @@
 .add-group-btn {
   height: 2.5rem;
   width: 17rem;
-  border-radius: 0.3em;
+  border-radius: $edge-round;
   text-align: start;
+  background-color: $clr18;
+  transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) .3s;
+
+  &:hover {
+    background-color: opacify($clr18, 0.1);
+  }
 }
 
 .group-preview {
-  border-radius: 0.2em;
-  padding: 1em 1em;
+  border-radius: $edge-round;
+  padding: 1em 1.1em 1em 0.7em;
+  font-size: 14px;
   background-color: #ebecf0;
   box-shadow: (0 1px 0 $clr17);
 }

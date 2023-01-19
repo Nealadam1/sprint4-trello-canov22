@@ -1,6 +1,10 @@
 import React, { useState } from "react"
 import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
+
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { GroupPreview } from "./group-preview"
 import { Outlet, useParams } from "react-router"
@@ -69,7 +73,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
         </div>
       ))}
       <button className="add-group-btn" onClick={onAddGroup}>
-        + Add another list
+        <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another list
       </button>
       {cardId ? <Outlet /> : null}
     </div>

@@ -16,6 +16,9 @@ $clr2: #89609e;
 $clr3: #97a0af;
 $clr16: #0000001a;
 $clr17: #091e4240;
+$clr18: #ffffff59;
+$clr19: #ebecf0;
+// $clr18-lighten: lighten($clr18, 93.5%);
 
 
 
@@ -26,3 +29,6 @@ $normal-breakpoint: 960px;
 
 //actionModal Vars
 $modal-line-height: 20px;
+
+// radius var
+$edge-round: 0.2em;
