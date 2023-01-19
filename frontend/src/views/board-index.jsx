@@ -4,14 +4,18 @@ import { useSelector } from "react-redux"
 import { BoardList } from "../cmps/board/board-list"
 import { BoardSearch } from "../cmps/board/board-search"
 import { boardService } from "../services/board.service"
-import { loadBoards } from "../store/actions/board.action"
+import { loadBoards, setBoard } from "../store/actions/board.action"
 
 export function BoardIndex() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)
+  const board=useSelector(storeState=> storeState.boardModule.board)
+  
+
 
   // console.log(boards)
 
   useEffect(() => {
+    if (board) setBoard(null)
     loadBoards()
   }, [])
 

@@ -12,22 +12,22 @@ export function CreateBoard() {
 
     const images = [
         {
-            backgroundColor: '#21AAE2',
+            backgroundColor: '#25D9F5',
             background: 'https://images.unsplash.com/photo-1673050460660-2bd7b3bb25a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
             thumbnail: 'https://images.unsplash.com/photo-1673050460660-2bd7b3bb25a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
         },
         {
-            backgroundColor: '#22AAE2',
+            backgroundColor: '#011831',
             background: 'https://images.unsplash.com/photo-1673842450064-e9a1197e1a66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80',
             thumbnail: 'https://images.unsplash.com/photo-1673842450064-e9a1197e1a66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
         },
         {
-            backgroundColor: '#23AAE2',
+            backgroundColor: '#B7F4E0',
             background: 'https://images.unsplash.com/photo-1530968033775-2c92736b131e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80',
             thumbnail: 'https://images.unsplash.com/photo-1530968033775-2c92736b131e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
         },
         {
-            backgroundColor: '#24AAE2',
+            backgroundColor: '#F2BF0C',
             background: 'https://images.unsplash.com/photo-1510007552638-e1c0c4c67ee0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80',
             thumbnail: 'https://images.unsplash.com/photo-1510007552638-e1c0c4c67ee0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
         },
