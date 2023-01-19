@@ -28,7 +28,7 @@
   border-radius: $edge-round;
   text-align: start;
   background-color: $clr18;
-  transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) .3s;
+  transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
 
   &:hover {
     background-color: opacify($clr18, 0.1);
@@ -41,4 +41,5 @@
   font-size: 14px;
   background-color: #ebecf0;
   box-shadow: (0 1px 0 $clr17);
+  min-width: rem(272px);
 }

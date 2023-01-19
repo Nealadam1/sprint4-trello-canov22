@@ -4,13 +4,15 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-
-import {
-  closeCardDetail,
-  getCardById,
-  openCardDetail,
-} from "../store/actions/board.action"
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { closeCardDetail, getCardById } from "../store/actions/board.action"
+import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
+import { CardDetailsSidebar } from "../cmps/card/card-details/card-details-sidebar"
+import { CardMember } from "../cmps/card/card-details/card-member"
+import { CardLabels } from "../cmps/card/card-details/card-labels"
+import { CardDescription } from "../cmps/card/card-details/card-description"
+import { CardChecklists } from "../cmps/card/card-details/card-checklists"
+import { CardComments } from "../cmps/card/card-details/card-comments"
 export function CardDetails() {
   const [card, setCard] = useState(null)
   const navigate = useNavigate()
@@ -36,6 +38,8 @@ export function CardDetails() {
     navigate(`/board/${board._id}`)
   }
 
+  console.log(card)
+
   return (
     <div>
       {/* <button onClick={handleOpen}>Open Modal</button> */}
@@ -60,26 +64,23 @@ export function CardDetails() {
                 }}
               ></header>
             )}
+            <div className="side-bar">
+              <CardDetailsSidebar />
+            </div>
             <div className="card-content">
-              <h1>{card?.title}</h1>
-              <p>{card?.description}</p>
-              <ul>
-                {card &&
-                  card.checklists &&
-                  card?.checklists?.map((checklist) => {
-                    return (
-                      <div>
-                        <h3>{checklist.title}</h3>
-                        <ul>
-                          {checklist.todos.map((todo) => (
-                            <li>{todo.title}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )
-                  })}
-              </ul>
-
+              <h2 className="card-title">
+                <span>
+                  <FontAwesomeIcon icon={faWindowMaximize} />
+                </span>
+                {card?.title}
+              </h2>
+              <div className="card-detail-data">
+                {card?.byMember && <CardMember />}
+                {card?.labelIds && <CardLabels />}
+              </div>
+              <div>{card?.description && <CardDescription />}</div>
+              <div>{card?.checklists && <CardChecklists />}</div>
+              <div>{card?.comments && <CardComments />}</div> */
               <button onClick={handleClose}>
                 <Link to={`/board/${board._id}`}>Close</Link>
               </button>
