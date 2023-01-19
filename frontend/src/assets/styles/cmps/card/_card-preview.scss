@@ -60,7 +60,7 @@
     background-color: transparent;
     width: 100%;
     border-radius: $edge-round;
-    height: 30px;
+    height: rem(30px);
 
     &:hover {
       background-color: $clr18;

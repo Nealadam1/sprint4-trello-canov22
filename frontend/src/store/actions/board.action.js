@@ -140,7 +140,9 @@ export async function addCard(newCard, groupId) {
     const card = boardService.createCard(newCard)
     const board = structuredClone(store.getState().boardModule.board)
     const group = board.groups.find((group) => group.id === groupId)
-    group.cards = [...group.cards, card]
+    group.cards
+      ? (group.cards = [...group.cards, card])
+      : (group.cards = [card])
     store.dispatch(getActionSetBoard(board))
     boardService.save(board)
   } catch (err) {

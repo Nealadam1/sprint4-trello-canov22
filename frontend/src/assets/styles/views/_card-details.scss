@@ -1,19 +1,36 @@
 .card-details {
   header {
-    height: 116px;
-    min-height: 116px;
+    height: rem(147px);
+    min-height: rem(147px);
+    grid-area: header;
   }
-  position: absolute;
-  width: em(768px);
-  min-width: em(768px);
-  min-height: em(900px);
+  display: grid;
+  grid-template-columns: 2.5fr 0.8fr;
+  grid-template-rows: 0.3fr 2fr;
+  grid-template-areas:
+    "header header"
+    "content side-bar";
+  width: em(855px);
+  min-width: em(855px);
+  min-height: em(1020px);
   background-color: #ebecf0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: $clr7;
+
+  .side-bar {
+    grid-area: side-bar;
+  }
 
   .card-content {
+    padding: 0px rem(8px) rem(8px) rem(16px);
     padding: em(20px);
+    grid-area: content;
+    .card-title {
+      min-height: rem(32px);
+      padding: rem(12px) rem(40px) rem(8px) rem(56px);
+    }
   }
 }
