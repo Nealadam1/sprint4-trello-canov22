@@ -109,30 +109,29 @@ export function CardList({ group, groups }) {
             {(provided) => (
               <ul ref={provided.innerRef}{...provided.droppableProps}>
 
-                {group.cards &&
-                  group.cards.map((card, idx) => (
-                    <Draggable key={card.id} draggableId={card.id} index={idx}>
+                {group.cards && group.cards.map((card, idx) => (
+                  <Draggable key={card.id} draggableId={card.id} index={idx}>
 
-                      {(provided) => (
-                        <li className={card.checklists ? 'checklist' : '' + ' ' + card.labelIds ? 'labels' : ''}
-                          ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <Link onClick={openCardDetail} to={`/board/${boardId}/${card.id}`}>
+                    {(provided) => (
+                      <li className={card.checklists ? 'checklist' : '' + ' ' + card.labelIds ? 'labels' : ''}
+                        ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                        <Link onClick={openCardDetail} to={`/board/${boardId}/${card.id}`}>
 
-                            <CardPreview card={card} />
-                            <div className="delete-card-btn">
+                          <CardPreview card={card} />
+                          <div className="delete-card-btn">
 
-                              <button onClick={(event) => onDeleteCard(event, card.id)}>
-                                <FontAwesomeIcon className="btn-icon" icon={faX} />
-                              </button>
+                            <button onClick={(event) => onDeleteCard(event, card.id)}>
+                              <FontAwesomeIcon className="btn-icon" icon={faX} />
+                            </button>
 
-                            </div>
+                          </div>
 
-                          </Link>
-                        </li>
-                      )}
+                        </Link>
+                      </li>
+                    )}
 
-                    </Draggable>
-                  ))}
+                  </Draggable>
+                ))}
                 {provided.placeholder}
 
               </ul>
