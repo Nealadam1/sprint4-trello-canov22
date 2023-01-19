@@ -16,9 +16,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: rem(18px);
   margin: 0;
-  overflow-y: hidden;
   // max-width: 1024px;
   margin: auto;
+}
+
+.app {
+  height: 100vh;
+  max-height: 100vh;
+  display: grid;
+  flex-direction: column;
+  min-height: 90vh;
+  grid-template-rows: auto 1fr;
 }
 
 h1,

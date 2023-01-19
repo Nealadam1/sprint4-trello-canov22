@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { setBoard, updateBoard } from "../../store/actions/board.action";
-import { faStar as faFullStar, faEllipsis } from "@fortawesome/free-solid-svg-icons"
+import { faStar as faFullStar } from "@fortawesome/free-solid-svg-icons"
 import { faStar } from "@fortawesome/free-regular-svg-icons"
 import { BoardMembers } from "../members/board-members";
 
@@ -27,11 +27,11 @@ export function BoardHeader({ board }) {
         updateBoard(board)
     }
 
-    function handleBlur(event){
+    function handleBlur(event) {
         handleTitleSave();
     }
 
-    function handleCmpRender(event){
+    function handleCmpRender(event) {
 
     }
 
@@ -77,12 +77,12 @@ export function BoardHeader({ board }) {
                 </div>
                 <span className="btn-divider">|</span>
                 <div className="board-action-members">
-                    <BoardMembers/>
+                    <BoardMembers />
                 </div>
                 <span className="btn-divider">|</span>
                 <div className="board-action-menu">
                     <button onClick={handleCmpRender}>
-                      Menu
+                        Menu
                     </button>
                 </div>
 
