@@ -80,44 +80,43 @@ export function CardList({ group }) {
           <Droppable droppableId="cards">
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {group.cards &&
-                  group.cards.map((card, idx) => (
-                    <Draggable key={card.id} draggableId={card.id} index={idx}>
-                      {(provided) => (
-                        <li
-                          className={
-                            card.checklists
-                              ? "checklist"
-                              : "" + " " + card.labelIds
+                {group.cards && group.cards.map((card, idx) => (
+                  <Draggable key={card.id} draggableId={card.id} index={idx}>
+                    {(provided) => (
+                      <li
+                        className={
+                          card.checklists
+                            ? "checklist"
+                            : "" + " " + card.labelIds
                               ? "labels"
                               : ""
-                          }
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
+                        }
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <Link
+                          onClick={openCardDetail}
+                          to={`/board/${boardId}/${card.id}`}
                         >
-                          <Link
-                            onClick={openCardDetail}
-                            to={`/board/${boardId}/${card.id}`}
-                          >
-                            <CardPreview card={card} />
-                            <div className="delete-card-btn">
-                              <button
-                                onClick={(event) =>
-                                  onDeleteCard(event, card.id)
-                                }
-                              >
-                                <FontAwesomeIcon
-                                  className="btn-icon"
-                                  icon={faX}
-                                />
-                              </button>
-                            </div>
-                          </Link>
-                        </li>
-                      )}
-                    </Draggable>
-                  ))}
+                          <CardPreview card={card} />
+                          <div className="delete-card-btn">
+                            <button
+                              onClick={(event) =>
+                                onDeleteCard(event, card.id)
+                              }
+                            >
+                              <FontAwesomeIcon
+                                className="btn-icon"
+                                icon={faX}
+                              />
+                            </button>
+                          </div>
+                        </Link>
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
                 {provided.placeholder}
               </ul>
             )}

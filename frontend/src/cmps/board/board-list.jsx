@@ -17,8 +17,6 @@ import { boardService } from "../../services/board.service"
 export function BoardList({ boards }) {
   const isActionModal = useSelector(storeState => storeState.systemModule.isActionModal)
   const buttonRef = useRef(null)
-  console.log(isActionModal)
-
 
   function starBoard(ev, board) {
     ev.stopPropagation()

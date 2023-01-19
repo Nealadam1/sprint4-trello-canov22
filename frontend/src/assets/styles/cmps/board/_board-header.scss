@@ -1,0 +1,36 @@
+.board-header{
+    margin-top: 20px;
+    margin-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .board-title{
+        min-width: fit-content;
+    
+    }
+    .board-actions{
+        display: flex;
+        margin-left: 10px ;
+        input{
+            min-width: fit-content;
+        }
+    }
+
+    button{
+        background-color: rgba(255, 255, 255, 0.5);
+       
+        text-decoration: none;
+        max-width: 400px;
+        margin: 0 5px 4px 0;
+        line-height: 32px;
+        height: 32px;
+        font-size: 14px;
+        border-radius: 3px;
+        padding: 0 12px 0 12px;
+    }
+
+    .btn-divider{
+        color :rgba(255, 255, 255, 0.5);
+        margin: 0px 5px
+    }
+}

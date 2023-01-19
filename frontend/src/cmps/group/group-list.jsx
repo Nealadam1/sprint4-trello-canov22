@@ -11,6 +11,8 @@ import { Outlet, useParams } from "react-router"
 
 export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const { cardId } = useParams()
+  const [isDraggable, setIsDraggable] = useState(false)
+  const [currGroup, setCurrGroup] = useState(null)
   const [groupToInput, setGroupToInput] = useState(false)
   const [groupTitleToInput, setGroupTitleToInput] = useState(false)
   const [groupTitle, setGroupTitle] = useState({ title: "" })
@@ -25,13 +27,20 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     updateBoard({ ...board, groups: updatedGroups })
   }
 
-  const onDragEnd = (result) => {
-    if (!result.destination) return
 
-    const { source, destination } = result
-    console.log(source)
-    // handle the drag end event here
-    // you can use the result object to determine the source and destination of the drag
+  function handleOnDragEnd(result) {
+    // console.log('result', result);
+    setCurrGroup(groups.find(group => result.draggableId === group.id))
+    if (!result.destination) return;
+    const { destination, source, draggableId, type } = result
+
+    // const items = Array.from(cards);
+    // const [reorderedItem] = items.splice(result.source.index, 1);
+    // items.splice(result.destination.index, 0, reorderedItem);
+
+    // updateCards(items)
+
+
   }
 
   function handleAddGroup() {
@@ -45,6 +54,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     const { value } = target
     setGroupTitle({ title: value })
   }
+  console.log(currGroup);
 
   // return (
   //   <div className="group-list">
@@ -78,39 +88,57 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   }
   return (
     <div className="group-list">
-      {groups &&
-        groups.map((group) => (
-          <div className="group" key={group.id}>
-            {/* <button
-            className="delete-group-btn"
-            onClick={() => onDeleteGroup(group.id)}
-          >X</button> */}
-            <GroupPreview
-              setGroupTitleToInput={setGroupTitleToInput}
-              groupTitleToInput={groupTitleToInput}
-              updateGroupTitle={updateGroupTitle}
-              cards={group.cards}
-              group={group}
-              groups={groups}
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="groups" direction="horizontal" type="column">
+          {(provided) => (
+            <div className="test" ref={provided.innerRef}{...provided.droppableProps}>
+              {groups && groups.map((group, idx) => (
+                <Draggable key={group.id} draggableId={group.id} index={idx}>
+                  {(provided) => (
+                    <div ref={provided.innerRef} {...provided.draggableProps}>
+                      <div className="group" key={group.id}  {...provided.dragHandleProps}>
+                        <button
+                          className="delete-group-btn"
+                          onClick={() => onDeleteGroup(group.id)}>
+                          X</button>
+                        <GroupPreview
+                          setGroupTitleToInput={setGroupTitleToInput}
+                          groupTitleToInput={groupTitleToInput}
+                          updateGroupTitle={updateGroupTitle}
+                          cards={group.cards}
+                          group={group}
+                          groups={groups}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+
+        {groupToInput ? (
+          <form onSubmit={handleAddGroup}>
+            <input
+              onChange={handleChange}
+              value={groupTitle.title}
+              type="text"
+              onBlur={handleBlur}
             />
-          </div>
-        ))}
-      {groupToInput ? (
-        <form onSubmit={handleAddGroup}>
-          <input
-            onChange={handleChange}
-            value={groupTitle.title}
-            type="text"
-            onBlur={handleBlur}
-          />
-        </form>
-      ) : (
-        <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
-          <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another
-          list
-        </button>
-      )}
-      {cardId ? <Outlet /> : null}
+          </form>
+        ) : (
+          <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
+            <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another
+            list
+          </button>
+        )}
+
+        {cardId ? <Outlet /> : null}
+
+      </DragDropContext>
+
     </div>
   )
 }
