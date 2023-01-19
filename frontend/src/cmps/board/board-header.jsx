@@ -39,7 +39,7 @@ export function BoardHeader({ board }) {
         <div className="board-header">
             {isEditingTitle ? (
                 <>
-                    <input
+                    <input style={{width: boardTitle.length*7}}
                         type="text"
                         value={boardTitle}
                         onChange={handleTitleChange}
