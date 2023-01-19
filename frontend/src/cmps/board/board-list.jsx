@@ -14,7 +14,7 @@ import { BoardFavorites } from "./board-favorites"
 
 export function BoardList({ boards }) {
   const isActionModal = useSelector(storeState => storeState.systemModule.isActionModal)
-  const [changedBoard, setChangedBoard] = useState(boardService.getEmptyBoard = false)
+  const [changedBoard, setChangedBoard] = useState(boardService.getEmptyBoard().isStarred = false)
   const dynmOpenModal = !isActionModal ? OpenActionModal : null
   const buttonRef = useRef(null)
 
