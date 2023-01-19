@@ -11,6 +11,9 @@ import { Outlet, useParams } from "react-router"
 
 export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const { cardId } = useParams()
+  const [groupToInput, setGroupToInput] = useState(false)
+  const [groupTitleToInput, setGroupTitleToInput] = useState(false)
+  const [groupTitle, setGroupTitle] = useState({ title: "" })
 
   function updateGroupTitle(group) {
     const newTitle = prompt("Pick new title")
@@ -29,6 +32,18 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     console.log(source)
     // handle the drag end event here
     // you can use the result object to determine the source and destination of the drag
+  }
+
+  function handleAddGroup() {
+    const title = groupTitle.title
+    onAddGroup(title)
+    setGroupTitle({ title: "" })
+    setGroupToInput(false)
+  }
+
+  function handleChange({ target }) {
+    const { value } = target
+    setGroupTitle({ title: value })
   }
 
   // return (
@@ -55,26 +70,46 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   //     </button>
   //   </div>
   // )
-  // test for d&d for group 
+  // test for d&d for group
+
+  function handleBlur() {
+    setGroupToInput(false)
+    setGroupTitle({ title: "" })
+  }
   return (
     <div className="group-list">
-      {groups && groups.map((group) => (
-        <div className="group" key={group.id}>
-          {/* <button
+      {groups &&
+        groups.map((group) => (
+          <div className="group" key={group.id}>
+            {/* <button
             className="delete-group-btn"
             onClick={() => onDeleteGroup(group.id)}
           >X</button> */}
-          <GroupPreview
-            updateGroupTitle={updateGroupTitle}
-            cards={group.cards}
-            group={group}
-            groups={groups}
+            <GroupPreview
+              setGroupTitleToInput={setGroupTitleToInput}
+              groupTitleToInput={groupTitleToInput}
+              updateGroupTitle={updateGroupTitle}
+              cards={group.cards}
+              group={group}
+              groups={groups}
+            />
+          </div>
+        ))}
+      {groupToInput ? (
+        <form onSubmit={handleAddGroup}>
+          <input
+            onChange={handleChange}
+            value={groupTitle.title}
+            type="text"
+            onBlur={handleBlur}
           />
-        </div>
-      ))}
-      <button className="add-group-btn" onClick={onAddGroup}>
-        <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another list
-      </button>
+        </form>
+      ) : (
+        <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
+          <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another
+          list
+        </button>
+      )}
       {cardId ? <Outlet /> : null}
     </div>
   )

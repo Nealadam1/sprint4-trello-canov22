@@ -5,9 +5,16 @@ import { BoardHeader } from "../cmps/board/board-header"
 import { GroupList } from "../cmps/group/group-list"
 import { boardService } from "../services/board.service"
 import { utilService } from "../services/util.service"
-import { setBoard, setBoardById, updateBoard, } from "../store/actions/board.action"
+import {
+  addGroup,
+  deleteGroup,
+  setBoard,
+  setBoardById,
+  updateBoard,
+} from "../store/actions/board.action"
 
 export function BoardDetails() {
+  const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
   const board = useSelector((storeState) => storeState.boardModule.board)
 
   const { boardId } = useParams()
@@ -17,31 +24,21 @@ export function BoardDetails() {
     loadBoard(boardId)
   }, [])
 
-
-
   async function loadBoard(boardId) {
     await boardService.getById(boardId).then((board) => {
       setBoard(board)
     })
   }
 
-  function onAddGroup() {
-    const title = prompt("add group title")
+  function onAddGroup(title) {
     const newGroup = {
-      id: utilService.makeId(),
       title,
-      archivedAt: "",
-      card: [],
     }
-
-    updateBoard({ ...board, groups: [...board.groups, newGroup] })
-    setBoard({ ...board, groups: [...board.groups, newGroup] })
+    addGroup(newGroup)
   }
 
   function onDeleteGroup(groupId) {
-    const updatedGroups = board.groups.filter((group) => group.id !== groupId)
-    updateBoard({ ...board, groups: updatedGroups })
-    setBoard({ ...board, groups: updatedGroups })
+    deleteGroup(groupId)
   }
 
   if (!board) return <h1>Loading...</h1>
@@ -49,6 +46,8 @@ export function BoardDetails() {
     <div className="board-details" style={board?.style}>
       <BoardHeader board={board} />
       <GroupList
+        GroupTitleToEdit={GroupTitleToEdit}
+        setGroupTitleToEdit={setGroupTitleToEdit}
         board={board}
         onDeleteGroup={onDeleteGroup}
         onAddGroup={onAddGroup}
