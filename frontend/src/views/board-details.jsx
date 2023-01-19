@@ -46,7 +46,12 @@ export function BoardDetails() {
 
   if (!board) return <h1>Loading...</h1>
   return (
-    <div className="board-details" style={board?.style}>
+    <div className="board-details" style={{
+      background: `${board.style.img? `url(${board.style.img})`:`${board.style.backgroundColor}`}`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
+  }}>
       <BoardHeader board={board} />
       <GroupList
         board={board}

@@ -7,12 +7,58 @@ import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 
 export function CreateBoard() {
     const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
-    const [boardPreviewColor, setBoardPreviewColor] = useState("#24AAE2")
+    const [boardPreviewColor, setBoardPreviewColor] = useState('')
+    const [boardPreviewImg, setBoardPreviewImg] = useState('')
 
-    function handleColorChange(color) {
-        setBoardPreviewColor(color.hex)
-        newBoard.style.background = color.hex
+    const images = [
+        {
+            backgroundColor: '#21AAE2',
+            background: 'https://images.unsplash.com/photo-1673050460660-2bd7b3bb25a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
+            thumbnail: 'https://images.unsplash.com/photo-1673050460660-2bd7b3bb25a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
+        },
+        {
+            backgroundColor: '#22AAE2',
+            background: 'https://images.unsplash.com/photo-1673842450064-e9a1197e1a66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80',
+            thumbnail: 'https://images.unsplash.com/photo-1673842450064-e9a1197e1a66?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
+        },
+        {
+            backgroundColor: '#23AAE2',
+            background: 'https://images.unsplash.com/photo-1530968033775-2c92736b131e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80',
+            thumbnail: 'https://images.unsplash.com/photo-1530968033775-2c92736b131e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
+        },
+        {
+            backgroundColor: '#24AAE2',
+            background: 'https://images.unsplash.com/photo-1510007552638-e1c0c4c67ee0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80',
+            thumbnail: 'https://images.unsplash.com/photo-1510007552638-e1c0c4c67ee0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80',
+        },
+    ]
+
+
+    function handleBackgroundChange(backgroundColor, backgroundImg) {
+        const { style } = newBoard
+        if (backgroundColor){ 
+            setBoardPreviewColor(backgroundColor.hex)
+            style.backgroundColor = backgroundColor.hex
+            setBoardPreviewImg('')
+        }
+        else{
+        setBoardPreviewImg(backgroundImg.thumbnail)
+        console.log(boardPreviewImg)
+        style.backgroundColor = backgroundImg.backgroundColor
+        style.img = backgroundImg.background
+        style.thumbnail = backgroundImg.thumbnail
+        }
     }
+
+    function onCreateBoard(title) {
+        newBoard.title = title
+        addBoard(newBoard)
+        CloseActionModal()
+
+    }
+
+
+
 
     console.log(newBoard)
 
@@ -24,15 +70,24 @@ export function CreateBoard() {
             </header>
 
             <div className="create-board-preview">
-                <div className="background-preview" style={{ backgroundColor: boardPreviewColor }}>
+                <div className="background-preview" style={{ background: `${boardPreviewImg ? `url(${boardPreviewImg})` : `${boardPreviewColor}`}` }}>
                     <img src={skeletonBoardPreview} alt="" />
                 </div>
             </div>
-            <h5>Background</h5>
-            <TwitterPicker
-                color={boardPreviewColor}
-                onChange={handleColorChange}
-            />
+            <div className="background-picker">
+                <h5>Background</h5>
+                <TwitterPicker
+                    color={boardPreviewColor}
+                    onChange={handleBackgroundChange}
+                />
+                <ul className="image-select">
+                    {images.map((image,idx) => <li key={idx}>
+                        <button onClick={()=>handleBackgroundChange(null, image)}
+                            style={{ backgroundImage: `url(${image.thumbnail})` }}></button>
+                    </li>)}
+
+                </ul>
+            </div>
             <Formik
                 initialValues={{ title: "" }}
                 validate={(values) => {
@@ -43,15 +98,13 @@ export function CreateBoard() {
                     return errors
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    newBoard.title = values.title
-                    addBoard(newBoard)
-                    CloseActionModal()
+                    onCreateBoard(values.title)
                     setSubmitting(false)
                 }}
             >
                 {({ isSubmitting }) => (
                     <Form>
-                         <h5>Board Title</h5>
+                        <h5>Board Title</h5>
                         <Field type="text" name="title" placeholder="Enter a title" />
                         <ErrorMessage name="title" component="div" className="error" />
                         <button id="createbtn" className="board-create-button" type="submit" disabled={isSubmitting}>
