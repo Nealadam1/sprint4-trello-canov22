@@ -17,7 +17,6 @@ export function CardPreview({ card }) {
     )
     setCurrMembers(cardMembers)
   }
-  console.log(card)
 
   return (
     <div className="card-preview">
@@ -36,8 +35,8 @@ export function CardPreview({ card }) {
       <p>{card.title}</p>
 
       <div className="member-images">
-        {currMembers.map((member) => (
-          <img className="member-image" alt="" src={member.imgUrl} />
+        {currMembers.map((member, idx) => (
+          <img key={idx} className="member-image" alt="" src={member.imgUrl} />
         ))}
       </div>
     </div>

@@ -4,7 +4,7 @@ import { Link, Outlet, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus, faX } from "@fortawesome/free-solid-svg-icons"
+import { faPen, faPlus, faX } from "@fortawesome/free-solid-svg-icons"
 import {
   addCard,
   deleteCard,
@@ -92,8 +92,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                                ? "labels"
-                                : ""
+                              ? "labels"
+                              : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -110,10 +110,7 @@ export function CardList({ group }) {
                                   onDeleteCard(event, card.id)
                                 }
                               >
-                                <FontAwesomeIcon
-                                  className="btn-icon"
-                                  icon={faX}
-                                />
+                                <FontAwesomeIcon icon={faPen} />
                               </button>
                             </div>
                           </Link>

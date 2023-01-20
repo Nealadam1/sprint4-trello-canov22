@@ -30,8 +30,8 @@
 
     .delete-card-btn {
       position: absolute;
-      left: 90%;
-      top: 10%;
+      right: 5%;
+      top: 5%;
     }
 
     .card-preview {
@@ -75,9 +75,14 @@
     width: 100%;
     border-radius: $edge-round;
     height: rem(30px);
+    font-family: "Open Sans", sans-serif;
+    color: #5e6c84;
+    text-align: left;
+    padding: 4px 8px;
 
     &:hover {
-      background-color: $clr18;
+      background-color: #091e4214;
+      color: #172b4d;
     }
   }
 }
