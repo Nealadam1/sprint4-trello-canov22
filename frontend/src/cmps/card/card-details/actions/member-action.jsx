@@ -11,7 +11,8 @@ export function MemberAction({ card }) {
       const updatedMemberIds = card.memberIds.filter(
         (member) => member !== memberId
       )
-      return removeMember(updatedMemberIds, card)
+      removeMember(updatedMemberIds, card)
+      return
     }
     addMember(memberId, card)
   }
@@ -19,8 +20,8 @@ export function MemberAction({ card }) {
   return (
     <div className="members-list">
       <ul>
-        {board.members.map((member) => (
-          <li onClick={() => onAddMember(member._id)}>
+        {board.members?.map((member, idx) => (
+          <li key={idx} onClick={() => onAddMember(member._id)}>
             <img className="member-image" src={member.imgUrl} />
             {member.fullname}
           </li>

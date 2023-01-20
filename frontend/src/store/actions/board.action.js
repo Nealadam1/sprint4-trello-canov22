@@ -1,8 +1,19 @@
 import { boardService } from "../../services/board.service.js"
 import { store } from "../store.js"
-import { showSuccessMsg, showErrorMsg, } from "../../services/event-bus.service.js"
+import {
+  showSuccessMsg,
+  showErrorMsg,
+} from "../../services/event-bus.service.js"
 
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_GROUP, } from "../reducers/board.reducer"
+import {
+  ADD_BOARD,
+  REMOVE_BOARD,
+  SET_BOARD,
+  SET_BOARDS,
+  UNDO_REMOVE_BOARD,
+  UPDATE_BOARD,
+  SET_GROUP,
+} from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
 import { SET_LABELS } from "../reducers/label.reducer.js"
 
@@ -61,7 +72,7 @@ export function OpenActionModal(ev) {
   })
 }
 
-export async function loadBoards(searchBy='') {
+export async function loadBoards(searchBy = "") {
   try {
     const boards = await boardService.query(searchBy)
     console.log("Boards from DB:", boards)
@@ -134,6 +145,7 @@ export function addMember(memberId, card) {
   const updatedGroups = board.groups.map((group) =>
     group.id === updatedGroup.id ? updatedGroup : group
   )
+  console.log([...updatedGroups])
   board.groups = updatedGroups
   store.dispatch(getActionSetBoard(board))
   boardService.save(board)
@@ -224,14 +236,12 @@ export function getCardById(board, cardId) {
   return card
 }
 
-
 export async function getLabels(labels) {
   return {
     type: SET_LABELS,
     labels,
   }
 }
-
 
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
