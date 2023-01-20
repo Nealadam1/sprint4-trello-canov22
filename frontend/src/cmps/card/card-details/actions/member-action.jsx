@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { addMember, removeMember } from "../../../../store/actions/board.action"
 
-export function MemberAction({ card }) {
+export function MemberAction({ card, setCard }) {
   const [showMembers, setShowMembers] = useState(false)
 
   const board = useSelector((storeState) => storeState.boardModule.board)
