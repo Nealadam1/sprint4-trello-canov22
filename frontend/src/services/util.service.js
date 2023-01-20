@@ -92,42 +92,42 @@ function loadFromStorage(key) {
 
 function darken(hex) {
   // Check if the hex color code is valid
-  if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex)) return;
+  if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex)) return
 
   // Convert the hex color code to an RGB color
-  let r = parseInt(hex.substring(1, 3), 16);
-  let g = parseInt(hex.substring(3, 5), 16);
-  let b = parseInt(hex.substring(5, 7), 16);
+  let r = parseInt(hex.substring(1, 3), 16)
+  let g = parseInt(hex.substring(3, 5), 16)
+  let b = parseInt(hex.substring(5, 7), 16)
 
   // Darken the color by 30%
-  r = Math.floor(r * 0.7);
-  g = Math.floor(g * 0.7);
-  b = Math.floor(b * 0.7);
+  r = Math.floor(r * 0.6)
+  g = Math.floor(g * 0.6)
+  b = Math.floor(b * 0.6)
 
   // Convert the RGB color back to a hex color code
-  hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
 
-  return hex;
+  return hex
 }
 
 function changeContrast(hex) {
   // Check if the hex color code is valid
-  if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex)) return;
+  if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex)) return
 
   // Convert the hex color code to an RGB color
-  let r = parseInt(hex.substring(1, 3), 16);
-  let g = parseInt(hex.substring(3, 5), 16);
-  let b = parseInt(hex.substring(5, 7), 16);
+  let r = parseInt(hex.substring(1, 3), 16)
+  let g = parseInt(hex.substring(3, 5), 16)
+  let b = parseInt(hex.substring(5, 7), 16)
 
   // Darken the color by 30%
-  r = Math.floor(r * 0.7);
-  g = Math.floor(g * 0.7);
-  b = Math.floor(b * 0.7);
+  r = Math.floor(r * 1.01)
+  g = Math.floor(g * 1.13)
+  b = Math.floor(b * 1.13)
 
   // Convert the RGB color back to a hex color code
-  hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
 
-  return hex;
+  return hex
 }
 
 function formatTime(sentAt) {

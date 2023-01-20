@@ -15,8 +15,8 @@ export function CardLabels({ CardLabels }) {
       })}
 
       {displayLabels.map((label) => (
-        <div className="card-label" key={label.id} style={{ background: label.color }}>
-          <div className="circle" style={{ background: utilService.changeContrast(label.color) }}></div>{label.title}
+        <div className="card-label" key={label.id} style={{ background: utilService.changeContrast(label.color) }}>
+          <div className="circle" style={{ background: label.color }}></div>{label.title}
         </div>
       ))}
     </div>

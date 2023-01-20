@@ -51,7 +51,7 @@ export function CardList({ group }) {
     }
   }, [cardToInput])
 
-  console.log(inputRef)
+  // console.log(inputRef)
 
   function onDeleteCard(event, cardId) {
     event.preventDefault()

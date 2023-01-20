@@ -5,7 +5,7 @@ export function CardComments({ comments }) {
       <h3>Activity</h3>
       <ul>
         {comments.map((comment) => (
-          <div>
+          <div key={comment.id}>
             <img
               className="member-image"
               src={comment.byMember.imgUrl}
