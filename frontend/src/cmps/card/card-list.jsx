@@ -14,12 +14,14 @@ import {
   updateBoard,
 } from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
+import { useRef } from "react"
 
 export function CardList({ group }) {
   const { boardId, cardId } = useParams()
   const [cardToInput, setCardToInput] = useState(false)
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
+  const [isMouseDown, setIsMouseDown] = useState(false)
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   useEffect(() => {
@@ -61,12 +63,20 @@ export function CardList({ group }) {
     onEndDrag()
   }
 
+  const handleMouseDown = () => {
+    setIsMouseDown(true)
+  }
+
   function handleChange({ target }) {
     const { value } = target
     setCardTitle({ title: value })
   }
 
   function handleBlur() {
+    if (isMouseDown) {
+      setIsMouseDown(false)
+      return
+    }
     setCardToInput(false)
     setCardTitle({ title: "" })
   }
@@ -134,7 +144,9 @@ export function CardList({ group }) {
               value={cardTitle.title}
               onChange={handleChange}
             />
-            <button type="submit">Add Card</button>
+            <button onMouseDown={handleMouseDown} type="submit">
+              Add Card
+            </button>
           </form>
         ) : (
           <button className="add-card" onClick={() => setCardToInput(true)}>
