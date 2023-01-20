@@ -61,7 +61,7 @@ export function OpenActionModal(ev) {
   })
 }
 
-export async function loadBoards(searchBy='') {
+export async function loadBoards(searchBy = '') {
   try {
     const boards = await boardService.query(searchBy)
     console.log("Boards from DB:", boards)
@@ -206,7 +206,7 @@ export function updateBoard(board) {
   return boardService
     .save(board)
     .then((savedBoard) => {
-      console.log("Updated Board:", savedBoard)
+      // console.log("Updated Board:", savedBoard)
       store.dispatch(getActionUpdateBoard(savedBoard))
       return savedBoard
     })
