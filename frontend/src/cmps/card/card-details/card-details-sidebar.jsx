@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import {
-  CloseActionModal,
+  closeActionModal,
   OpenActionModal,
 } from "../../../store/actions/board.action"
 import { DynamicActionModal } from "../../dynamic-modal-cmp"

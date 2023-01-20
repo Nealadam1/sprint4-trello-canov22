@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { closeCardDetail, getCardById } from "../store/actions/board.action"
+import { closeCardDetail, getCardById, setCardToStoreRef } from "../store/actions/board.action"
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
 
 import { CardDetailsSidebar } from "../cmps/card/card-details/card-details-sidebar"
@@ -15,7 +15,7 @@ import { CardLabels } from "../cmps/card/card-details/card-labels"
 import { CardDescription } from "../cmps/card/card-details/card-description"
 import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
-import { CloseActionModal } from "../store/actions/board.action"
+import { closeActionModal } from "../store/actions/board.action"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -33,12 +33,14 @@ export function CardDetails() {
   useEffect(() => {
     const currCard = getCardById(board, cardId)
     setCard(currCard)
-    if (actionModal) CloseActionModal()
+    setCardToStoreRef(currCard)
+    if (actionModal) closeActionModal()
   }, [cardId])
 
   const handleClose = (e) => {
     if (e.target === e.currentTarget) {
       closeCardDetail()
+      closeActionModal()
       navigate(`/board/${board._id}`)
       window.removeEventListener("click", () => {
         handleClose()
@@ -88,7 +90,7 @@ export function CardDetails() {
               </div>
               <div>
                 {card && (
-                  <CardDescription description={card.description} />
+                  <CardDescription card={card} />
                 )}
               </div>
               <div>

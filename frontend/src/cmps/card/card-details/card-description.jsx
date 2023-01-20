@@ -1,8 +1,9 @@
 import { useState } from "react"
+import { updateCard } from "../../../store/actions/board.action"
 
-export function CardDescription({ description }) {
-  const [isEditing, setIsEditing] = useState(description? false:true)
-  const [newDescription, setNewDescription] = useState(description)
+export function CardDescription({ card }) {
+  const [isEditing, setIsEditing] = useState(card.description? false:true)
+  const [newDescription, setNewDescription] = useState(card.description)
   
   
 
@@ -11,13 +12,14 @@ export function CardDescription({ description }) {
   }
 
   function handleSaveClick() {
-
+    card.description=newDescription
+    updateCard(card)
     setIsEditing(false)
   }
 
   function handleCancleClick() {
     setIsEditing(false)
-    setNewDescription(description);
+    setNewDescription(card.description);
   }
 
   function handleChange({ target }) {

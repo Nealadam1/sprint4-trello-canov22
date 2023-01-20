@@ -2,7 +2,7 @@ import { useState } from "react"
 import { boardService } from "../../services/board.service"
 import { TwitterPicker } from "react-color"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import { addBoard, CloseActionModal } from "../../store/actions/board.action"
+import { addBoard, closeActionModal } from "../../store/actions/board.action"
 import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 
 export function CreateBoard() {
@@ -58,14 +58,14 @@ export function CreateBoard() {
   function onCreateBoard(title) {
     newBoard.title = title
     addBoard(newBoard)
-    CloseActionModal()
+    closeActionModal()
   }
 
   return (
     <section className="create-board">
       <header className="create-board-header">
         <h4>Create Board</h4>
-        <i onClick={CloseActionModal}>X</i>
+        <i onClick={closeActionModal}>X</i>
       </header>
 
       <div className="create-board-preview">

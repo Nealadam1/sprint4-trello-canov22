@@ -7,7 +7,7 @@ import { boardService } from "../services/board.service"
 import { utilService } from "../services/util.service"
 import {
   addGroup,
-  CloseActionModal,
+  closeActionModal,
   deleteGroup,
   setBoard,
   setBoardById,
