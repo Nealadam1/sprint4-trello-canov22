@@ -12,7 +12,7 @@ export function BoardHeader({ board }) {
     const [starred, setIsStarred] = useState(board.isStarred)
     const [isEditingTitle, setIsEditingTitle] = useState(false)
     const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
-    const dynmOpenModal = !isActionModal ? OpenActionModal : null
+    const dynmOpenModal = !isActionModal ? (ev)=>OpenActionModal(ev,'board-filter') : null
     const buttonRef = useRef(null)
 
     function handleTitleChange({ target }) {
