@@ -7,11 +7,14 @@ export const ADD_BOARD = "ADD_BOARD"
 export const UPDATE_BOARD = "UPDATE_BOARD"
 export const UNDO_REMOVE_BOARD = "UNDO_REMOVE_BOARD"
 export const SET_GROUP = "SET_GROUP"
+export const UPDATE_CARD="UPDATE_CARD"
+export const SET_CARD="SET_CARD"
 
 const initialState = {
   boards: [],
   board: null,
   group: null,
+  card: null,
   lastRemovedBoard: null,
 }
 
@@ -43,6 +46,31 @@ export function boardReducer(state = initialState, action) {
       break
     case SET_GROUP: {
       newState = { ...state, group: action.group }
+      break
+    }
+    case UPDATE_CARD: {
+      const groupIdx=state.board.groups.findIndex(group=> group.id===state.group.id)
+      const cardIdx=state.board.groups[groupIdx].cards.findIndex(card=> card.id===state.card.id)
+      const newBoard = {
+        ...state.board,
+        groups: [
+          ...state.board.groups.slice(0, groupIdx),
+          {
+            ...state.board.groups[groupIdx],
+            cards: [
+              ...state.board.groups[groupIdx].cards.slice(0, cardIdx),
+              action.card,
+              ...state.board.groups[groupIdx].cards.slice(cardIdx + 1)
+            ]
+          },
+          ...state.board.groups.slice(groupIdx + 1)
+        ]
+      }
+      newState = { ...state, board: newBoard }
+      break
+    }
+    case SET_CARD: {
+      newState = { ...state, card: action.card }
       break
     }
     case UNDO_REMOVE_BOARD:

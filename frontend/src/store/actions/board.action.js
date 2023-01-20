@@ -13,6 +13,8 @@ import {
   UNDO_REMOVE_BOARD,
   UPDATE_BOARD,
   SET_GROUP,
+  UPDATE_CARD,
+  SET_CARD,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
 import { SET_LABELS } from "../reducers/label.reducer.js"
@@ -58,7 +60,7 @@ export function closeCardDetail() {
   })
 }
 
-export function CloseActionModal() {
+export function closeActionModal() {
   store.dispatch({
     type: "MODAL_CLOSE",
   })
@@ -104,6 +106,29 @@ export async function setGroup(group) {
       type: SET_GROUP,
       group,
     })
+  } catch (err) {
+    console.log(err)
+  }
+}
+export async function setCardToStoreRef(card) {
+  try {
+    store.dispatch({
+      type: SET_CARD,
+      card,
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+export async function updateCard(card) {
+  try {
+    
+    store.dispatch({
+      type: UPDATE_CARD,
+      card,
+    })
+    const board=store.getState().boardModule.board
+    boardService.save(board)
   } catch (err) {
     console.log(err)
   }

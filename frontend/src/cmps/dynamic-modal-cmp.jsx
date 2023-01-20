@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-import { CloseActionModal } from "../store/actions/board.action"
+import { closeActionModal } from "../store/actions/board.action"
 import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
 import { ChecklistAction } from "./card/card-details/actions/checklist-action"
@@ -68,7 +68,7 @@ const DynamicModalPosition = (props) => {
     ev.stopPropagation()
     ev.preventDefault()
     if (ev.target === ev.currentTarget) {
-    CloseActionModal()
+    closeActionModal()
     }
   }
 

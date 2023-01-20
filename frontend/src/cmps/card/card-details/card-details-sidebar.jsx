@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import {
-  CloseActionModal,
+  closeActionModal,
   OpenActionModal,
 } from "../../../store/actions/board.action"
 import { DynamicActionModal } from "../../dynamic-modal-cmp"
@@ -17,7 +17,7 @@ export function CardDetailsSidebar({ card }) {
   return (
     <aside className="card-details-sidebar">
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-members"): CloseActionModal}>
+        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-members"): closeActionModal}>
           {isActionModal && (
             <DynamicActionModal
               card={card}
@@ -30,7 +30,7 @@ export function CardDetailsSidebar({ card }) {
         </button>
       </div>
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-labels"): CloseActionModal}>
+        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-labels"): closeActionModal}>
           {isActionModal && (
             <DynamicActionModal
               card={card}
@@ -43,7 +43,7 @@ export function CardDetailsSidebar({ card }) {
         </button>
       </div>
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-checklist"): CloseActionModal}>
+        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-checklist"): closeActionModal}>
           {isActionModal && (
             <DynamicActionModal
               card={card}
