@@ -18,6 +18,7 @@ export function CardDetailsSidebar({ card, setCard }) {
     <aside className="card-details-sidebar">
       <div>
         <button
+          className="side-bar-btn"
           ref={buttonRef}
           onClick={
             !isActionModal
@@ -39,6 +40,7 @@ export function CardDetailsSidebar({ card, setCard }) {
       </div>
       <div>
         <button
+          className="side-bar-btn"
           ref={buttonRef}
           onClick={
             !isActionModal
@@ -59,6 +61,7 @@ export function CardDetailsSidebar({ card, setCard }) {
       </div>
       <div>
         <button
+          className="side-bar-btn"
           ref={buttonRef}
           onClick={
             !isActionModal

@@ -9,6 +9,8 @@ import { setLabels } from "../../store/actions/board.action"
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { GroupPreview } from "./group-preview"
 import { Outlet, useParams } from "react-router"
+import { CgClose } from "react-icons/cg"
+import { useRef } from "react"
 
 export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const { cardId } = useParams()
@@ -17,6 +19,15 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const [groupToInput, setGroupToInput] = useState(false)
   const [groupTitleToInput, setGroupTitleToInput] = useState(false)
   const [groupTitle, setGroupTitle] = useState({ title: "" })
+  const [isMouseDown, setIsMouseDown] = useState(false)
+
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (groupToInput) {
+      inputRef.current.focus()
+    }
+  }, [groupToInput])
 
   function updateGroupTitle(group) {
     const newTitle = prompt("Pick new title")
@@ -88,10 +99,24 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   // )
   // test for d&d for group
 
+  const handleMouseDown = () => {
+    setIsMouseDown(true)
+  }
+
   function handleBlur() {
+    if (isMouseDown) {
+      setIsMouseDown(false)
+      return
+    }
     setGroupToInput(false)
     setGroupTitle({ title: "" })
   }
+
+  function handleCloseGroup() {
+    setGroupToInput(false)
+    setGroupTitle({ title: "" })
+  }
+
   return (
     <div className="group-list">
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -139,26 +164,47 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
             </div>
           )}
         </Droppable>
-
-        {groupToInput ? (
-          <form onSubmit={handleAddGroup}>
-            <input
-              onChange={handleChange}
-              value={groupTitle.title}
-              type="text"
-              onBlur={handleBlur}
-            />
-          </form>
-        ) : (
-          <button
-            className="add-group-btn"
-            onClick={() => setGroupToInput(true)}
-          >
-            <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another
-            list
-          </button>
-        )}
-
+        <div className="add-group-container">
+          {groupToInput ? (
+            <form
+              style={{
+                background: "white",
+                padding: "5px",
+                borderRadius: "0.2em",
+              }}
+              onSubmit={handleAddGroup}
+            >
+              <input
+                className="group-title-input"
+                onChange={handleChange}
+                value={groupTitle.title}
+                type="text"
+                onBlur={handleBlur}
+                ref={inputRef}
+              />
+              <div className="add-group-section">
+                <button
+                  className="add-new-group-btn"
+                  onMouseDown={handleMouseDown}
+                  type="submit"
+                >
+                  Add list
+                </button>
+                <button className="close-group-btn" onClick={handleCloseGroup}>
+                  <CgClose />
+                </button>
+              </div>
+            </form>
+          ) : (
+            <button
+              className="add-group-btn"
+              onClick={() => setGroupToInput(true)}
+            >
+              <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another
+              list
+            </button>
+          )}
+        </div>
         {cardId ? <Outlet /> : null}
       </DragDropContext>
     </div>
