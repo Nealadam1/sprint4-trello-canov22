@@ -13,12 +13,11 @@ export function CardDetailsSidebar({ card }) {
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
-  const dynmOpenModal = !isActionModal ? OpenActionModal : CloseActionModal
   const buttonRef = useRef(null)
   return (
     <aside className="card-details-sidebar">
       <div>
-        <button ref={buttonRef} onClick={dynmOpenModal}>
+        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-members"): CloseActionModal}>
           {isActionModal && (
             <DynamicActionModal
               card={card}
@@ -28,6 +27,32 @@ export function CardDetailsSidebar({ card }) {
           )}
           <FontAwesomeIcon icon={faUser} />
           Members
+        </button>
+      </div>
+      <div>
+        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-labels"): CloseActionModal}>
+          {isActionModal && (
+            <DynamicActionModal
+              card={card}
+              buttonRef={buttonRef.current}
+              type={"add-labels"}
+            />
+          )}
+          <FontAwesomeIcon icon={faUser} />
+          Labels
+        </button>
+      </div>
+      <div>
+        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-checklist"): CloseActionModal}>
+          {isActionModal && (
+            <DynamicActionModal
+              card={card}
+              buttonRef={buttonRef.current}
+              type={"add-checklist"}
+            />
+          )}
+          <FontAwesomeIcon icon={faUser} />
+          Checklist
         </button>
       </div>
     </aside>

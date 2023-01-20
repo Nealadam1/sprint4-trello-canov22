@@ -14,6 +14,7 @@ export function labelReducer(state = initialState, action) {
         case SET_LABELS:
             newState = { ...state, labels: action.labels }
             break
+
         default:
     }
     return newState

@@ -8,7 +8,7 @@ const initialState = {
 export function systemReducer(state = initialState, action = {}) {
   switch (action.type) {
     case "MODAL_OPEN":
-      return { ...state, isActionModal: true }
+      return { ...state, isActionModal: action.modalType }
     case "MODAL_CLOSE":
       return { ...state, isActionModal: false }
     default:

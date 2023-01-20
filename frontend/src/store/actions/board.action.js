@@ -63,12 +63,12 @@ export function CloseActionModal() {
     type: "MODAL_CLOSE",
   })
 }
-
-export function OpenActionModal(ev) {
+export function OpenActionModal(ev, modalType) {
   ev.preventDefault()
   ev.stopPropagation()
   store.dispatch({
     type: "MODAL_OPEN",
+    modalType,
   })
 }
 
@@ -218,7 +218,7 @@ export function updateBoard(board) {
   return boardService
     .save(board)
     .then((savedBoard) => {
-      console.log("Updated Board:", savedBoard)
+      // console.log("Updated Board:", savedBoard)
       store.dispatch(getActionUpdateBoard(savedBoard))
       return savedBoard
     })
@@ -236,11 +236,12 @@ export function getCardById(board, cardId) {
   return card
 }
 
-export async function getLabels(labels) {
-  return {
+export async function setLabels(labels) {
+  console.log("setLabels action", labels)
+  store.dispatch({
     type: SET_LABELS,
     labels,
-  }
+  })
 }
 
 // Demo for Optimistic Mutation

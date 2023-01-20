@@ -18,7 +18,7 @@ import { BoardFavorites } from "./board-favorites"
 export function BoardList({ boards }) {
   const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
   const [changedBoard, setChangedBoard] = useState(boardService.getEmptyBoard())
-  const dynmOpenModal = !isActionModal ? OpenActionModal : null
+  const dynmOpenModal = !isActionModal ? (ev)=>OpenActionModal(ev,'create-board') : null
   const buttonRef = useRef(null)
 
   useEffect(() => {

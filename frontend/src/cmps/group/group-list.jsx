@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
+import { setLabels } from "../../store/actions/board.action"
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { GroupPreview } from "./group-preview"
 import { Outlet, useParams } from "react-router"
@@ -25,6 +26,15 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     )
     setBoard({ ...board, groups: updatedGroups })
     updateBoard({ ...board, groups: updatedGroups })
+  }
+
+  useState(() => {
+    onSetLabels()
+  }, [])
+
+  function onSetLabels() {
+    // console.log('board labels', board.labels);
+    setLabels(board.labels)
   }
 
   function handleOnDragEnd(result) {
