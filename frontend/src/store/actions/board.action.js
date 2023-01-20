@@ -1,19 +1,10 @@
 import { boardService } from "../../services/board.service.js"
 import { store } from "../store.js"
-import {
-  showSuccessMsg,
-  showErrorMsg,
-} from "../../services/event-bus.service.js"
-import {
-  ADD_BOARD,
-  REMOVE_BOARD,
-  SET_BOARD,
-  SET_BOARDS,
-  UNDO_REMOVE_BOARD,
-  UPDATE_BOARD,
-  SET_GROUP,
-} from "../reducers/board.reducer"
+import { showSuccessMsg, showErrorMsg, } from "../../services/event-bus.service.js"
+
+import { ADD_BOARD, REMOVE_BOARD, SET_BOARD, SET_BOARDS, UNDO_REMOVE_BOARD, UPDATE_BOARD, SET_GROUP, } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
+import { SET_LABELS } from "../reducers/label.reducer.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -22,12 +13,14 @@ export function getActionRemoveBoard(boardId) {
     boardId,
   }
 }
+
 export function getActionAddBoard(board) {
   return {
     type: ADD_BOARD,
     board,
   }
 }
+
 export function getActionUpdateBoard(board) {
   return {
     type: UPDATE_BOARD,
@@ -59,6 +52,7 @@ export function CloseActionModal() {
     type: "MODAL_CLOSE",
   })
 }
+
 export function OpenActionModal(ev) {
   ev.preventDefault()
   ev.stopPropagation()
@@ -125,6 +119,7 @@ export async function addBoard(board) {
     throw err
   }
 }
+
 export function addMember(memberId, card) {
   const board = structuredClone(store.getState().boardModule.board)
   const group = structuredClone(store.getState().boardModule.group)
@@ -228,6 +223,15 @@ export function getCardById(board, cardId) {
   const card = cardGroup?.cards.find((card) => card.id === cardId)
   return card
 }
+
+
+export async function getLabels(labels) {
+  return {
+    type: SET_LABELS,
+    labels,
+  }
+}
+
 
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
