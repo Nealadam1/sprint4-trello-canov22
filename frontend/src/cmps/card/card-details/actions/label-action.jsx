@@ -4,14 +4,15 @@ import { boardService } from "../../../../services/board.service";
 import { updateCard } from "../../../../store/actions/board.action";
 
 export function LabelAction({ card }) {
-  // if (!card.labels) card.labelIds = []
+  if (!card.labelIds) card.labelIds = []
+
   const labels = useSelector((storeState) => storeState.labelModule.labels)
   const [checkedState, setCheckedState] = useState(new Array(labels.length).fill(false))
   const [labelIds, setLabelIds] = useState(card.labelIds)
   const [currCard, setCurrCard] = useState(card)
 
   useEffect(() => {
-    setLabelIds(prevState => ([...prevState]))
+    setLabelIds([...labelIds])
   }, [currCard])
 
   function handleCheckboxChange(labelId) {
