@@ -12,7 +12,7 @@ export const boardService = {
   getDefaultSearch,
   createCard,
   createGroup,
-  createLabelCheckboxData
+  // createLabelCheckboxData
 }
 window.cs = boardService
 
@@ -69,11 +69,11 @@ function getEmptyBoard() {
   }
 }
 
-function createLabelCheckboxData(labels) {
-  return labels.reduce((accumulator, value) => {
-    return { ...accumulator, [value]: false };
-  }, {})
-}
+// function createLabelCheckboxData(labels) {
+//   return labels.reduce((accumulator, value) => {
+//     return { ...accumulator, [value]: false };
+//   }, {})
+// }
 
 function createCard({ title, description }) {
   return { title, description, id: utilService.makeId() }

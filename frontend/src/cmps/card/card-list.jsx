@@ -81,7 +81,9 @@ export function CardList({ group }) {
     setIsMouseDown(true)
   }
 
-  function handleChange({ target }) {
+  function handleChange(ev) {
+    console.log(ev.target);
+    const { target } = ev
     const { value } = target
     setCardTitle({ title: value })
   }
@@ -121,8 +123,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                              ? "labels"
-                              : ""
+                                ? "labels"
+                                : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}
