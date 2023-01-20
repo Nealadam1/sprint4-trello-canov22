@@ -4,6 +4,13 @@
     display: flex;
     flex-wrap: wrap;
 
+    .board-action-filter{
+        margin-left: auto;
+    }
+    .board-action-dashboard{
+       
+    }
+
     .board-title{
         min-width: fit-content;
     
@@ -29,6 +36,10 @@
         font-size: 14px;
         border-radius: 3px;
         padding: 0 12px 0 12px;
+        transition: background-color 0.3s;
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.8);
+        }
     }
 
     .btn-divider{
