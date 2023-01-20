@@ -131,7 +131,7 @@ function _createDemoData() {
           {
             _id: "u102",
             fullname: "Liron Kruchinin",
-            imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
+            imgUrl: "https://preview.redd.it/hbkyobublbh61.jpg?auto=webp&s=d309aa476f34e040f9cafb2bf44968f8010b40a0",
           },
           {
             _id: "u103",
@@ -394,7 +394,7 @@ function _createDemoData() {
           {
             _id: "u102",
             fullname: "Liron Kruchinin",
-            imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
+            imgUrl: "https://preview.redd.it/hbkyobublbh61.jpg?auto=webp&s=d309aa476f34e040f9cafb2bf44968f8010b40a0",
           },
           {
             _id: "u103",
