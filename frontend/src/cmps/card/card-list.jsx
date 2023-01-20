@@ -167,7 +167,7 @@ export function CardList({ group }) {
               onBlur={handleBlur}
               value={cardTitle.title}
               onChange={handleChange}
-              placeholder="Enter a title for this card..."
+              placeholder="Enter list title..."
             />
             <div className="add-card-section">
               <button

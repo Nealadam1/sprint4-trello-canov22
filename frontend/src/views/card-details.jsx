@@ -16,6 +16,7 @@ import { CardDescription } from "../cmps/card/card-details/card-description"
 import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
 import { closeActionModal } from "../store/actions/board.action"
+import { store } from "../store/store"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -82,9 +83,10 @@ export function CardDetails() {
                 </span>
                 {card?.title}
               </h3>
+              <p>In list <span>{store.getState().boardModule.group.title}</span></p>
               <div className="card-detail-data">
                 {card?.memberIds && (
-                  <CardMember members={card.memberIds} card={card} />
+                  <CardMember setCard={setCard}members={card.memberIds} card={card} />
                 )}
                 {card?.labelIds && <CardLabels cardLabels={card.labelIds} />}
               </div>

@@ -8,24 +8,23 @@ export function ChecklistAction({ card }) {
     setChecklistTitle(value)
   }
 
-  function addChecklist(ev) {
-    ev.preventDefault()
+  function addChecklist() {
     console.log("hi")
   }
 
   return (
     <div className="label-action">
       <p>Add checklist</p>
-      <form onSubmit={addChecklist}>
-        <label htmlFor="title">Title</label>
-        <input
-          value={checklistTitle}
-          id="title"
-          type="text"
-          onChange={handleChange}
-        />
-        <button>Add</button>
-      </form>
+      <label htmlFor="title">Title</label>
+      <input
+        value={checklistTitle}
+        id="title"
+        type="text"
+        onChange={handleChange}
+      />
+      <button className="button" onClick={addChecklist}>
+        Add
+      </button>
     </div>
   )
 }

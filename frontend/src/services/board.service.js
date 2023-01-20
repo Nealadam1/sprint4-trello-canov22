@@ -93,7 +93,7 @@ function _createDemoData() {
     demoData = [
       {
         _id: "b101",
-        title: "Demo",
+        title: "October Sprint",
         isStarred: false,
         archivedAt: "",
         createdBy: {
@@ -362,7 +362,7 @@ function _createDemoData() {
       },
       {
         _id: "b102",
-        title: "Demo",
+        title: "Week Planning",
         isStarred: false,
         archivedAt: "",
         createdBy: {
@@ -370,7 +370,10 @@ function _createDemoData() {
           fullname: "Liron Kurchi",
           imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
         },
-        style: { backgroundColor: "lightblue" },
+        style: { backgroundColor: "#FFD700",
+        thumbnail:
+          "https://images.unsplash.com/photo-1549444931-ea94960d38ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80",
+        img: "https://images.unsplash.com/photo-1549444931-ea94960d38ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80" },
         labels: [
           {
             id: "l101",

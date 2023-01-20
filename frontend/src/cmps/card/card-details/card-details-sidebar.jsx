@@ -17,7 +17,15 @@ export function CardDetailsSidebar({ card, setCard }) {
   return (
     <aside className="card-details-sidebar">
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-members"): closeActionModal}>
+        <button
+          className="side-bar-btn"
+          ref={buttonRef}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-members")
+              : closeActionModal
+          }
+        >
           {isActionModal && (
             <DynamicActionModal
               card={card}
@@ -31,7 +39,15 @@ export function CardDetailsSidebar({ card, setCard }) {
         </button>
       </div>
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-labels"): closeActionModal}>
+        <button
+          className="side-bar-btn"
+          ref={buttonRef}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-labels")
+              : closeActionModal
+          }
+        >
           {isActionModal && (
             <DynamicActionModal
               card={card}
@@ -44,7 +60,15 @@ export function CardDetailsSidebar({ card, setCard }) {
         </button>
       </div>
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-checklist"): closeActionModal}>
+        <button
+          className="side-bar-btn"
+          ref={buttonRef}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-checklist")
+              : closeActionModal
+          }
+        >
           {isActionModal && (
             <DynamicActionModal
               card={card}
