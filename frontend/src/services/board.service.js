@@ -68,8 +68,8 @@ function getEmptyBoard() {
   }
 }
 
-function createCard({ title }) {
-  return { title, id: utilService.makeId() }
+function createCard({ title,description }) {
+  return { title, description ,id: utilService.makeId() }
 }
 
 function createGroup({ title }) {

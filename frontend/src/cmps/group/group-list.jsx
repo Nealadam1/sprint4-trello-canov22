@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 
@@ -28,7 +28,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     updateBoard({ ...board, groups: updatedGroups })
   }
 
-  useState(() => {
+  useEffect(() => {
     onSetLabels()
   }, [])
 

@@ -39,8 +39,6 @@ export function CardDetails() {
   const handleClose = (e) => {
     if (e.target === e.currentTarget) {
       closeCardDetail()
-      CloseActionModal()
-
       navigate(`/board/${board._id}`)
       window.removeEventListener("click", () => {
         handleClose()
@@ -89,7 +87,7 @@ export function CardDetails() {
                 {card?.labelIds && <CardLabels cardLabels={card.labelIds} />}
               </div>
               <div>
-                {card?.description && (
+                {card && (
                   <CardDescription description={card.description} />
                 )}
               </div>

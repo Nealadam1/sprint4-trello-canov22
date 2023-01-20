@@ -72,6 +72,8 @@ const DynamicModalPosition = (props) => {
     width: "300px",
   })
   function handleClose(ev) {
+    ev.stopPropagation()
+    ev.preventDefault()
     if (ev.target === ev.currentTarget) {
       CloseActionModal()
     }

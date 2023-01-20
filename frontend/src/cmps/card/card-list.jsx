@@ -35,6 +35,7 @@ export function CardList({ group }) {
     const title = cardTitle.title
     const newCard = {
       title,
+      description:''
     }
     addCard(newCard, group.id)
     setCardToInput(false)

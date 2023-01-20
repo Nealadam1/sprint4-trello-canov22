@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { utilService } from "../../../services/util.service"
 
 export function CardLabels({ CardLabels }) {
   const displayLabels = []
@@ -14,7 +15,9 @@ export function CardLabels({ CardLabels }) {
       })}
 
       {displayLabels.map((label) => (
-        <span key={label.id} style={{ background: label.color }}>{label.title}</span>
+        <div className="card-label" key={label.id} style={{ background: label.color }}>
+          <div className="circle" style={{ background: utilService.changeContrast(label.color) }}></div>{label.title}
+        </div>
       ))}
     </div>
   )

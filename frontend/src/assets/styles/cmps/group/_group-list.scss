@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+
 .group-list {
   display: flex;
   list-style: none;
@@ -52,7 +53,7 @@
 
 .group-preview {
   border-radius: $edge-round;
-  padding: 1em 1.1em 1em 0.7em;
+  padding: 1em 0.5em 1em 0.5em;
   font-size: 14px;
   background-color: #ebecf0;
   box-shadow: (0 1px 0 $clr17);
