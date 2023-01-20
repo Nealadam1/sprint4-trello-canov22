@@ -52,12 +52,12 @@ export function CloseActionModal() {
     type: "MODAL_CLOSE",
   })
 }
-
-export function OpenActionModal(ev) {
+export function OpenActionModal(ev,modalType) {
   ev.preventDefault()
   ev.stopPropagation()
   store.dispatch({
     type: "MODAL_OPEN",
+    modalType
   })
 }
 
