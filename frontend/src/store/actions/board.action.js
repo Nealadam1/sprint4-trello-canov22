@@ -11,6 +11,7 @@ import {
   SET_BOARDS,
   UNDO_REMOVE_BOARD,
   UPDATE_BOARD,
+  SET_GROUP,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
 
@@ -81,8 +82,6 @@ export async function loadBoards(searchBy) {
 }
 
 export async function setBoard(board) {
-  console.log(store.getState().boardModule.board)
-
   try {
     store.dispatch({
       type: SET_BOARD,
@@ -91,6 +90,26 @@ export async function setBoard(board) {
   } catch (err) {
     console.log("Cannot load board", err)
     throw err
+  }
+}
+
+export async function addMember(memberId, card) {
+  // const group = structuredClone(store.getState().boardModule.group)
+  // if (card.memberIds.find((member) => member === memberId)) {
+  //   return card.memberIds.filter((member) => member !== memberId)
+  // }
+  // const updatedCards = [...card, memberId]
+  // console.log(updatedCards)
+}
+
+export async function setGroup(group) {
+  try {
+    store.dispatch({
+      type: SET_GROUP,
+      group,
+    })
+  } catch (err) {
+    console.log(err)
   }
 }
 
@@ -130,7 +149,8 @@ export async function addGroup(newGroup) {
 
 export async function deleteGroup(groupId) {
   const board = structuredClone(store.getState().boardModule.board)
-  board.groups.filter((group) => group.id !== groupId)
+  const filteredGroups = board.groups.filter((group) => group.id !== groupId)
+  board.groups = filteredGroups
   store.dispatch(getActionSetBoard(board))
   boardService.save(board)
 }

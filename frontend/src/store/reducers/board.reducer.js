@@ -6,10 +6,12 @@ export const REMOVE_BOARD = "REMOVE_BOARD"
 export const ADD_BOARD = "ADD_BOARD"
 export const UPDATE_BOARD = "UPDATE_BOARD"
 export const UNDO_REMOVE_BOARD = "UNDO_REMOVE_BOARD"
+export const SET_GROUP = "SET_GROUP"
 
 const initialState = {
   boards: [],
   board: null,
+  group: null,
   lastRemovedBoard: null,
 }
 
@@ -39,6 +41,10 @@ export function boardReducer(state = initialState, action) {
       )
       newState = { ...state, boards }
       break
+    case SET_GROUP: {
+      newState = { ...state, group: action.group }
+      break
+    }
     case UNDO_REMOVE_BOARD:
       if (state.lastRemovedBoard) {
         newState = {

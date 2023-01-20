@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { createDispatchHook, useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -31,14 +31,12 @@ export function CardDetails() {
   const handleClose = (e) => {
     if (e.target === e.currentTarget) {
       closeCardDetail()
+      navigate(`/board/${board._id}`)
       window.removeEventListener("click", () => {
         handleClose()
       })
     }
-    navigate(`/board/${board._id}`)
   }
-
-  console.log(card)
 
   return (
     <div>
@@ -65,22 +63,34 @@ export function CardDetails() {
               ></header>
             )}
             <div className="side-bar">
-              <CardDetailsSidebar />
+              <CardDetailsSidebar card={card} />
             </div>
             <div className="card-content">
-              <h2 className="card-title">
-                <span>
+              <h3 className="card-title">
+                <span className="card-icon-title">
                   <FontAwesomeIcon icon={faWindowMaximize} />
                 </span>
                 {card?.title}
-              </h2>
+              </h3>
               <div className="card-detail-data">
-                {card?.byMember && <CardMember />}
-                {card?.labelIds && <CardLabels />}
+                {card?.memberIds && (
+                  <CardMember members={card.memberIds} card={card} />
+                )}
+                {card?.labelIds && <CardLabels cardLabels={card.labelIds} />}
               </div>
-              <div>{card?.description && <CardDescription />}</div>
-              <div>{card?.checklists && <CardChecklists />}</div>
-              <div>{card?.comments && <CardComments />}</div> */
+              <div>
+                {card?.description && (
+                  <CardDescription description={card.description} />
+                )}
+              </div>
+              <div>
+                {card?.checklists && (
+                  <CardChecklists checklists={card.checklists} />
+                )}
+              </div>
+              <div>
+                {card?.comments && <CardComments comments={card.comments} />}
+              </div>
               <button onClick={handleClose}>
                 <Link to={`/board/${board._id}`}>Close</Link>
               </button>

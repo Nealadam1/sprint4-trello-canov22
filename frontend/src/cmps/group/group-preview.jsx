@@ -11,7 +11,7 @@ export function GroupPreview({
   return (
     <div className="group-preview">
       {groupTitleToInput ? (
-        <input type="text" />
+        <input />
       ) : (
         <h4 onClick={() => setGroupTitleToInput(true)}>{group.title}</h4>
       )}
