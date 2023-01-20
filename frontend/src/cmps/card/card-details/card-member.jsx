@@ -17,11 +17,10 @@ export function CardMember({ members, card }) {
     )
     setCurrMembers(cardMembers)
   }
-
   return (
     <div className="card-member">
       {currMembers.map((member) => (
-        <img className="member-image" src={member.imgUrl} />
+        <img key={member._id} className="member-image" src={member.imgUrl} />
       ))}
     </div>
   )

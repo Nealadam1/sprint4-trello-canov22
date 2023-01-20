@@ -35,7 +35,7 @@ export function CardList({ group }) {
     const title = cardTitle.title
     const newCard = {
       title,
-      description:''
+      description: ''
     }
     addCard(newCard, group.id)
     setCardToInput(false)
@@ -48,7 +48,7 @@ export function CardList({ group }) {
     }
   }, [cardToInput])
 
-  console.log(inputRef)
+  // console.log(inputRef)
 
   function onDeleteCard(event, cardId) {
     event.preventDefault()
@@ -113,8 +113,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                              ? "labels"
-                              : ""
+                                ? "labels"
+                                : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}
