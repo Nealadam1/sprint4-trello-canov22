@@ -39,7 +39,7 @@ export function BoardHeader({ board }) {
         <div className="board-header">
             {isEditingTitle ? (
                 <>
-                    <input style={{width: boardTitle.length*7}}
+                    <input style={{ width: boardTitle.length * 7 }}
                         type="text"
                         value={boardTitle}
                         onChange={handleTitleChange}
@@ -52,38 +52,44 @@ export function BoardHeader({ board }) {
                 </div>
             )}
             <div className="board-actions">
-                <div className="board-action-star">
-                    <button onClick={handleIsStarred}>
-                        <FontAwesomeIcon className="btn-icon" icon={board.isStarred ? faFullStar : faStar} />
-                    </button>
+
+                <div className="align-left">
+                    <div className="board-action-star">
+                        <button onClick={handleIsStarred}>
+                            <FontAwesomeIcon className="btn-icon" icon={board.isStarred ? faFullStar : faStar} />
+                        </button>
+                    </div>
+                    <span className="btn-divider">|</span>
+                    <div className="board-action-board">
+                        <button onClick={handleCmpRender}>
+                            Board
+                        </button>
+                    </div>
+                    <span className="btn-divider">|</span>
+                    <div className="board-action-dashboard">
+                        <button onClick={handleCmpRender}>
+                            Dashboard
+                        </button>
+                    </div>
                 </div>
-                <span className="btn-divider">|</span>
-                <div className="board-action-board">
-                    <button onClick={handleCmpRender}>
-                        Board
-                    </button>
-                </div>
-                <span className="btn-divider">|</span>
-                <div className="board-action-dashboard">
-                    <button onClick={handleCmpRender}>
-                        Dashboard
-                    </button>
-                </div>
-                <span className="btn-divider">|</span>
-                <div className="board-action-filter">
-                    <button onClick={handleCmpRender}>
-                        Filter
-                    </button>
-                </div>
-                <span className="btn-divider">|</span>
-                <div className="board-action-members">
-                    <BoardMembers />
-                </div>
-                <span className="btn-divider">|</span>
-                <div className="board-action-menu">
-                    <button onClick={handleCmpRender}>
-                        Menu
-                    </button>
+
+                <div className="align-right">
+                    <span className="btn-divider">|</span>
+                    <div className="board-action-filter">
+                        <button onClick={handleCmpRender}>
+                            Filter
+                        </button>
+                    </div>
+                    <span className="btn-divider">|</span>
+                    <div className="board-action-members">
+                        <BoardMembers />
+                    </div>
+                    <span className="btn-divider">|</span>
+                    <div className="board-action-menu">
+                        <button onClick={handleCmpRender}>
+                            Menu
+                        </button>
+                    </div>
                 </div>
 
 

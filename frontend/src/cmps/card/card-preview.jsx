@@ -1,5 +1,12 @@
 import React from "react"
+import { CardLabels } from "./card-details/card-labels";
 
 export function CardPreview({ card }) {
-  return <div className="card-preview"><p>{card.title}</p></div>
+  // console.log(card.labelIds);
+  return (
+    <div className="card-preview">
+      {card?.labelIds ? card.labelIds.map(label => label) : ''}
+      <p>{card.title}</p>
+    </div>
+  )
 }
