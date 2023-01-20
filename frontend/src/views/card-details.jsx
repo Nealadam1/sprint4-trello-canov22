@@ -4,15 +4,18 @@ import { createDispatchHook, useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { closeCardDetail, getCardById } from "../store/actions/board.action"
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
+
 import { CardDetailsSidebar } from "../cmps/card/card-details/card-details-sidebar"
 import { CardMember } from "../cmps/card/card-details/card-member"
 import { CardLabels } from "../cmps/card/card-details/card-labels"
 import { CardDescription } from "../cmps/card/card-details/card-description"
 import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
+
 export function CardDetails() {
   const [card, setCard] = useState(null)
   const navigate = useNavigate()

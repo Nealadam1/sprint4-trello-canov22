@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 export function CardPreview({ card }) {
+  // console.log(card.labelIds);
   const board = useSelector((storeState) => storeState.boardModule.board)
   const [currMembers, setCurrMembers] = useState([])
 
@@ -30,7 +31,10 @@ export function CardPreview({ card }) {
           }}
         ></header>
       ) : null}
+
+      {card?.labelIds ? card.labelIds.map((label) => label) : ""}
       <p>{card.title}</p>
+
       <div className="member-images">
         {currMembers.map((member) => (
           <img className="member-image" alt="" src={member.imgUrl} />
