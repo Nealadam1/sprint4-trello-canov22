@@ -92,8 +92,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                              ? "labels"
-                              : ""
+                                ? "labels"
+                                : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}

@@ -225,11 +225,12 @@ export function getCardById(board, cardId) {
 }
 
 
-export async function getLabels(labels) {
-  return {
+export async function setLabels(labels) {
+  console.log('setLabels action', labels);
+  store.dispatch({
     type: SET_LABELS,
     labels,
-  }
+  })
 }
 
 
