@@ -1,4 +1,6 @@
+
 export function CardLabels({ CardLabels }) {
+  const displayLabels = []
   const labels = [
     {
       id: "l101",
@@ -28,8 +30,14 @@ export function CardLabels({ CardLabels }) {
   ]
   return (
     <div className="card-labels">
-      {labels.map((label) => (
-        <span style={{ background: label.color }}>{label.title}</span>
+      {CardLabels?.map((label) => {
+        labels.map((displayLabel) => {
+          if (label === displayLabel.id) displayLabels.push(displayLabel)
+        })
+      })}
+
+      {displayLabels.map((label) => (
+        <span key={label.id} style={{ background: label.color }}>{label.title}</span>
       ))}
     </div>
   )
