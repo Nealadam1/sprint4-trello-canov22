@@ -32,8 +32,13 @@ export function BoardHeader({ board }) {
         updateBoard(board)
     }
 
-    function handleBlur(event) {
-        handleTitleSave();
+    function handleBlur(ev) {
+        if (!ev.target.value) {
+            ev.preventDefault()
+            return
+        } else {
+            handleTitleSave()
+        }
     }
 
     function handleCmpRender(event) {
@@ -44,11 +49,12 @@ export function BoardHeader({ board }) {
         <div className="board-header">
             {isEditingTitle ? (
                 <>
-                    <input style={{ width: boardTitle.length * 7 }}
+                    <input style={{ width: 50 + boardTitle.length * 5 }}
                         type="text"
                         value={boardTitle}
                         onChange={handleTitleChange}
                         onBlur={handleBlur}
+                        required
                     />
                 </>
             ) : (
@@ -79,7 +85,6 @@ export function BoardHeader({ board }) {
                 </div>
 
                 <div className="align-right">
-                    <span className="btn-divider">|</span>
                     <div className="board-action-filter">
                         <button ref={buttonRef} onClick={dynmOpenModal}>
                             Filter

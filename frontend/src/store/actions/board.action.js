@@ -67,7 +67,7 @@ export function OpenActionModal(ev) {
   })
 }
 
-export async function loadBoards(searchBy) {
+export async function loadBoards(searchBy='') {
   try {
     const boards = await boardService.query(searchBy)
     console.log("Boards from DB:", boards)

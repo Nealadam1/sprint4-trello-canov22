@@ -1,14 +1,21 @@
 import { useEffect, useRef, useState } from "react"
+import { useSelector } from "react-redux"
+import { CloseActionModal } from "../store/actions/board.action"
 import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
 import { MemberAction } from "./card/card-details/actions/member-action"
 
 export function DynamicActionModal(props) {
   const { buttonRef } = props
+  const modal = useSelector((storeState) => storeState.systemModule.isActionModal)
   console.log(props)
+
+ 
+
+
   switch (props.type) {
     case "create-board":
-      return (
+      return ( modal&&
         <DynamicModalPosition buttonRef={buttonRef}>
           <CreateBoard {...props} />
         </DynamicModalPosition>
@@ -44,6 +51,12 @@ const DynamicModalPosition = (props) => {
     transform: `translate(0, -${buttonRef.offsetHeight}px)`,
     width: "300px",
   });
+  function handleClose(ev){
+    if (ev.target === ev.currentTarget) {
+    CloseActionModal()
+    }
+  }
+
 
   useEffect(() => {
     if (modalRef.current && (modalRef.current.getBoundingClientRect().bottom > window.innerHeight)) {
@@ -68,12 +81,24 @@ const DynamicModalPosition = (props) => {
   }, [modalRef, modalStyles, buttonRef]);
 
   return (
-    <section
+    <div style={{
+      backgroundColor: "rgba(0, 0, 0, 0)",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    }}
+    onClick={handleClose}>
+    <section 
+      
       className="action-modal"
       ref={modalRef}
       style={modalStyles}
     >
       {props.children}
     </section>
-  );
-};
+    </div>
+  )
+}
+
