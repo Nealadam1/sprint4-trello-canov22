@@ -2,8 +2,9 @@
   display: flex;
   list-style: none;
   gap: 0.5rem;
-  margin: 0.5em 0.5em;
+  margin: 0.5em 0.5em 0 8px;
   overflow-y: hidden;
+  height: 100%;
 
   .test {
     display: flex;

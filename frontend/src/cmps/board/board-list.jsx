@@ -16,9 +16,7 @@ import { boardService } from "../../services/board.service"
 import { BoardFavorites } from "./board-favorites"
 
 export function BoardList({ boards }) {
-  const isActionModal = useSelector(
-    (storeState) => storeState.systemModule.isActionModal
-  )
+  const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
   const [changedBoard, setChangedBoard] = useState(boardService.getEmptyBoard())
   const dynmOpenModal = !isActionModal ? OpenActionModal : null
   const buttonRef = useRef(null)
@@ -61,11 +59,10 @@ export function BoardList({ boards }) {
             <li
               className="list-item"
               style={{
-                background: `${
-                  board.style.thumbnail
-                    ? `url(${board.style.thumbnail})`
-                    : `${board.style.backgroundColor}`
-                }`,
+                background: `${board.style.thumbnail
+                  ? `url(${board.style.thumbnail})`
+                  : `${board.style.backgroundColor}`
+                  }`,
               }}
               key={board._id}
             >
@@ -92,11 +89,10 @@ export function BoardList({ boards }) {
           <li
             className="list-item"
             style={{
-              background: `${
-                board.style.thumbnail
-                  ? `url(${board.style.thumbnail})`
-                  : `${board.style.backgroundColor}`
-              }`,
+              background: `${board.style.thumbnail
+                ? `url(${board.style.thumbnail})`
+                : `${board.style.backgroundColor}`
+                }`,
             }}
             key={board._id}
           >
