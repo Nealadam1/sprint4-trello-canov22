@@ -10,7 +10,7 @@ export function ChecklistAction({ card }) {
 
   function addChecklist(ev) {
     ev.preventDefault()
-    console.log(checklistTitle)
+    console.log("hi")
   }
 
   return (

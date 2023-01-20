@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+
 .card-list {
   box-sizing: border-box;
 
@@ -32,12 +34,20 @@
 
     .delete-card-btn {
       position: absolute;
-      right: 5%;
-      top: 5%;
+      right: 2%;
+      top: 10%;
+      font-size: rem(18px);
+      color: $clr7;
+      background-color: #fff;
+      &:hover {
+        background-color: #ebecf0;
+        color: $clr14;
+      }
     }
 
     .card-preview {
       // margin: 0.5em;
+      position: relative;
       cursor: pointer;
       overflow: hidden;
       overflow-wrap: break-word;
@@ -105,8 +115,56 @@
   }
 }
 
-.bottom-container {
+.add-card-container {
   // background-color: yellow;
+
+  .card-title-input {
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: #ebecf0;
+    min-width: 285px;
+    max-width: 285px;
+    min-height: 48px;
+    max-height: 84px;
+    box-shadow: 0 1px 0 rgb(9 30 66 / 25%);
+    border-radius: 0.2em;
+    background-color: #fff;
+    font-family: "Open Sans", sans-serif;
+
+    &::placeholder {
+      font-family: "Open Sans", sans-serif;
+      font-size: rem(15px);
+    }
+  }
+
+  .add-card-btn {
+    background-color: var(--ds-background-brand-bold, #0079bf);
+    border: none;
+    box-shadow: none;
+    color: var(--ds-text-inverse, #fff);
+    padding: 8px 16px;
+    margin: 8px 4px 0 0;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 0.2em;
+    &:hover {
+      background-color: #026aa7;
+    }
+  }
+
+  .add-card-section {
+    position: relative;
+    .close-card-btn {
+      font-size: rem(26px);
+      color: #6b778c;
+      position: absolute;
+      top: 30%;
+      &:hover {
+        color: #172b4d;
+      }
+    }
+  }
 
   .add-card {
     background-color: transparent;
