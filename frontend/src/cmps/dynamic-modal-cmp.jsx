@@ -15,28 +15,18 @@ export function DynamicActionModal(props) {
     case "add-members":
       return (
         <section
-          className="action-modal"
-        // style={{
-        //   position: "fixed",
-        //   top: `calc(${buttonRef.getBoundingClientRect().top}px + ${
-        //     buttonRef.offsetHeight
-        //   }px)`,
-        //   left: `calc(${buttonRef.getBoundingClientRect().left}px + ${
-        //     buttonRef.offsetWidth
-        //   }px)`,
-        //   transform: `translate(0, -${buttonRef.offsetHeight}px)`,
-        //   width: "300px",
-        // }}
-        >
+          className="action-modal">
+          <DynamicModalPosition buttonRef={buttonRef}>
           <MemberAction {...props} />
+          </DynamicModalPosition>
         </section>
       )
   }
 }
 
 const DynamicModalPosition = (props) => {
-  const { buttonRef } = props
-  const modalRef = useRef(null)
+  const { buttonRef } = props;
+  const modalRef = useRef(null);
   const [modalStyles, setModalStyles] = useState({
     position: "fixed",
     top: `calc(${buttonRef.getBoundingClientRect().top}px + ${buttonRef.offsetHeight}px)`,
@@ -50,16 +40,22 @@ const DynamicModalPosition = (props) => {
       setModalStyles({
         ...modalStyles,
         top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight/1.5}px)`
-      })
+      });
     }
 
     if (modalRef.current && (modalRef.current.getBoundingClientRect().right > window.innerWidth)) {
       setModalStyles({
         ...modalStyles,
         left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth}px)`
-      })
+      });
     }
-  }, [modalRef, modalStyles, buttonRef])
+    if (modalRef.current && (modalRef.current.getBoundingClientRect().top < 0)) {
+      setModalStyles({
+        ...modalStyles,
+        top: `calc(${buttonRef.getBoundingClientRect().top}px + ${modalRef.current.offsetHeight}px)`
+      });
+    }
+  }, [modalRef, modalStyles, buttonRef]);
 
   return (
     <section

@@ -1,20 +1,25 @@
 import { useRef } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux"
+import { OpenActionModal } from "../../../store/actions/board.action"
 import { DynamicActionModal } from "../../dynamic-modal-cmp"
 
 export function CardDetailsSidebar({ card }) {
+  const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
+  const dynmOpenModal = !isActionModal ? OpenActionModal : null
   const buttonRef = useRef(null)
   return (
-    <div>
-      <button ref={buttonRef}>
-        <DynamicActionModal
-          card={card}
-          buttonRef={buttonRef.current}
-          type={"add-members"}
-        />
-      </button>
-    </div>
+    <aside className="card-details-sidebar">
+      <div>
+        <button ref={buttonRef} onClick={dynmOpenModal} >
+          {isActionModal &&(<DynamicActionModal
+            card={card}
+            buttonRef={buttonRef.current}
+            type={"add-members"}
+          />)}
+        </button>
+      </div>
+    </aside>
   )
 
   // const [showMembers, setShowMembers] = useState(false)
