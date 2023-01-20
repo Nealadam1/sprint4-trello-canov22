@@ -5,6 +5,9 @@ import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPen, faPlus, faX } from "@fortawesome/free-solid-svg-icons"
+import { RxPencil1 } from "react-icons/rx"
+import { CgClose } from "react-icons/cg"
+
 import {
   addCard,
   deleteCard,
@@ -24,6 +27,8 @@ export function CardList({ group }) {
   const [isMouseDown, setIsMouseDown] = useState(false)
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
+  const inputRef = useRef(null)
+
   useEffect(() => {
     onEndDrag()
   }, [cards])
@@ -33,12 +38,20 @@ export function CardList({ group }) {
     const title = cardTitle.title
     const newCard = {
       title,
-      description:''
+      description: "",
     }
     addCard(newCard, group.id)
     setCardToInput(false)
     setCardTitle({ title: "" })
   }
+
+  useEffect(() => {
+    if (cardToInput) {
+      inputRef.current.focus()
+    }
+  }, [cardToInput])
+
+  // console.log(inputRef)
 
   function onDeleteCard(event, cardId) {
     event.preventDefault()
@@ -87,6 +100,11 @@ export function CardList({ group }) {
     openCardDetail()
   }
 
+  function handleCloseCard() {
+    setCardToInput(false)
+    setCardTitle({ title: "" })
+  }
+
   return (
     <>
       <div className="card-list">
@@ -103,8 +121,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                                ? "labels"
-                                : ""
+                              ? "labels"
+                              : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -115,13 +133,15 @@ export function CardList({ group }) {
                             to={`/board/${boardId}/${card.id}`}
                           >
                             <CardPreview card={card} />
-                            <div className="delete-card-btn">
+                            <div>
                               <button
+                                className="delete-card-btn"
                                 onClick={(event) =>
                                   onDeleteCard(event, card.id)
                                 }
                               >
-                                <FontAwesomeIcon icon={faPen} />
+                                <RxPencil1 />
+                                {/* <FontAwesomeIcon icon={faPen} /> */}
                               </button>
                             </div>
                           </Link>
@@ -136,18 +156,29 @@ export function CardList({ group }) {
         </DragDropContext>
       </div>
 
-      <div className="bottom-container">
+      <div className="add-card-container">
         {cardToInput ? (
           <form onSubmit={onAddCard}>
-            <input
-              type="text"
+            <textarea
+              className="card-title-input"
+              ref={inputRef}
               onBlur={handleBlur}
               value={cardTitle.title}
               onChange={handleChange}
+              placeholder="Enter a title for this card..."
             />
-            <button onMouseDown={handleMouseDown} type="submit">
-              Add Card
-            </button>
+            <div className="add-card-section">
+              <button
+                className="add-card-btn"
+                onMouseDown={handleMouseDown}
+                type="submit"
+              >
+                Add card
+              </button>
+              <button className="close-card-btn" onClick={handleCloseCard}>
+                <CgClose />
+              </button>
+            </div>
           </form>
         ) : (
           <button className="add-card" onClick={() => setCardToInput(true)}>

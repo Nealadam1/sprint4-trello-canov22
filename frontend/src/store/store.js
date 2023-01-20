@@ -17,7 +17,7 @@ const middleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 export const store = createStore(rootReducer, middleware)
 
 store.subscribe(() => {
-  console.log("**** Store state changed: ****")
-  console.log("storeState:\n", store.getState())
-  console.log("*******************************")
+  console.log("**** Store state changed: **** \n", store.getState(), "\n *******************************")
+  // console.log("storeState:\n", store.getState())
+  // console.log("*******************************")
 })

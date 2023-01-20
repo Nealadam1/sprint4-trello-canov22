@@ -21,7 +21,7 @@
 
     .group {
       // background-color: $clr19;
-      width: rem(272px);
+      width: rem(300px);
       position: relative;
       max-height: fit-content;
       display: flex;
@@ -32,6 +32,9 @@
         position: absolute;
         top: 0.9rem;
         right: 2%;
+        &:hover {
+          background-color: #f4f5f7;
+        }
       }
     }
   }
@@ -50,7 +53,6 @@
     background-color: opacify($clr18, 0.1);
   }
 }
-
 .group-preview {
   border-radius: $edge-round;
   padding: 1em 0.5em 1em 0.5em;

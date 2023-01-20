@@ -9,7 +9,7 @@ import { DynamicActionModal } from "../../dynamic-modal-cmp"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export function CardDetailsSidebar({ card }) {
+export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
@@ -21,6 +21,7 @@ export function CardDetailsSidebar({ card }) {
           {isActionModal && (
             <DynamicActionModal
               card={card}
+              setCard={setCard}
               buttonRef={buttonRef.current}
               type={"add-members"}
             />

@@ -12,6 +12,7 @@ export const boardService = {
   getDefaultSearch,
   createCard,
   createGroup,
+  createLabelCheckboxData
 }
 window.cs = boardService
 
@@ -68,8 +69,14 @@ function getEmptyBoard() {
   }
 }
 
-function createCard({ title,description }) {
-  return { title, description ,id: utilService.makeId() }
+function createLabelCheckboxData(labels) {
+  return labels.reduce((accumulator, value) => {
+    return { ...accumulator, [value]: false };
+  }, {})
+}
+
+function createCard({ title, description }) {
+  return { title, description, id: utilService.makeId() }
 }
 
 function createGroup({ title }) {
@@ -94,7 +101,12 @@ function _createDemoData() {
           fullname: "Liron Kurchi",
           imgUrl: "https://randomuser.me/api/portraits/men/23.jpg",
         },
-        style: { backgroundColor: "lightblue" },
+        style: {
+          backgroundColor: "#FFD700",
+          thumbnail:
+            "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80",
+          img: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80",
+        },
         labels: [
           {
             id: "l101",
@@ -131,7 +143,8 @@ function _createDemoData() {
           {
             _id: "u102",
             fullname: "Liron Kruchinin",
-            imgUrl: "https://preview.redd.it/hbkyobublbh61.jpg?auto=webp&s=d309aa476f34e040f9cafb2bf44968f8010b40a0",
+            imgUrl:
+              "https://preview.redd.it/hbkyobublbh61.jpg?auto=webp&s=d309aa476f34e040f9cafb2bf44968f8010b40a0",
           },
           {
             _id: "u103",
@@ -394,7 +407,8 @@ function _createDemoData() {
           {
             _id: "u102",
             fullname: "Liron Kruchinin",
-            imgUrl: "https://preview.redd.it/hbkyobublbh61.jpg?auto=webp&s=d309aa476f34e040f9cafb2bf44968f8010b40a0",
+            imgUrl:
+              "https://preview.redd.it/hbkyobublbh61.jpg?auto=webp&s=d309aa476f34e040f9cafb2bf44968f8010b40a0",
           },
           {
             _id: "u103",

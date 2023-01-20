@@ -9,47 +9,50 @@ import { MemberAction } from "./card/card-details/actions/member-action"
 
 export function DynamicActionModal(props) {
   const { buttonRef } = props
-  const modal = useSelector((storeState) => storeState.systemModule.isActionModal)
-  console.log(props)
-  console.log(modal)
-
- 
-
+  const modal = useSelector(
+    (storeState) => storeState.systemModule.isActionModal
+  )
 
   switch (props.type) {
     case "create-board":
-      return ( modal===props.type&&
-        <DynamicModalPosition buttonRef={buttonRef}>
-          <CreateBoard {...props} />
-        </DynamicModalPosition>
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <CreateBoard {...props} />
+          </DynamicModalPosition>
+        )
       )
     case "add-members":
-      return ( modal===props.type&&
-        <DynamicModalPosition buttonRef={buttonRef}>
-          <MemberAction {...props} />
-        </DynamicModalPosition>
-
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <MemberAction {...props} />
+          </DynamicModalPosition>
+        )
       )
     case "board-filter":
-      return (modal===props.type&& 
-        <DynamicModalPosition buttonRef={buttonRef}>
-          <BoardFilter {...props} />
-        </DynamicModalPosition>
-
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <BoardFilter {...props} />
+          </DynamicModalPosition>
+        )
       )
     case "add-checklist":
-      return (modal===props.type&& 
-        <DynamicModalPosition buttonRef={buttonRef}>
-          <ChecklistAction {...props} />
-        </DynamicModalPosition>
-
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <ChecklistAction {...props} />
+          </DynamicModalPosition>
+        )
       )
     case "add-labels":
-      return (modal===props.type&& 
-        <DynamicModalPosition buttonRef={buttonRef}>
-          <LabelAction {...props} />
-        </DynamicModalPosition>
-
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <LabelAction {...props} />
+          </DynamicModalPosition>
+        )
       )
   }
 }
@@ -59,12 +62,16 @@ const DynamicModalPosition = (props) => {
   const modalRef = useRef(null)
   const [modalStyles, setModalStyles] = useState({
     position: "fixed",
-    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${buttonRef.offsetHeight}px)`,
-    left: `calc(${buttonRef.getBoundingClientRect().left}px + ${buttonRef.offsetWidth}px)`,
+    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${
+      buttonRef.offsetHeight
+    }px)`,
+    left: `calc(${buttonRef.getBoundingClientRect().left}px + ${
+      buttonRef.offsetWidth
+    }px)`,
     transform: `translate(0, -${buttonRef.offsetHeight}px)`,
     width: "300px",
-  });
-  function handleClose(ev){
+  })
+  function handleClose(ev) {
     ev.stopPropagation()
     ev.preventDefault()
     if (ev.target === ev.currentTarget) {
@@ -72,20 +79,29 @@ const DynamicModalPosition = (props) => {
     }
   }
 
-
   useEffect(() => {
-    if (modalRef.current && (modalRef.current.getBoundingClientRect().bottom > window.innerHeight)) {
+    if (
+      modalRef.current &&
+      modalRef.current.getBoundingClientRect().bottom > window.innerHeight
+    ) {
       setModalStyles({
         ...modalStyles,
-        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight / 1.5}px)`
-      });
+        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${
+          modalRef.current.offsetHeight / 1.5
+        }px)`,
+      })
     }
 
-    if (modalRef.current && (modalRef.current.getBoundingClientRect().right > window.innerWidth)) {
+    if (
+      modalRef.current &&
+      modalRef.current.getBoundingClientRect().right > window.innerWidth
+    ) {
       setModalStyles({
         ...modalStyles,
-        left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth}px)`
-      });
+        left: `calc(${buttonRef.getBoundingClientRect().left}px - ${
+          modalRef.current.offsetWidth
+        }px)`,
+      })
     }
     // if (modalRef.current && (modalRef.current.getBoundingClientRect().top < 0)) {
     //   setModalStyles({
@@ -93,27 +109,23 @@ const DynamicModalPosition = (props) => {
     //     top: `calc(${buttonRef.getBoundingClientRect().top}px + ${modalRef.current.offsetHeight}px)`
     //   });
     // }
-  }, [modalRef, modalStyles, buttonRef]);
+  }, [modalRef, modalStyles, buttonRef])
 
   return (
-    <div style={{
-      backgroundColor: "rgba(0, 0, 0, 0)",
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-    }}
-    onClick={handleClose}>
-    <section 
-      
-      className="action-modal"
-      ref={modalRef}
-      style={modalStyles}
+    <div
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0)",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
+      onClick={handleClose}
     >
-      {props.children}
-    </section>
+      <section className="action-modal" ref={modalRef} style={modalStyles}>
+        {props.children}
+      </section>
     </div>
   )
 }
-
