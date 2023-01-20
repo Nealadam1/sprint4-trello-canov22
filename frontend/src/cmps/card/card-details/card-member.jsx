@@ -18,9 +18,6 @@ export function CardMember({ members, card }) {
     setCurrMembers(cardMembers)
   }
 
-  // useEffect(() => {}, [members])
-  console.log(currMembers.map((member) => console.log(member.imgUrl)))
-
   return (
     <div className="card-member">
       {currMembers.map((member) => (
