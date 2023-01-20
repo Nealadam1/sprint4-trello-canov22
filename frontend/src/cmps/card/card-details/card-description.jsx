@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { updateCard } from "../../../store/actions/board.action"
+import {GrTextAlignFull} from "react-icons/gr"
 
 export function CardDescription({ card }) {
   const [isEditing, setIsEditing] = useState(card.description? false:true)
@@ -28,7 +29,7 @@ export function CardDescription({ card }) {
 
   return (
     <div className="card-description">
-      <h3>Description</h3>
+      <h3><i><GrTextAlignFull/></i>Description</h3>
       {isEditing? (
         <div>
           <textarea name="description"

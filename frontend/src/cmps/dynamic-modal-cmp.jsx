@@ -12,7 +12,6 @@ export function DynamicActionModal(props) {
   const modal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
-
   switch (props.type) {
     case "create-board":
       return (
@@ -23,6 +22,14 @@ export function DynamicActionModal(props) {
         )
       )
     case "add-members":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <MemberAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
+    case "add-members2":
       return (
         modal === props.type && (
           <DynamicModalPosition buttonRef={buttonRef}>

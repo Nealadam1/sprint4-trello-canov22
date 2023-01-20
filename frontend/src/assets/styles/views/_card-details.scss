@@ -26,11 +26,27 @@
   }
 
   .card-member {
+    display: flex;
+    align-items: center;
+
     .member-image {
       height: em(28px);
-      border-radius: 25em;
+      margin-left: 3px;
+      border-radius: 100%;
       width: em(28px);
     }
+    button{
+      margin-left: 3px;
+      height: em(38px);
+      border-radius: 100%;
+      width: em(38px);
+      background-color:#caccce74;
+      transition: background-color 0.3s;
+      &:hover{
+        background-color:#caccced5;
+      }
+    }
+    
   }
 
   .card-comments {
