@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { MemberPreview } from "./card-preview/member-preview"
 
 export function CardPreview({ card }) {
   // console.log(card.labelIds);
@@ -35,11 +36,7 @@ export function CardPreview({ card }) {
       {card?.labelIds ? card.labelIds.map((label) => label) : ""}
       <p>{card.title}</p>
 
-      <div className="member-images">
-        {currMembers.map((member) => (
-          <img className="member-image" alt="" src={member.imgUrl} />
-        ))}
-      </div>
+      <MemberPreview members={currMembers}/>
     </div>
   )
 }
