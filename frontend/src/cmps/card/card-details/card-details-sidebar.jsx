@@ -1,22 +1,33 @@
 import { useRef } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { OpenActionModal } from "../../../store/actions/board.action"
+import {
+  CloseActionModal,
+  OpenActionModal,
+} from "../../../store/actions/board.action"
 import { DynamicActionModal } from "../../dynamic-modal-cmp"
+import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export function CardDetailsSidebar({ card }) {
-  const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
-  const dynmOpenModal = !isActionModal ? OpenActionModal : null
+  const isActionModal = useSelector(
+    (storeState) => storeState.systemModule.isActionModal
+  )
+  const dynmOpenModal = !isActionModal ? OpenActionModal : CloseActionModal
   const buttonRef = useRef(null)
   return (
     <aside className="card-details-sidebar">
       <div>
-        <button ref={buttonRef} onClick={dynmOpenModal} >
-          {isActionModal &&(<DynamicActionModal
-            card={card}
-            buttonRef={buttonRef.current}
-            type={"add-members"}
-          />)}
+        <button ref={buttonRef} onClick={dynmOpenModal}>
+          {isActionModal && (
+            <DynamicActionModal
+              card={card}
+              buttonRef={buttonRef.current}
+              type={"add-members"}
+            />
+          )}
+          <FontAwesomeIcon icon={faUser} />
+          Members
         </button>
       </div>
     </aside>

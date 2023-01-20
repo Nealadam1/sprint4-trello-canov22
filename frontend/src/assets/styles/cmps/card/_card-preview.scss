@@ -42,6 +42,20 @@
       white-space: break-spaces;
       padding-bottom: 10px;
 
+      .member-images {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .member-image {
+        margin-top: 1em;
+        width: rem(28px);
+        height: rem(28px);
+        border-radius: 20em;
+        // position: relative;
+        // left: 75%;
+      }
+
       p {
         margin: 0;
         position: relative;

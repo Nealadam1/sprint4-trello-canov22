@@ -17,15 +17,15 @@ export function MemberAction({ card }) {
   }
 
   return (
-        <div className="members-list">
-          <ul>
-            {board.members.map((member) => (
-              <li onClick={() => onAddMember(member._id)}>
-                <img className="member-image" src={member.imgUrl} />
-                {member.fullname}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="members-list">
+      <ul>
+        {board.members.map((member) => (
+          <li onClick={() => onAddMember(member._id)}>
+            <img className="member-image" src={member.imgUrl} />
+            {member.fullname}
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

@@ -66,7 +66,7 @@ export function CardDetails() {
               ></header>
             )}
             <div className="side-bar">
-              <CardDetailsSidebar card={card} />
+              <CardDetailsSidebar setCard={setCard} card={card} />
             </div>
             <div className="card-content">
               <h3 className="card-title">

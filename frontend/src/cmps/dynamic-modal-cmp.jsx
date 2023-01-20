@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { CreateBoard } from "./board/board-create"
+import { BoardFilter } from "./board/board-filter"
 import { MemberAction } from "./card/card-details/actions/member-action"
 
 export function DynamicActionModal(props) {
@@ -14,12 +15,21 @@ export function DynamicActionModal(props) {
       )
     case "add-members":
       return (
-        <section
-          className="action-modal">
-          <DynamicModalPosition buttonRef={buttonRef}>
+
+
+        <DynamicModalPosition buttonRef={buttonRef}>
           <MemberAction {...props} />
-          </DynamicModalPosition>
-        </section>
+        </DynamicModalPosition>
+
+      )
+    case "board-filter":
+      return (
+
+
+        <DynamicModalPosition buttonRef={buttonRef}>
+          <BoardFilter {...props} />
+        </DynamicModalPosition>
+
       )
   }
 }
@@ -39,7 +49,7 @@ const DynamicModalPosition = (props) => {
     if (modalRef.current && (modalRef.current.getBoundingClientRect().bottom > window.innerHeight)) {
       setModalStyles({
         ...modalStyles,
-        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight/1.5}px)`
+        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight / 1.5}px)`
       });
     }
 
