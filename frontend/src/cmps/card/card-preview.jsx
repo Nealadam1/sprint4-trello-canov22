@@ -16,9 +16,20 @@ export function CardPreview({ card }) {
     )
     setCurrMembers(cardMembers)
   }
+  console.log(card)
 
   return (
     <div className="card-preview">
+      {card?.style?.bgColor ? (
+        <header
+          className="card-header"
+          style={{
+            backgroundColor: card.style.bgColor,
+            width: "100%",
+            height: "32px",
+          }}
+        ></header>
+      ) : null}
       <p>{card.title}</p>
       <div className="member-images">
         {currMembers.map((member) => (
