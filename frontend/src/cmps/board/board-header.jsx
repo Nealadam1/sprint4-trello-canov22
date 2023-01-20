@@ -1,14 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import { setBoard, updateBoard } from "../../store/actions/board.action";
+import { useRef, useState } from "react";
+import { OpenActionModal, setBoard, updateBoard } from "../../store/actions/board.action";
 import { faStar as faFullStar } from "@fortawesome/free-solid-svg-icons"
 import { faStar } from "@fortawesome/free-regular-svg-icons"
 import { BoardMembers } from "../members/board-members";
+import { DynamicActionModal } from "../dynamic-modal-cmp";
+import { useSelector } from "react-redux";
 
 export function BoardHeader({ board }) {
     const [boardTitle, setBoardTitle] = useState(board.title)
     const [starred, setIsStarred] = useState(board.isStarred)
     const [isEditingTitle, setIsEditingTitle] = useState(false)
+    const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
+    const dynmOpenModal = !isActionModal ? OpenActionModal : null
+    const buttonRef = useRef(null)
 
     function handleTitleChange({ target }) {
         setBoardTitle(target.value)
@@ -71,8 +76,12 @@ export function BoardHeader({ board }) {
                 </div>
                 <span className="btn-divider">|</span>
                 <div className="board-action-filter">
-                    <button onClick={handleCmpRender}>
+                    <button  ref={buttonRef} onClick={dynmOpenModal}>
                         Filter
+                        { isActionModal &&<DynamicActionModal 
+                        buttonRef={buttonRef.current}
+                        type={"board-filter"}/>
+                        }
                     </button>
                 </div>
                 <span className="btn-divider">|</span>
