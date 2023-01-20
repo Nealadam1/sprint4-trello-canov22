@@ -24,6 +24,8 @@ export function CardList({ group }) {
   const [isMouseDown, setIsMouseDown] = useState(false)
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
+  const inputRef = useRef(null)
+
   useEffect(() => {
     onEndDrag()
   }, [cards])
@@ -38,6 +40,14 @@ export function CardList({ group }) {
     setCardToInput(false)
     setCardTitle({ title: "" })
   }
+
+  useEffect(() => {
+    if (cardToInput) {
+      inputRef.current.focus()
+    }
+  }, [cardToInput])
+
+  console.log(inputRef)
 
   function onDeleteCard(event, cardId) {
     event.preventDefault()
@@ -102,8 +112,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                                ? "labels"
-                                : ""
+                              ? "labels"
+                              : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -139,6 +149,7 @@ export function CardList({ group }) {
         {cardToInput ? (
           <form onSubmit={onAddCard}>
             <input
+              ref={inputRef}
               type="text"
               onBlur={handleBlur}
               value={cardTitle.title}

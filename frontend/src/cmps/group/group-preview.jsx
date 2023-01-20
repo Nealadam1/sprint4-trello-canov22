@@ -11,9 +11,11 @@ export function GroupPreview({
   return (
     <div className="group-preview">
       {groupTitleToInput ? (
-        <input />
+        <form>
+          <input type="text" />
+        </form>
       ) : (
-        <h4 onClick={() => setGroupTitleToInput(true)}>{group.title}</h4>
+        <h4>{group.title}</h4>
       )}
       <CardList cards={cards} group={group} />
     </div>

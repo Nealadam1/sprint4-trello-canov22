@@ -9,7 +9,7 @@ import { DynamicActionModal } from "../../dynamic-modal-cmp"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export function CardDetailsSidebar({ card }) {
+export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
@@ -17,10 +17,18 @@ export function CardDetailsSidebar({ card }) {
   return (
     <aside className="card-details-sidebar">
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-members"): CloseActionModal}>
+        <button
+          ref={buttonRef}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-members")
+              : CloseActionModal
+          }
+        >
           {isActionModal && (
             <DynamicActionModal
               card={card}
+              setCard={setCard}
               buttonRef={buttonRef.current}
               type={"add-members"}
             />
@@ -30,7 +38,14 @@ export function CardDetailsSidebar({ card }) {
         </button>
       </div>
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-labels"): CloseActionModal}>
+        <button
+          ref={buttonRef}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-labels")
+              : CloseActionModal
+          }
+        >
           {isActionModal && (
             <DynamicActionModal
               card={card}
@@ -43,7 +58,14 @@ export function CardDetailsSidebar({ card }) {
         </button>
       </div>
       <div>
-        <button ref={buttonRef} onClick={!isActionModal ?(ev)=>OpenActionModal(ev,"add-checklist"): CloseActionModal}>
+        <button
+          ref={buttonRef}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-checklist")
+              : CloseActionModal
+          }
+        >
           {isActionModal && (
             <DynamicActionModal
               card={card}

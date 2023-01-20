@@ -145,7 +145,6 @@ export function addMember(memberId, card) {
   const updatedGroups = board.groups.map((group) =>
     group.id === updatedGroup.id ? updatedGroup : group
   )
-  console.log([...updatedGroups])
   board.groups = updatedGroups
   store.dispatch(getActionSetBoard(board))
   boardService.save(board)

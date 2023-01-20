@@ -1,4 +1,3 @@
-export function LabelAction({card}){
-    return <div>hello label action</div>
-
+export function LabelAction({ card }) {
+  return <div>hello label action</div>
 }
