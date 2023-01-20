@@ -14,6 +14,7 @@ import {
   SET_GROUP,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
+import { SET_LABELS } from "../reducers/label.reducer.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -193,6 +194,15 @@ export async function addCard(newCard, groupId) {
   } catch (err) {
     console.log(err)
   }
+}
+
+export async function setLabels(labels) {
+  console.log("from action", labels)
+
+  store.dispatch({
+    type: SET_LABELS,
+    labels,
+  })
 }
 
 export async function deleteCard(cardId, groupId) {

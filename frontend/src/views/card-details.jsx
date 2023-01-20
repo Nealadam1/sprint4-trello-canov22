@@ -15,6 +15,7 @@ import { CardLabels } from "../cmps/card/card-details/card-labels"
 import { CardDescription } from "../cmps/card/card-details/card-description"
 import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
+import { CloseActionModal } from "../store/actions/board.action"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -24,11 +25,15 @@ export function CardDetails() {
   const modal = useSelector(
     (storeState) => storeState.systemModule.cardDetailModal
   )
+  const actionModal = useSelector(
+    (storeState) => storeState.systemModule.isActionModal
+  )
   const { cardId } = useParams()
 
   useEffect(() => {
     const currCard = getCardById(board, cardId)
     setCard(currCard)
+    if (actionModal) CloseActionModal()
   }, [cardId])
 
   const handleClose = (e) => {

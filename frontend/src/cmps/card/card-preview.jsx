@@ -31,7 +31,6 @@ export function CardPreview({ card }) {
       <div className="card-info">
         {card?.labelIds ? card.labelIds.map((label) => label) : ""}
         <p>{card.title}</p>
-
         <MemberPreview members={currMembers} />
       </div>
     </div>
