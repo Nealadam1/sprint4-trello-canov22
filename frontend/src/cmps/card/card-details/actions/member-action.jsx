@@ -3,8 +3,6 @@ import { useSelector } from "react-redux"
 import { addMember, removeMember } from "../../../../store/actions/board.action"
 
 export function MemberAction({ card }) {
-  const [showMembers, setShowMembers] = useState(false)
-
   const board = useSelector((storeState) => storeState.boardModule.board)
   const group = useSelector((storeState) => storeState.boardModule.group)
 
@@ -19,9 +17,6 @@ export function MemberAction({ card }) {
   }
 
   return (
-    <div className="card-details-sidebar">
-      <button onClick={() => setShowMembers((prev) => !prev)}>Members</button>
-      {showMembers && (
         <div className="members-list">
           <ul>
             {board.members.map((member) => (
@@ -32,7 +27,5 @@ export function MemberAction({ card }) {
             ))}
           </ul>
         </div>
-      )}
-    </div>
   )
 }
