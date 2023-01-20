@@ -117,8 +117,6 @@
 }
 
 .add-card-container {
-  // background-color: yellow;
-
   .card-title-input {
     padding: 0;
     border: none;
@@ -146,7 +144,7 @@
     color: var(--ds-text-inverse, #fff);
     padding: 8px 16px;
     margin: 8px 4px 0 0;
-    font-size: 16px;
+    font-size: 14px;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.2em;
     &:hover {
@@ -160,6 +158,7 @@
       font-size: rem(26px);
       color: #6b778c;
       position: absolute;
+      background-color: transparent;
       top: 30%;
       &:hover {
         color: #172b4d;
