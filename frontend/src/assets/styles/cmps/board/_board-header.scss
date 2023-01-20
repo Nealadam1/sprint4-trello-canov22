@@ -40,6 +40,13 @@
                 h3 {
                     margin: 0 0 0.4em;
                 }
+                .member-image {
+                    width: rem(28px);
+                    height: rem(28px);
+                    border-radius: 20em;
+                    // position: relative;
+                    // left: 75%;
+                  }
             }
         }
 
@@ -54,7 +61,6 @@
 
         text-decoration: none;
         max-width: 400px;
-        margin: 0 5px 4px 0;
         line-height: 32px;
         height: 32px;
         font-size: 14px;

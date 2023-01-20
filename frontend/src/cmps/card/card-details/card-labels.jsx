@@ -1,6 +1,3 @@
-import { useEffect } from "react"
-import { setLabels, SetLabels } from "../../../store/actions/board.action"
-
 export function CardLabels({ CardLabels }) {
   const displayLabels = []
   const labels = [
@@ -30,11 +27,10 @@ export function CardLabels({ CardLabels }) {
       color: "#BCD9EA",
     },
   ]
-
   return (
     <div className="card-labels">
       {CardLabels?.map((label) => {
-        labels?.map((displayLabel) => {
+        labels.map((displayLabel) => {
           if (label === displayLabel.id) displayLabels.push(displayLabel)
         })
       })}
