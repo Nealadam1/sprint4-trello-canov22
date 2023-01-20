@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { addMember, removeMember } from "../../../../store/actions/board.action"
 
 export function MemberAction({ card }) {
   const [showMembers, setShowMembers] = useState(false)
@@ -8,14 +9,13 @@ export function MemberAction({ card }) {
   const group = useSelector((storeState) => storeState.boardModule.group)
 
   function onAddMember(memberId) {
-    console.log(memberId)
-
-    //   onAddMember(memberId, card)
-    // if (card.memberIds.find((member) => member === memberId)) {
-    //   return card.memberIds.filter((member) => member !== memberId)
-    // }
-    // const updatedMembers = [...card.memberIds, memberId]
-    // console.log(group)
+    if (card?.memberIds?.find((member) => member === memberId)) {
+      const updatedMemberIds = card.memberIds.filter(
+        (member) => member !== memberId
+      )
+      return removeMember(updatedMemberIds, card)
+    }
+    addMember(memberId, card)
   }
 
   return (

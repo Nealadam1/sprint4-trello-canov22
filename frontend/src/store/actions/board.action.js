@@ -93,15 +93,6 @@ export async function setBoard(board) {
   }
 }
 
-export async function addMember(memberId, card) {
-  // const group = structuredClone(store.getState().boardModule.group)
-  // if (card.memberIds.find((member) => member === memberId)) {
-  //   return card.memberIds.filter((member) => member !== memberId)
-  // }
-  // const updatedCards = [...card, memberId]
-  // console.log(updatedCards)
-}
-
 export async function setGroup(group) {
   try {
     store.dispatch({
@@ -133,6 +124,40 @@ export async function addBoard(board) {
     console.log("Cannot add board", err)
     throw err
   }
+}
+export function addMember(memberId, card) {
+  const board = structuredClone(store.getState().boardModule.board)
+  const group = structuredClone(store.getState().boardModule.group)
+  const updatedMembers = card.memberIds
+    ? [...card.memberIds, memberId]
+    : [memberId]
+  const updatedCard = { ...card, memberIds: updatedMembers }
+  const updatedCards = group.cards.map((card) =>
+    updatedCard.id === card.id ? updatedCard : card
+  )
+  const updatedGroup = { ...group, cards: updatedCards }
+  const updatedGroups = board.groups.map((group) =>
+    group.id === updatedGroup.id ? updatedGroup : group
+  )
+  board.groups = updatedGroups
+  store.dispatch(getActionSetBoard(board))
+  boardService.save(board)
+}
+
+export function removeMember(updatedMemberIds, card) {
+  const board = structuredClone(store.getState().boardModule.board)
+  const group = structuredClone(store.getState().boardModule.group)
+  const updatedCard = { ...card, memberIds: updatedMemberIds }
+  const updatedCards = group.cards.map((card) =>
+    updatedCard.id === card.id ? updatedCard : card
+  )
+  const updatedGroup = { ...group, cards: updatedCards }
+  const updatedGroups = board.groups.map((group) =>
+    group.id === updatedGroup.id ? updatedGroup : group
+  )
+  const updatedBoard = { ...board, groups: updatedGroups }
+  store.dispatch(getActionSetBoard(updatedBoard))
+  boardService.save(updatedBoard)
 }
 
 export async function addGroup(newGroup) {
