@@ -23,8 +23,8 @@ export function saveLabelToBoard(currLabel, board) {
         updateBoard(board)
     } else {
         console.log('dosent exists');
-        // board.labels.push(currLabel)
+        board.labels.push(currLabel)
         console.log(board.labels);
-        // updateBoard(board)
+        updateBoard(board)
     }
 }
