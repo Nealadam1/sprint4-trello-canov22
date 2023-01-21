@@ -46,6 +46,9 @@
   }
 
   .card-description {
+    textarea{
+      font-family: OpenSans-Regular;
+    }
     h3 {
       font-size: $card-details-header;
       font-family: $trello-font;
