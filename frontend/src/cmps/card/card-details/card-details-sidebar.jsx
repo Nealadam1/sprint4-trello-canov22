@@ -6,8 +6,9 @@ import {
   OpenActionModal,
 } from "../../../store/actions/board.action"
 import { DynamicActionModal } from "../../dynamic-modal-cmp"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { BsTag } from "react-icons/bs"
+import { IoMdCheckboxOutline } from "react-icons/io"
+import { AiOutlineUser } from "react-icons/ai"
 
 export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
@@ -17,6 +18,7 @@ export function CardDetailsSidebar({ card, setCard }) {
   return (
     <aside className="card-details-sidebar">
       <div>
+        <span className="side-bar-action-title">Add to card</span>
         <button
           className="side-bar-btn"
           ref={buttonRef}
@@ -34,13 +36,15 @@ export function CardDetailsSidebar({ card, setCard }) {
               type={"add-members"}
             />
           )}
-          <FontAwesomeIcon icon={faUser} />
+          <span className="memebers-icon side-bar-icon">
+            <AiOutlineUser />
+          </span>
           Members
         </button>
       </div>
       <div>
         <button
-          className="side-bar-btn"
+          className="side-bar-btn "
           ref={buttonRef}
           onClick={
             !isActionModal
@@ -55,7 +59,9 @@ export function CardDetailsSidebar({ card, setCard }) {
               type={"add-labels"}
             />
           )}
-          <FontAwesomeIcon icon={faUser} />
+          <span className="labels-icon side-bar-icon">
+            <BsTag />
+          </span>
           Labels
         </button>
       </div>
@@ -77,7 +83,9 @@ export function CardDetailsSidebar({ card, setCard }) {
               setCard={setCard}
             />
           )}
-          <FontAwesomeIcon icon={faUser} />
+          <span className="checklist-icon side-bar-icon">
+            <IoMdCheckboxOutline />
+          </span>
           Checklist
         </button>
       </div>

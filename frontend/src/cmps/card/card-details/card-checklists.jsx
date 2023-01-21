@@ -72,6 +72,14 @@ export function CardChecklists({ checklists, card, setCard }) {
     }
   }
 
+  function handleDeleteTodo(todoId) {
+    checklists.forEach((checklist) => {
+      checklist.todos = checklist.todos.filter((todo) => todo.id !== todoId)
+    })
+    setCard({ ...card, checklists })
+    updateCard(card)
+  }
+
   return (
     <div className="card-checklists">
       {checklists.map((checklist) => (
@@ -100,25 +108,43 @@ export function CardChecklists({ checklists, card, setCard }) {
           </div>
           {checklist?.todos?.map((todo) => (
             <li className="checklist-todo" key={todo.id}>
-              <input
-                type="checkbox"
-                id={`todo-${todo.id}`}
-                checked={todo.isDone}
-                onChange={() => handleTodoCheck(checklist.id, todo.id)}
-              />
-              <label htmlFor={`todo-${todo.id}`}>{todo.title}</label>
+              <div className="todo-container">
+                <div className="todo-display">
+                  <input
+                    type="checkbox"
+                    id={`todo-${todo.id}`}
+                    checked={todo.isDone}
+                    onChange={() => handleTodoCheck(checklist.id, todo.id)}
+                  />
+                  <label htmlFor={`todo-${todo.id}`}>{todo.title}</label>
+                </div>
+                <div className="todo-action">
+                  <button
+                    onClick={() => handleDeleteTodo(todo.id)}
+                    className="delete-todo-btn button1"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </li>
           ))}
           {todoToInput[checklist.id] ? (
             <form onSubmit={(event) => handleFormSubmit(event, checklist.id)}>
               <input
+                className="todo-input blue-input"
                 ref={inputRef}
                 onBlur={() => handleBlur(checklist.id)}
                 type="text"
                 value={formData[checklist.id]}
                 onChange={(event) => handleFormChange(event, checklist.id)}
               />
-              <button type="submit">Add Todo</button>
+              <div className="todo-btns flex">
+                <button className="button" type="submit">
+                  Add Todo
+                </button>
+                <button className="button1">Cancel</button>
+              </div>
             </form>
           ) : (
             <button

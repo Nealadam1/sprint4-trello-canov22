@@ -118,6 +118,25 @@
     }
   }
 }
+.card-checklist {
+  padding-left: 0.7em;
+  display: flex;
+  .todos-preview {
+    padding-left: 0.4em;
+    color: $clr14;
+  }
+  .todo-checkbox-preview {
+    display: flex;
+    align-items: center;
+    color: $clr14;
+  }
+}
+
+.card-details-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 
 .add-card-container {
   .card-title-input {
