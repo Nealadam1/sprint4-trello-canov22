@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { CardList } from "../card/card-list"
 
 export function GroupPreview({ group, cards, updateGroupTitle }) {
@@ -7,15 +7,22 @@ export function GroupPreview({ group, cards, updateGroupTitle }) {
   const inputRef = useRef(null)
 
   const handleBlur = (event) => {
-    updateGroupTitle(group.id, event.target.value)
+    updateGroupTitle(group, event.target.value)
     setGroupTitleToInput({ ...groupTitleToInput, [group.id]: false })
   }
+
+  useEffect(() => {
+    if (groupTitleToInput[group.id]) {
+      inputRef.current.focus()
+    }
+  }, [groupTitleToInput, group.id])
 
   return (
     <div className="group-preview">
       {groupTitleToInput[group.id] ? (
         <form>
           <input
+            className="group-title-input blue-input"
             type="text"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
@@ -25,10 +32,9 @@ export function GroupPreview({ group, cards, updateGroupTitle }) {
         </form>
       ) : (
         <h4
-          onClick={() => {
+          onClick={() =>
             setGroupTitleToInput({ ...groupTitleToInput, [group.id]: true })
-            inputRef.current.focus()
-          }}
+          }
         >
           {newTitle}
         </h4>
