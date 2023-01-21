@@ -39,6 +39,7 @@
       font-size: rem(18px);
       color: $clr7;
       background-color: #fff;
+
       &:hover {
         background-color: #ebecf0;
         color: $clr14;
@@ -96,6 +97,7 @@
         height: 15px;
         display: flex;
         align-items: center;
+        color: black;
 
         .circle {
           height: 7px;
@@ -148,6 +150,7 @@
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.2em;
+
     &:hover {
       background-color: #026aa7;
     }
@@ -155,12 +158,14 @@
 
   .add-card-section {
     position: relative;
+
     .close-card-btn {
       font-size: rem(26px);
       color: #6b778c;
       position: absolute;
       background-color: transparent;
       top: 30%;
+
       &:hover {
         color: #172b4d;
       }

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { boardService } from "../../../../services/board.service";
-import { addLabel, saveLabelToBoard, updateCard } from "../../../../store/actions/board.action";
+import { addLabel, updateCard } from "../../../../store/actions/board.action";
 import { TwitterPicker } from "react-color"
+import { saveLabelToBoard } from "../../../../services/label.service";
 
 export function LabelAction({ card }) {
   if (!card.labelIds) card.labelIds = []
@@ -44,10 +45,9 @@ export function LabelAction({ card }) {
   function saveLabel(ev) {
     ev.stopPropagation()
     seIsAdding(!isAdding)
-    // console.log(newLabel);
     addLabel(newLabel)
-    // console.log(board);
     saveLabelToBoard(newLabel, board)
+    setNewLabel(boardService.getEmptyLabel())
   }
 
 

@@ -276,9 +276,9 @@ export function addLabel(label) {
   })
 }
 
-export async function saveLabelToBoard(label, board) {
-  console.log('board', label, board);
-}
+// export async function saveLabelToBoard(label, board) {
+//   console.log('board', label, board);
+// }
 
 
 // Demo for Optimistic Mutation
