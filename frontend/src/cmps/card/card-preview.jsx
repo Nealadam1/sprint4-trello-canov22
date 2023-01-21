@@ -51,11 +51,18 @@ export function CardPreview({ card }) {
         <div className="card-details-preview">
           {card.checklists ? (
             <div className="card-checklist">
-              <span className="todo-checkbox-preview">
-                <IoMdCheckboxOutline />
-              </span>
+              {totalTodos(card.checklists) > 0 && (
+                <span className="todo-checkbox-preview">
+                  <IoMdCheckboxOutline />
+                </span>
+              )}
               <span className="todos-preview">
-                {completedTodos(card.checklists)}/{totalTodos(card.checklists)}
+                {totalTodos(card.checklists) > 0 && (
+                  <span>
+                    {completedTodos(card.checklists)}/
+                    {totalTodos(card.checklists)}
+                  </span>
+                )}
               </span>
             </div>
           ) : null}

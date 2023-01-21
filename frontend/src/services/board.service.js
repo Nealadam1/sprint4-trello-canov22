@@ -12,7 +12,7 @@ export const boardService = {
   getDefaultSearch,
   createCard,
   createGroup,
-  getEmptyLabel
+  getEmptyLabel,
 }
 window.cs = boardService
 
@@ -70,11 +70,15 @@ function getEmptyBoard() {
 }
 
 function getEmptyLabel() {
-  return { id: utilService.makeId(), title: "", color: "#" + Math.floor(Math.random() * 16777215).toString(16) }
+  return {
+    id: utilService.makeId(),
+    title: "",
+    color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+  }
 }
 
-function createCard({ title, description }) {
-  return { title, description, id: utilService.makeId() }
+function createCard({ title, description,style }) {
+  return { title, description,style, id: utilService.makeId(), checklists: [] }
 }
 
 function createGroup({ title }) {
@@ -372,7 +376,7 @@ function _createDemoData() {
           backgroundColor: "#FFD700",
           thumbnail:
             "https://images.unsplash.com/photo-1549444931-ea94960d38ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80",
-          img: "https://images.unsplash.com/photo-1549444931-ea94960d38ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80"
+          img: "https://images.unsplash.com/photo-1549444931-ea94960d38ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=80",
         },
         labels: [
           {

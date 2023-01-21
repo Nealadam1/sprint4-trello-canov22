@@ -4,6 +4,7 @@ import { closeActionModal } from "../store/actions/board.action"
 import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
 import { ChecklistAction } from "./card/card-details/actions/checklist-action"
+import { CoverAction } from "./card/card-details/actions/cover-action"
 import { LabelAction } from "./card/card-details/actions/label-action"
 import { MemberAction } from "./card/card-details/actions/member-action"
 
@@ -61,6 +62,14 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "add-cover":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <CoverAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
     default:
   }
 }
@@ -70,20 +79,25 @@ const DynamicModalPosition = (props) => {
   const modalRef = useRef(null)
   const [modalStyles, setModalStyles] = useState({
     position: "fixed",
-    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${buttonRef.offsetHeight*2
-      }px)`,
+    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${
+      buttonRef.offsetHeight * 2
+    }px)`,
     left: `calc(${buttonRef.getBoundingClientRect().left}px `,
-    transform: buttonRef.offsetHeight>80? `translate(${buttonRef.offsetWidth}px, ${buttonRef.offsetHeight}px)`:`translate(0, -${buttonRef.offsetHeight}px)`,
+    transform:
+      buttonRef.offsetHeight > 80
+        ? `translate(${buttonRef.offsetWidth}px, ${buttonRef.offsetHeight}px)`
+        : `translate(0, -${buttonRef.offsetHeight}px)`,
     width: "300px",
   })
   function handleClose(ev) {
     ev.stopPropagation()
-    
+
     if (ev.target === ev.currentTarget) {
       closeActionModal()
     }
   }
 
+ 
   useEffect(() => {
     if (
       modalRef.current &&
@@ -91,8 +105,9 @@ const DynamicModalPosition = (props) => {
     ) {
       setModalStyles({
         ...modalStyles,
-        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight / 1.5
-          }px)`,
+        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${
+          modalRef.current.offsetHeight / 1.5
+        }px)`,
       })
     }
 
@@ -102,8 +117,9 @@ const DynamicModalPosition = (props) => {
     ) {
       setModalStyles({
         ...modalStyles,
-        left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth
-          }px)`,
+        left: `calc(${buttonRef.getBoundingClientRect().left}px - ${
+          modalRef.current.offsetWidth
+        }px)`,
       })
     }
     // if (modalRef.current && (modalRef.current.getBoundingClientRect().top < 0)) {
@@ -115,7 +131,7 @@ const DynamicModalPosition = (props) => {
   }, [modalRef, modalStyles, buttonRef])
 
   return (
-    <div
+    <div 
       style={{
         backgroundColor: "rgba(0, 0, 0, 0)",
         position: "fixed",
@@ -123,6 +139,7 @@ const DynamicModalPosition = (props) => {
         left: 0,
         width: "100%",
         height: "100%",
+        cursor: "default"
       }}
       onClick={handleClose}
     >

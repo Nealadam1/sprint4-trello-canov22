@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { utilService } from "../../../../services/util.service"
 import { updateCard } from "../../../../store/actions/board.action"
+import { closeActionModal } from "../../../../store/actions/board.action"
 
 export function ChecklistAction({ card, setCard }) {
   const [checklistTitle, setChecklistTitle] = useState("")
@@ -20,21 +21,27 @@ export function ChecklistAction({ card, setCard }) {
     const updatedCard = { ...card, checklists: updatedChecklist }
     updateCard(updatedCard)
     setCard(updatedCard)
+    closeActionModal()
   }
 
   return (
-    <div className="label-action">
+    <div className="checklist-action">
       <p>Add checklist</p>
+      <div className="sep-line"></div>
       <label htmlFor="title">Title</label>
       <input
+        className="new-checklist-input blue-input"
         value={checklistTitle}
         id="title"
         type="text"
         onChange={handleChange}
+        
+       
+        
       />
-      <button className="button" onClick={addChecklist}>
+      <div className="div" onClick={addChecklist}>
         Add
-      </button>
+      </div>
     </div>
   )
 }

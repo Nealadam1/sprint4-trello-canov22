@@ -39,6 +39,7 @@ export function CardList({ group }) {
     const newCard = {
       title,
       description: "",
+      style:{}
     }
     addCard(newCard, group.id)
     setCardToInput(false)
