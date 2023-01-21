@@ -37,7 +37,7 @@ export function CardDescription({ card }) {
         <div>
           <textarea
             name="description"
-            cols={70}
+            cols={60}
             rows={6}
             value={newDescription}
             onChange={handleChange}

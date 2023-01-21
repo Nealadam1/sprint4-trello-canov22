@@ -43,6 +43,7 @@ export function BoardList({ boards }) {
     ev.preventDefault()
     ev.stopPropagation()
     board.archivedAt = Date.now()
+    board.isStarred=false
     setBoard(board)
   }
 
@@ -63,7 +64,7 @@ export function BoardList({ boards }) {
   return (
     <ul className="board-list">
       <ul className="favorite-list">
-        {getStarredBoard().length? <h3>Starred Boards</h3> : ''}
+        {getStarredBoard().length ? <h3>Starred Boards</h3> : ""}
         {getStarredBoard().map((board) => {
           return (
             <li
@@ -80,7 +81,7 @@ export function BoardList({ boards }) {
               <Link to={`/board/${board._id}`}>
                 <BoardPreview board={board} />
                 <button onClick={(ev) => onArchiveBoard(ev, board)}>
-                  <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
+                  {<BsArchive />}
                 </button>
                 <button onClick={(ev) => starBoard(ev, board)}>
                   <FontAwesomeIcon
@@ -88,7 +89,6 @@ export function BoardList({ boards }) {
                     icon={board.isStarred ? faFullStar : faStar}
                   />
                 </button>
-                
               </Link>
             </li>
           )
@@ -96,7 +96,7 @@ export function BoardList({ boards }) {
       </ul>
 
       <h3>My boards</h3>
-      <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
+      <li className="list-item button1" ref={buttonRef} onClick={dynmOpenModal}>
         {isActionModal && (
           <DynamicActionModal
             buttonRef={buttonRef.current}

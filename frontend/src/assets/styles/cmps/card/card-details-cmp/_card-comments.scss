@@ -1,0 +1,30 @@
+.card-comments {
+  .user-comment-section {
+    padding: 0;
+    list-style: none;
+    .user-comment-fullname {
+      padding-left: 0.5em;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: "Open Sans";
+      color: #172b4d;
+    }
+    .user-comment-sent-at {
+      padding-left: 0.7em;
+      font-size: 12px;
+      color: #5e6c84;
+    }
+    .user-comment {
+      margin-left: 2em;
+      padding: 8px 12px;
+      color: #172b4d;
+      font-family: "Open Sans";
+      font-size: 13px;
+      box-shadow: var(
+        --ds-shadow-raised,
+        0 1px 2px -1px #091e4240,
+        0 0 0 1px var(--ds-border, #091e4214)
+      );
+    }
+  }
+}

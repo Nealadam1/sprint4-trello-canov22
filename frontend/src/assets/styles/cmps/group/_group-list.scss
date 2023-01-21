@@ -119,6 +119,11 @@
   min-width: rem(272px);
   font-family: "Open Sans", sans-serif;
 
+  .group-title-input {
+    height: 30px;
+    width: 90%;
+  }
+
   h4 {
     color: $clr7;
     font-family: "Open Sans", sans-serif;
