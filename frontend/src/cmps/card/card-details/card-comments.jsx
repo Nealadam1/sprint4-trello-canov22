@@ -9,7 +9,7 @@ export function CardComments({ comments }) {
         </span>
         <h3>Activity</h3>
       </div>
-      <ul>
+      <ul className="user-comment-section">
         {comments.map((comment) => (
           <div key={comment.id}>
             <img
@@ -17,10 +17,14 @@ export function CardComments({ comments }) {
               src={comment.byMember.imgUrl}
               alt="member"
             />
-            <span>{comment.byMember.fullname}</span>
-            <span>{utilService.formatTime(comment.createdAt)}</span>
+            <span className="user-comment-fullname">
+              {comment.byMember.fullname}
+            </span>
+            <span className="user-comment-sent-at">
+              {utilService.formatTime(comment.createdAt)}
+            </span>
 
-            <li>{comment.txt}</li>
+            <li className="user-comment">{comment.txt}</li>
           </div>
         ))}
       </ul>
