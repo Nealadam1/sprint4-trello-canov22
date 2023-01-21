@@ -7,8 +7,8 @@ import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
-  const [boardPreviewColor, setBoardPreviewColor] = useState("")
-  const [boardPreviewImg, setBoardPreviewImg] = useState("")
+  const [boardPreviewColor, setBoardPreviewColor] = useState('')
+  const [boardPreviewImg, setBoardPreviewImg] = useState('')
 
   const images = [
     {
@@ -79,7 +79,7 @@ export function CreateBoard() {
             }`,
           }}
         >
-          <img src={skeletonBoardPreview} alt="" />
+          <img src={skeletonBoardPreview} alt="preview" />
         </div>
       </div>
       <div className="background-picker">

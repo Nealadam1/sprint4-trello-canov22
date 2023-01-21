@@ -73,8 +73,8 @@ function getEmptyLabel() {
   return { id: utilService.makeId(), title: "", color: "#" + Math.floor(Math.random() * 16777215).toString(16) }
 }
 
-function createCard({ title, description }) {
-  return { title, description, id: utilService.makeId() }
+function createCard({ title, description,style }) {
+  return { title, description,style, id: utilService.makeId() }
 }
 
 function createGroup({ title }) {

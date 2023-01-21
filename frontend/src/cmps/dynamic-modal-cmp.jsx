@@ -4,6 +4,7 @@ import { closeActionModal } from "../store/actions/board.action"
 import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
 import { ChecklistAction } from "./card/card-details/actions/checklist-action"
+import { CoverAction } from "./card/card-details/actions/cover-action"
 import { LabelAction } from "./card/card-details/actions/label-action"
 import { MemberAction } from "./card/card-details/actions/member-action"
 
@@ -61,6 +62,14 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "add-cover":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <CoverAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
     default:
   }
 }
@@ -84,6 +93,7 @@ const DynamicModalPosition = (props) => {
     }
   }
 
+ 
   useEffect(() => {
     if (
       modalRef.current &&
@@ -115,7 +125,7 @@ const DynamicModalPosition = (props) => {
   }, [modalRef, modalStyles, buttonRef])
 
   return (
-    <div
+    <div 
       style={{
         backgroundColor: "rgba(0, 0, 0, 0)",
         position: "fixed",
@@ -123,6 +133,7 @@ const DynamicModalPosition = (props) => {
         left: 0,
         width: "100%",
         height: "100%",
+        cursor: "default"
       }}
       onClick={handleClose}
     >

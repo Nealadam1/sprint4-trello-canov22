@@ -9,6 +9,7 @@ import { DynamicActionModal } from "../../dynamic-modal-cmp"
 import { BsTag } from "react-icons/bs"
 import { IoMdCheckboxOutline } from "react-icons/io"
 import { AiOutlineUser } from "react-icons/ai"
+import {MdOutlineCreditCard} from "react-icons/md"
 
 export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
@@ -17,6 +18,7 @@ export function CardDetailsSidebar({ card, setCard }) {
   const buttonRefMembers = useRef(null)
   const buttonRefLabels = useRef(null)
   const buttonRefChecklist = useRef(null)
+  const buttonRefCover = useRef(null)
   return (
     <aside className="card-details-sidebar">
       <div>
@@ -89,6 +91,30 @@ export function CardDetailsSidebar({ card, setCard }) {
             <IoMdCheckboxOutline />
           </span>
           Checklist
+        </button>
+      </div>
+      <div>
+        <button
+          className="side-bar-btn"
+          ref={buttonRefCover}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-cover")
+              : closeActionModal
+          }
+        >
+          {isActionModal && (
+            <DynamicActionModal
+              card={card}
+              buttonRef={buttonRefCover.current}
+              type={"add-cover"}
+              setCard={setCard}
+            />
+          )}
+          <span className="checklist-icon side-bar-icon">
+            <MdOutlineCreditCard />
+          </span>
+          Cover
         </button>
       </div>
     </aside>
