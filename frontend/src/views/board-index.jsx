@@ -28,7 +28,10 @@ export function BoardIndex() {
   return (
     <main className="board-index">
       <section className="boards-list">
+
         <BoardSearch onSetSearch={setSearch} />
+
+        
         <BoardList boards={boards} />
       </section>
 

@@ -55,7 +55,7 @@ export function BoardList({ boards }) {
   return (
     <ul className="board-list">
       <ul className="favorite-list">
-        {/* <h2>Favorite</h2> */}
+        {getStarredBoard().length? <h3>Favorites</h3> : ''}
         {getStarredBoard().map((board) => {
           return (
             <li
@@ -87,6 +87,18 @@ export function BoardList({ boards }) {
         })}
       </ul>
 
+      <h3>My boards</h3>
+            <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
+              {isActionModal && (
+                <DynamicActionModal
+                  buttonRef={buttonRef.current}
+                  type={"create-board"}
+                />
+              )}
+              <div>
+                <p>Create new board</p>
+              </div>
+            </li>
       {boards.map((board) => {
         // console.log(board.style);
         return (
@@ -119,17 +131,6 @@ export function BoardList({ boards }) {
         )
       })}
 
-      <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
-        {isActionModal && (
-          <DynamicActionModal
-            buttonRef={buttonRef.current}
-            type={"create-board"}
-          />
-        )}
-        <div>
-          <p>Create new board</p>
-        </div>
-      </li>
     </ul>
   )
 }
