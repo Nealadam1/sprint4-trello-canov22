@@ -90,7 +90,7 @@ export function LabelAction({ card }) {
       color={boardPreviewColor}
     /> */}
 
-      {labels.map((label, idx) => {
+      {!(isAdding && !isEditing) && labels.map((label, idx) => {
         // console.log(label.id, idx);
 
         return (

@@ -29,9 +29,8 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
     }
   }, [groupToInput])
 
-  function updateGroupTitle(group) {
-    const newTitle = prompt("Pick new title")
-    const updatedGroup = { ...group, title: newTitle }
+  function updateGroupTitle(group, title) {
+    const updatedGroup = { ...group, title }
     const updatedGroups = groups.map((group) =>
       group.id === updatedGroup.id ? updatedGroup : group
     )
