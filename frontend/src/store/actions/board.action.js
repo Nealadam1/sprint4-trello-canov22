@@ -17,7 +17,7 @@ import {
   SET_CARD,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
-import { SET_LABELS } from "../reducers/label.reducer.js"
+import { ADD_LABEL, SET_LABELS } from "../reducers/label.reducer.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -122,12 +122,12 @@ export async function setCardToStoreRef(card) {
 }
 export async function updateCard(card) {
   try {
-    
+
     store.dispatch({
       type: UPDATE_CARD,
       card,
     })
-    const board=store.getState().boardModule.board
+    const board = store.getState().boardModule.board
     boardService.save(board)
   } catch (err) {
     console.log(err)
@@ -267,6 +267,19 @@ export async function setLabels(labels) {
     labels,
   })
 }
+
+export function addLabel(label) {
+  // console.log('redux', label)
+  store.dispatch({
+    type: ADD_LABEL,
+    label
+  })
+}
+
+export async function saveLabelToBoard(label, board) {
+  console.log('board', label, board);
+}
+
 
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
