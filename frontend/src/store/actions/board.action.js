@@ -17,7 +17,7 @@ import {
   SET_CARD,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
-import { ADD_LABEL, SET_LABELS } from "../reducers/label.reducer.js"
+import { ADD_LABEL, PUT_LABEL, REMOVE_LABEL, SET_LABELS } from "../reducers/label.reducer.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -272,6 +272,20 @@ export function addLabel(label) {
   store.dispatch({
     type: ADD_LABEL,
     label,
+  })
+}
+
+export function replaceLabel(label) {
+  store.dispatch({
+    type: PUT_LABEL,
+    label
+  })
+}
+
+export function removeLabel(labelId) {
+  store.dispatch({
+    type: REMOVE_LABEL,
+    labelId
   })
 }
 

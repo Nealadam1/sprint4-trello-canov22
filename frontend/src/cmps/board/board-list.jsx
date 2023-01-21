@@ -13,12 +13,17 @@ import { BoardPreview } from "./board-preview"
 import { DynamicActionModal } from "../dynamic-modal-cmp"
 import { OpenActionModal } from "../../store/actions/board.action"
 import { boardService } from "../../services/board.service"
-import { BoardFavorites } from "./board-favorites"
 
 export function BoardList({ boards }) {
-  const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const isActionModal = useSelector(
+    (storeState) => storeState.systemModule.isActionModal
+  )
   const [changedBoard, setChangedBoard] = useState(boardService.getEmptyBoard())
-  const dynmOpenModal = !isActionModal ? (ev)=>OpenActionModal(ev,'create-board') : null
+  const dynmOpenModal = !isActionModal
+    ? (ev) => OpenActionModal(ev, "create-board")
+    : null
   const buttonRef = useRef(null)
 
   useEffect(() => {
@@ -34,10 +39,9 @@ export function BoardList({ boards }) {
   }
 
   function onOpenSettings(ev, board) {
-    ev.stopPropagation()
     ev.preventDefault()
-
-    console.log(board)
+    ev.stopPropagation()
+    setIsOpen(!isOpen)
   }
 
   function getStarredBoard() {
@@ -59,20 +63,19 @@ export function BoardList({ boards }) {
             <li
               className="list-item"
               style={{
-                background: `${board.style.thumbnail
-                  ? `url(${board.style.thumbnail})`
-                  : `${board.style.backgroundColor}`
-                  }`,
+                background: `${
+                  board.style.thumbnail
+                    ? `url(${board.style.thumbnail})`
+                    : `${board.style.backgroundColor}`
+                }`,
               }}
               key={board._id}
             >
               <Link to={`/board/${board._id}`}>
                 <BoardPreview board={board} />
-
                 <button onClick={(ev) => onOpenSettings(ev, board)}>
                   <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
                 </button>
-
                 <button onClick={(ev) => starBoard(ev, board)}>
                   <FontAwesomeIcon
                     className="btn-icon"
@@ -87,27 +90,28 @@ export function BoardList({ boards }) {
       </ul>
 
       <h3>My boards</h3>
-            <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
-              {isActionModal && (
-                <DynamicActionModal
-                  buttonRef={buttonRef.current}
-                  type={"create-board"}
-                />
-              )}
-              <div>
-                <p>Create new board</p>
-              </div>
-            </li>
+      <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
+        {isActionModal && (
+          <DynamicActionModal
+            buttonRef={buttonRef.current}
+            type={"create-board"}
+          />
+        )}
+        <div>
+          <p>Create new board</p>
+        </div>
+      </li>
       {boards.map((board) => {
         // console.log(board.style);
         return (
           <li
             className="list-item"
             style={{
-              background: `${board.style.thumbnail
-                ? `url(${board.style.thumbnail})`
-                : `${board.style.backgroundColor}`
-                }`,
+              background: `${
+                board.style.thumbnail
+                  ? `url(${board.style.thumbnail})`
+                  : `${board.style.backgroundColor}`
+              }`,
             }}
             key={board._id}
           >
@@ -117,7 +121,6 @@ export function BoardList({ boards }) {
               <button  onClick={(ev) => onOpenSettings(ev, board)}>
                 <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
               </button>
-
               <button onClick={(ev) => starBoard(ev, board)}>
                 <FontAwesomeIcon
                   className="btn-icon"
@@ -128,7 +131,6 @@ export function BoardList({ boards }) {
           </li>
         )
       })}
-
     </ul>
   )
 }
