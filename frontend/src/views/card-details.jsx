@@ -87,7 +87,7 @@ export function CardDetails() {
                 </span>
                 {card?.title}
               </h3>
-              <p>
+              <p className="card-details-group-title">
                 In list <span>{store.getState().boardModule.group.title}</span>
               </p>
               <div className="card-detail-data">

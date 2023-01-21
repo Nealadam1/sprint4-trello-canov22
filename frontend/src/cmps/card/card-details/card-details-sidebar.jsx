@@ -14,14 +14,16 @@ export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
-  const buttonRef = useRef(null)
+  const buttonRefMembers = useRef(null)
+  const buttonRefLabels = useRef(null)
+  const buttonRefChecklist = useRef(null)
   return (
     <aside className="card-details-sidebar">
       <div>
         <span className="side-bar-action-title">Add to card</span>
         <button
           className="side-bar-btn"
-          ref={buttonRef}
+          ref={buttonRefMembers}
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-members")
@@ -32,7 +34,7 @@ export function CardDetailsSidebar({ card, setCard }) {
             <DynamicActionModal
               card={card}
               setCard={setCard}
-              buttonRef={buttonRef.current}
+              buttonRef={buttonRefMembers.current}
               type={"add-members"}
             />
           )}
@@ -44,8 +46,8 @@ export function CardDetailsSidebar({ card, setCard }) {
       </div>
       <div>
         <button
-          className="side-bar-btn "
-          ref={buttonRef}
+          className="side-bar-btn"
+          ref={buttonRefLabels}
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-labels")
@@ -55,7 +57,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           {isActionModal && (
             <DynamicActionModal
               card={card}
-              buttonRef={buttonRef.current}
+              buttonRef={buttonRefLabels.current}
               type={"add-labels"}
             />
           )}
@@ -68,7 +70,7 @@ export function CardDetailsSidebar({ card, setCard }) {
       <div>
         <button
           className="side-bar-btn"
-          ref={buttonRef}
+          ref={buttonRefChecklist}
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-checklist")
@@ -78,7 +80,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           {isActionModal && (
             <DynamicActionModal
               card={card}
-              buttonRef={buttonRef.current}
+              buttonRef={buttonRefChecklist.current}
               type={"add-checklist"}
               setCard={setCard}
             />
