@@ -2,6 +2,8 @@
 
 export const SET_LABELS = "SET_LABELS"
 export const ADD_LABEL = "ADD_LABEL"
+export const PUT_LABEL = "PUT_LABEL"
+export const REMOVE_LABEL = "REMOVE_LABEL"
 
 
 

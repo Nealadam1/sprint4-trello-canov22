@@ -98,7 +98,9 @@ export function CardDetails() {
                     card={card}
                   />
                 )}
-                {card?.labelIds && <CardLabels cardLabels={card.labelIds} />}
+                {card?.labelIds && <div>
+                  <CardLabels cardLabels={card.labelIds} />
+                </div>}
               </div>
               <div>{card && <CardDescription card={card} />}</div>
               <div>
