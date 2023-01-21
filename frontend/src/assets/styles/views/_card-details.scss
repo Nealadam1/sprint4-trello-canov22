@@ -10,11 +10,11 @@
   grid-template-areas:
     "header header header"
     "content content side-bar";
-  width: em(685px);
-  min-width: em(685px);
-  min-height: em(910px);
+  width: rem(685px);
+  max-width: rem(685px);
+  min-height: 90vh;
   background-color: #ebecf0;
-  margin: 100px auto;
+  margin: 50px auto;
   color: $clr7;
 
   .side-bar {
@@ -59,6 +59,34 @@
       &:hover {
         background-color: lighten(#caccced5, 10);
       }
+    }
+  }
+
+  .checklist-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em;
+    p {
+      display: flex;
+      align-self: center;
+      color: #5e6c84;
+    }
+    .sep-line {
+      border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+      width: 100%;
+      margin-bottom: 1em;
+    }
+    label {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .new-checklist-input {
+      height: 2.5rem;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 4.5rem;
     }
   }
 

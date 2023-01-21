@@ -11,8 +11,9 @@ import { faStar } from "@fortawesome/free-regular-svg-icons"
 
 import { BoardPreview } from "./board-preview"
 import { DynamicActionModal } from "../dynamic-modal-cmp"
-import { OpenActionModal } from "../../store/actions/board.action"
+import { OpenActionModal, setBoard } from "../../store/actions/board.action"
 import { boardService } from "../../services/board.service"
+import { BsArchive } from "react-icons/bs"
 
 export function BoardList({ boards }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,10 +39,11 @@ export function BoardList({ boards }) {
     boardService.save(board)
   }
 
-  function onOpenSettings(ev, board) {
+  function onArchiveBoard(ev, board) {
     ev.preventDefault()
     ev.stopPropagation()
-    setIsOpen(!isOpen)
+    board.archivedAt = Date.now()
+    setBoard(board)
   }
 
   function getStarredBoard() {
@@ -50,6 +52,10 @@ export function BoardList({ boards }) {
       if (board.isStarred) favoriteBoards.push(board)
     })
     return favoriteBoards
+  }
+
+  function getBoards() {
+    return boards.filter((board) => board.archivedAt === "")
   }
 
   if (!boards) return <h2>Loading....</h2>
@@ -73,7 +79,7 @@ export function BoardList({ boards }) {
             >
               <Link to={`/board/${board._id}`}>
                 <BoardPreview board={board} />
-                <button onClick={(ev) => onOpenSettings(ev, board)}>
+                <button onClick={(ev) => onArchiveBoard(ev, board)}>
                   <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
                 </button>
                 <button onClick={(ev) => starBoard(ev, board)}>
@@ -101,7 +107,7 @@ export function BoardList({ boards }) {
           <p>Create new board</p>
         </div>
       </li>
-      {boards.map((board) => {
+      {getBoards().map((board) => {
         // console.log(board.style);
         return (
           <li
@@ -118,8 +124,8 @@ export function BoardList({ boards }) {
             <Link to={`/board/${board._id}`}>
               <BoardPreview board={board} />
 
-              <button  onClick={(ev) => onOpenSettings(ev, board)}>
-                <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
+              <button onClick={(ev) => onArchiveBoard(ev, board)}>
+                {<BsArchive />}
               </button>
               <button onClick={(ev) => starBoard(ev, board)}>
                 <FontAwesomeIcon

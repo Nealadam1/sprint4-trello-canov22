@@ -7,8 +7,20 @@
   // background-color: yellow;
   padding: 0;
 
-  .favorite-list{
-    h3{
+  .board-search {
+    padding: 0;
+    .search-boards-input {
+      width: 12rem;
+      height: 2rem;
+    }
+    .board-search-label {
+      margin-top: 1em;
+      font-size: rem(14px);
+    }
+  }
+
+  .favorite-list {
+    h3 {
       width: 100%;
     }
   }
@@ -17,14 +29,15 @@
     // background-color: rgb(73, 73, 221);
     width: 53%;
     height: 95vh;
-    h3{
+    padding: 0;
+    h3 {
       width: 100%;
     }
   }
 
   .side-bar {
     // background-color: rgb(248, 56, 56);
-    width: 17%;
-    height: 95vh;
+    // width: 17%;
+    // height: 95vh;
   }
 }
