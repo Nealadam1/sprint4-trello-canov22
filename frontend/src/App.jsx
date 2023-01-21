@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import { AppHeader } from "./cmps/app-header"
 import { BoardIndex } from "./views/board-index"
 import { Home } from "./views/home"
@@ -11,9 +11,11 @@ import { BoardDetails } from "./views/board-details"
 import { CardDetails } from "./views/card-details"
 
 export function App() {
+  const location = useLocation()
+
   return (
     <div className="app">
-      <AppHeader />
+     {location.pathname !== '/' && <AppHeader />}
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<BoardIndex />} path="/board" />
