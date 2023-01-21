@@ -76,6 +76,21 @@
   @include button;
 }
 
+@mixin button {
+  padding: 6px 12px;
+  height: 32px;
+  background-color: #091e420a;
+  margin-top: 8px;
+  text-align: start;
+  color: $clr7;
+  &:hover {
+    background-color: #091e4214;
+  }
+}
+.button1 {
+  @include button;
+}
+
 @mixin darken($color, $amount) {
   color: darken($color, $amount);
 }

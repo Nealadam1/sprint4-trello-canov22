@@ -1,0 +1,55 @@
+.card-checklists {
+  .checklist-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .checklist {
+    padding: 0;
+    .add-checklist-todo-btn {
+      padding: 6px 12px;
+      height: 32px;
+      background-color: #091e420a;
+      margin-top: 8px;
+      text-align: start;
+      &:hover {
+        background-color: #091e4214;
+      }
+    }
+    .checklist-todo {
+      list-style: none;
+      &:hover {
+        background-color: lighten(#091e4214, 65);
+      }
+      label {
+        padding-left: 1rem;
+        cursor: pointer;
+      }
+    }
+
+    .container-prec {
+      padding-bottom: 1em;
+    }
+    .progress-bar-container {
+      height: 8px;
+      background-color: #ccc;
+      position: relative;
+      border-radius: 2em;
+      .progress-bar {
+        border-radius: 2em;
+        position: absolute;
+        height: 100%;
+        background-color: #5ba4cf;
+        transition: progress-animation 0.3s, width 0.15s;
+      }
+    }
+  }
+  @keyframes progress-animation {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+}

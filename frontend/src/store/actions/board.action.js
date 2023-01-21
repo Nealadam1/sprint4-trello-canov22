@@ -122,7 +122,6 @@ export async function setCardToStoreRef(card) {
 }
 export async function updateCard(card) {
   try {
-
     store.dispatch({
       type: UPDATE_CARD,
       card,
@@ -272,14 +271,13 @@ export function addLabel(label) {
   // console.log('redux', label)
   store.dispatch({
     type: ADD_LABEL,
-    label
+    label,
   })
 }
 
 // export async function saveLabelToBoard(label, board) {
 //   console.log('board', label, board);
 // }
-
 
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)

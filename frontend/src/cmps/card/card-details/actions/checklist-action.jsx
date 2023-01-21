@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { utilService } from "../../../../services/util.service"
+import { updateCard } from "../../../../store/actions/board.action"
 
-export function ChecklistAction({ card }) {
+export function ChecklistAction({ card, setCard }) {
   const [checklistTitle, setChecklistTitle] = useState("")
 
   function handleChange({ target }) {
@@ -9,7 +11,15 @@ export function ChecklistAction({ card }) {
   }
 
   function addChecklist() {
-    console.log("hi")
+    const newChecklist = {
+      id: utilService.makeId(),
+      title: checklistTitle,
+      todos: [],
+    }
+    const updatedChecklist = [...card.checklists, newChecklist]
+    const updatedCard = { ...card, checklists: updatedChecklist }
+    updateCard(updatedCard)
+    setCard(updatedCard)
   }
 
   return (

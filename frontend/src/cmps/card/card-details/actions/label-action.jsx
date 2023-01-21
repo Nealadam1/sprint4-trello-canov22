@@ -1,16 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { boardService } from "../../../../services/board.service";
-import { addLabel, updateCard } from "../../../../store/actions/board.action";
+import { useEffect, useRef, useState } from "react"
+import { useSelector } from "react-redux"
+import { boardService } from "../../../../services/board.service"
+import { addLabel, updateCard } from "../../../../store/actions/board.action"
 import { TwitterPicker } from "react-color"
-import { saveLabelToBoard } from "../../../../services/label.service";
+import { saveLabelToBoard } from "../../../../services/label.service"
 
 export function LabelAction({ card }) {
   if (!card.labelIds) card.labelIds = []
 
   const board = useSelector((storeState) => storeState.boardModule.board)
   const labels = useSelector((storeState) => storeState.labelModule.labels)
-  const [checkedState, setCheckedState] = useState(new Array(labels.length).fill(false))
+  const [checkedState, setCheckedState] = useState(
+    new Array(labels.length).fill(false)
+  )
   const [newLabel, setNewLabel] = useState(boardService.getEmptyLabel())
   const [labelIds, setLabelIds] = useState(card.labelIds)
   const [currCard, setCurrCard] = useState(card)
@@ -23,19 +25,19 @@ export function LabelAction({ card }) {
 
   function handleCheckboxChange(labelId) {
     setCurrCard({ ...card })
-    const idx = labels.findIndex(label => label.id === labelId)
+    const idx = labels.findIndex((label) => label.id === labelId)
 
     if (labelIds.includes(labelId)) {
-      card.labelIds = labelIds.filter(id => id !== labelId)
+      card.labelIds = labelIds.filter((id) => id !== labelId)
       updateCard(card)
-      setLabelIds(labelIds.filter(id => id !== labelId))
+      setLabelIds(labelIds.filter((id) => id !== labelId))
     } else {
       card.labelIds = [...labelIds, labelId]
       updateCard(card)
       setLabelIds([...labelIds, labelId])
     }
 
-    setCheckedState(prevState => {
+    setCheckedState((prevState) => {
       const newCheckedState = [...prevState]
       newCheckedState[idx] = !newCheckedState[idx]
       return newCheckedState
@@ -50,7 +52,6 @@ export function LabelAction({ card }) {
     setNewLabel(boardService.getEmptyLabel())
   }
 
-
   function onAddLabel(ev) {
     const { target } = ev
     const { value, name } = target
@@ -61,42 +62,45 @@ export function LabelAction({ card }) {
 
   // console.log(newLabel);
 
-  return <div>
-    {/* <TwitterPicker
+  return (
+    <div>
+      {/* <TwitterPicker
       color={boardPreviewColor}
     /> */}
 
-    {labels.map((label, idx) => {
-      // console.log(label.id, idx);
+      {labels.map((label, idx) => {
+        // console.log(label.id, idx);
 
-      return (
-        <div key={label.id} style={{ backgroundColor: label.color }}>
-          <label>
-            <input
-              id={label.id}
-              checked={labelIds.includes(label.id)}
-              onChange={() => handleCheckboxChange(label.id)}
-              inputId={label.id}
-              type="checkbox"
-            />
-            {label.title}</label>
+        return (
+          <div key={label.id} style={{ backgroundColor: label.color }}>
+            <label>
+              <input
+                id={label.id}
+                checked={labelIds.includes(label.id)}
+                onChange={() => handleCheckboxChange(label.id)}
+                inputId={label.id}
+                type="checkbox"
+              />
+              {label.title}</label>
 
-          <button>edit</button>
-        </div>
-      )
-    })}
+            <button>edit</button>
+          </div>
+        )
+      })}
 
-
-    {!isAdding && <button onClick={() => seIsAdding(!isAdding)}>add Label</button>}
-    {isAdding &&
-      <form onSubmit={saveLabel}>
-        <input
-          type="text"
-          name="title"
-          value={newLabel.title}
-          onChange={onAddLabel} />
-      </form>
-    }
-
-  </div>
+      {!isAdding && (
+        <button onClick={() => seIsAdding(!isAdding)}>add Label</button>
+      )}
+      {isAdding && (
+        <form onSubmit={saveLabel}>
+          <input
+            type="text"
+            name="title"
+            value={newLabel.title}
+            onChange={onAddLabel}
+          />
+        </form>
+      )}
+    </div>
+  )
 }

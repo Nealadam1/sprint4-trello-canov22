@@ -51,8 +51,12 @@ export function boardReducer(state = initialState, action) {
       break
     }
     case UPDATE_CARD: {
-      const groupIdx = state.board.groups.findIndex(group => group.id === state.group.id)
-      const cardIdx = state.board.groups[groupIdx].cards.findIndex(card => card.id === state.card.id)
+      const groupIdx = state.board.groups.findIndex(
+        (group) => group.id === state.group.id
+      )
+      const cardIdx = state.board.groups[groupIdx].cards.findIndex(
+        (card) => card.id === state.card.id
+      )
       const newBoard = {
         ...state.board,
         groups: [
@@ -62,12 +66,14 @@ export function boardReducer(state = initialState, action) {
             cards: [
               ...state.board.groups[groupIdx].cards.slice(0, cardIdx),
               action.card,
-              ...state.board.groups[groupIdx].cards.slice(cardIdx + 1)
-            ]
+              ...state.board.groups[groupIdx].cards.slice(cardIdx + 1),
+            ],
           },
-          ...state.board.groups.slice(groupIdx + 1)
-        ]
+          ...state.board.groups.slice(groupIdx + 1),
+        ],
       }
+      console.log(newBoard)
+
       newState = { ...state, board: newBoard }
       break
     }
