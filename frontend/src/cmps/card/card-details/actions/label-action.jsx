@@ -16,7 +16,10 @@ export function LabelAction({ card }) {
   const [newLabel, setNewLabel] = useState(boardService.getEmptyLabel())
   const [labelIds, setLabelIds] = useState(card.labelIds)
   const [currCard, setCurrCard] = useState(card)
-  const [isAdding, seIsAdding] = useState(false)
+  const [isAdding, setIsAdding] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [editLabelId, setEditLabelId] = useState(null)
+  const [changeLabel, setChangeLabel] = useState(boardService.getEmptyLabel())
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -46,18 +49,37 @@ export function LabelAction({ card }) {
 
   function saveLabel(ev) {
     ev.stopPropagation()
-    seIsAdding(!isAdding)
-    addLabel(newLabel)
-    saveLabelToBoard(newLabel, board)
-    setNewLabel(boardService.getEmptyLabel())
+    // setIsAdding(!isAdding)
+    if (isAdding) {
+      addLabel(newLabel)
+      setIsAdding(false)
+      saveLabelToBoard(newLabel, board)
+      setNewLabel(boardService.getEmptyLabel())
+    }
+
+    if (isEditing) {
+      console.log('editing');
+      setIsEditing(false)
+      saveLabelToBoard(changeLabel, board)
+      console.log(changeLabel);
+    }
   }
 
-  function onAddLabel(ev) {
-    const { target } = ev
+  function onAddLabel({ target }) {
     const { value, name } = target
 
     // console.log(value);
     setNewLabel({ ...newLabel, [name]: value })
+  }
+
+  function editLabel({ target }) {
+    const { value, name } = target
+    // console.log(labelId);
+    const editLabel = board.labels.find(label => label.id === editLabelId)
+    setChangeLabel(({ ...editLabel, [name]: value }))
+    console.log(changeLabel);
+    // setChangeLabel(prevState => ({ ...prevState, [name]: value }))
+    // setIsAdding(!isAdding)
   }
 
   // console.log(newLabel);
@@ -83,21 +105,34 @@ export function LabelAction({ card }) {
               />
               {label.title}</label>
 
-            <button>edit</button>
+            <button onClick={(ev) => {
+              setIsEditing(!isEditing)
+              setEditLabelId(label.id)
+            }}>edit</button>
           </div>
         )
       })}
 
-      {!isAdding && (
-        <button onClick={() => seIsAdding(!isAdding)}>add Label</button>
+      {(!isAdding && !isEditing) && (
+        <button onClick={() => setIsAdding(!isAdding)}>add Label</button>
       )}
-      {isAdding && (
+      {(isAdding && !isEditing) && (
         <form onSubmit={saveLabel}>
           <input
             type="text"
             name="title"
             value={newLabel.title}
             onChange={onAddLabel}
+          />
+        </form>
+      )}
+      {isEditing && (
+        <form onSubmit={saveLabel}>
+          <input
+            type="text"
+            name="title"
+            value={changeLabel.title}
+            onChange={editLabel}
           />
         </form>
       )}
