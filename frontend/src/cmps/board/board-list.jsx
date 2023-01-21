@@ -123,8 +123,8 @@ export function BoardList({ boards }) {
             <Link to={`/board/${board._id}`}>
               <BoardPreview board={board} />
 
-              <button onClick={(ev) => onOpenSettings(ev, board)}>
-                <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
+              <button onClick={(ev) => onArchiveBoard(ev, board)}>
+                {<BsArchive />}
               </button>
               <button onClick={(ev) => starBoard(ev, board)}>
                 <FontAwesomeIcon
