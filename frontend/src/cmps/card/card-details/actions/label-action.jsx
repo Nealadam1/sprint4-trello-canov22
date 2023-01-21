@@ -73,14 +73,17 @@ export function LabelAction({ card }) {
 
         return (
           <div key={label.id} style={{ backgroundColor: label.color }}>
-            <input
-              id={label.id}
-              checked={labelIds.includes(label.id)}
-              onClick={() => handleCheckboxChange(label.id)}
-              type="checkbox"
-            />
+            <label>
+              <input
+                id={label.id}
+                checked={labelIds.includes(label.id)}
+                onChange={() => handleCheckboxChange(label.id)}
+                inputId={label.id}
+                type="checkbox"
+              />
+              {label.title}</label>
 
-            <label htmlFor={label.id}>{label.title}</label>
+            <button>edit</button>
           </div>
         )
       })}

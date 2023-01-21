@@ -1,4 +1,7 @@
 .card-checklists {
+  h3 {
+    font-size: $card-details-header;
+  }
   .checklist-title {
     display: flex;
     justify-content: space-between;
@@ -16,6 +19,15 @@
         background-color: #091e4214;
       }
     }
+    .todo-btns {
+      padding-left: 2em;
+    }
+
+    .todo-input {
+      margin-left: 2.7em;
+      margin-top: 0.5em;
+    }
+
     .checklist-todo {
       list-style: none;
       &:hover {
@@ -24,6 +36,15 @@
       label {
         padding-left: 1rem;
         cursor: pointer;
+      }
+      .todo-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .delete-todo-btn {
+        height: auto;
+        margin: 0;
       }
     }
 

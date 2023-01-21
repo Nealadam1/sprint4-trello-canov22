@@ -46,6 +46,14 @@
   }
 
   .card-description {
+    h3 {
+      font-size: $card-details-header;
+      font-family: $trello-font;
+      display: flex;
+      i {
+        padding-right: 0.7em;
+      }
+    }
     .cancel-desc-btn {
       background: transparent;
       &:hover {
@@ -60,12 +68,23 @@
     .members-span {
       font-size: 12px;
       font-weight: 600;
-      font-family: "Open Sans";
+      font-family: $trello-font;
       color: #5e6c84;
     }
   }
 
   .card-comments {
+    .card-comments-title {
+      display: flex;
+      align-items: flex-end;
+      h3 {
+        font-size: $card-details-header;
+        font-family: $trello-font;
+      }
+      .comments-icon {
+        padding-right: 0.7em;
+      }
+    }
     .member-image {
       height: em(28px);
       border-radius: 25em;
@@ -85,7 +104,10 @@
       background-color: #091e420a;
       margin-top: 8px;
       text-align: start;
-      width: 100%;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      color: $clr7;
       &:hover {
         background-color: #091e4214;
       }
@@ -97,7 +119,9 @@
     padding: em(20px);
     grid-area: content;
     .card-title {
-      font-size: rem(20px);
+      font-size: $card-details-header;
+      font-family: $trello-font;
+
       .card-icon-title {
         padding-right: 0.7em;
       }

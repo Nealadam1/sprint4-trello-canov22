@@ -123,7 +123,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
         <Droppable droppableId="groups" direction="horizontal" type="column">
           {(provided) => (
             <div
-              className="test"
+              className="dnd-container"
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -132,7 +132,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
                   <Draggable key={group.id} draggableId={group.id} index={idx}>
                     {(provided) => (
                       <div
-                        className="hello"
+                        className="scroll-container"
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                       >

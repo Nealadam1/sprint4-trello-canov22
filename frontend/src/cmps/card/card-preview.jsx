@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { LabelPreview } from "./card-preview/label-preview"
 import { MemberPreview } from "./card-preview/member-preview"
+import { IoMdCheckboxOutline } from "react-icons/io"
 
 export function CardPreview({ card }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -19,6 +20,22 @@ export function CardPreview({ card }) {
     setCurrMembers(cardMembers)
   }
 
+  function completedTodos(checklists) {
+    let completed = 0
+    checklists.forEach((checklist) => {
+      completed += checklist.todos.filter((todo) => todo.isDone).length
+    })
+    return completed
+  }
+
+  function totalTodos(checklists) {
+    let total = 0
+    checklists.forEach((checklist) => {
+      total += checklist.todos.length
+    })
+    return total
+  }
+
   return (
     <div className="card-preview">
       {card?.style?.bgColor ? (
@@ -31,7 +48,19 @@ export function CardPreview({ card }) {
       <div className="card-info">
         {card?.labelIds && <LabelPreview labels={card.labelIds} />}
         <p>{card.title}</p>
-        <MemberPreview members={currMembers} />
+        <div className="card-details-preview">
+          {card.checklists ? (
+            <div className="card-checklist">
+              <span className="todo-checkbox-preview">
+                <IoMdCheckboxOutline />
+              </span>
+              <span className="todos-preview">
+                {completedTodos(card.checklists)}/{totalTodos(card.checklists)}
+              </span>
+            </div>
+          ) : null}
+          <MemberPreview members={currMembers} />
+        </div>
       </div>
     </div>
   )

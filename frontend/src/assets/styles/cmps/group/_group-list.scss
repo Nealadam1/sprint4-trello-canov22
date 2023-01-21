@@ -8,12 +8,12 @@
   overflow-y: hidden;
   height: 100%;
 
-  .test {
+  .dnd-container {
     display: flex;
     list-style: none;
     gap: 0.5rem;
 
-    .hello {
+    .scroll-container {
       overflow-y: overlay;
       overflow-y: auto;
       // height: 100%;

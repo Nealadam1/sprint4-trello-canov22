@@ -13,16 +13,4 @@ export function saveLabelToBoard(currLabel, board) {
         console.log(board.labels);
         updateBoard(board)
     }
-
-    // board.labels.map(label => {
-
-    //     if (currLabel.id === label.id) {
-    //         console.log('label exists', label);
-
-    //     } else {
-    //         console.log('new label', currLabel);
-
-    //     }
-    // })
-    // console.log(board.labels);
 }
