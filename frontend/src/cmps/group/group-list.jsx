@@ -145,7 +145,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
                             className="delete-group-btn"
                             onClick={() => onDeleteGroup(group.id)}
                           >
-                            X
+                            <CgClose />
                           </button>
                           <GroupPreview
                             setGroupTitleToInput={setGroupTitleToInput}

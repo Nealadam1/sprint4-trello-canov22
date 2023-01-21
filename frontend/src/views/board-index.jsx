@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { BoardList } from "../cmps/board/board-list"
 import { BoardSearch } from "../cmps/board/board-search"
+import { SideBar } from "../cmps/side-bar"
 import { boardService } from "../services/board.service"
 import { loadBoards, setBoard } from "../store/actions/board.action"
 
@@ -28,14 +29,12 @@ export function BoardIndex() {
   return (
     <main className="board-index">
       <section className="boards-list">
-
         <BoardSearch onSetSearch={setSearch} />
 
-        
         <BoardList boards={boards} />
       </section>
 
-      <div className="side-bar"></div>
+      <div className="side-bar">{/* <SideBar /> */}</div>
     </main>
   )
 }

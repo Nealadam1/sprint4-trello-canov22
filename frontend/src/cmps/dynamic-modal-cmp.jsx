@@ -70,15 +70,19 @@ const DynamicModalPosition = (props) => {
   const modalRef = useRef(null)
   const [modalStyles, setModalStyles] = useState({
     position: "fixed",
-    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${buttonRef.offsetHeight*2
-      }px)`,
+    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${
+      buttonRef.offsetHeight * 2
+    }px)`,
     left: `calc(${buttonRef.getBoundingClientRect().left}px `,
-    transform: buttonRef.offsetHeight>80? `translate(${buttonRef.offsetWidth}px, ${buttonRef.offsetHeight}px)`:`translate(0, -${buttonRef.offsetHeight}px)`,
+    transform:
+      buttonRef.offsetHeight > 80
+        ? `translate(${buttonRef.offsetWidth}px, ${buttonRef.offsetHeight}px)`
+        : `translate(0, -${buttonRef.offsetHeight}px)`,
     width: "300px",
   })
   function handleClose(ev) {
     ev.stopPropagation()
-    
+
     if (ev.target === ev.currentTarget) {
       closeActionModal()
     }
@@ -91,8 +95,9 @@ const DynamicModalPosition = (props) => {
     ) {
       setModalStyles({
         ...modalStyles,
-        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight / 1.5
-          }px)`,
+        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${
+          modalRef.current.offsetHeight / 1.5
+        }px)`,
       })
     }
 
@@ -102,8 +107,9 @@ const DynamicModalPosition = (props) => {
     ) {
       setModalStyles({
         ...modalStyles,
-        left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth
-          }px)`,
+        left: `calc(${buttonRef.getBoundingClientRect().left}px - ${
+          modalRef.current.offsetWidth
+        }px)`,
       })
     }
     // if (modalRef.current && (modalRef.current.getBoundingClientRect().top < 0)) {
