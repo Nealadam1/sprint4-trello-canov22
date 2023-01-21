@@ -8,11 +8,13 @@
   gap: 15px;
 
   .favorite-list {
-    width: 100%;
+    margin: 0;
     padding: 0;
+    list-style: none;
     display: flex;
+    margin-top: 71px;
     flex-wrap: wrap;
-    margin-bottom: 60px;
+    gap: 15px;
   }
 
   li:last-child {

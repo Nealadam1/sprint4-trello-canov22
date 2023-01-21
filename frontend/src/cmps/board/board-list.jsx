@@ -95,7 +95,7 @@ export function BoardList({ boards }) {
       </ul>
 
       <h3>My boards</h3>
-      <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
+      <li className="list-item button1" ref={buttonRef} onClick={dynmOpenModal}>
         {isActionModal && (
           <DynamicActionModal
             buttonRef={buttonRef.current}
@@ -123,8 +123,8 @@ export function BoardList({ boards }) {
             <Link to={`/board/${board._id}`}>
               <BoardPreview board={board} />
 
-              <button onClick={(ev) => onArchiveBoard(ev, board)}>
-                {<BsArchive />}
+              <button onClick={(ev) => onOpenSettings(ev, board)}>
+                <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
               </button>
               <button onClick={(ev) => starBoard(ev, board)}>
                 <FontAwesomeIcon
