@@ -118,6 +118,16 @@
     padding: 0px rem(8px) rem(8px) rem(16px);
     padding: em(20px);
     grid-area: content;
+    .card-details-group-title {
+      margin: 0 0 0.6em;
+      font-size: 13px;
+      padding-left: 2.5em;
+      font-family: OpenSans-Regular;
+      color: #5e6c84;
+      span {
+        text-decoration: underline;
+      }
+    }
     .card-title {
       font-size: $card-details-header;
       font-family: $trello-font;

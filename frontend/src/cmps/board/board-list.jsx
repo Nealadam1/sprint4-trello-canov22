@@ -15,6 +15,8 @@ import { OpenActionModal } from "../../store/actions/board.action"
 import { boardService } from "../../services/board.service"
 
 export function BoardList({ boards }) {
+  const [isOpen, setIsOpen] = useState(false)
+
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
@@ -37,9 +39,9 @@ export function BoardList({ boards }) {
   }
 
   function onOpenSettings(ev, board) {
-    ev.stopPropagation()
     ev.preventDefault()
-    console.log(board)
+    ev.stopPropagation()
+    setIsOpen(!isOpen)
   }
 
   function getStarredBoard() {
@@ -55,7 +57,7 @@ export function BoardList({ boards }) {
   return (
     <ul className="board-list">
       <ul className="favorite-list">
-        {getStarredBoard().length? <h3>Favorites</h3> : ''}
+        {getStarredBoard().length ? <h3>Favorites</h3> : ""}
         {getStarredBoard().map((board) => {
           return (
             <li
@@ -88,17 +90,17 @@ export function BoardList({ boards }) {
       </ul>
 
       <h3>My boards</h3>
-            <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
-              {isActionModal && (
-                <DynamicActionModal
-                  buttonRef={buttonRef.current}
-                  type={"create-board"}
-                />
-              )}
-              <div>
-                <p>Create new board</p>
-              </div>
-            </li>
+      <li className="list-item" ref={buttonRef} onClick={dynmOpenModal}>
+        {isActionModal && (
+          <DynamicActionModal
+            buttonRef={buttonRef.current}
+            type={"create-board"}
+          />
+        )}
+        <div>
+          <p>Create new board</p>
+        </div>
+      </li>
       {boards.map((board) => {
         // console.log(board.style);
         return (
@@ -119,7 +121,6 @@ export function BoardList({ boards }) {
               <button onClick={(ev) => onOpenSettings(ev, board)}>
                 <FontAwesomeIcon className="btn-icon" icon={faEllipsis} />
               </button>
-
               <button onClick={(ev) => starBoard(ev, board)}>
                 <FontAwesomeIcon
                   className="btn-icon"
@@ -130,7 +131,6 @@ export function BoardList({ boards }) {
           </li>
         )
       })}
-
     </ul>
   )
 }
