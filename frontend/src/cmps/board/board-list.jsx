@@ -63,7 +63,7 @@ export function BoardList({ boards }) {
   return (
     <ul className="board-list">
       <ul className="favorite-list">
-        {getStarredBoard().length ? <h3>Favorites</h3> : ""}
+        {getStarredBoard().length? <h3>Starred Boards</h3> : ''}
         {getStarredBoard().map((board) => {
           return (
             <li
@@ -88,7 +88,7 @@ export function BoardList({ boards }) {
                     icon={board.isStarred ? faFullStar : faStar}
                   />
                 </button>
-                x
+                
               </Link>
             </li>
           )

@@ -35,10 +35,13 @@ export function ChecklistAction({ card, setCard }) {
         id="title"
         type="text"
         onChange={handleChange}
+        
+       
+        
       />
-      <button className="button" onClick={addChecklist}>
+      <div className="div" onClick={addChecklist}>
         Add
-      </button>
+      </div>
     </div>
   )
 }

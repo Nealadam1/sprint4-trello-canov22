@@ -12,8 +12,15 @@ export function saveLabelToBoard(currLabel, board) {
 
 
     if (editingLabel) {
-        console.log('exists')
+        // console.log('exists', editingLabel)
+        editingLabel = currLabel
+        // console.log('edited', editingLabel);
+        let replaceLabel = board.labels.findIndex(label => label.id === editingLabel.id)
+        // console.log(replaceLabel);
+        board.labels.splice(replaceLabel, 1, editingLabel)
 
+        console.log('changed', board.labels);
+        updateBoard(board)
     } else {
         console.log('dosent exists');
         // board.labels.push(currLabel)

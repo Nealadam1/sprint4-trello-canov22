@@ -77,8 +77,8 @@ function getEmptyLabel() {
   }
 }
 
-function createCard({ title, description }) {
-  return { title, description, id: utilService.makeId(), checklists: [] }
+function createCard({ title, description,style }) {
+  return { title, description,style, id: utilService.makeId(), checklists: [] }
 }
 
 function createGroup({ title }) {
