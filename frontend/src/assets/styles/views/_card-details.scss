@@ -35,18 +35,37 @@
       border-radius: 100%;
       width: em(28px);
     }
-    button{
+    button {
       margin-left: 3px;
       height: em(38px);
       border-radius: 100%;
       width: em(38px);
-      background-color:#caccce74;
+      background-color: #caccce74;
       transition: background-color 0.3s;
-      &:hover{
-        background-color:#caccced5;
+      &:hover {
+        background-color: #caccced5;
       }
     }
-    
+  }
+
+  .card-description {
+    .cancel-desc-btn {
+      background: transparent;
+      &:hover {
+        background-color: lighten(#caccced5, 10);
+      }
+    }
+  }
+
+  .card-detail-data {
+    padding-left: 2em;
+    padding-bottom: 2em;
+    .members-span {
+      font-size: 12px;
+      font-weight: 600;
+      font-family: "Open Sans";
+      color: #5e6c84;
+    }
   }
 
   .card-comments {
@@ -64,12 +83,15 @@
       width: em(28px);
     }
     .side-bar-btn {
-      width: 100%;
       padding: 6px 12px;
       height: 32px;
       background-color: #091e420a;
       margin-top: 8px;
       text-align: start;
+      width: 100%;
+      &:hover {
+        background-color: #091e4214;
+      }
     }
   }
 

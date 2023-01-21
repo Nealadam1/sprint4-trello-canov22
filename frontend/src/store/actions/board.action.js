@@ -122,12 +122,11 @@ export async function setCardToStoreRef(card) {
 }
 export async function updateCard(card) {
   try {
-    
     store.dispatch({
       type: UPDATE_CARD,
       card,
     })
-    const board=store.getState().boardModule.board
+    const board = store.getState().boardModule.board
     boardService.save(board)
   } catch (err) {
     console.log(err)

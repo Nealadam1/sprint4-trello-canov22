@@ -6,7 +6,11 @@ import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { closeCardDetail, getCardById, setCardToStoreRef } from "../store/actions/board.action"
+import {
+  closeCardDetail,
+  getCardById,
+  setCardToStoreRef,
+} from "../store/actions/board.action"
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
 
 import { CardDetailsSidebar } from "../cmps/card/card-details/card-details-sidebar"
@@ -83,21 +87,27 @@ export function CardDetails() {
                 </span>
                 {card?.title}
               </h3>
-              <p>In list <span>{store.getState().boardModule.group.title}</span></p>
+              <p>
+                In list <span>{store.getState().boardModule.group.title}</span>
+              </p>
               <div className="card-detail-data">
                 {card?.memberIds && (
-                  <CardMember setCard={setCard}members={card.memberIds} card={card} />
+                  <CardMember
+                    setCard={setCard}
+                    members={card.memberIds}
+                    card={card}
+                  />
                 )}
                 {card?.labelIds && <CardLabels cardLabels={card.labelIds} />}
               </div>
-              <div>
-                {card && (
-                  <CardDescription card={card} />
-                )}
-              </div>
+              <div>{card && <CardDescription card={card} />}</div>
               <div>
                 {card?.checklists && (
-                  <CardChecklists checklists={card.checklists} />
+                  <CardChecklists
+                    checklists={card.checklists}
+                    card={card}
+                    setCard={setCard}
+                  />
                 )}
               </div>
               <div>

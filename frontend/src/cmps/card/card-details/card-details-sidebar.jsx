@@ -74,6 +74,7 @@ export function CardDetailsSidebar({ card, setCard }) {
               card={card}
               buttonRef={buttonRef.current}
               type={"add-checklist"}
+              setCard={setCard}
             />
           )}
           <FontAwesomeIcon icon={faUser} />

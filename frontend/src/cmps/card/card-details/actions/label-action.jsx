@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { boardService } from "../../../../services/board.service";
-import { updateCard } from "../../../../store/actions/board.action";
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { boardService } from "../../../../services/board.service"
+import { updateCard } from "../../../../store/actions/board.action"
 
 export function LabelAction({ card }) {
   if (!card.labelIds) card.labelIds = []
 
   const labels = useSelector((storeState) => storeState.labelModule.labels)
-  const [checkedState, setCheckedState] = useState(new Array(labels.length).fill(false))
+  const [checkedState, setCheckedState] = useState(
+    new Array(labels.length).fill(false)
+  )
   const [labelIds, setLabelIds] = useState(card.labelIds)
   const [currCard, setCurrCard] = useState(card)
 
@@ -17,53 +19,44 @@ export function LabelAction({ card }) {
 
   function handleCheckboxChange(labelId) {
     setCurrCard({ ...card })
-    const idx = labels.findIndex(label => label.id === labelId);
-    setCheckedState(prevState => {
-      const newCheckedState = [...prevState];
-      newCheckedState[idx] = !newCheckedState[idx];
-      return newCheckedState;
-    });
+    const idx = labels.findIndex((label) => label.id === labelId)
+    setCheckedState((prevState) => {
+      const newCheckedState = [...prevState]
+      newCheckedState[idx] = !newCheckedState[idx]
+      return newCheckedState
+    })
     //update the labelIds array
-    setLabelIds(prevState => {
+    setLabelIds((prevState) => {
       if (prevState.includes(labelId)) {
-        card.labelIds = prevState.filter(id => id !== labelId)
+        card.labelIds = prevState.filter((id) => id !== labelId)
         updateCard(card)
-        return prevState.filter(id => id !== labelId)
+        return prevState.filter((id) => id !== labelId)
       } else {
         card.labelIds = [...prevState, labelId]
         updateCard(card)
         return [...prevState, labelId]
       }
-    });
+    })
   }
 
-  return <div>
-    {labels.map((label, idx) => {
-      console.log(label.id, idx);
-
-      return (
-        <div key={label.id} style={{ backgroundColor: label.color }}>
-          <input
-            id={label.id}
-            checked={labelIds?.includes(label.id)}
-            onClick={() => handleCheckboxChange(label.id)}
-            type="checkbox"
-          />
-
-          <label htmlFor={label.id}>{label.title}</label>
-        </div>
-      )
-    })}
-  </div>
+  return (
+    <div>
+      {labels.map((label, idx) => {
+        return (
+          <div key={label.id} style={{ backgroundColor: label.color }}>
+            <input
+              id={label.id}
+              checked={labelIds?.includes(label.id)}
+              onClick={() => handleCheckboxChange(label.id)}
+              type="checkbox"
+            />
+            <label htmlFor={label.id}>{label.title}</label>
+          </div>
+        )
+      })}
+    </div>
+  )
 }
-
-
-
-
-
-
-
-
 
 // import { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
@@ -108,8 +101,6 @@ export function LabelAction({ card }) {
 //   //   // // );
 
 //   //   // setCheckedState(updatedCheckedState);
-
-
 
 //   // }
 //   // console.log('card', checkedState);
