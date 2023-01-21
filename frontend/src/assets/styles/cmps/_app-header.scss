@@ -3,20 +3,20 @@
   padding: 9px;
   color: $clr6;
   font-weight: bold;
+  .logo{
+    font-family: Pacifico;
+  }
 
 
   a {
     color: $clr6;
     letter-spacing: 2px;
     padding-left: 34px;
+    text-decoration: none;
 
     background-color: initial;
 
     svg {}
-
-    .btn-icon {
-      margin-right: 4px;
-    }
 
     &:active {
       color: $clr6;

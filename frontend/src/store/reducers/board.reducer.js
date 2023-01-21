@@ -9,12 +9,14 @@ export const UNDO_REMOVE_BOARD = "UNDO_REMOVE_BOARD"
 export const SET_GROUP = "SET_GROUP"
 export const UPDATE_CARD = "UPDATE_CARD"
 export const SET_CARD = "SET_CARD"
+export const ADD_LABEL = "ADD_LABEL"
 
 const initialState = {
   boards: [],
   board: null,
   group: null,
   card: null,
+  label: null,
   lastRemovedBoard: null,
 }
 
