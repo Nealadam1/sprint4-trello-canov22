@@ -28,3 +28,10 @@ export function saveLabelToBoard(currLabel, board) {
         updateBoard(board)
     }
 }
+
+export function removeLabelFromBoard(labelId, board) {
+    let remIdx = board.labels.findIndex(label => labelId === label.id)
+    console.log(remIdx);
+    board.labels.splice(remIdx, 1)
+    updateBoard(board)
+}
