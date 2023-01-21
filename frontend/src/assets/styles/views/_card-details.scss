@@ -14,10 +14,7 @@
   min-width: em(685px);
   min-height: em(910px);
   background-color: #ebecf0;
-  position: absolute;
-  top: 42%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 100px auto;
   color: $clr7;
 
   .side-bar {

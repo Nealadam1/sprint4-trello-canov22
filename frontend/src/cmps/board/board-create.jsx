@@ -109,6 +109,7 @@ export function CreateBoard() {
           return errors
         }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log('test')
           onCreateBoard(values.title)
           setSubmitting(false)
         }}
@@ -118,14 +119,14 @@ export function CreateBoard() {
             <h5>Board Title</h5>
             <Field type="text" name="title" placeholder="Enter a title" />
             <ErrorMessage name="title" component="div" className="error" />
-            <button
+            <button 
               id="createbtn"
               className="board-create-button"
               type="submit"
               disabled={isSubmitting}
             >
               Create
-            </button>
+            </button >
           </Form>
         )}
       </Formik>

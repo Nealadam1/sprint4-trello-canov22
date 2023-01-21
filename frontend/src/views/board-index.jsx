@@ -39,7 +39,10 @@ export function BoardIndex() {
 
 
       <section className="boards-list">
+
         <BoardSearch onSetSearch={setSearch} />
+
+        
         <BoardList boards={boards} />
       </section>
 
