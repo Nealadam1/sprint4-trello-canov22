@@ -45,6 +45,28 @@
     }
   }
 
+  .members-list {
+    .members-list-title {
+      text-align: center;
+      color: $clr7;
+    }
+    .sep-line {
+      border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+      width: 90%;
+      margin-bottom: 1em;
+    }
+    .members-preview {
+      list-style: none;
+      padding-left: 1em;
+      li {
+        cursor: pointer;
+        img {
+          margin-right: 0.5em;
+        }
+      }
+    }
+  }
+
   .card-description {
     textarea {
       font-family: OpenSans-Regular;

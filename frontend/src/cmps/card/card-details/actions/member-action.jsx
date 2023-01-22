@@ -26,7 +26,9 @@ export function MemberAction({ card, setCard }) {
 
   return (
     <div className="members-list">
-      <ul>
+      <p className="members-list-title">Members</p>
+      <div className="sep-line"></div>
+      <ul className="members-preview">
         {board.members?.map((member, idx) => (
           <li key={idx} onClick={() => onAddMember(member._id)}>
             <img className="member-image" src={member.imgUrl} />
