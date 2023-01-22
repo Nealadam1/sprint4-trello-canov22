@@ -8,6 +8,7 @@ export const utilService = {
   debounce,
   darken,
   changeContrast,
+  handleDragEnd,
   lightenColor,
 }
 
@@ -129,6 +130,48 @@ function changeContrast(hex) {
   hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
 
   return hex
+}
+
+function handleDragEnd(newBoard, destination, source, type) {
+  const newBoardGroups = Array.from(newBoard.groups) // breaks pointer so we don't change the final object we send
+
+  // reorder groups in the group list
+  if (type === 'group') {
+    // relocating the group in the groups array and sends the new board with updated groups array
+    newBoardGroups.splice(source.index, 1)
+    newBoardGroups.splice(destination.index, 0, newBoard.groups[source.index])
+    newBoard.groups = newBoardGroups
+    return newBoard
+
+    // reorder tasks across the groups
+  } else if (type === 'task') {
+    const prevGroupIdx = newBoardGroups.findIndex((group) => group.id === source.droppableId)
+    const newGroupIdx = newBoardGroups.findIndex((group) => group.id === destination.droppableId)
+    const prevGroup = newBoardGroups[prevGroupIdx]
+    const newGroup = newBoardGroups[newGroupIdx]
+
+    // in case relocating task in the same group
+    if (prevGroupIdx === newGroupIdx) {
+      // in case the new task index is smaller
+      if (destination.index < source.index) {
+        newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+        prevGroup.tasks.splice(source.index + 1, 1)
+
+        // in case the new task index is bigger
+      } else {
+        newGroup.tasks.splice(destination.index + 1, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+        prevGroup.tasks.splice(source.index, 1)
+      }
+      // in case new task location is on different group
+    } else {
+      newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+      prevGroup.tasks.splice(source.index, 1)
+    }
+
+    newBoard.groups[newGroupIdx] = newGroup
+    newBoard.groups[prevGroupIdx] = prevGroup
+    return newBoard
+  }
 }
 
 function formatTime(sentAt) {

@@ -99,7 +99,7 @@ export function CardDetails() {
                     card={card}
                   />
                 )}
-                {card?.labelIds && (
+                {card.labelIds.length > 0 && (
                   <div>
                     <span className="card-details-labels-title">Labels</span>
                     <CardLabels cardLabels={card.labelIds} />
