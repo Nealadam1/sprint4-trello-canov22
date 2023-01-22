@@ -72,6 +72,9 @@
 
       .card-info {
         margin: 0 0.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .member-image {
@@ -87,6 +90,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 3px;
+        margin-top: 5px;
       }
 
       .card-label {
@@ -113,21 +117,24 @@
 
       p {
         margin: 0;
-        position: relative;
-        top: 6px;
+        // position: relative;
+        // top: 6px;
         height: 100%;
         color: $clr7;
       }
     }
   }
 }
+
 .card-checklist {
-  padding-left: 0.7em;
+  padding-left: 0.4em;
   display: flex;
+
   .todos-preview {
     padding-left: 0.4em;
     color: $clr14;
   }
+
   .todo-checkbox-preview {
     display: flex;
     align-items: center;
@@ -139,6 +146,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-top: 3px;
 }
 
 .add-card-container {
