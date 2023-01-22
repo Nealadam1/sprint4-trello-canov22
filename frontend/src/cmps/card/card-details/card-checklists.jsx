@@ -8,6 +8,11 @@ import { IoMdCheckboxOutline } from "react-icons/io"
 export function CardChecklists({ checklists, card, setCard }) {
   const [formData, setFormData] = useState({})
   const [todoToInput, setTodoToInput] = useState({})
+  const [isHovered, setIsHovered] = useState({})
+  const [hoveredTodoId, setHoveredTodoId] = useState(null)
+
+  console.log(isHovered)
+
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -89,7 +94,7 @@ export function CardChecklists({ checklists, card, setCard }) {
               <IoMdCheckboxOutline /> {checklist.title}
             </h3>
             <button
-              className="grey-button"
+              className="grey-button delete-checklist-btn"
               onClick={() => onDeleteChecklist(checklist.id)}
             >
               Delete
@@ -108,7 +113,12 @@ export function CardChecklists({ checklists, card, setCard }) {
           </div>
           {checklist?.todos?.map((todo) => (
             <li className="checklist-todo" key={todo.id}>
-              <div className="todo-container">
+              <div
+                key={todo.id}
+                onMouseEnter={() => setHoveredTodoId(todo.id)}
+                onMouseLeave={() => setHoveredTodoId(null)}
+                className="todo-container"
+              >
                 <div className="todo-display">
                   <input
                     type="checkbox"
@@ -116,15 +126,26 @@ export function CardChecklists({ checklists, card, setCard }) {
                     checked={todo.isDone}
                     onChange={() => handleTodoCheck(checklist.id, todo.id)}
                   />
-                  <label htmlFor={`todo-${todo.id}`}>{todo.title}</label>
+                  <label
+                    className={
+                      todo.isDone
+                        ? "todo-label done-todo"
+                        : "todo-label active-todo"
+                    }
+                    htmlFor={`todo-${todo.id}`}
+                  >
+                    {todo.title}
+                  </label>
                 </div>
                 <div className="todo-action">
-                  <button
-                    onClick={() => handleDeleteTodo(todo.id)}
-                    className="delete-todo-btn grey-button"
-                  >
-                    Delete
-                  </button>
+                  {hoveredTodoId === todo.id && (
+                    <button
+                      className="grey-button delete-todo-btn"
+                      onClick={() => handleDeleteTodo(todo.id)}
+                    >
+                      Delete
+                    </button>
+                  )}
                 </div>
               </div>
             </li>

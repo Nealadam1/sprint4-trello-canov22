@@ -15,15 +15,21 @@
     display: flex;
     justify-content: space-between;
   }
+  .delete-checklist-btn {
+    margin: 0 0 0.6em;
+  }
 
   .checklist {
     padding: 0;
+    margin: 2.5em 0;
     .add-checklist-todo-btn {
       padding: 6px 12px;
       height: 32px;
       background-color: #091e420a;
       margin-top: 8px;
       text-align: start;
+      margin-left: 1.95em;
+
       &:hover {
         background-color: #091e4214;
       }
@@ -37,8 +43,17 @@
       margin-top: 0.5em;
     }
 
+    .done-todo {
+      text-decoration: line-through;
+    }
+
+    .todo-label {
+      font-size: 14px;
+    }
+
     .checklist-todo {
       list-style: none;
+      margin-bottom: 0.4em;
       &:hover {
         background-color: lighten(#091e4214, 65);
       }
@@ -58,13 +73,21 @@
     }
 
     .container-prec {
-      padding-bottom: 1em;
+      display: flex;
+      align-items: center;
+      padding-bottom: 0.5em;
+    }
+    span {
+      font-size: 11px;
+      margin-right: 1em;
+      margin-left: 0.2em;
     }
     .progress-bar-container {
       height: 8px;
       background-color: #ccc;
       position: relative;
       border-radius: 2em;
+      width: 100%;
       .progress-bar {
         border-radius: 2em;
         position: absolute;

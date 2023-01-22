@@ -40,6 +40,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
 
 
 
+
   useEffect(() => {
     if (groupToInput) {
       inputRef.current.focus()

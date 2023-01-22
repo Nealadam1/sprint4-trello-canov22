@@ -1,7 +1,12 @@
 .card-comments {
+  .member-image {
+    position: relative;
+    left: -1.15%;
+  }
   .user-comment-section {
     padding: 0;
     list-style: none;
+
     .user-comment-fullname {
       padding-left: 0.5em;
       font-size: 14px;
