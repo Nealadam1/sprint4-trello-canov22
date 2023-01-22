@@ -18,6 +18,7 @@ import {
 } from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
 import { useRef } from "react"
+import { ADD_CARD, eventBus } from "../../services/event-bus.service"
 
 export function CardList({ group }) {
   const { boardId, cardId } = useParams()
@@ -28,6 +29,11 @@ export function CardList({ group }) {
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   const inputRef = useRef(null)
+  useEffect(()=>{
+    eventBus.on(ADD_CARD,()=>{
+      setCardToInput(true)
+    })
+  })
 
   useEffect(() => {
     onEndDrag()

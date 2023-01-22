@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
-import { setLabels } from "../../store/actions/board.action"
+import { OpenActionModal, setLabels } from "../../store/actions/board.action"
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { GroupPreview } from "./group-preview"
 import { Outlet, useParams } from "react-router"
 import { CgClose } from "react-icons/cg"
 import { useRef } from "react"
+import { DynamicActionModal } from "../dynamic-modal-cmp"
+import { GroupActions } from "./group-actions"
 
 export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const { cardId } = useParams()
@@ -20,8 +22,19 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const [groupTitleToInput, setGroupTitleToInput] = useState(false)
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
-
+    const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const inputRef = useRef(null)
+
+  function handleEditButtonClick(groupId){
+    if(openEditGroupId===groupId){
+      setOpenEditGroupId(null)
+    } else{
+      setOpenEditGroupId(groupId)
+    }
+  }
+  
+
+
 
   useEffect(() => {
     if (groupToInput) {
@@ -141,11 +154,12 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
                           {...provided.dragHandleProps}
                         >
                           <button
-                            className="delete-group-btn"
-                            onClick={() => onDeleteGroup(group.id)}
+                            className="group-actions-btn"
+                            onClick={()=>handleEditButtonClick(group.id)}
                           >
                             <CgClose />
                           </button>
+                          {openEditGroupId===group.id&&<GroupActions handleEditButtonClick={handleEditButtonClick} group={group}/>}
                           <GroupPreview
                             setGroupTitleToInput={setGroupTitleToInput}
                             groupTitleToInput={groupTitleToInput}
