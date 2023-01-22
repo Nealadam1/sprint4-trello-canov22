@@ -21,7 +21,7 @@
 
     .group {
       // background-color: $clr19;
-      width: rem(274px);
+      width: rem(280px);
       position: relative;
       max-height: fit-content;
       display: flex;
@@ -76,6 +76,7 @@
     color: #6b778c;
     background: inherit;
     margin-top: 4px;
+
     &:hover {
       color: $clr7;
     }
@@ -91,6 +92,7 @@
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.2em;
+
     &:hover {
       background-color: $clr4;
     }
@@ -110,6 +112,7 @@
     background-color: opacify($clr18, 0.1);
   }
 }
+
 .group-preview {
   border-radius: $edge-round;
   padding: 1em 0.5em 1em 0.5em;
