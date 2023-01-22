@@ -23,8 +23,15 @@ export function saveLabelToBoard(currLabel, board) {
         updateBoard(board)
     } else {
         console.log('dosent exists');
-        // board.labels.push(currLabel)
+        board.labels.push(currLabel)
         console.log(board.labels);
-        // updateBoard(board)
+        updateBoard(board)
     }
+}
+
+export function removeLabelFromBoard(labelId, board) {
+    let remIdx = board.labels.findIndex(label => labelId === label.id)
+    console.log(remIdx);
+    board.labels.splice(remIdx, 1)
+    updateBoard(board)
 }

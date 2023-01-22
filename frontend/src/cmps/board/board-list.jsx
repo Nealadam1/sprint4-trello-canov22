@@ -43,6 +43,7 @@ export function BoardList({ boards }) {
     ev.preventDefault()
     ev.stopPropagation()
     board.archivedAt = Date.now()
+    board.isStarred=false
     setBoard(board)
   }
 
