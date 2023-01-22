@@ -68,6 +68,7 @@ export function closeActionModal() {
 export function OpenActionModal(ev, modalType) {
   ev.preventDefault()
   ev.stopPropagation()
+  
   store.dispatch({
     type: "MODAL_OPEN",
     modalType,
