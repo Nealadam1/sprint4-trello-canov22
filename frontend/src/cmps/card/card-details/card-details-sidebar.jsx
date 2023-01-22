@@ -29,7 +29,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-members")
-              : closeActionModal
+              : null
           }
         >
           {isActionModal && (
@@ -53,7 +53,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-labels")
-              : closeActionModal
+              : null
           }
         >
           {isActionModal && (
@@ -76,8 +76,9 @@ export function CardDetailsSidebar({ card, setCard }) {
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-checklist")
-              : closeActionModal
+              : null
           }
+          
         >
           {isActionModal && (
             <DynamicActionModal
@@ -100,7 +101,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-cover")
-              : closeActionModal
+              : null
           }
         >
           {isActionModal && (
