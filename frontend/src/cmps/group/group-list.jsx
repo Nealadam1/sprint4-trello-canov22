@@ -101,6 +101,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
                   {(provided, snapshot) => (
                     <div className="scroll-container">
                       <div className="group" key={group.id}>
+
                         <GroupPreview
                           provided={provided}
                           idx={idx}
@@ -110,8 +111,11 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
                           updateGroupTitle={updateGroupTitle}
                           cards={group.cards}
                           group={group}
+                          isDragging={snapshot.isDragging}
                           groups={groups} />
+
                         {provided.placeholder}
+
                       </div>
                     </div>
 
