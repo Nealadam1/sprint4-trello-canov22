@@ -15,6 +15,12 @@ export function GroupActions({group, handleEditButtonClick}){
             document.removeEventListener('click', handleClickOutside)
         }
       }
+
+      function handleEmitAddCard(ev){
+        eventBus.emit('add-card',group.id)
+        handleEditButtonClick(ev,group.id)
+
+      }
       
 
     return <section className="group-actions-modal">
@@ -23,7 +29,7 @@ export function GroupActions({group, handleEditButtonClick}){
             <i onClick={(ev)=>handleEditButtonClick(ev,group.id)}><CgClose /></i>
         </header>
         <ul className="group-actions">
-            <li onClick={()=>eventBus.emit('add-card',group.id)}>
+            <li onClick={(ev)=>handleEmitAddCard(ev)}>
                 Add card...
             </li>
             <li>

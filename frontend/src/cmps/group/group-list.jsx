@@ -21,7 +21,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
   const [groupTitleToInput, setGroupTitleToInput] = useState(false)
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
-  const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -34,16 +33,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
     onSetLabels()
   }, [])
 
-  function handleEditButtonClick(ev, groupId) {
-    if (openEditGroupId === groupId) {
-      ev.stopPropagation()
-      setOpenEditGroupId(null)
-    } else {
-      console.log(ev)
-      ev.stopPropagation()
-      setOpenEditGroupId(groupId)
-    }
-  }
+
 
   function updateGroupTitle(group, title) {
     const updatedGroup = { ...group, title }
@@ -97,17 +87,10 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
         className="dnd-container"
       >
         {groups &&
-          groups.map((group, idx) => (
-            <div className="scroll-container">
+          groups.map((group) => (
+            <div className="scroll-container" key={group.id}>
 
-              <div className="group" key={group.id}>
-
-                <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
-                  <BsThreeDots />
-                </button>
-
-                {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
-
+              <div className="group">
                 <GroupPreview
                   setGroupTitleToInput={setGroupTitleToInput}
                   groupTitleToInput={groupTitleToInput}
