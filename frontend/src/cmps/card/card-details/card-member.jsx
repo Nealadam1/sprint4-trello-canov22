@@ -39,7 +39,7 @@ export function CardMember({ members, card, setCard }) {
           onClick={
             !isActionModal
               ? (ev) => OpenActionModal(ev, "add-members2")
-              : closeActionModal
+              : null
           }
         >
           {isActionModal && (
