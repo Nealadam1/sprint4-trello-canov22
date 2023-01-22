@@ -108,6 +108,16 @@
   }
 }
 
+.add-group-list-btn {
+  .add-group-title-icon {
+    margin-left: 0.5em;
+    font-size: 16px;
+  }
+  .add-group-title-text {
+    margin-left: 0.3em;
+  }
+}
+
 .add-group-btn {
   height: 2.5rem;
   width: 17rem;
@@ -116,6 +126,8 @@
   background-color: $clr18;
   min-width: fit-content;
   transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+  display: flex;
+  align-items: center;
 
   &:hover {
     background-color: opacify($clr18, 0.1);
@@ -124,7 +136,7 @@
 
 .group-preview {
   border-radius: $edge-round;
-  padding: 1em 0.5em 1em 0.5em;
+  padding: 1em 0.5em 0.5em 0.5em;
   font-size: 14px;
   background-color: $clr19;
   box-shadow: (0 1px 0 $clr17);
@@ -137,7 +149,7 @@
   }
 
   h4 {
-    color: $clr7;
+    color: #253e68;
     font-family: "Open Sans", sans-serif;
     margin-left: 9px;
   }

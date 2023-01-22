@@ -3,10 +3,9 @@ import { useEffect } from "react"
 import { Link, Outlet, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPen, faPlus, faX } from "@fortawesome/free-solid-svg-icons"
-import { RxPencil1 } from "react-icons/rx"
+import { HiOutlinePencil } from "react-icons/hi"
 import { CgClose } from "react-icons/cg"
+import { AiOutlinePlus } from "react-icons/ai"
 
 import {
   addCard,
@@ -153,7 +152,7 @@ export function CardList({ group }) {
                                   onDeleteCard(event, card.id)
                                 }
                               >
-                                <RxPencil1 />
+                                <HiOutlinePencil />
                                 {/* <FontAwesomeIcon icon={faPen} /> */}
                               </button>
                             </div>
@@ -195,7 +194,10 @@ export function CardList({ group }) {
           </form>
         ) : (
           <button className="add-card" onClick={() => setCardToInput(true)}>
-            <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add a card
+            <span className="add-card-icon">
+              <AiOutlinePlus />
+              <span className="add-card-text"> Add a card</span>
+            </span>
           </button>
         )}
       </div>

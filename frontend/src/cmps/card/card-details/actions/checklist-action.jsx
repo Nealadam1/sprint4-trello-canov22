@@ -38,7 +38,7 @@ export function ChecklistAction({ card, setCard }) {
         type="text"
         onChange={handleChange}
       />
-      <div className="button" onClick={addChecklist}>
+      <div className="blue-button" onClick={addChecklist}>
         Add
       </div>
     </div>
