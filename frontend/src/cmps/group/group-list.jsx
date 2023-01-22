@@ -26,7 +26,7 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const inputRef = useRef(null)
 
-  function handleEditButtonClick(ev,groupId) {
+  function handleEditButtonClick(ev, groupId) {
     if (openEditGroupId === groupId) {
       ev.stopPropagation()
       setOpenEditGroupId(null)
@@ -36,10 +36,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
       setOpenEditGroupId(groupId)
     }
   }
-
-
-
-
 
   useEffect(() => {
     if (groupToInput) {
@@ -160,11 +156,18 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
                         >
                           <button
                             className="group-actions-btn "
-                            onClick={(ev) => handleEditButtonClick(ev,group.id)}
+                            onClick={(ev) =>
+                              handleEditButtonClick(ev, group.id)
+                            }
                           >
                             <BsThreeDots />
                           </button>
-                          {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
+                          {openEditGroupId === group.id && (
+                            <GroupActions
+                              handleEditButtonClick={handleEditButtonClick}
+                              group={group}
+                            />
+                          )}
                           <GroupPreview
                             setGroupTitleToInput={setGroupTitleToInput}
                             groupTitleToInput={groupTitleToInput}
