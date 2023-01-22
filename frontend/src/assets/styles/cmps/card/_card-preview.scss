@@ -56,7 +56,6 @@
       overflow: hidden;
       overflow-wrap: break-word;
       white-space: break-spaces;
-      padding-bottom: 10px;
 
       header {
         width: 100%;
@@ -151,7 +150,8 @@
   align-items: flex-end;
   margin-top: 3px;
   width: 100%;
-  align-items: center;
+  margin-bottom: 7px;
+  max-height: 24px;
 }
 
 .add-card-container {
