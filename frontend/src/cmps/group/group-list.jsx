@@ -11,6 +11,7 @@ import { GroupPreview } from "./group-preview"
 import { Outlet, useParams } from "react-router"
 import { CgClose } from "react-icons/cg"
 import { useRef } from "react"
+import { AiOutlinePlus } from "react-icons/ai"
 
 export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const { cardId } = useParams()
@@ -20,7 +21,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const [groupTitleToInput, setGroupTitleToInput] = useState(false)
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
-
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -195,13 +195,17 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
               </div>
             </form>
           ) : (
-            <button
-              className="add-group-btn"
-              onClick={() => setGroupToInput(true)}
-            >
-              <FontAwesomeIcon className="btn-icon" icon={faPlus} /> Add another
-              list
-            </button>
+            <div className="add-group-list-btn">
+              <button
+                className="add-group-btn"
+                onClick={() => setGroupToInput(true)}
+              >
+                <span className="add-group-title-icon">
+                  <AiOutlinePlus />
+                </span>
+                <span className="add-group-title-text">Add another list</span>
+              </button>
+            </div>
           )}
         </div>
         {cardId ? <Outlet /> : null}

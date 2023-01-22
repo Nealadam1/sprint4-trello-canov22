@@ -89,7 +89,7 @@ export function CardChecklists({ checklists, card, setCard }) {
               <IoMdCheckboxOutline /> {checklist.title}
             </h3>
             <button
-              className="button1"
+              className="grey-button"
               onClick={() => onDeleteChecklist(checklist.id)}
             >
               Delete
@@ -121,7 +121,7 @@ export function CardChecklists({ checklists, card, setCard }) {
                 <div className="todo-action">
                   <button
                     onClick={() => handleDeleteTodo(todo.id)}
-                    className="delete-todo-btn button1"
+                    className="delete-todo-btn grey-button"
                   >
                     Delete
                   </button>
@@ -140,10 +140,10 @@ export function CardChecklists({ checklists, card, setCard }) {
                 onChange={(event) => handleFormChange(event, checklist.id)}
               />
               <div className="todo-btns flex">
-                <button className="button" type="submit">
+                <button className="blue-button" type="submit">
                   Add Todo
                 </button>
-                <button className="button1">Cancel</button>
+                <button className="grey-button">Cancel</button>
               </div>
             </form>
           ) : (

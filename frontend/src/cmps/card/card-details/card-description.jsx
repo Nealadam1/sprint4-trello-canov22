@@ -3,7 +3,7 @@ import { updateCard } from "../../../store/actions/board.action"
 import { GrTextAlignFull } from "react-icons/gr"
 
 export function CardDescription({ card }) {
-  const [isEditing, setIsEditing] = useState(card.description ? false : true)
+  const [isEditing, setIsEditing] = useState(false)
   const [newDescription, setNewDescription] = useState(card.description)
 
   function handleEditClick() {
@@ -34,8 +34,9 @@ export function CardDescription({ card }) {
         Description
       </h3>
       {isEditing ? (
-        <div>
+        <div className="desc-textarea">
           <textarea
+            className="card-title-description"
             name="description"
             cols={60}
             rows={6}
@@ -43,11 +44,15 @@ export function CardDescription({ card }) {
             onChange={handleChange}
           />
           <div>
-            <button className="button" onClick={handleSaveClick}>
+            <button
+              style={{ padding: "6px 10px" }}
+              className="blue-button"
+              onClick={handleSaveClick}
+            >
               Save
             </button>
             <button
-              className="cancel-desc-btn button1"
+              className="cancel-desc-btn grey-button"
               onClick={handleCancleClick}
             >
               Cancel
@@ -55,7 +60,11 @@ export function CardDescription({ card }) {
           </div>
         </div>
       ) : (
-        <p onClick={handleEditClick}>{newDescription}</p>
+        <p onClick={handleEditClick}>
+          {newDescription
+            ? newDescription
+            : "Add a more detailed description..."}
+        </p>
       )}
     </div>
   )

@@ -40,7 +40,7 @@ export function CoverAction({ card }) {
         </div>
       </div>
       <div>
-        <div className="button1" onClick={onRemoveCover}>
+        <div className="grey-button" onClick={onRemoveCover}>
           Remove Cover
         </div>
       </div>

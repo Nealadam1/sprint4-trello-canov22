@@ -68,21 +68,48 @@
   }
 
   .card-description {
-    textarea {
+    .desc-textarea {
+      margin-left: 1.7em;
+      .card-title-description {
+        width: 32rem;
+      }
+    }
+    p {
       font-family: OpenSans-Regular;
+      background-color: var(--ds-background-neutral, #091e420a);
+      border: none;
+      border-radius: 3px;
+      box-shadow: none;
+      color: var(--ds-text, inherit);
+      display: block;
+      min-height: 60px;
+      padding: 8px 12px;
+      text-decoration: none;
+      margin-left: 2em;
+      font-size: 13px;
+      color: $clr14;
+      &:hover {
+        background-color: #091e4214;
+      }
     }
     h3 {
       font-size: $card-details-header;
       font-family: $trello-font;
       display: flex;
+      font-size: 14px;
+      color: $clr7;
+      margin-bottom: 1.2em;
+
       i {
         padding-right: 0.7em;
+        font-size: 18px;
       }
     }
     .cancel-desc-btn {
       background: transparent;
       &:hover {
-        background-color: lighten(#caccced5, 10);
+        background-color: #091e4214;
+        border-radius: 0.2em;
       }
     }
   }
@@ -172,7 +199,7 @@
     padding: em(20px);
     grid-area: content;
     .card-details-group-title {
-      margin: 0 0 0.6em;
+      margin: 0 0 1.8em;
       font-size: 13px;
       padding-left: 2.5em;
       font-family: OpenSans-Regular;
@@ -182,8 +209,9 @@
       }
     }
     .card-title {
-      font-size: $card-details-header;
+      font-size: 18px;
       font-family: $trello-font;
+      letter-spacing: 0.5px;
 
       .card-icon-title {
         padding-right: 0.7em;

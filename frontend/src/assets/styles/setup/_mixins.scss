@@ -72,7 +72,7 @@
   }
 }
 
-.button {
+.blue-button {
   @include button;
 }
 
@@ -87,7 +87,7 @@
     background-color: #091e4214;
   }
 }
-.button1 {
+.grey-button {
   @include button;
 }
 
