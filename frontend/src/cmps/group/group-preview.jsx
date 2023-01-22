@@ -19,9 +19,9 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
 
   return (
     <div className="group-preview"
-    // {...provided.draggableProps}
-    // {...provided.dragHandleProps}
-    // ref={provided.innerRef}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      ref={provided.innerRef}
     >
       {groupTitleToInput[group.id] ? (
         <form>

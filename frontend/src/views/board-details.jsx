@@ -72,6 +72,7 @@ export function BoardDetails() {
       }}
     >
       <BoardHeader board={board} onDragStart={onDragStart} onDragUpdate={onDragUpdate} onDragEnd={onDragEnd} />
+
       <DragDropContext>
         <GroupList
           placeholderProps={placeholderProps}
@@ -83,6 +84,7 @@ export function BoardDetails() {
           groups={board.groups}
         />
       </DragDropContext>
+
     </div>
   )
 }

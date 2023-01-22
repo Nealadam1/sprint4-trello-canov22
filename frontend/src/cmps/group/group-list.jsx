@@ -1,17 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState, useRef } from "react"
 import { useSelector } from "react-redux"
+import { Outlet, useParams } from "react-router"
 import { Droppable, Draggable } from "react-beautiful-dnd"
-
 import { BsThreeDots } from "react-icons/bs"
+import { CgClose } from "react-icons/cg"
+import { AiOutlinePlus } from "react-icons/ai"
+
 import { OpenActionModal, setLabels } from "../../store/actions/board.action"
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { GroupPreview } from "./group-preview"
-import { Outlet, useParams } from "react-router"
-import { CgClose } from "react-icons/cg"
-import { useRef } from "react"
-import { AiOutlinePlus } from "react-icons/ai"
 
 import { GroupActions } from "./group-actions"
+
 
 export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholderProps }) {
   const { cardId } = useParams()
@@ -89,82 +89,99 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
     setGroupTitle({ title: "" })
   }
 
+  function onDragEnd(result) {
+    const { source, destination } = result
+    if (!result.destination ||
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index) return
+    // updateDrag(result)
+  }
+
   return (
-    <div className="group-list">
+    <Droppable droppableId={board._id} direction="horizontal" type="group" mode="virtual">
+      {(provided, snapshot) => (
 
+        <div className="group-list" {...provided.droppableProps} ref={provided.innerRef}>
 
-      <div
-        className="dnd-container"
-      >
-        {groups &&
-          groups.map((group, idx) => (
-            <div className="scroll-container">
+          <div className="dnd-container">
 
-              <div className="group" key={group.id}>
+            {groups &&
+              groups.map((group, idx) => (
+                <Draggable draggableId={group.id} key={group.id} index={idx}>
+                  {(provided, snapshot) => (
 
-                <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
-                  <BsThreeDots />
-                </button>
+                    <div className="scroll-container">
+                      <div className="group" key={group.id}>
 
-                {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
+                        <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
+                          <BsThreeDots />
+                        </button>
+                        {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
 
-                <GroupPreview
-                  setGroupTitleToInput={setGroupTitleToInput}
-                  groupTitleToInput={groupTitleToInput}
-                  updateGroupTitle={updateGroupTitle}
-                  cards={group.cards}
-                  group={group}
-                  groups={groups} />
+                        <GroupPreview
+                          provided={provided}
+                          idx={idx}
+                          key={group._id}
+                          setGroupTitleToInput={setGroupTitleToInput}
+                          groupTitleToInput={groupTitleToInput}
+                          updateGroupTitle={updateGroupTitle}
+                          cards={group.cards}
+                          group={group}
+                          groups={groups} />
+                        {provided.placeholder}
+                      </div>
+                    </div>
 
-              </div>
-            </div>
+                  )}
+                </Draggable>
+              ))}
 
-
-          ))}
-
-      </div>
-
-      <div className="add-group-container">
-        {groupToInput ? (
-          <form
-            style={{
-              background: "white",
-              padding: "5px",
-              borderRadius: "0.2em",
-            }}
-            onSubmit={handleAddGroup}
-          >
-            <input
-              className="group-title-input"
-              onChange={handleChange}
-              value={groupTitle.title}
-              type="text"
-              onBlur={handleBlur}
-              ref={inputRef}
-            />
-            <div className="add-group-section">
-              <button className="add-new-group-btn" onMouseDown={handleMouseDown} type="submit">
-                Add list
-              </button>
-              <button className="close-group-btn" onClick={handleCloseGroup}>
-                <CgClose />
-              </button>
-            </div>
-          </form>
-        ) : (
-          <div className="add-group-list-btn">
-            <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
-              <span className="add-group-title-icon">
-                <AiOutlinePlus />
-              </span>
-              <span className="add-group-title-text">Add another list</span>
-            </button>
           </div>
-        )}
-      </div>
-      {cardId ? <Outlet /> : null}
 
-    </div>
+          <div className="add-group-container">
+            {groupToInput ? (
+              <form
+                style={{
+                  background: "white",
+                  padding: "5px",
+                  borderRadius: "0.2em",
+                }}
+                onSubmit={handleAddGroup}
+              >
+                <input
+                  className="group-title-input"
+                  onChange={handleChange}
+                  value={groupTitle.title}
+                  type="text"
+                  onBlur={handleBlur}
+                  ref={inputRef}
+                />
+                <div className="add-group-section">
+                  <button className="add-new-group-btn" onMouseDown={handleMouseDown} type="submit">
+                    Add list
+                  </button>
+                  <button className="close-group-btn" onClick={handleCloseGroup}>
+                    <CgClose />
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className="add-group-list-btn">
+                <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
+                  <span className="add-group-title-icon">
+                    <AiOutlinePlus />
+                  </span>
+                  <span className="add-group-title-text">Add another list</span>
+                </button>
+              </div>
+            )}
+          </div>
+          {cardId ? <Outlet /> : null}
+
+        </div>
+
+      )}
+    </Droppable>
   )
 }
 
