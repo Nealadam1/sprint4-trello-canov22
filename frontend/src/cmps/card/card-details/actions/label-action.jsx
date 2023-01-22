@@ -129,7 +129,7 @@ export function LabelAction({ card }) {
       })}
 
       {(!isAdding && !isEditing) && (
-        <button onClick={() => setIsAdding(!isAdding)}>add Label</button>
+        <button className="button1 add-label" onClick={() => setIsAdding(!isAdding)}>Create a new label</button>
       )}
       {(isAdding && !isEditing) && (
         <div>
