@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
-
+import { BsThreeDots } from "react-icons/bs"
 import { OpenActionModal, setLabels } from "../../store/actions/board.action"
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { GroupPreview } from "./group-preview"
@@ -23,17 +23,20 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
   const [groupTitleToInput, setGroupTitleToInput] = useState(false)
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
-    const [openEditGroupId, setOpenEditGroupId] = useState(null)
+  const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const inputRef = useRef(null)
 
-  function handleEditButtonClick(groupId){
-    if(openEditGroupId===groupId){
+  function handleEditButtonClick(ev,groupId) {
+    if (openEditGroupId === groupId) {
+      ev.stopPropagation()
       setOpenEditGroupId(null)
-    } else{
+    } else {
+      console.log(ev)
+      ev.stopPropagation()
       setOpenEditGroupId(groupId)
     }
   }
-  
+
 
 
 
@@ -155,12 +158,12 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board }) {
                           {...provided.dragHandleProps}
                         >
                           <button
-                            className="group-actions-btn"
-                            onClick={()=>handleEditButtonClick(group.id)}
+                            className="group-actions-btn "
+                            onClick={(ev) => handleEditButtonClick(ev,group.id)}
                           >
-                            <CgClose />
+                            <BsThreeDots />
                           </button>
-                          {openEditGroupId===group.id&&<GroupActions handleEditButtonClick={handleEditButtonClick} group={group}/>}
+                          {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
                           <GroupPreview
                             setGroupTitleToInput={setGroupTitleToInput}
                             groupTitleToInput={groupTitleToInput}

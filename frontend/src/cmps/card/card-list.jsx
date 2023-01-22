@@ -28,10 +28,11 @@ export function CardList({ group }) {
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   const inputRef = useRef(null)
-  useEffect(()=>{
-    eventBus.on(ADD_CARD,()=>{
-      setCardToInput(true)
+  useEffect(() => {
+    const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
+      if (group.id === groupId) setCardToInput(true)
     })
+    return () => { callAddCard() }
   })
 
   useEffect(() => {
@@ -133,8 +134,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                              ? "labels"
-                              : ""
+                                ? "labels"
+                                : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}

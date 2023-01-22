@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { eventBus } from "../../services/event-bus.service"
-
+import {CgClose} from "react-icons/cg"
 export function GroupActions({group, handleEditButtonClick}){
     useEffect(() => {
         document.addEventListener('click', handleClickOutside)
@@ -10,8 +10,9 @@ export function GroupActions({group, handleEditButtonClick}){
       }, [])
 
       function handleClickOutside(ev){
-        if (!ev.target.closest('.group-actions-btn')) {
-            handleEditButtonClick(group.id)
+        if (!ev.target.closest('.group-actions-modal')) {
+            handleEditButtonClick(ev,group.id)
+            document.removeEventListener('click', handleClickOutside)
         }
       }
       
@@ -19,7 +20,7 @@ export function GroupActions({group, handleEditButtonClick}){
     return <section className="group-actions-modal">
         <header className="group-actions-header">
             <h4>List Actions</h4>
-            <i onClick={()=>handleEditButtonClick(group.id)}>X</i>
+            <i onClick={(ev)=>handleEditButtonClick(ev,group.id)}><CgClose /></i>
         </header>
         <ul className="group-actions">
             <li onClick={()=>eventBus.emit('add-card',group.id)}>
@@ -28,10 +29,10 @@ export function GroupActions({group, handleEditButtonClick}){
             <li>
                 Copy List...
             </li>
-            <li>
+            <li className="list-last">
                 Move List...
             </li>
-            <br />
+            <hr />
             <li>
                 Archive this list
             </li>
