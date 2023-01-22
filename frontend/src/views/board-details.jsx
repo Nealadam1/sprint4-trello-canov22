@@ -72,17 +72,17 @@ export function BoardDetails() {
       }}
     >
       <BoardHeader board={board} onDragStart={onDragStart} onDragUpdate={onDragUpdate} onDragEnd={onDragEnd} />
-      {/* <DragDropContext> */}
-      <GroupList
-        // placeholderProps={placeholderProps}
-        GroupTitleToEdit={GroupTitleToEdit}
-        setGroupTitleToEdit={setGroupTitleToEdit}
-        board={board}
-        onDeleteGroup={onDeleteGroup}
-        onAddGroup={onAddGroup}
-        groups={board.groups}
-      />
-      {/* </DragDropContext> */}
+      <DragDropContext>
+        <GroupList
+          placeholderProps={placeholderProps}
+          GroupTitleToEdit={GroupTitleToEdit}
+          setGroupTitleToEdit={setGroupTitleToEdit}
+          board={board}
+          onDeleteGroup={onDeleteGroup}
+          onAddGroup={onAddGroup}
+          groups={board.groups}
+        />
+      </DragDropContext>
     </div>
   )
 }
