@@ -6,6 +6,7 @@
     // padding: 50px;
     input {
         margin-left: 12px;
+        cursor: pointer;
     }
 
     div {
@@ -34,6 +35,13 @@
             justify-content: flex-start;
             padding-left: 30px;
             border-radius: 0.2rem;
+            cursor: pointer;
         }
     }
+
+}
+
+.add-label {
+    width: 100%;
+    text-align: center;
 }
