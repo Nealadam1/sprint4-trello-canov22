@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { useEffect } from "react"
 import { createDispatchHook, useSelector } from "react-redux"
 import { useParams } from "react-router"
@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   closeCardDetail,
   getCardById,
+  OpenActionModal,
   setCardToStoreRef,
 } from "../store/actions/board.action"
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
@@ -21,6 +22,8 @@ import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
 import { closeActionModal } from "../store/actions/board.action"
 import { store } from "../store/store"
+import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
+import { AiOutlinePlus } from "react-icons/ai"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -30,16 +33,17 @@ export function CardDetails() {
   const modal = useSelector(
     (storeState) => storeState.systemModule.cardDetailModal
   )
-  const actionModal = useSelector(
+  const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
   const { cardId } = useParams()
+  const buttonRefLabelAction = useRef(null)
 
   useEffect(() => {
     const currCard = getCardById(board, cardId)
     setCard(currCard)
     setCardToStoreRef(currCard)
-    if (actionModal) closeActionModal()
+    if (isActionModal) closeActionModal()
   }, [cardId])
 
   const handleClose = (e) => {
@@ -55,7 +59,6 @@ export function CardDetails() {
 
   return (
     <div>
-      {/* <button onClick={handleOpen}>Open Modal</button> */}
       {modal && (
         <div
           style={{
@@ -102,7 +105,25 @@ export function CardDetails() {
                 {card?.labelIds && (
                   <div>
                     <span className="card-details-labels-title">Labels</span>
-                    <CardLabels cardLabels={card.labelIds} />
+                    <div className="card-details-label-container">
+                      <CardLabels card={card} cardLabels={card.labelIds} />
+                      <div className="grey-button" ref={buttonRefLabelAction}
+                        onClick={
+                          !isActionModal
+                            ? (ev) => OpenActionModal(ev, "add-labels2")
+                            : null
+                        }>
+
+                        {isActionModal && (
+                          <DynamicActionModal
+                            card={card}
+                            buttonRef={buttonRefLabelAction.current}
+                            type={"add-labels2"}
+                          />
+                        )}
+                        <AiOutlinePlus />
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>

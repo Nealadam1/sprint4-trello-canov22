@@ -10,8 +10,9 @@ import {
 import { BsPencil } from "react-icons/bs"
 
 export function LabelAction({ card }) {
+  
   if (!card.labelIds) card.labelIds = []
-
+  
   const board = useSelector((storeState) => storeState.boardModule.board)
   const labels = useSelector((storeState) => storeState.labelModule.labels)
   const [checkedState, setCheckedState] = useState(
@@ -26,7 +27,7 @@ export function LabelAction({ card }) {
   const [changeLabel, setChangeLabel] = useState(boardService.getEmptyLabel())
   const inputRef = useRef(null)
   const [boardPreviewColor, setBoardPreviewColor] = useState("")
-
+ 
   useEffect(() => {
     setLabelIds([...labelIds])
   }, [currCard])
@@ -116,7 +117,7 @@ export function LabelAction({ card }) {
                 id={label.id}
                 checked={labelIds.includes(label.id)}
                 onChange={() => handleCheckboxChange(label.id)}
-                inputId={label.id}
+                inputid={label.id}
                 type="checkbox"
               />
               <div>

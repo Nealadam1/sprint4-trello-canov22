@@ -1,7 +1,12 @@
+import { useRef } from "react"
+import { AiOutlinePlus } from "react-icons/ai"
 import { useSelector } from "react-redux"
 import { utilService } from "../../../services/util.service"
+import { OpenActionModal } from "../../../store/actions/board.action"
+import { DynamicActionModal } from "../../dynamic-modal-cmp"
 
-export function CardLabels({ cardLabels }) {
+export function CardLabels({card,cardLabels}) {
+  
   const displayLabels = []
 
   const labels = useSelector((storeState) => storeState.labelModule.labels)

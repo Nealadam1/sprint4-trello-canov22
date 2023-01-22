@@ -28,6 +28,14 @@
     font-family: OpenSans-Regular;
     color: #5e6c84;
   }
+  .card-details-label-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .grey-button{
+      margin-top: 0px;
+    }
+  }
 
   .card-labels {
     display: flex;
