@@ -10,6 +10,7 @@ import { MemberAction } from "./card/card-details/actions/member-action"
 
 export function DynamicActionModal(props) {
   const { buttonRef } = props
+
   const modal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
@@ -97,7 +98,6 @@ const DynamicModalPosition = (props) => {
     }
   }
 
- 
   useEffect(() => {
     if (
       modalRef.current &&
@@ -131,7 +131,7 @@ const DynamicModalPosition = (props) => {
   }, [modalRef, modalStyles, buttonRef])
 
   return (
-    <div 
+    <div
       style={{
         backgroundColor: "rgba(0, 0, 0, 0)",
         position: "fixed",
@@ -139,7 +139,7 @@ const DynamicModalPosition = (props) => {
         left: 0,
         width: "100%",
         height: "100%",
-        cursor: "default"
+        cursor: "default",
       }}
       onClick={handleClose}
     >

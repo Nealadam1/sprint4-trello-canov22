@@ -39,7 +39,7 @@ export function CardList({ group }) {
     const newCard = {
       title,
       description: "",
-      style:{}
+      style: {},
     }
     addCard(newCard, group.id)
     setCardToInput(false)
@@ -83,7 +83,7 @@ export function CardList({ group }) {
   }
 
   function handleChange(ev) {
-    console.log(ev.target);
+    console.log(ev.target)
     const { target } = ev
     const { value } = target
     setCardTitle({ title: value })
@@ -117,15 +117,19 @@ export function CardList({ group }) {
               <ul ref={provided.innerRef} {...provided.droppableProps}>
                 {group.cards &&
                   group.cards.map((card, idx) => (
-                    <Draggable key={card.id} draggableId={card.id} index={idx}>
+                    <Draggable
+                      key={card?.id}
+                      draggableId={card?.id}
+                      index={idx}
+                    >
                       {(provided) => (
                         <li
                           className={
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                                ? "labels"
-                                : ""
+                              ? "labels"
+                              : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}
