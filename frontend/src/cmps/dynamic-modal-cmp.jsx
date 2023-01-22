@@ -7,6 +7,7 @@ import { ChecklistAction } from "./card/card-details/actions/checklist-action"
 import { CoverAction } from "./card/card-details/actions/cover-action"
 import { LabelAction } from "./card/card-details/actions/label-action"
 import { MemberAction } from "./card/card-details/actions/member-action"
+import { GroupActions } from "./group/group-actions"
 
 export function DynamicActionModal(props) {
   const { buttonRef } = props
@@ -71,7 +72,16 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "group-actions":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <GroupActions {...props} />
+          </DynamicModalPosition>
+        )
+      )
     default:
+      return
   }
 }
 
@@ -140,6 +150,7 @@ const DynamicModalPosition = (props) => {
         width: "100%",
         height: "100%",
         cursor: "default",
+        zIndex:5
       }}
       onClick={handleClose}
     >
