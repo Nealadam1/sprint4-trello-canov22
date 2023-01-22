@@ -87,6 +87,7 @@ export function CardDetails() {
                 </span>
                 {card?.title}
               </h3>
+
               <p className="card-details-group-title">
                 In list <span>{store.getState().boardModule.group.title}</span>
               </p>
@@ -98,9 +99,12 @@ export function CardDetails() {
                     card={card}
                   />
                 )}
-                {card?.labelIds && <div>
-                  <CardLabels cardLabels={card.labelIds} />
-                </div>}
+                {card?.labelIds && (
+                  <div>
+                    <span className="card-details-labels-title">Labels</span>
+                    <CardLabels cardLabels={card.labelIds} />
+                  </div>
+                )}
               </div>
               <div>{card && <CardDescription card={card} />}</div>
               <div>
