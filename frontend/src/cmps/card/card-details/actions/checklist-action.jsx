@@ -17,7 +17,9 @@ export function ChecklistAction({ card, setCard }) {
       title: checklistTitle,
       todos: [],
     }
-    const updatedChecklist = [...card.checklists, newChecklist]
+    const updatedChecklist = card.checklists
+      ? [...card.checklists, newChecklist]
+      : [newChecklist]
     const updatedCard = { ...card, checklists: updatedChecklist }
     updateCard(updatedCard)
     setCard(updatedCard)
