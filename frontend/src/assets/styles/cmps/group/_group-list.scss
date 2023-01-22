@@ -9,7 +9,7 @@
   overflow-y: hidden;
   height: 100%;
   overflow: visible;
-  
+
 
   .dnd-container {
     display: flex;
@@ -32,16 +32,25 @@
       flex-direction: column;
       border-radius: $edge-round;
       overflow: visible;
-      
-      
-      
+
+
+
 
       .group-actions-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
-        top: 0.9rem;
+        top: 0.4rem;
         right: 2%;
-        color: $clr14;
-        
+        width: em(32px);
+        height: em(32px);
+        background-color: transparent;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+        &:hover {
+          background-color: #091e4214;
+        }
       }
     }
   }
@@ -113,6 +122,7 @@
     margin-left: 0.5em;
     font-size: 16px;
   }
+
   .add-group-title-text {
     margin-left: 0.3em;
   }

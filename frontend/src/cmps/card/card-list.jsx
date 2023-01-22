@@ -28,10 +28,11 @@ export function CardList({ group }) {
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   const inputRef = useRef(null)
-  useEffect(()=>{
-    eventBus.on(ADD_CARD,()=>{
-      setCardToInput(true)
+  useEffect(() => {
+    const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
+      if (group.id === groupId) setCardToInput(true)
     })
+    return () => { callAddCard() }
   })
 
   useEffect(() => {
@@ -116,45 +117,56 @@ export function CardList({ group }) {
   return (
     <>
       <div className="card-list">
-        <ul>
-          {group.cards &&
-            group.cards.map((card, idx) => (
-
-
-              <li
-                className={
-                  card.checklists
-                    ? "checklist"
-                    : "" + " " + card.labelIds
-                      ? "labels"
-                      : ""
-                }
-              // ref={provided.innerRef}
-              // {...provided.draggableProps}
-              // {...provided.dragHandleProps}
-              >
-                <Link
-                  onClick={toCardDetails}
-                  to={`/board/${boardId}/${card.id}`}
-                >
-                  <CardPreview card={card} />
-                  <div>
-                    <button
-                      className="delete-card-btn"
-                      onClick={(event) =>
-                        onDeleteCard(event, card.id)
-                      }
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="cards">
+            {(provided) => (
+              <ul ref={provided.innerRef} {...provided.droppableProps}>
+                {group.cards &&
+                  group.cards.map((card, idx) => (
+                    <Draggable
+                      key={card?.id}
+                      draggableId={card?.id}
+                      index={idx}
                     >
-                      <HiOutlinePencil />
-                      {/* <FontAwesomeIcon icon={faPen} /> */}
-                    </button>
-                  </div>
-                </Link>
-              </li>
-
-
-            ))}
-        </ul>
+                      {(provided) => (
+                        <li
+                          className={
+                            card.checklists
+                              ? "checklist"
+                              : "" + " " + card.labelIds
+                                ? "labels"
+                                : ""
+                          }
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <Link
+                            onClick={toCardDetails}
+                            to={`/board/${boardId}/${card.id}`}
+                          >
+                            <CardPreview card={card} />
+                            <div>
+                              <button
+                                className="delete-card-btn"
+                                onClick={(event) =>
+                                  onDeleteCard(event, card.id)
+                                }
+                              >
+                                <HiOutlinePencil />
+                                {/* <FontAwesomeIcon icon={faPen} /> */}
+                              </button>
+                            </div>
+                          </Link>
+                        </li>
+                      )}
+                    </Draggable>
+                  ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
 
       <div className="add-card-container">
