@@ -1,0 +1,17 @@
+.group-actions-modal {
+    position: absolute;
+    z-index: 4;
+    left: 88%;
+    top: 43px;
+    font-size: 0.875rem;
+    line-height: $modal-line-height;
+    color: $clr7;
+    box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25),
+        0 0 0 1px rgba(9, 30, 66, 0.08);
+    box-sizing: border-box;
+    outline: 0;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: $clr6;
+    cursor: default;
+}

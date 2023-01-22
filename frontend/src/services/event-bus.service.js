@@ -1,4 +1,5 @@
 export const SHOW_MSG = "show-msg"
+export const ADD_CARD="add-card"
 
 function createEventEmitter() {
   const listenersMap = {}
@@ -24,6 +25,10 @@ export const eventBus = createEventEmitter()
 
 export function showUserMsg(msg) {
   eventBus.emit(SHOW_MSG, msg)
+}
+
+export function callAddCard(){
+  eventBus.emit(ADD_CARD)
 }
 
 export function showSuccessMsg(txt) {
