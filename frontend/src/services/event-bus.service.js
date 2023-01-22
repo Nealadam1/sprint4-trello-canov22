@@ -27,8 +27,8 @@ export function showUserMsg(msg) {
   eventBus.emit(SHOW_MSG, msg)
 }
 
-export function callAddCard(){
-  eventBus.emit(ADD_CARD)
+export function callAddCard(groupId){
+  eventBus.emit(ADD_CARD, groupId)
 }
 
 export function showSuccessMsg(txt) {

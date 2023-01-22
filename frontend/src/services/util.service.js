@@ -8,7 +8,8 @@ export const utilService = {
   debounce,
   darken,
   changeContrast,
-  handleDragEnd
+  handleDragEnd,
+  lightenColor,
 }
 
 function makeId(length = 6) {
@@ -197,4 +198,35 @@ function formatTime(sentAt) {
     }
     duration /= division.amount
   }
+}
+
+function lightenColor(color) {
+  let colorInt
+  if (color.startsWith("#")) {
+    colorInt = parseInt(color.substring(1), 16)
+  } else if (color.startsWith("rgb")) {
+    colorInt = parseInt(
+      color
+        .substring(4, color.length - 1)
+        .split(",")
+        .join(""),
+      16
+    )
+  } else {
+    console.log("Invalid color format. Please use either RGB or Hex format.")
+    return
+  }
+  let r = (colorInt >> 16) + 70
+  if (r > 255) {
+    r = 255
+  }
+  let b = ((colorInt >> 8) & 0x00ff) + 70
+  if (b > 255) {
+    b = 255
+  }
+  let g = (colorInt & 0x0000ff) + 70
+  if (g > 255) {
+    g = 255
+  }
+  return "#" + (g | (b << 8) | (r << 16)).toString(16)
 }

@@ -106,7 +106,8 @@ export function LabelAction({ card }) {
       {/* <TwitterPicker
       color={boardPreviewColor}
     /> */}
-
+      <p className="labels-action-header">Labels</p>
+      <div className="sep-labels-action-line"></div>
       {!(isAdding && !isEditing) &&
         labels.map((label, idx) => {
           return (
