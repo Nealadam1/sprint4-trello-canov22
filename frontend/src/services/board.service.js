@@ -392,13 +392,14 @@ function _createDemoData() {
         "cards": [{
           "id": "c101",
           "title": "Crud",
+          "style": {},
           "labelIds": ["l104"]
         },
         {
           "id": "c102",
           "title": "Home Page",
           "style": {}
-          
+
         },
         {
           "id": "c103",
@@ -435,6 +436,7 @@ function _createDemoData() {
         {
           "id": "c105",
           "title": "Home Page",
+          "style": {},
           "attachments": [{
             "id": "teat22",
             "attachUrl": "https://picsum.photos/200/300"
@@ -448,6 +450,7 @@ function _createDemoData() {
         "cards": [{
           "id": "c106",
           "title": "Create backend services",
+          "style": {},
           "archivedAt": ""
         },
         {
@@ -627,7 +630,7 @@ function _createDemoData() {
       "title": "Vacation Plans",
       "isStarred": true,
       "archivedAt": "",
-    
+
       "createdBy": {
         "id": "",
         "fullname": "",
@@ -1426,7 +1429,7 @@ const demo = [{
       "id": "c102",
       "title": "Home Page",
       "style": {}
-      
+
     },
     {
       "id": "c103",

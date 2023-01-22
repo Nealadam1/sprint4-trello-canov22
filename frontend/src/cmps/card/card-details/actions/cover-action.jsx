@@ -4,10 +4,11 @@ import skeletonCoverPreview from "../../../../assets/img/skeleton-cover-preview.
 import { closeActionModal, updateCard } from "../../../../store/actions/board.action";
 
 export function CoverAction({ card }) {
-    const [cardPreviewColor, setCardPreviewColor] = useState(card.style.bgColor||'')
+    const [cardPreviewColor, setCardPreviewColor] = useState(card?.style?.bgColor||'')
 
 
     function handleBackgroundChange(backgroundColor) {
+        card.style.bgColor=''
         setCardPreviewColor(backgroundColor.hex)
         card.style.bgColor = backgroundColor.hex
         updateCard(card)
