@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { CardList } from "../card/card-list"
 
-export function GroupPreview({ group, cards, updateGroupTitle }) {
+export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provided }) {
   const [groupTitleToInput, setGroupTitleToInput] = useState({})
   const [newTitle, setNewTitle] = useState(group.title)
   const inputRef = useRef(null)
@@ -18,7 +18,11 @@ export function GroupPreview({ group, cards, updateGroupTitle }) {
   }, [groupTitleToInput, group.id])
 
   return (
-    <div className="group-preview">
+    <div className="group-preview"
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      ref={provided.innerRef}
+    >
       {groupTitleToInput[group.id] ? (
         <form>
           <input

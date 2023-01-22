@@ -5,6 +5,8 @@ import { BoardHeader } from "../cmps/board/board-header"
 import { GroupList } from "../cmps/group/group-list"
 import { boardService } from "../services/board.service"
 import { utilService } from "../services/util.service"
+import { DragDropContext } from "react-beautiful-dnd"
+
 import {
   addGroup,
   closeActionModal,
@@ -17,7 +19,7 @@ import {
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
   const board = useSelector((storeState) => storeState.boardModule.board)
-
+  const [placeholderProps, setPlaceholderProps] = useState({})
   const { boardId } = useParams()
   // const [board, setBoard] = useState({})
 
@@ -43,30 +45,44 @@ export function BoardDetails() {
     deleteGroup(groupId)
   }
 
+  function onDragStart(ev) {
+
+  }
+
+  function onDragUpdate(ev) {
+
+  }
+
+  function onDragEnd(result) {
+
+  }
+
   if (!board) return <h1>Loading...</h1>
   return (
     <div
       className="board-details"
       style={{
-        background: `${
-          board.style.img
-            ? `url(${board.style.img})`
-            : `${board.style.backgroundColor}`
-        }`,
+        background: `${board.style.img
+          ? `url(${board.style.img})`
+          : `${board.style.backgroundColor}`
+          }`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-      <BoardHeader board={board} />
-      <GroupList
-        GroupTitleToEdit={GroupTitleToEdit}
-        setGroupTitleToEdit={setGroupTitleToEdit}
-        board={board}
-        onDeleteGroup={onDeleteGroup}
-        onAddGroup={onAddGroup}
-        groups={board.groups}
-      />
+      <BoardHeader board={board} onDragStart={onDragStart} onDragUpdate={onDragUpdate} onDragEnd={onDragEnd} />
+      <DragDropContext>
+        <GroupList
+          placeholderProps={placeholderProps}
+          GroupTitleToEdit={GroupTitleToEdit}
+          setGroupTitleToEdit={setGroupTitleToEdit}
+          board={board}
+          onDeleteGroup={onDeleteGroup}
+          onAddGroup={onAddGroup}
+          groups={board.groups}
+        />
+      </DragDropContext>
     </div>
   )
 }
