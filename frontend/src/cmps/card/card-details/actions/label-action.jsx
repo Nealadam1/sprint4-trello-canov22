@@ -3,7 +3,9 @@ import { useSelector } from "react-redux"
 import { boardService } from "../../../../services/board.service"
 import { addLabel, updateCard } from "../../../../store/actions/board.action"
 import { TwitterPicker } from "react-color"
-import { saveLabelToBoard } from "../../../../services/label.service"
+import { removeLabelFromBoard, saveLabelToBoard } from "../../../../services/label.service"
+import { BsPencil } from "react-icons/bs"
+
 
 export function LabelAction({ card }) {
   if (!card.labelIds) card.labelIds = []
@@ -21,6 +23,7 @@ export function LabelAction({ card }) {
   const [editLabelId, setEditLabelId] = useState(null)
   const [changeLabel, setChangeLabel] = useState(boardService.getEmptyLabel())
   const inputRef = useRef(null)
+  const [boardPreviewColor, setBoardPreviewColor] = useState('')
 
   useEffect(() => {
     setLabelIds([...labelIds])
@@ -54,35 +57,46 @@ export function LabelAction({ card }) {
       addLabel(newLabel)
       setIsAdding(false)
       saveLabelToBoard(newLabel, board)
+
       setNewLabel(boardService.getEmptyLabel())
     }
 
     if (isEditing) {
-      console.log('editing');
       setIsEditing(false)
       saveLabelToBoard(changeLabel, board)
-      console.log(changeLabel);
     }
   }
 
   function onAddLabel({ target }) {
     const { value, name } = target
-
-    // console.log(value);
     setNewLabel({ ...newLabel, [name]: value })
   }
 
   function editLabel({ target }) {
     const { value, name } = target
-    // console.log(labelId);
     const editLabel = board.labels.find(label => label.id === editLabelId)
     setChangeLabel(({ ...editLabel, [name]: value }))
-    console.log(changeLabel);
-    // setChangeLabel(prevState => ({ ...prevState, [name]: value }))
-    // setIsAdding(!isAdding)
   }
 
-  // console.log(newLabel);
+  function handleColorChange(backgroundColor, backgroundImg) {
+
+    if (isAdding) {
+      newLabel.color = backgroundColor.hex
+    }
+
+    if (isEditing) {
+      changeLabel.color = backgroundColor.hex
+    }
+  }
+
+  function removeLabel() {
+    console.log('remove', editLabelId)
+    let labelIdxRemove = card.labelIds.findIndex(label => editLabelId === label)
+    console.log(labelIdxRemove);
+    removeLabelFromBoard(editLabelId, board)
+    card.labelIds.splice(labelIdxRemove, 1)
+    updateCard(card)
+  }
 
   return (
     <div>
@@ -91,24 +105,25 @@ export function LabelAction({ card }) {
     /> */}
 
       {!(isAdding && !isEditing) && labels.map((label, idx) => {
-        // console.log(label.id, idx);
 
         return (
-          <div key={label.id} style={{ backgroundColor: label.color }}>
-            <label>
-              <input
-                id={label.id}
-                checked={labelIds.includes(label.id)}
-                onChange={() => handleCheckboxChange(label.id)}
-                inputId={label.id}
-                type="checkbox"
-              />
-              {label.title}</label>
+          <div className="label-edit-display" key={label.id}>
+            <input
+              id={label.id}
+              checked={labelIds.includes(label.id)}
+              onChange={() => handleCheckboxChange(label.id)}
+              inputId={label.id}
+              type="checkbox"
+            />
+            <div >
+              <label style={{ backgroundColor: label.color }} htmlFor={label.id}>{label.title}</label>
+              <button onClick={(ev) => {
+                setIsEditing(!isEditing)
+                setEditLabelId(label.id)
+              }}><BsPencil /></button>
+            </div>
 
-            <button onClick={(ev) => {
-              setIsEditing(!isEditing)
-              setEditLabelId(label.id)
-            }}>edit</button>
+
           </div>
         )
       })}
@@ -117,24 +132,37 @@ export function LabelAction({ card }) {
         <button onClick={() => setIsAdding(!isAdding)}>add Label</button>
       )}
       {(isAdding && !isEditing) && (
-        <form onSubmit={saveLabel}>
-          <input
-            type="text"
-            name="title"
-            value={newLabel.title}
-            onChange={onAddLabel}
-          />
-        </form>
+        <div>
+          <form onSubmit={saveLabel}>
+            <input
+              type="text"
+              name="title"
+              value={newLabel.title}
+              onChange={onAddLabel}
+            />
+            <TwitterPicker
+              color={boardPreviewColor}
+              onChange={handleColorChange} />
+            <button>Save</button>
+          </form>
+        </div>
       )}
       {isEditing && (
-        <form onSubmit={saveLabel}>
-          <input
-            type="text"
-            name="title"
-            value={changeLabel.title}
-            onChange={editLabel}
-          />
-        </form>
+        <div>
+          <form onSubmit={saveLabel}>
+            <input
+              type="text"
+              name="title"
+              value={changeLabel.title}
+              onChange={editLabel}
+            />
+            <TwitterPicker
+              color={boardPreviewColor}
+              onChange={handleColorChange} />
+            <button>Save</button>
+          </form>
+          <button onClick={removeLabel}>Delete</button>
+        </div>
       )}
     </div>
   )
