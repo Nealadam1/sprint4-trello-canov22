@@ -9,19 +9,21 @@ import { Home } from "./views/home"
 import "./assets/styles/main.scss"
 import { BoardDetails } from "./views/board-details"
 import { CardDetails } from "./views/card-details"
+import { LoginSignup } from "./views/login-signup"
 
 export function App() {
   const location = useLocation()
 
   return (
     <div className="app">
-     {location.pathname !== '/' && <AppHeader />}
+      {location.pathname !== "/" && <AppHeader />}
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<BoardIndex />} path="/board" />
         <Route element={<BoardDetails />} path="/board/:boardId">
           <Route element={<CardDetails />} path="/board/:boardId/:cardId" />
         </Route>
+        <Route element={<LoginSignup />} path="/login-signup" />
       </Routes>
     </div>
   )

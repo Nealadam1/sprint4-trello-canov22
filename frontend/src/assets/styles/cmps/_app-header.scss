@@ -1,12 +1,28 @@
 .app-header {
+  display: flex;
+  justify-content: space-between;
   background-color: $header-index-color;
   padding: 9px;
   color: $clr6;
   font-weight: bold;
-  .logo{
+  .logo {
     font-family: Pacifico;
+    display: flex;
+    align-items: center;
   }
 
+  .user-details {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    .logged-user {
+      display: flex;
+      align-items: center;
+      span {
+        font-family: OpenSans-Regular;
+      }
+    }
+  }
 
   a {
     color: $clr6;
@@ -16,7 +32,8 @@
 
     background-color: initial;
 
-    svg {}
+    svg {
+    }
 
     &:active {
       color: $clr6;
@@ -25,7 +42,6 @@
     &:visited {
       color: $clr6;
     }
-
   }
 
   .user-info {
@@ -66,5 +82,6 @@
     margin: 10px;
   }
 
-  nav .active {}
+  nav .active {
+  }
 }

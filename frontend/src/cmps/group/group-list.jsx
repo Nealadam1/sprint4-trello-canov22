@@ -12,8 +12,13 @@ import { GroupPreview } from "./group-preview"
 
 import { GroupActions } from "./group-actions"
 
-
-export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholderProps }) {
+export function GroupList({
+  groups,
+  onAddGroup,
+  onDeleteGroup,
+  board,
+  placeholderProps,
+}) {
   const { cardId } = useParams()
   const [isDraggable, setIsDraggable] = useState(false)
   const [currGroup, setCurrGroup] = useState(null)
@@ -32,8 +37,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
   useEffect(() => {
     onSetLabels()
   }, [])
-
-
 
   function updateGroupTitle(group, title) {
     const updatedGroup = { ...group, title }
@@ -81,20 +84,29 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
 
   function onDragEnd(result) {
     const { source, destination } = result
-    if (!result.destination ||
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index) return
+    if (
+      !result.destination ||
+      (destination.droppableId === source.droppableId &&
+        destination.index === source.index)
+    )
+      return
     // updateDrag(result)
   }
 
   return (
-    <Droppable droppableId={board._id} direction="horizontal" type="group" mode="virtual">
+    <Droppable
+      droppableId={board._id}
+      direction="horizontal"
+      type="group"
+      mode="virtual"
+    >
       {(provided, snapshot) => (
-
-        <div className="group-list" {...provided.droppableProps} ref={provided.innerRef}>
-
+        <div
+          className="group-list"
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
           <div className="dnd-container">
-
             {groups &&
               groups.map((group, idx) => (
                 <Draggable draggableId={group.id} key={group.id} index={idx}>
@@ -110,15 +122,16 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
                           updateGroupTitle={updateGroupTitle}
                           cards={group.cards}
                           group={group}
-                          groups={groups} />
+                          isDragging={snapshot.isDragging}
+                          groups={groups}
+                        />
+
                         {provided.placeholder}
                       </div>
                     </div>
-
                   )}
                 </Draggable>
               ))}
-
           </div>
 
           <div className="add-group-container">
@@ -140,17 +153,27 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
                   ref={inputRef}
                 />
                 <div className="add-group-section">
-                  <button className="add-new-group-btn" onMouseDown={handleMouseDown} type="submit">
+                  <button
+                    className="add-new-group-btn"
+                    onMouseDown={handleMouseDown}
+                    type="submit"
+                  >
                     Add list
                   </button>
-                  <button className="close-group-btn" onClick={handleCloseGroup}>
+                  <button
+                    className="close-group-btn"
+                    onClick={handleCloseGroup}
+                  >
                     <CgClose />
                   </button>
                 </div>
               </form>
             ) : (
               <div className="add-group-list-btn">
-                <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
+                <button
+                  className="add-group-btn"
+                  onClick={() => setGroupToInput(true)}
+                >
                   <span className="add-group-title-icon">
                     <AiOutlinePlus />
                   </span>
@@ -160,14 +183,11 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
             )}
           </div>
           {cardId ? <Outlet /> : null}
-
         </div>
-
       )}
     </Droppable>
   )
 }
-
 
 // return (
 //   <div className="group-list">

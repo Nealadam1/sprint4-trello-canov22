@@ -32,7 +32,9 @@ export function CardList({ group }) {
     const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
       if (group.id === groupId) setCardToInput(true)
     })
-    return () => { callAddCard() }
+    return () => {
+      callAddCard()
+    }
   })
 
   useEffect(() => {
@@ -134,8 +136,8 @@ export function CardList({ group }) {
                             card.checklists
                               ? "checklist"
                               : "" + " " + card.labelIds
-                                ? "labels"
-                                : ""
+                              ? "labels"
+                              : ""
                           }
                           ref={provided.innerRef}
                           {...provided.draggableProps}
