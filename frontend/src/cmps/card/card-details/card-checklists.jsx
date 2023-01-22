@@ -106,6 +106,10 @@ export function CardChecklists({ checklists, card, setCard }) {
               <div
                 style={{
                   width: `${completedPercentage(checklist)}%`,
+                  background:
+                    `${completedPercentage(checklist)}` !== "100"
+                      ? "#5ba4cf"
+                      : "green",
                 }}
                 className="progress-bar"
               ></div>

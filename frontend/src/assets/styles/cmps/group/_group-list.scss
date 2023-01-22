@@ -5,11 +5,10 @@
   display: flex;
   list-style: none;
   gap: 0.5rem;
-  padding: 0.5em 0.5em 0 8px;
+  padding: 0em 0.5em 0 8px;
   overflow-y: hidden;
   height: 100%;
   overflow: visible;
-
 
   .dnd-container {
     display: flex;
@@ -32,9 +31,6 @@
       flex-direction: column;
       border-radius: $edge-round;
       overflow: visible;
-
-
-
 
       .group-actions-btn {
         display: flex;

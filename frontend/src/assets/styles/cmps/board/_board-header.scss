@@ -1,6 +1,6 @@
 .board-header {
   font-family: OpenSans-Regular;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 15px;
   display: flex;
   // flex-wrap: wrap;
@@ -22,7 +22,7 @@
 
   .board-actions {
     display: flex;
-    margin-left: 10px;
+    margin: 0 10px;
     justify-content: space-between;
     flex-grow: 1;
     flex-wrap: wrap;
