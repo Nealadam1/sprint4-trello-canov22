@@ -24,6 +24,16 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
   const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const inputRef = useRef(null)
 
+  useEffect(() => {
+    if (groupToInput) {
+      inputRef.current.focus()
+    }
+  }, [groupToInput])
+
+  useEffect(() => {
+    onSetLabels()
+  }, [])
+
   function handleEditButtonClick(ev, groupId) {
     if (openEditGroupId === groupId) {
       ev.stopPropagation()
@@ -35,15 +45,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
     }
   }
 
-
-
-
-  useEffect(() => {
-    if (groupToInput) {
-      inputRef.current.focus()
-    }
-  }, [groupToInput])
-
   function updateGroupTitle(group, title) {
     const updatedGroup = { ...group, title }
     const updatedGroups = groups.map((group) =>
@@ -52,10 +53,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
     setBoard({ ...board, groups: updatedGroups })
     updateBoard({ ...board, groups: updatedGroups })
   }
-
-  useEffect(() => {
-    onSetLabels()
-  }, [])
 
   function onSetLabels() {
     // console.log('board labels', board.labels);
