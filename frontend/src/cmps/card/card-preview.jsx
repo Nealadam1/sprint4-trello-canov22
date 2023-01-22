@@ -48,28 +48,26 @@ export function CardPreview({ card }) {
       <div className="card-info">
         {card?.labelIds && <LabelPreview labels={card.labelIds} />}
         <p>{card.title}</p>
-        {card.checklist && (
-          <div className="card-details-preview">
-            {card.checklists ? (
-              <div className="card-checklist">
+        <div className="card-details-preview">
+          {card.checklists ? (
+            <div className="card-checklist">
+              {totalTodos(card.checklists) > 0 && (
+                <span className="todo-checkbox-preview">
+                  <IoMdCheckboxOutline />
+                </span>
+              )}
+              <span className="todos-preview">
                 {totalTodos(card.checklists) > 0 && (
-                  <span className="todo-checkbox-preview">
-                    <IoMdCheckboxOutline />
+                  <span>
+                    {completedTodos(card.checklists)}/
+                    {totalTodos(card.checklists)}
                   </span>
                 )}
-                <span className="todos-preview">
-                  {totalTodos(card.checklists) > 0 && (
-                    <span>
-                      {completedTodos(card.checklists)}/
-                      {totalTodos(card.checklists)}
-                    </span>
-                  )}
-                </span>
-              </div>
-            ) : null}
-            <MemberPreview members={currMembers} />
-          </div>
-        )}
+              </span>
+            </div>
+          ) : null}
+          <MemberPreview members={currMembers} />
+        </div>
       </div>
     </div>
   )
