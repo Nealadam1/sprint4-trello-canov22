@@ -1,5 +1,5 @@
 .home {
-  font-family: HelveticaNeue;
+  font-family: "Open Sans";
   color: $clr7;
   background: linear-gradient(rgb(244, 208, 155), rgb(255, 255, 255)) no-repeat;
   width: 100%;
@@ -57,6 +57,7 @@
   height: 100%;
   background-color: rgb(47, 91, 225);
   clip-path: polygon(11% 0, 100% 0, 100% 100%, 0% 100%);
+  font-family: "Open Sans";
 
   a {
     color: #fff;
