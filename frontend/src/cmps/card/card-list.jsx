@@ -32,7 +32,9 @@ export function CardList({ group }) {
     const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
       if (group.id === groupId) setCardToInput(true)
     })
-    return () => { callAddCard() }
+    return () => {
+      callAddCard()
+    }
   })
 
   useEffect(() => {

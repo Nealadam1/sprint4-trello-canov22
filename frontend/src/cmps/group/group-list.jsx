@@ -12,8 +12,13 @@ import { GroupPreview } from "./group-preview"
 
 import { GroupActions } from "./group-actions"
 
-
-export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholderProps }) {
+export function GroupList({
+  groups,
+  onAddGroup,
+  onDeleteGroup,
+  board,
+  placeholderProps,
+}) {
   const { cardId } = useParams()
   const [isDraggable, setIsDraggable] = useState(false)
   const [currGroup, setCurrGroup] = useState(null)
@@ -32,8 +37,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
   useEffect(() => {
     onSetLabels()
   }, [])
-
-
 
   function updateGroupTitle(group, title) {
     const updatedGroup = { ...group, title }
@@ -170,7 +173,6 @@ export function GroupList({ groups, onAddGroup, onDeleteGroup, board, placeholde
     </DragDropContext>
   )
 }
-
 
 // return (
 //   <div className="group-list">

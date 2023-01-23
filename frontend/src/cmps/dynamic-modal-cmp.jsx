@@ -64,6 +64,14 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "add-labels2":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <LabelAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
     case "add-cover":
       return (
         modal === props.type && (
