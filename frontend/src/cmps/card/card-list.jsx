@@ -49,7 +49,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
     filteredCards()
   }, [filterCardBy])
   useEffect(() => {
-    onEndDrag()
+    // onEndDrag()
   }, [cards])
 
   function onAddCard(ev) {
@@ -179,8 +179,8 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                           card?.checklists
                             ? "checklist"
                             : "" + " " + card?.labelIds
-                            ? "labels"
-                            : ""
+                              ? "labels"
+                              : ""
                         }
                         style={{ zIndex: snapshot.isDragging ? 100 : null }}
                         ref={provided.innerRef}
