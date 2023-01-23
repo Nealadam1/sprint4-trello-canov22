@@ -18,6 +18,7 @@ import {
 import { CardPreview } from "./card-preview"
 import { useRef } from "react"
 import { ADD_CARD, eventBus } from "../../services/event-bus.service"
+import { CardDetailsShortcut } from "./card-details/actions/card-detail-shortcut"
 
 export function CardList({ group }) {
   const { boardId, cardId } = useParams()
@@ -25,6 +26,7 @@ export function CardList({ group }) {
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
   const [isMouseDown, setIsMouseDown] = useState(false)
+  const [EditCardShortcut, setEditCardShortcut] = useState(null)
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   const inputRef = useRef(null)
@@ -116,6 +118,17 @@ export function CardList({ group }) {
     setCardTitle({ title: "" })
   }
 
+  function handleEditShortcutButtonClick(ev, cardId) {
+    if (EditCardShortcut === cardId) {
+      ev.stopPropagation()
+      setEditCardShortcut(null)
+    } else {
+      console.log(ev)
+      ev.stopPropagation()
+      setEditCardShortcut(cardId)
+    }
+  }
+
   return (
     <>
       <div className="card-list">
@@ -144,16 +157,14 @@ export function CardList({ group }) {
                           to={`/board/${boardId}/${card.id}`}
                         >
                           <CardPreview idx={idx} card={card} />
-                          <div>
-                            <button
-                              className="delete-card-btn"
-                              onClick={(event) => onDeleteCard(event, card.id)}
-                            >
-                              <HiOutlinePencil />
-                              {/* <FontAwesomeIcon icon={faPen} /> */}
-                            </button>
-                          </div>
+
                         </Link>
+                        <div>
+                          <button className="group-actions-btn " onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}>
+                            <HiOutlinePencil />
+                          </button>
+                          {EditCardShortcut === card.id && <CardDetailsShortcut handleEditShortcutButtonClick={handleEditShortcutButtonClick} card={card} />}
+                        </div>
                       </li>
                     )}
                   </Draggable>

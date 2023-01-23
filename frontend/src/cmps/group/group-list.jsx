@@ -28,6 +28,7 @@ export function GroupList({
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
   const inputRef = useRef(null)
+  groups=groups.filter(group=> group.archivedAt==='')
 
   useEffect(() => {
     if (groupToInput) {

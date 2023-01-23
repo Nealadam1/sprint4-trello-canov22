@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { eventBus } from "../../services/event-bus.service"
 import {CgClose} from "react-icons/cg"
+import { updateGroup } from "../../store/actions/board.action"
 export function GroupActions({group, handleEditButtonClick}){
     useEffect(() => {
         document.addEventListener('click', handleClickOutside)
@@ -21,6 +22,13 @@ export function GroupActions({group, handleEditButtonClick}){
         handleEditButtonClick(ev,group.id)
 
       }
+
+      function handleArchive(){
+        const updatededGroup=group
+        updatededGroup.archivedAt = Date.now()
+        console.log(updatededGroup)
+        updateGroup(updatededGroup)  
+      }
       
 
     return <section className="group-actions-modal">
@@ -39,7 +47,7 @@ export function GroupActions({group, handleEditButtonClick}){
                 Move List...
             </li>
             <hr />
-            <li>
+            <li onClick={handleArchive}>
                 Archive this list
             </li>
         </ul>
