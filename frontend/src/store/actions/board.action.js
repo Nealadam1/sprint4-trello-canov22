@@ -15,6 +15,7 @@ import {
   SET_GROUP,
   UPDATE_CARD,
   SET_CARD,
+  SET_FILTER_CARD_BY,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
 import {
@@ -206,6 +207,13 @@ export async function addGroup(newGroup) {
   } catch (err) {
     console.log(err)
   }
+}
+
+export async function filterCardsBy(filterBy) {
+  store.dispatch({
+    type: SET_FILTER_CARD_BY,
+    filterBy,
+  })
 }
 
 export async function deleteGroup(groupId) {

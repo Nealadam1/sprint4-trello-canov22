@@ -107,13 +107,15 @@ export function CardDetails() {
                     <span className="card-details-labels-title">Labels</span>
                     <div className="card-details-label-container">
                       <CardLabels card={card} cardLabels={card.labelIds} />
-                      <div className="grey-button" ref={buttonRefLabelAction}
+                      <div
+                        className="grey-button card-details-add-labels"
+                        ref={buttonRefLabelAction}
                         onClick={
                           !isActionModal
                             ? (ev) => OpenActionModal(ev, "add-labels2")
                             : null
-                        }>
-
+                        }
+                      >
                         {isActionModal && (
                           <DynamicActionModal
                             card={card}

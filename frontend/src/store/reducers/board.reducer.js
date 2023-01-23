@@ -10,6 +10,7 @@ export const SET_GROUP = "SET_GROUP"
 export const UPDATE_CARD = "UPDATE_CARD"
 export const SET_CARD = "SET_CARD"
 export const ADD_LABEL = "ADD_LABEL"
+export const SET_FILTER_CARD_BY = "SET_FILTER_CARD_BY"
 
 const initialState = {
   boards: [],
@@ -18,6 +19,7 @@ const initialState = {
   card: null,
   label: null,
   lastRemovedBoard: null,
+  filterCardBy: "",
 }
 
 export function boardReducer(state = initialState, action) {
@@ -80,6 +82,9 @@ export function boardReducer(state = initialState, action) {
     case SET_CARD: {
       newState = { ...state, card: action.card }
       break
+    }
+    case SET_FILTER_CARD_BY: {
+      newState = { ...state, filterCardBy: action.filterBy }
     }
     case UNDO_REMOVE_BOARD:
       if (state.lastRemovedBoard) {

@@ -18,6 +18,7 @@ import {
 import { CardPreview } from "./card-preview"
 import { useRef } from "react"
 import { ADD_CARD, eventBus } from "../../services/event-bus.service"
+import { useSearchParams } from "react-router-dom"
 
 export function CardList({ group }) {
   const { boardId, cardId } = useParams()
@@ -25,7 +26,12 @@ export function CardList({ group }) {
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
   const [isMouseDown, setIsMouseDown] = useState(false)
+  const [search, setSearch] = useState("")
+
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
+  let filterCardBy = useSelector(
+    (storeState) => storeState.boardModule.filterCardBy
+  )
 
   const inputRef = useRef(null)
   useEffect(() => {
@@ -35,8 +41,11 @@ export function CardList({ group }) {
     return () => {
       callAddCard()
     }
-  })
+  }, [])
 
+  useEffect(() => {
+    filteredCards()
+  }, [filterCardBy])
   useEffect(() => {
     onEndDrag()
   }, [cards])
@@ -59,8 +68,6 @@ export function CardList({ group }) {
       inputRef.current.focus()
     }
   }, [cardToInput])
-
-  // console.log(inputRef)
 
   function onDeleteCard(event, cardId) {
     event.preventDefault()
@@ -116,14 +123,23 @@ export function CardList({ group }) {
     setCardTitle({ title: "" })
   }
 
+  const filteredCards = () => {
+    if (!filterCardBy) return group.cards
+    return cards?.filter((card) =>
+      card.title.toLowerCase().includes(filterCardBy.toLowerCase())
+    )
+  }
+
+  console.log(filteredCards())
+
   return (
     <>
       <div className="card-list">
         <Droppable droppableId={group.id}>
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
-              {group?.cards &&
-                group?.cards?.map((card, idx) => (
+              {cards &&
+                filteredCards().map((card, idx) => (
                   <Draggable draggableId={card.id} index={idx}>
                     {(provided, snapshot) => (
                       <li

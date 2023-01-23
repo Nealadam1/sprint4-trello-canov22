@@ -18,10 +18,10 @@ export function Home() {
 
         <div className="user-actions">
           <div className="login">
-            <Link to={"user/login"}>Log in</Link>
+            <Link to={"/login-signup"}>Log in</Link>
           </div>
           <div className="signup">
-            <Link to={"user/signup"}>Join now</Link>
+            <Link to={"/login-signup"}>Join now</Link>
           </div>
         </div>
       </header>
