@@ -9,13 +9,11 @@ export function MemberAction({ card, setCard }) {
     const updatedMembers = card.memberIds
       ? [...card.memberIds, memberId]
       : [memberId]
-    console.log(card.memberIds)
 
     if (card?.memberIds?.find((member) => member === memberId)) {
       const updatedMemberIds = card.memberIds.filter(
         (member) => member !== memberId
       )
-      console.log(updatedMemberIds)
       removeMember(updatedMemberIds, card)
       setCard({ ...card, memberIds: updatedMemberIds })
       return

@@ -129,13 +129,28 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   }
 
   const filteredCards = () => {
-    if (!filterCardBy) return group.cards
-    return cards?.filter((card) =>
-      card.title.toLowerCase().includes(filterCardBy.toLowerCase())
-    )
+    let updatedCards = cards
+    if (filterCardBy.title) {
+      updatedCards = cards?.filter((card) =>
+        card.title.toLowerCase().includes(filterCardBy.title.toLowerCase())
+      )
+    }
+    if (filterCardBy?.labels?.length > 0) {
+      updatedCards = updatedCards?.filter((card) => {
+        return card?.labelIds?.some((labelId) =>
+          filterCardBy?.labels?.includes(labelId)
+        )
+      })
+    }
+    if (filterCardBy?.members?.length > 0) {
+      updatedCards = updatedCards?.filter((card) => {
+        return card?.memberIds?.some((labelId) =>
+          filterCardBy?.members?.includes(labelId)
+        )
+      })
+    }
+    return updatedCards
   }
-
-  // console.log(filteredCards())
 
   function handleEditShortcutButtonClick(ev, cardId) {
     if (EditCardShortcut === cardId) {
@@ -155,7 +170,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
               {cards &&
-                filteredCards().map((card, idx) => (
+                filteredCards()?.map((card, idx) => (
                   <Draggable
                     draggableId={card.id}
                     index={idx}
@@ -167,8 +182,8 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                           card?.checklists
                             ? "checklist"
                             : "" + " " + card?.labelIds
-                              ? "labels"
-                              : ""
+                            ? "labels"
+                            : ""
                         }
                         style={{ zIndex: snapshot.isDragging ? 100 : null }}
                         ref={provided.innerRef}
@@ -194,13 +209,16 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                           {EditCardShortcut === card.id && (
                             <CardDetailsShortcut
                               setEditCardShortcut={
-                                setEditCardShortcut} group={group} card={card
-                              }
-                              
+                                setEditCardShortcut} group={group} card={card}
                             />
                           )}
                           {EditCardShortcut === card.id && (
-                            <div className="shortcut-modal" onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}></div>
+                            <div
+                              className="shortcut-modal"
+                              onClick={(ev) =>
+                                handleEditShortcutButtonClick(ev, card.id)
+                              }
+                            ></div>
                           )}
                         </div>
                       </li>
