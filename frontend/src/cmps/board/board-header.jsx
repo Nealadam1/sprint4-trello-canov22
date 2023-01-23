@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   OpenActionModal,
   setBoard,
@@ -20,6 +20,13 @@ export function BoardHeader({ board }) {
     (storeState) => storeState.systemModule.isActionModal
   )
 
+  useEffect(() => {
+    if (isEditingTitle) {
+      inputRef?.current?.focus()
+    }
+  }, [isEditingTitle])
+
+  const inputRef = useRef(null)
   const boardTitleRef = useRef(null)
 
   const dynmOpenModal = !isActionModal
@@ -64,6 +71,7 @@ export function BoardHeader({ board }) {
       {isEditingTitle ? (
         <>
           <input
+            ref={inputRef}
             style={{ width: inputWidth }}
             type="text"
             className="board-title-input blue-input"

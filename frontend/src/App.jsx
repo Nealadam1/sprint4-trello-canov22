@@ -3,13 +3,10 @@ import { Route, Routes, useLocation } from "react-router-dom"
 import { AppHeader } from "./cmps/app-header"
 import { BoardIndex } from "./views/board-index"
 import { Home } from "./views/home"
-// import { AppHeader } from "./cmps/app-header"
-// import { AppFooter } from "./cmps/app-footer"
-// import { UserDetails } from "./pages/user-details"
-import "./assets/styles/main.scss"
 import { BoardDetails } from "./views/board-details"
 import { CardDetails } from "./views/card-details"
 import { LoginSignup } from "./views/login-signup"
+import "./assets/styles/main.scss"
 
 export function App() {
   const location = useLocation()

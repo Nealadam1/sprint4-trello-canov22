@@ -209,7 +209,9 @@ export async function addGroup(newGroup) {
   }
 }
 
-export async function filterCardsBy(filterBy) {
+export async function filterCardsBy(
+  filterBy = { title: "", labels: [], members: [] }
+) {
   store.dispatch({
     type: SET_FILTER_CARD_BY,
     filterBy,
