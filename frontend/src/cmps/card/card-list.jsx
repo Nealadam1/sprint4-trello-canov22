@@ -19,8 +19,9 @@ import { CardPreview } from "./card-preview"
 import { useRef } from "react"
 import { ADD_CARD, eventBus } from "../../services/event-bus.service"
 import { useSearchParams } from "react-router-dom"
+import { CardDetailsShortcut } from "./card-details/actions/card-detail-shortcut"
 
-export function CardList({ group }) {
+export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   const { boardId, cardId } = useParams()
   const [cardToInput, setCardToInput] = useState(false)
   const [cardTitle, setCardTitle] = useState({ title: "" })
@@ -132,15 +133,30 @@ export function CardList({ group }) {
 
   console.log(filteredCards())
 
+  function handleEditShortcutButtonClick(ev, cardId) {
+    if (EditCardShortcut === cardId) {
+      ev.stopPropagation()
+      setEditCardShortcut(null)
+    } else {
+      console.log(ev)
+      ev.stopPropagation()
+      setEditCardShortcut(cardId)
+    }
+  }
+
   return (
     <>
       <div className="card-list">
-        <Droppable droppableId={group.id}>
+        <Droppable droppableId={group.id} type="card">
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
               {cards &&
                 filteredCards().map((card, idx) => (
-                  <Draggable draggableId={card.id} index={idx}>
+                  <Draggable
+                    draggableId={card.id}
+                    index={idx}
+                    isDragDisabled={EditCardShortcut ? true : false}
+                  >
                     {(provided, snapshot) => (
                       <li
                         className={
@@ -160,16 +176,29 @@ export function CardList({ group }) {
                           to={`/board/${boardId}/${card.id}`}
                         >
                           <CardPreview idx={idx} card={card} />
-                          <div>
-                            <button
-                              className="delete-card-btn"
-                              onClick={(event) => onDeleteCard(event, card.id)}
-                            >
-                              <HiOutlinePencil />
-                              {/* <FontAwesomeIcon icon={faPen} /> */}
-                            </button>
-                          </div>
                         </Link>
+                        <div>
+                          <button
+                            className="card-actions-btn"
+                            onClick={(ev) =>
+                              handleEditShortcutButtonClick(ev, card.id)
+                            }
+                          >
+                            <HiOutlinePencil />
+                          </button>
+
+                          {EditCardShortcut === card.id && (
+                            <CardDetailsShortcut
+                              handleEditShortcutButtonClick={
+                                handleEditShortcutButtonClick
+                              }
+                              card={card}
+                            />
+                          )}
+                          {EditCardShortcut === card.id && (
+                            <div className="shortcut-modal"></div>
+                          )}
+                        </div>
                       </li>
                     )}
                   </Draggable>

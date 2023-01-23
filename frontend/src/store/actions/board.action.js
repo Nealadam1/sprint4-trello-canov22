@@ -216,6 +216,24 @@ export async function filterCardsBy(filterBy) {
   })
 }
 
+export async function updateGroup(group) {
+  try {
+    const board = structuredClone(store.getState().boardModule.board)
+    const updatedGroup = group
+    console.log(updatedGroup)
+    const updatedGroups = board.groups.map((group) =>
+      group.id === updatedGroup.id ? updatedGroup : group
+    )
+    console.log(updatedGroups)
+    board.groups = updatedGroups
+    console.log(board)
+    store.dispatch(getActionSetBoard(board))
+    boardService.save(board)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export async function deleteGroup(groupId) {
   const board = structuredClone(store.getState().boardModule.board)
   const filteredGroups = board.groups.filter((group) => group.id !== groupId)

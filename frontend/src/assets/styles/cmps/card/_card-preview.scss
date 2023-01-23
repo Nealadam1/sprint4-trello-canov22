@@ -34,6 +34,23 @@
       opacity: 0;
     }
 
+    .card-actions-btn  {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0.15rem;
+      right: 1%;
+      width: em(32px);
+      height: em(32px);
+      background-color: transparent;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: #091e4214;
+      }
+    }
+
     &:hover {
       button {
         opacity: 1;
@@ -64,6 +81,8 @@
       overflow: hidden;
       overflow-wrap: break-word;
       white-space: break-spaces;
+      border-radius: 3px;
+      background-color: #fff;
 
       header {
         width: 100%;

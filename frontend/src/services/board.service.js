@@ -13,7 +13,7 @@ export const boardService = {
   createCard,
   createGroup,
   getEmptyLabel,
-  getDefaultFilter,
+  updateDrag,
 }
 window.cs = boardService
 
@@ -108,6 +108,39 @@ function createGroup({ title }) {
 function getDefaultSearch() {
   return { title: "" }
 }
+
+// -------------------------------- D & D ---------------------------
+
+function updateDrag(result, board) {
+  // console.log(result);
+  const { source, destination, type } = result
+
+  const update = type === "card" ? reorderCards : reorderGroups
+  const saveUpdate = update(source, destination, board.groups)
+  // console.log(update)
+}
+
+function reorderCards(source, destination, groups) {
+  console.log(source, destination, groups)
+  // console.log('test', groups.find(group => console.log('find', group)));
+
+  const sourceGroup = groups.find((group) => group.id === source.droppableId)
+  const [task] = sourceGroup.cards.splice(source.index, 1)
+  const destinationGroup = groups.find(
+    (group) => group.id === destination.droppableId
+  )
+  destinationGroup.cards.splice(destination.index, 0, task)
+  return groups
+}
+
+function reorderGroups(source, destination, groups) {
+  // console.log(source, destination, groups);
+  const [group] = groups.splice(source.index, 1)
+  groups.splice(destination.index, 0, group)
+  return groups
+}
+
+// -------------------------------- Demo data ---------------------------
 
 function _createDemoData() {
   let demoData = utilService.loadFromStorage(STORAGE_BOARD_KEY)
