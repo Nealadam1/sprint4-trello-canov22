@@ -119,7 +119,7 @@ export function CardList({ group }) {
   return (
     <>
       <div className="card-list">
-        <Droppable droppableId={group.id}>
+        <Droppable droppableId={group.id} type="card">
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
               {group?.cards &&
@@ -131,8 +131,8 @@ export function CardList({ group }) {
                           card?.checklists
                             ? "checklist"
                             : "" + " " + card?.labelIds
-                            ? "labels"
-                            : ""
+                              ? "labels"
+                              : ""
                         }
                         style={{ zIndex: snapshot.isDragging ? 100 : null }}
                         ref={provided.innerRef}
