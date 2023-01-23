@@ -20,13 +20,13 @@ import { useRef } from "react"
 import { ADD_CARD, eventBus } from "../../services/event-bus.service"
 import { CardDetailsShortcut } from "./card-details/actions/card-detail-shortcut"
 
-export function CardList({ group }) {
+export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
   const { boardId, cardId } = useParams()
   const [cardToInput, setCardToInput] = useState(false)
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
   const [isMouseDown, setIsMouseDown] = useState(false)
-  const [EditCardShortcut, setEditCardShortcut] = useState(null)
+
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   const inputRef = useRef(null)
@@ -137,7 +137,7 @@ export function CardList({ group }) {
             <ul ref={provided.innerRef} {...provided.droppableProps}>
               {group?.cards &&
                 group?.cards?.map((card, idx) => (
-                  <Draggable draggableId={card.id} index={idx}>
+                  <Draggable draggableId={card.id} index={idx} isDragDisabled={EditCardShortcut? true:false}>
                     {(provided, snapshot) => (
                       <li
                         className={
@@ -160,10 +160,12 @@ export function CardList({ group }) {
 
                         </Link>
                         <div>
-                          <button className="group-actions-btn " onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}>
+                          <button className="card-actions-btn" onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}>
                             <HiOutlinePencil />
                           </button>
+                         
                           {EditCardShortcut === card.id && <CardDetailsShortcut handleEditShortcutButtonClick={handleEditShortcutButtonClick} card={card} />}
+                          {EditCardShortcut === card.id &&  <div className="shortcut-modal"></div>}
                         </div>
                       </li>
                     )}

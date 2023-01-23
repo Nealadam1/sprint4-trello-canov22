@@ -63,12 +63,13 @@ export function CardPreviewShortcut({ card,title, setTitle}) {
       ) : null}
       <div className="card-info">
         {card?.labelIds && <LabelPreview labels={card.labelIds} />}
-        <input className="card-title-input"
+        <p><input className="card-title-input"
           type="text"
           ref={inputRefShortcutTitle}
           value={title}
           onChange={handleChange} 
           />
+          </p>
         {card?.checklist ||
           (card?.memberIds && (
             <div className="card-details-preview">

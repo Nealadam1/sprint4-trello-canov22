@@ -8,6 +8,7 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
   const [groupTitleToInput, setGroupTitleToInput] = useState({})
   const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const [newTitle, setNewTitle] = useState(group.title)
+  const [EditCardShortcut, setEditCardShortcut] = useState(null)
   const inputRef = useRef(null)
 
   const handleBlur = (event) => {
@@ -34,7 +35,7 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
 
   return (
 
-    <Draggable draggableId={group.id} index={idx} >
+    <Draggable draggableId={group.id} index={idx} isDragDisabled={EditCardShortcut? true:false} >
       {(provided, snapshot) => (
         <div className="group-preview" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
           <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
@@ -61,7 +62,8 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
               {newTitle}
             </h4>
           )}
-          <CardList cards={cards} group={group} idx={idx} />
+          <CardList  setEditCardShortcut={setEditCardShortcut}
+            EditCardShortcut={EditCardShortcut} cards={cards} group={group} idx={idx} />
         </div>
       )}
     </Draggable>
