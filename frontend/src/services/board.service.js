@@ -109,15 +109,17 @@ function getDefaultSearch() {
   return { title: "" }
 }
 
-// -------------------------------- D & D ---------------------------
+// -------------------------------- D & D --------------------------------
 
 function updateDrag(result, board) {
   // console.log(result);
   const { source, destination, type } = result
 
-  const update = type === "card" ? reorderCards : reorderGroups
+  const update = (type === 'card') ? reorderCards : reorderGroups
   const saveUpdate = update(source, destination, board.groups)
-  // console.log(update)
+
+  console.log('save', saveUpdate)
+  save({ ...board, groups: saveUpdate })
 }
 
 function reorderCards(source, destination, groups) {
@@ -130,17 +132,19 @@ function reorderCards(source, destination, groups) {
     (group) => group.id === destination.droppableId
   )
   destinationGroup.cards.splice(destination.index, 0, task)
+  console.log('groupsCards', groups);
   return groups
 }
 
 function reorderGroups(source, destination, groups) {
-  // console.log(source, destination, groups);
   const [group] = groups.splice(source.index, 1)
   groups.splice(destination.index, 0, group)
+  console.log('groups', groups);
   return groups
 }
 
-// -------------------------------- Demo data ---------------------------
+
+// -------------------------------- Demo data --------------------------------
 
 function _createDemoData() {
   let demoData = utilService.loadFromStorage(STORAGE_BOARD_KEY)

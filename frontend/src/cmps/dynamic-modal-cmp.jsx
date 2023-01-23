@@ -140,12 +140,6 @@ const DynamicModalPosition = (props) => {
         }px)`,
       })
     }
-    // if (modalRef.current && (modalRef.current.getBoundingClientRect().top < 0)) {
-    //   setModalStyles({
-    //     ...modalStyles,
-    //     top: `calc(${buttonRef.getBoundingClientRect().top}px + ${modalRef.current.offsetHeight}px)`
-    //   });
-    // }
   }, [modalRef, modalStyles, buttonRef])
 
   return (
