@@ -118,16 +118,22 @@
 
     .sep-line {
       border-bottom: 1px solid rgba(9, 30, 66, 0.13);
-      width: 90%;
+      width: 100%;
       margin-bottom: 1em;
     }
 
     .members-preview {
       list-style: none;
       padding-left: 1em;
+      gap: 0.5em;
+      display: flex;
+      flex-direction: column;
 
       li {
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.2em;
 
         img {
           margin-right: 0.5em;

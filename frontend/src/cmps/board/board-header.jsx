@@ -11,6 +11,9 @@ import { BoardMembers } from "../members/board-members"
 import { DynamicActionModal } from "../dynamic-modal-cmp"
 import { useSelector } from "react-redux"
 import { VscListFilter } from "react-icons/vsc"
+import { BsSpeedometer2 } from "react-icons/bs"
+import { RxDotsHorizontal } from "react-icons/rx"
+import { CgLoadbarSound } from "react-icons/cg"
 
 export function BoardHeader({ board }) {
   const [boardTitle, setBoardTitle] = useState(board.title)
@@ -102,11 +105,17 @@ export function BoardHeader({ board }) {
           </div>
           <span className="btn-divider">|</span>
           <div className="board-action-board">
-            <button onClick={handleCmpRender}>Board</button>
+            <button onClick={handleCmpRender}>
+              <CgLoadbarSound style={{ fontSize: "20px" }} />
+              Board
+            </button>
           </div>
           <span className="btn-divider">|</span>
           <div className="board-action-dashboard">
-            <button onClick={handleCmpRender}>Dashboard</button>
+            <button onClick={handleCmpRender}>
+              <BsSpeedometer2 />
+              Dashboard
+            </button>
           </div>
         </div>
 
@@ -132,7 +141,9 @@ export function BoardHeader({ board }) {
           </div>
           <span className="btn-divider">|</span>
           <div className="board-action-menu">
-            <button onClick={handleCmpRender}>Menu</button>
+            <button className="open-menu-icon" onClick={handleCmpRender}>
+              <RxDotsHorizontal />
+            </button>
           </div>
         </div>
       </div>

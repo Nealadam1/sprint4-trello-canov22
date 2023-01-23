@@ -26,11 +26,14 @@
 @import "./cmps/card/card-details-cmp/card-checklists";
 @import "./cmps//card/card-details-cmp/card-cover";
 @import "./cmps/card/card-details-cmp/card-comments";
+@import "./cmps/card/card-details-cmp/card-labels";
+@import "./cmps/card/card-details-cmp/card-members";
 
 // cmp - Board
 @import "./cmps/board/board-preview";
 @import "./cmps/board/board-create";
 @import "./cmps/board/board-header";
+@import "./cmps/board/board-filter";
 
 // cmp - Group
 @import "./cmps/group/group-list";

@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { filterCardsBy } from "../../store/actions/board.action"
+import { FiCheck } from "react-icons/fi"
 
 export function BoardFilter({ onSetFilter }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -43,34 +44,38 @@ export function BoardFilter({ onSetFilter }) {
     })
   }
 
-  console.log(filterBy)
-
   return (
     <div className="board-filter">
       <p>Filter</p>
-      <label htmlFor="board-input-filter">Keyword</label>
+      <div className="sep-line"></div>
+      <p className="filter-keyword">Keyword</p>
       <input
         placeholder="Enter a keyword..."
         type="text"
-        className="blue-input"
+        className="search-input"
         onChange={handleChange}
         name="board-input-filter"
         id="board-input-filter"
       />
       <div className="filter-by-labels">
-        <ul>
-          <p>Labels</p>
+        <ul className="labels-filter-list">
+          <p className="labels-title-filter">Labels</p>
           {board.labels.map((label) => (
-            <li style={{ backgroundColor: label.color }}>
-              <div>
-                <input
-                  value={label.id}
-                  onChange={handleCheckbox}
-                  type="checkbox"
-                />
-                <span>{label.title}</span>
-              </div>
-            </li>
+            <label>
+              <li
+                className="label-filter-title-preview"
+                style={{ backgroundColor: label.color }}
+              >
+                <div className="label-item">
+                  <input
+                    value={label.id}
+                    onChange={handleCheckbox}
+                    type="checkbox"
+                  />
+                  <span className="filter-label-title">{label.title}</span>
+                </div>
+              </li>
+            </label>
           ))}
         </ul>
       </div>
@@ -79,8 +84,17 @@ export function BoardFilter({ onSetFilter }) {
         <ul>
           {board.members.map((member) => (
             <li onClick={() => handleAddMember(member._id)}>
-              <span>{member.fullname}</span>
-              <img style={{ width: "25px" }} src={member.imgUrl} />
+              <div>
+                <img style={{ width: "25px" }} src={member.imgUrl} />
+                <span>{member.fullname}</span>
+              </div>
+              {filterBy.members.includes(member._id) && (
+                <div>
+                  <span className="filter-member-check">
+                    <FiCheck />
+                  </span>
+                </div>
+              )}
             </li>
           ))}
         </ul>

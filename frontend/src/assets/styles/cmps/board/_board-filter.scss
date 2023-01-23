@@ -1,0 +1,81 @@
+.board-filter {
+  .filter-keyword {
+    text-align: start;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    font-family: "Open Sans";
+  }
+
+  .search-input {
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    font-family: OpenSans-Regular;
+    font-size: 14px;
+    border-radius: 3px;
+    padding: 8px 12px;
+    box-shadow: inset 0 0 0 2px var(--ds-border-input, #dfe1e6);
+    width: 100%;
+    margin-bottom: 0;
+
+    &:focus {
+      box-shadow: inset 0 0 0 2px var(--ds-border-focused, #0079bf);
+    }
+  }
+  ul {
+    list-style: none;
+  }
+  .labels-filter-list {
+    padding: 0;
+    .label-filter-title-preview {
+      .label-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-inline: 2em;
+        padding: 0 12px;
+        min-width: 48px;
+        border-radius: 0.3em;
+        height: 32px;
+        display: flex;
+        font-size: 14px;
+        position: relative;
+        color: black;
+      }
+      .filter-label-title {
+        font-family: OpenSans-Regular;
+        font-weight: 600;
+      }
+    }
+  }
+  .filter-by-members {
+    ul {
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 0.5em;
+      flex-direction: column;
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        div {
+          gap: 0.5em;
+          display: flex;
+          align-items: center;
+          img {
+            margin-left: 0.5em;
+            width: rem(35px);
+            border-radius: 20em;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+    .filter-member-check {
+      margin-right: 0.5em;
+    }
+  }
+}

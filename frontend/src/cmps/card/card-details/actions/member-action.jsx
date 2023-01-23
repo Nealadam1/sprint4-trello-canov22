@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { addMember, removeMember } from "../../../../store/actions/board.action"
+import { FiCheck } from "react-icons/fi"
 
 export function MemberAction({ card, setCard }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -28,10 +29,21 @@ export function MemberAction({ card, setCard }) {
       <div className="sep-line"></div>
       <ul className="members-preview">
         {board.members?.map((member, idx) => (
-          <li key={idx} onClick={() => onAddMember(member._id)}>
-            <img className="member-image" src={member.imgUrl} />
-            {member.fullname}
-          </li>
+          <div className="members-action-container">
+            <div className="members-action-info">
+              <li key={idx} onClick={() => onAddMember(member._id)}>
+                <img className="member-image" src={member.imgUrl} />
+                {member.fullname}
+              </li>
+            </div>
+            <div className="members-action-detail">
+              {card.memberIds?.includes(member._id) && (
+                <span>
+                  <FiCheck />
+                </span>
+              )}
+            </div>
+          </div>
         ))}
       </ul>
     </div>

@@ -1,0 +1,16 @@
+.members-action-container {
+  display: flex;
+  justify-content: space-between;
+  .members-action-info {
+    display: flex;
+    li {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.2em;
+    }
+  }
+  .members-action-detail {
+    margin-right: 1em;
+  }
+}

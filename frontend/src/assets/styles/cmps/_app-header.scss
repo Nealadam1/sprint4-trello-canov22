@@ -9,12 +9,13 @@
     font-family: Pacifico;
     display: flex;
     align-items: center;
+    margin-left: 0.5em;
   }
 
   .app-header-links {
     display: flex;
     align-items: center;
-    gap: 1.5em;
+    gap: 1em;
     .first {
       margin-left: 1.5em;
     }
@@ -23,16 +24,20 @@
       font-family: OpenSans-Regular;
       font-weight: 400;
       border-radius: 3px;
+      padding-left: 12px;
       color: #fff;
       cursor: pointer;
       font-size: 13.5px;
       letter-spacing: 0;
       position: relative;
       // display: flex;
+      display: flex;
+      align-items: center;
       span {
         font-size: 26px;
-        position: absolute;
-        top: -20%;
+        position: relative;
+        display: flex;
+        align-items: center;
       }
       &:hover {
         background-color: #0000003d;
@@ -42,7 +47,7 @@
 
   .login-signup-page {
     display: flex;
-    margin-right: 10px;
+    margin-right: 15px;
     a {
       display: flex;
       align-items: center;

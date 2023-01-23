@@ -91,6 +91,16 @@
   @include button;
 }
 
+@mixin div {
+  border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.sep-line {
+  @include div;
+}
+
 @mixin input {
   width: 100%;
   height: 52px;
