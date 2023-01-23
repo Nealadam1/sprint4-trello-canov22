@@ -35,7 +35,9 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   )
 
   const inputRef = useRef(null)
-  const cardRef = useRef(null)
+
+
+
   useEffect(() => {
     const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
       if (group.id === groupId) setCardToInput(true)
@@ -49,7 +51,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
     filteredCards()
   }, [filterCardBy])
   useEffect(() => {
-    onEndDrag()
+    // onEndDrag()
   }, [cards])
 
   function onAddCard(ev) {
@@ -57,12 +59,13 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
     const title = cardTitle.title
     const newCard = {
       title,
-      description: "",
+      description: '',
       style: {},
+      archivedAt:''
     }
     addCard(newCard, group.id)
     setCardToInput(false)
-    setCardTitle({ title: "" })
+    setCardTitle({ title: '' })
   }
 
   useEffect(() => {
@@ -182,16 +185,15 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                           card?.checklists
                             ? "checklist"
                             : "" + " " + card?.labelIds
-                            ? "labels"
-                            : ""
+                              ? "labels"
+                              : ""
                         }
                         style={{ zIndex: snapshot.isDragging ? 100 : null }}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Link
-                          ref={cardRef}
+                        <Link 
                           onClick={toCardDetails}
                           to={`/board/${boardId}/${card.id}`}
                         >
@@ -209,10 +211,8 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
 
                           {EditCardShortcut === card.id && (
                             <CardDetailsShortcut
-                              setEditCardShortcut={setEditCardShortcut}
-                              group={group}
-                              card={card}
-                              cardRef={cardRef}
+                              setEditCardShortcut={
+                                setEditCardShortcut} group={group} card={card}
                             />
                           )}
                           {EditCardShortcut === card.id && (

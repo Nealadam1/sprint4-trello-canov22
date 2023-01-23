@@ -18,7 +18,7 @@ export function BoardIndex() {
 
   function onLoadBoards(searchBy) {
     loadBoards(searchBy).catch((err) => {
-      console.log("cannot Load Toys")
+      console.log("cannot Load boards")
     })
   }
 
