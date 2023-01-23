@@ -8,6 +8,7 @@ import { FaUser } from "react-icons/fa"
 import { userService } from "../services/user.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { logout } from "../store/actions/user.action"
+import { RiArrowDropDownLine } from "react-icons/ri"
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -15,7 +16,7 @@ export function AppHeader() {
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
   const headerBackground = board
-    ? utilService.darken(board.style.backgroundColor, -40)
+    ? utilService.darken(board?.style?.backgroundColor, -40)
     : ""
 
   async function onLogout() {
@@ -29,11 +30,39 @@ export function AppHeader() {
 
   return (
     <div className="app-header" style={{ backgroundColor: headerBackground }}>
-      <div className="logo">
-        <Link to="/">
-          <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
-          <span className="logo-text">orkflow</span>
-        </Link>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div className="logo">
+          <Link to="/">
+            <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
+            <span className="logo-text">orkflow</span>
+          </Link>
+        </div>
+        <div className="app-header-links">
+          <button className="first app-header-link" href="#">
+            Workspaces
+            <span>
+              <RiArrowDropDownLine />
+            </span>
+          </button>
+          <button className="app-header-link" href="#">
+            Recent
+            <span>
+              <RiArrowDropDownLine />
+            </span>
+          </button>
+          <button className="app-header-link" href="#">
+            Starred
+            <span>
+              <RiArrowDropDownLine />
+            </span>
+          </button>
+          <button className="app-header-link" href="#">
+            Templates
+            <span>
+              <RiArrowDropDownLine />
+            </span>
+          </button>
+        </div>
       </div>
       {loggedInUser ? (
         <div className="user-details">

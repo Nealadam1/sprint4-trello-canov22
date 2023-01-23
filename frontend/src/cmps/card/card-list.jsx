@@ -18,16 +18,21 @@ import {
 import { CardPreview } from "./card-preview"
 import { useRef } from "react"
 import { ADD_CARD, eventBus } from "../../services/event-bus.service"
+import { useSearchParams } from "react-router-dom"
 import { CardDetailsShortcut } from "./card-details/actions/card-detail-shortcut"
 
-export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
+export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   const { boardId, cardId } = useParams()
   const [cardToInput, setCardToInput] = useState(false)
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
   const [isMouseDown, setIsMouseDown] = useState(false)
+  const [search, setSearch] = useState("")
 
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
+  let filterCardBy = useSelector(
+    (storeState) => storeState.boardModule.filterCardBy
+  )
 
   const inputRef = useRef(null)
   const cardRef=useRef(null)
@@ -38,8 +43,11 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
     return () => {
       callAddCard()
     }
-  })
+  }, [])
 
+  useEffect(() => {
+    filteredCards()
+  }, [filterCardBy])
   useEffect(() => {
     onEndDrag()
   }, [cards])
@@ -62,8 +70,6 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
       inputRef.current.focus()
     }
   }, [cardToInput])
-
-  // console.log(inputRef)
 
   function onDeleteCard(event, cardId) {
     event.preventDefault()
@@ -119,6 +125,15 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
     setCardTitle({ title: "" })
   }
 
+  const filteredCards = () => {
+    if (!filterCardBy) return group.cards
+    return cards?.filter((card) =>
+      card.title.toLowerCase().includes(filterCardBy.toLowerCase())
+    )
+  }
+
+  // console.log(filteredCards())
+
   function handleEditShortcutButtonClick(ev, cardId) {
     if (EditCardShortcut === cardId) {
       ev.stopPropagation()
@@ -136,9 +151,13 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
         <Droppable droppableId={group.id} type="card">
           {(provided) => (
             <ul ref={provided.innerRef} {...provided.droppableProps}>
-              {group?.cards &&
-                group?.cards?.map((card, idx) => (
-                  <Draggable draggableId={card.id} index={idx} isDragDisabled={EditCardShortcut? true:false}>
+              {cards &&
+                filteredCards().map((card, idx) => (
+                  <Draggable
+                    draggableId={card.id}
+                    index={idx}
+                    isDragDisabled={EditCardShortcut ? true : false}
+                  >
                     {(provided, snapshot) => (
                       <li
                         className={
@@ -158,15 +177,28 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
                           to={`/board/${boardId}/${card.id}`}
                         >
                           <CardPreview idx={idx} card={card} />
-
                         </Link>
                         <div>
-                          <button className="card-actions-btn" onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}>
+                          <button
+                            className="card-actions-btn"
+                            onClick={(ev) =>
+                              handleEditShortcutButtonClick(ev, card.id)
+                            }
+                          >
                             <HiOutlinePencil />
                           </button>
-                         
-                          {EditCardShortcut === card.id && <CardDetailsShortcut setEditCardShortcut={setEditCardShortcut} group={group} card={card} cardRef={cardRef} />}
-                          {EditCardShortcut === card.id &&  <div className="shortcut-modal" onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}></div>}
+
+                          {EditCardShortcut === card.id && (
+                            <CardDetailsShortcut
+                              setEditCardShortcut={
+                                setEditCardShortcut} group={group} card={card
+                              }
+                              cardRef={cardRef}
+                            />
+                          )}
+                          {EditCardShortcut === card.id && (
+                            <div className="shortcut-modal" onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}></div>
+                          )}
                         </div>
                       </li>
                     )}

@@ -102,9 +102,9 @@ function darken(hex) {
   let b = parseInt(hex.substring(5, 7), 16)
 
   // Darken the color by 30%
-  r = Math.floor(r * 0.6)
-  g = Math.floor(g * 0.6)
-  b = Math.floor(b * 0.6)
+  r = Math.floor(r * 0.95)
+  g = Math.floor(g * 0.95)
+  b = Math.floor(b * 0.95)
 
   // Convert the RGB color back to a hex color code
   hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
@@ -136,7 +136,7 @@ function handleDragEnd(newBoard, destination, source, type) {
   const newBoardGroups = Array.from(newBoard.groups) // breaks pointer so we don't change the final object we send
 
   // reorder groups in the group list
-  if (type === 'group') {
+  if (type === "group") {
     // relocating the group in the groups array and sends the new board with updated groups array
     newBoardGroups.splice(source.index, 1)
     newBoardGroups.splice(destination.index, 0, newBoard.groups[source.index])
@@ -144,9 +144,13 @@ function handleDragEnd(newBoard, destination, source, type) {
     return newBoard
 
     // reorder tasks across the groups
-  } else if (type === 'task') {
-    const prevGroupIdx = newBoardGroups.findIndex((group) => group.id === source.droppableId)
-    const newGroupIdx = newBoardGroups.findIndex((group) => group.id === destination.droppableId)
+  } else if (type === "task") {
+    const prevGroupIdx = newBoardGroups.findIndex(
+      (group) => group.id === source.droppableId
+    )
+    const newGroupIdx = newBoardGroups.findIndex(
+      (group) => group.id === destination.droppableId
+    )
     const prevGroup = newBoardGroups[prevGroupIdx]
     const newGroup = newBoardGroups[newGroupIdx]
 
@@ -154,17 +158,29 @@ function handleDragEnd(newBoard, destination, source, type) {
     if (prevGroupIdx === newGroupIdx) {
       // in case the new task index is smaller
       if (destination.index < source.index) {
-        newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+        newGroup.tasks.splice(
+          destination.index,
+          0,
+          newBoard.groups[prevGroupIdx].tasks[source.index]
+        )
         prevGroup.tasks.splice(source.index + 1, 1)
 
         // in case the new task index is bigger
       } else {
-        newGroup.tasks.splice(destination.index + 1, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+        newGroup.tasks.splice(
+          destination.index + 1,
+          0,
+          newBoard.groups[prevGroupIdx].tasks[source.index]
+        )
         prevGroup.tasks.splice(source.index, 1)
       }
       // in case new task location is on different group
     } else {
-      newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+      newGroup.tasks.splice(
+        destination.index,
+        0,
+        newBoard.groups[prevGroupIdx].tasks[source.index]
+      )
       prevGroup.tasks.splice(source.index, 1)
     }
 

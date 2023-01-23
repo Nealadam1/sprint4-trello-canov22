@@ -49,10 +49,11 @@ export function BoardDetails() {
     <div
       className="board-details"
       style={{
-        background: `${board.style.img
-          ? `url(${board.style.img})`
-          : `${board.style.backgroundColor}`
-          }`,
+        background: `${
+          board.style.img
+            ? `url(${board.style.img})`
+            : `${board.style.backgroundColor}`
+        }`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
@@ -68,7 +69,6 @@ export function BoardDetails() {
         onAddGroup={onAddGroup}
         groups={board.groups}
       />
-
     </div>
   )
 }

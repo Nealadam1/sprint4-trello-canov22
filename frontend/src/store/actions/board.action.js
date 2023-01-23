@@ -15,6 +15,7 @@ import {
   SET_GROUP,
   UPDATE_CARD,
   SET_CARD,
+  SET_FILTER_CARD_BY,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
 import {
@@ -208,19 +209,27 @@ export async function addGroup(newGroup) {
   }
 }
 
+export async function filterCardsBy(filterBy) {
+  store.dispatch({
+    type: SET_FILTER_CARD_BY,
+    filterBy,
+  })
+}
+
 export async function updateGroup(group) {
   try {
     const board = structuredClone(store.getState().boardModule.board)
     const updatedGroup = group
     console.log(updatedGroup)
-    const updatedGroups = board.groups.map((group) => group.id === updatedGroup.id ? updatedGroup : group)
+    const updatedGroups = board.groups.map((group) =>
+      group.id === updatedGroup.id ? updatedGroup : group
+    )
     console.log(updatedGroups)
     board.groups = updatedGroups
     console.log(board)
     store.dispatch(getActionSetBoard(board))
     boardService.save(board)
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err)
   }
 }

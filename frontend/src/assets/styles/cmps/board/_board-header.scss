@@ -3,10 +3,16 @@
   margin-top: 10px;
   margin-left: 15px;
   display: flex;
+  align-items: flex-start;
   // flex-wrap: wrap;
 
   .board-action-filter {
     margin-left: auto;
+    .board-filter-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
   }
 
   .board-action-dashboard {
@@ -18,6 +24,23 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #fff;
+    padding-inline: 2px;
+    padding: 0 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: #0000003d;
+      border-radius: 3px;
+    }
+  }
+
+  .board-title-input {
+    height: 32px;
+    font-size: 18px;
+    max-width: fit-content;
   }
 
   .board-actions {
