@@ -40,7 +40,7 @@ export function CardPreview({ card, idx }) {
   return (
     // <Draggable draggableId={card.id} index={idx}>
     // {(provided, snapshot) => (
-    <div className="card-preview" >
+    <div className="card-preview">
       {/* // ref={provided.innerRef}{...provided.draggableProps} {...provided.dragHandleProps}> */}
       {card?.style?.bgColor ? (
         <header
@@ -80,7 +80,6 @@ export function CardPreview({ card, idx }) {
     //{/* </Draggable> */}
   )
 }
-
 
 // <div className="card-preview">
 //       {card?.style?.bgColor ? (

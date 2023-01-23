@@ -3,5 +3,6 @@ export function LabelPreview({ labels }) {
   // console.log(labels);
 
   // labels.map(label => label)
-  return <div key={labels}>{<CardLabels cardLabels={labels}/>}</div>
+  if (!labels?.length) return
+  return <div key={labels}>{<CardLabels cardLabels={labels} />}</div>
 }
