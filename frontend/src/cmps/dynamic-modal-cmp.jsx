@@ -5,6 +5,7 @@ import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
 import { ChecklistAction } from "./card/card-details/actions/checklist-action"
 import { CoverAction } from "./card/card-details/actions/cover-action"
+import { DateAction } from "./card/card-details/actions/date-action"
 import { LabelAction } from "./card/card-details/actions/label-action"
 import { MemberAction } from "./card/card-details/actions/member-action"
 import { GroupActions } from "./group/group-actions"
@@ -80,6 +81,14 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "add-date":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <DateAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
     case "group-actions":
       return (
         modal === props.type && (
@@ -140,7 +149,7 @@ const DynamicModalPosition = (props) => {
         }px)`,
       })
     }
-  }, [modalRef, modalStyles, buttonRef])
+  }, [modalRef, buttonRef])
 
   return (
     <div

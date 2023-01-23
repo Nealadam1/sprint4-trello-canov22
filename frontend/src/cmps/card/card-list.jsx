@@ -35,7 +35,9 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   )
 
   const inputRef = useRef(null)
-  const cardRef=useRef(null)
+
+
+
   useEffect(() => {
     const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
       if (group.id === groupId) setCardToInput(true)
@@ -57,12 +59,13 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
     const title = cardTitle.title
     const newCard = {
       title,
-      description: "",
+      description: '',
       style: {},
+      archivedAt:''
     }
     addCard(newCard, group.id)
     setCardToInput(false)
-    setCardTitle({ title: "" })
+    setCardTitle({ title: '' })
   }
 
   useEffect(() => {
@@ -172,7 +175,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Link ref={cardRef}
+                        <Link 
                           onClick={toCardDetails}
                           to={`/board/${boardId}/${card.id}`}
                         >
@@ -193,7 +196,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                               setEditCardShortcut={
                                 setEditCardShortcut} group={group} card={card
                               }
-                              cardRef={cardRef}
+                              
                             />
                           )}
                           {EditCardShortcut === card.id && (

@@ -90,7 +90,7 @@ function getEmptyLabel() {
   }
 }
 
-function createCard({ title, description, style }) {
+function createCard({ title, description, style,archivedAt }) {
   return {
     title,
     description,
@@ -98,6 +98,7 @@ function createCard({ title, description, style }) {
     id: utilService.makeId(),
     checklists: [],
     labelIds: [],
+    archivedAt:''
   }
 }
 
