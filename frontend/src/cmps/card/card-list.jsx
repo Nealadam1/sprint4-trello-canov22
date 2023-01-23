@@ -30,6 +30,7 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
 
   const inputRef = useRef(null)
+  const cardRef=useRef(null)
   useEffect(() => {
     const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
       if (group.id === groupId) setCardToInput(true)
@@ -152,7 +153,7 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Link
+                        <Link ref={cardRef}
                           onClick={toCardDetails}
                           to={`/board/${boardId}/${card.id}`}
                         >
@@ -164,8 +165,8 @@ export function CardList({ group,EditCardShortcut,setEditCardShortcut }) {
                             <HiOutlinePencil />
                           </button>
                          
-                          {EditCardShortcut === card.id && <CardDetailsShortcut handleEditShortcutButtonClick={handleEditShortcutButtonClick} card={card} />}
-                          {EditCardShortcut === card.id &&  <div className="shortcut-modal"></div>}
+                          {EditCardShortcut === card.id && <CardDetailsShortcut setEditCardShortcut={setEditCardShortcut} group={group} card={card} cardRef={cardRef} />}
+                          {EditCardShortcut === card.id &&  <div className="shortcut-modal" onClick={(ev) => handleEditShortcutButtonClick(ev, card.id)}></div>}
                         </div>
                       </li>
                     )}

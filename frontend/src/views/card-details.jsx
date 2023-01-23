@@ -28,7 +28,6 @@ import { AiOutlinePlus } from "react-icons/ai"
 export function CardDetails() {
   const [card, setCard] = useState(null)
   const navigate = useNavigate()
-
   const board = useSelector((storeState) => storeState.boardModule.board)
   const modal = useSelector(
     (storeState) => storeState.systemModule.cardDetailModal
@@ -38,7 +37,6 @@ export function CardDetails() {
   )
   const { cardId } = useParams()
   const buttonRefLabelAction = useRef(null)
-
   useEffect(() => {
     const currCard = getCardById(board, cardId)
     setCard(currCard)

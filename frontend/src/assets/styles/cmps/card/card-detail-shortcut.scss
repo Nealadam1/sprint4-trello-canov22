@@ -7,9 +7,19 @@
 
     input{
         border: none;
+        outline: none;
+        &:focus{
+            outline: none;
+        }
     }
 
+    
 
+
+}
+
+.shortcut-actions{
+    
 }
 
 .shortcut-modal {
