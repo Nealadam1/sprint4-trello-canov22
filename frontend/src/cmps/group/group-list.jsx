@@ -28,8 +28,8 @@ export function GroupList({
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
   const inputRef = useRef(null)
-  
-  groups=groups.filter(group=> group.archivedAt==='')
+
+  groups = groups.filter(group => group.archivedAt === '')
 
   useEffect(() => {
     if (groupToInput) {
@@ -88,9 +88,10 @@ export function GroupList({
   function handleOnDragEnd(result) {
     const { source, destination } = result
     if ((!result.destination) || (destination.droppableId === source.droppableId) && (destination.index === source.index)) return
-    console.log(groups);
+    // console.log(board);
 
     boardService.updateDrag(result, board)
+    setBoard({ ...board })
   }
 
   return (

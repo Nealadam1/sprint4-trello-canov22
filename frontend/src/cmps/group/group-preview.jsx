@@ -35,12 +35,13 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
 
   return (
 
-    <Draggable draggableId={group.id} index={idx} isDragDisabled={EditCardShortcut? true:false} >
+    <Draggable draggableId={group.id} index={idx} isDragDisabled={EditCardShortcut ? true : false} >
       {(provided, snapshot) => (
         <div className="group-preview" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
           <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
             <BsThreeDots />
           </button>
+
           {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
           {groupTitleToInput[group.id] ? (
             <form>
@@ -62,7 +63,7 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
               {newTitle}
             </h4>
           )}
-          <CardList  setEditCardShortcut={setEditCardShortcut}
+          <CardList setEditCardShortcut={setEditCardShortcut}
             EditCardShortcut={EditCardShortcut} cards={cards} group={group} idx={idx} />
         </div>
       )}

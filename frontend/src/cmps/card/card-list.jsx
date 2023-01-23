@@ -131,7 +131,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
     )
   }
 
-  console.log(filteredCards())
+  // console.log(filteredCards())
 
   function handleEditShortcutButtonClick(ev, cardId) {
     if (EditCardShortcut === cardId) {
@@ -163,8 +163,8 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                           card?.checklists
                             ? "checklist"
                             : "" + " " + card?.labelIds
-                            ? "labels"
-                            : ""
+                              ? "labels"
+                              : ""
                         }
                         style={{ zIndex: snapshot.isDragging ? 100 : null }}
                         ref={provided.innerRef}
