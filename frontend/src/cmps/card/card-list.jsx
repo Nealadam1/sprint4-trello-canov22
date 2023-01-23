@@ -124,7 +124,7 @@ export function CardList({ group }) {
             {(provided) => (
               <ul ref={provided.innerRef} {...provided.droppableProps}>
                 {group.cards &&
-                  group.cards.map((card, idx) => (
+                  group?.cards?.map((card, idx) => (
                     <Draggable
                       key={card?.id}
                       draggableId={card?.id}
@@ -133,9 +133,9 @@ export function CardList({ group }) {
                       {(provided) => (
                         <li
                           className={
-                            card.checklists
+                            card?.checklists
                               ? "checklist"
-                              : "" + " " + card.labelIds
+                              : "" + " " + card?.labelIds
                               ? "labels"
                               : ""
                           }
@@ -180,6 +180,7 @@ export function CardList({ group }) {
               onBlur={handleBlur}
               value={cardTitle.title}
               onChange={handleChange}
+              required
               placeholder="Enter list title..."
             />
             <div className="add-card-section">

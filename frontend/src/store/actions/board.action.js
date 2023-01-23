@@ -17,7 +17,12 @@ import {
   SET_CARD,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
-import { ADD_LABEL, PUT_LABEL, REMOVE_LABEL, SET_LABELS } from "../reducers/label.reducer.js"
+import {
+  ADD_LABEL,
+  PUT_LABEL,
+  REMOVE_LABEL,
+  SET_LABELS,
+} from "../reducers/label.reducer.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -253,7 +258,7 @@ export function updateBoard(board) {
 }
 
 export function getCardById(board, cardId) {
-  const cardGroup = board.groups.find((group) =>
+  const cardGroup = board?.groups?.find((group) =>
     group?.cards?.find((card) => card.id === cardId)
   )
   const card = cardGroup?.cards.find((card) => card.id === cardId)
@@ -279,14 +284,14 @@ export function addLabel(label) {
 export function replaceLabel(label) {
   store.dispatch({
     type: PUT_LABEL,
-    label
+    label,
   })
 }
 
 export function removeLabel(labelId) {
   store.dispatch({
     type: REMOVE_LABEL,
-    labelId
+    labelId,
   })
 }
 
@@ -316,4 +321,3 @@ export function onRemoveBoardOptimistic(boardId) {
       })
     })
 }
-
