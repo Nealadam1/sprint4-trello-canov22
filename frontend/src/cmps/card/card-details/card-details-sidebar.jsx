@@ -8,7 +8,7 @@ import {
 import { DynamicActionModal } from "../../dynamic-modal-cmp"
 import { BsTag } from "react-icons/bs"
 import { IoMdCheckboxOutline } from "react-icons/io"
-import { AiOutlineUser } from "react-icons/ai"
+import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai"
 import {MdOutlineCreditCard} from "react-icons/md"
 
 export function CardDetailsSidebar({ card, setCard }) {
@@ -19,6 +19,7 @@ export function CardDetailsSidebar({ card, setCard }) {
   const buttonRefLabels = useRef(null)
   const buttonRefChecklist = useRef(null)
   const buttonRefCover = useRef(null)
+  const buttonRefDates = useRef(null)
   return (
     <aside className="card-details-sidebar">
       <div>
@@ -116,6 +117,30 @@ export function CardDetailsSidebar({ card, setCard }) {
             <MdOutlineCreditCard />
           </span>
           Cover
+        </button>
+      </div>
+      <div>
+        <button
+          className="side-bar-btn"
+          ref={buttonRefDates}
+          onClick={
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-date")
+              : null
+          }
+        >
+          {isActionModal && (
+            <DynamicActionModal
+              card={card}
+              buttonRef={buttonRefCover.current}
+              type={"add-date"}
+              setCard={setCard}
+            />
+          )}
+          <span className="checklist-icon side-bar-icon">
+            <AiOutlineClockCircle />
+          </span>
+          Date
         </button>
       </div>
     </aside>

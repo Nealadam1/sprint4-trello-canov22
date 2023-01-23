@@ -5,21 +5,49 @@
     top: -6%;
     left: -2%;
 
-    input{
+    input {
         border: none;
         outline: none;
-        &:focus{
+
+        &:focus {
             outline: none;
         }
     }
 
-    
+
 
 
 }
 
-.shortcut-actions{
-    
+.shortcut-actions {
+    li {
+        width: fit-content;
+        padding: 0px 7px;
+        min-height: 32px;
+        border-radius: 3px;
+        color: #c7d1db;
+        cursor: pointer;
+        background: #0009;
+        margin: 0 0 4px 8px;
+        padding: 6px 12px 6px 8px;
+        text-decoration: none;
+        transition: transform 85ms ease-in;
+
+        a {
+            color: #c7d1db;
+            &:hover {
+
+                color: #fff;
+            }
+        }
+
+        &:hover {
+            background: #000c;
+            color: #fff;
+            // transform: translateX(-5px);
+        }
+    }
+
 }
 
 .shortcut-modal {
