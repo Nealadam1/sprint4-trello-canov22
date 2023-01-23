@@ -13,6 +13,13 @@
     text-decoration: none;
   }
 
+  .placeholder {
+    background-color: yellow;
+    position: absolute;
+    z-index: -1;
+    height: 50px;
+  }
+
   li {
     margin-bottom: 0.5em;
 
@@ -232,6 +239,7 @@
       font-size: 16px;
       display: flex;
       align-items: center;
+
       .add-card-text {
         margin-left: 0.3em;
         font-size: 13px;

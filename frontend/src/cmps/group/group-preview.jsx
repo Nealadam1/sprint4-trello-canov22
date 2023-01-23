@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react"
 import { CardList } from "../card/card-list"
 import { GroupActions } from "./group-actions"
-import {BsThreeDots} from "react-icons/bs"
+import { BsThreeDots } from "react-icons/bs"
+import { Draggable } from "react-beautiful-dnd"
 
-export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provided }) {
+export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provided, idx }) {
   const [groupTitleToInput, setGroupTitleToInput] = useState({})
   const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const [newTitle, setNewTitle] = useState(group.title)
@@ -33,37 +34,72 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
 
   return (
 
-    <div className="group-preview"
-      {...provided.draggableProps}
-      {...provided.dragHandleProps}
-      ref={provided.innerRef}
-    >
-      <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
-        <BsThreeDots />
-      </button>
-
-      {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
-      {groupTitleToInput[group.id] ? (
-        <form>
-          <input
-            className="group-title-input blue-input"
-            type="text"
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-            onBlur={handleBlur}
-            ref={inputRef}
-          />
-        </form>
-      ) : (
-        <h4
-          onClick={() =>
-            setGroupTitleToInput({ ...groupTitleToInput, [group.id]: true })
-          }
-        >
-          {newTitle}
-        </h4>
+    <Draggable draggableId={group.id} index={idx} >
+      {(provided, snapshot) => (
+        <div className="group-preview" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+          <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
+            <BsThreeDots />
+          </button>
+          {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
+          {groupTitleToInput[group.id] ? (
+            <form>
+              <input
+                className="group-title-input blue-input"
+                type="text"
+                value={newTitle}
+                onChange={(e) => setNewTitle(e.target.value)}
+                onBlur={handleBlur}
+                ref={inputRef}
+              />
+            </form>
+          ) : (
+            <h4
+              onClick={() =>
+                setGroupTitleToInput({ ...groupTitleToInput, [group.id]: true })
+              }
+            >
+              {newTitle}
+            </h4>
+          )}
+          <CardList cards={cards} group={group} idx={idx} />
+        </div>
       )}
-      <CardList cards={cards} group={group} />
-    </div>
+    </Draggable>
+
   )
 }
+
+
+// <div className="group-preview"
+// {...provided.draggableProps}
+// {...provided.dragHandleProps}
+// ref={provided.innerRef}
+// >
+// <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
+//   <BsThreeDots />
+// </button>
+
+// {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
+// {groupTitleToInput[group.id] ? (
+//   <form>
+//     <input
+//       className="group-title-input blue-input"
+//       type="text"
+//       value={newTitle}
+//       onChange={(e) => setNewTitle(e.target.value)}
+//       onBlur={handleBlur}
+//       ref={inputRef}
+//     />
+//   </form>
+// ) : (
+//   <h4
+//     onClick={() =>
+//       setGroupTitleToInput({ ...groupTitleToInput, [group.id]: true })
+//     }
+//   >
+//     {newTitle}
+//   </h4>
+// )}
+// <CardList cards={cards} group={group} idx={idx} />
+// </div>
+// )

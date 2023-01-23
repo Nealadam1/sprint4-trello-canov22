@@ -19,7 +19,6 @@ import {
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
   const board = useSelector((storeState) => storeState.boardModule.board)
-  const [placeholderProps, setPlaceholderProps] = useState({})
   const { boardId } = useParams()
   // const [board, setBoard] = useState({})
 
@@ -45,18 +44,6 @@ export function BoardDetails() {
     deleteGroup(groupId)
   }
 
-  function onDragStart(ev) {
-
-  }
-
-  function onDragUpdate(ev) {
-
-  }
-
-  function onDragEnd(result) {
-
-  }
-
   if (!board) return <h1>Loading...</h1>
   return (
     <div
@@ -71,19 +58,16 @@ export function BoardDetails() {
         backgroundSize: "cover",
       }}
     >
-      <BoardHeader board={board} onDragStart={onDragStart} onDragUpdate={onDragUpdate} onDragEnd={onDragEnd} />
+      <BoardHeader board={board} />
 
-      <DragDropContext>
-        <GroupList
-          placeholderProps={placeholderProps}
-          GroupTitleToEdit={GroupTitleToEdit}
-          setGroupTitleToEdit={setGroupTitleToEdit}
-          board={board}
-          onDeleteGroup={onDeleteGroup}
-          onAddGroup={onAddGroup}
-          groups={board.groups}
-        />
-      </DragDropContext>
+      <GroupList
+        GroupTitleToEdit={GroupTitleToEdit}
+        setGroupTitleToEdit={setGroupTitleToEdit}
+        board={board}
+        onDeleteGroup={onDeleteGroup}
+        onAddGroup={onAddGroup}
+        groups={board.groups}
+      />
 
     </div>
   )

@@ -117,57 +117,46 @@ export function CardList({ group }) {
   return (
     <>
       <div className="card-list">
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="cards">
-            {(provided) => (
-              <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {group.cards &&
-                  group.cards.map((card, idx) => (
-                    <Draggable
-                      key={card?.id}
-                      draggableId={card?.id}
-                      index={idx}
-                    >
-                      {(provided) => (
-                        <li
-                          className={
-                            card.checklists
-                              ? "checklist"
-                              : "" + " " + card.labelIds
-                                ? "labels"
-                                : ""
-                          }
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <Link
-                            onClick={toCardDetails}
-                            to={`/board/${boardId}/${card.id}`}
+
+        <Droppable droppableId={group.id}>
+          {(provided) => (
+            <ul ref={provided.innerRef} {...provided.droppableProps}>
+              {group.cards && group.cards.map((card, idx) => (
+                <Draggable draggableId={card.id} index={idx}>
+                  {(provided, snapshot) => (
+                    <li
+                      className={
+                        card.checklists ? "checklist" : "" + " " + card.labelIds ? "labels" : ""}
+                      style={{ zIndex: snapshot.isDragging ? 100 : null }}
+                      ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} >
+
+                      <Link onClick={toCardDetails} to={`/board/${boardId}/${card.id}`} >
+                        <CardPreview idx={idx} card={card} />
+                        <div>
+                          <button
+                            className="delete-card-btn"
+                            onClick={(event) =>
+                              onDeleteCard(event, card.id)
+                            }
                           >
-                            <CardPreview card={card} />
-                            <div>
-                              <button
-                                className="delete-card-btn"
-                                onClick={(event) =>
-                                  onDeleteCard(event, card.id)
-                                }
-                              >
-                                <HiOutlinePencil />
-                                {/* <FontAwesomeIcon icon={faPen} /> */}
-                              </button>
-                            </div>
-                          </Link>
-                        </li>
-                      )}
-                    </Draggable>
-                  ))}
+                            <HiOutlinePencil />
+                            {/* <FontAwesomeIcon icon={faPen} /> */}
+                          </button>
+                        </div>
+                      </Link>
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+              <div className="placeholder">
                 {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        </DragDropContext>
+              </div>
+            </ul>
+          )}
+        </Droppable>
+
       </div>
+
 
       <div className="add-card-container">
         {cardToInput ? (
@@ -205,3 +194,93 @@ export function CardList({ group }) {
     </>
   )
 }
+
+
+// <>
+//       <div className="card-list">
+//         <DragDropContext onDragEnd={handleOnDragEnd}>
+//           <Droppable droppableId="cards">
+//             {(provided) => (
+//               <ul ref={provided.innerRef} {...provided.droppableProps}>
+//                 {group.cards &&
+//                   group.cards.map((card, idx) => (
+//                     <Draggable
+//                       key={card?.id}
+//                       draggableId={card?.id}
+//                       index={idx}
+//                     >
+//                       {(provided) => (
+//                         <li
+//                           className={
+//                             card.checklists
+//                               ? "checklist"
+//                               : "" + " " + card.labelIds
+//                                 ? "labels"
+//                                 : ""
+//                           }
+//                           ref={provided.innerRef}
+//                           {...provided.draggableProps}
+//                           {...provided.dragHandleProps}
+//                         >
+//                           <Link
+//                             onClick={toCardDetails}
+//                             to={`/board/${boardId}/${card.id}`}
+//                           >
+//                             <CardPreview card={card} />
+//                             <div>
+//                               <button
+//                                 className="delete-card-btn"
+//                                 onClick={(event) =>
+//                                   onDeleteCard(event, card.id)
+//                                 }
+//                               >
+//                                 <HiOutlinePencil />
+//                                 {/* <FontAwesomeIcon icon={faPen} /> */}
+//                               </button>
+//                             </div>
+//                           </Link>
+//                         </li>
+//                       )}
+//                     </Draggable>
+//                   ))}
+//                 {provided.placeholder}
+//               </ul>
+//             )}
+//           </Droppable>
+//         </DragDropContext>
+//       </div>
+
+//       <div className="add-card-container">
+//         {cardToInput ? (
+//           <form onSubmit={onAddCard}>
+//             <textarea
+//               className="card-title-input"
+//               ref={inputRef}
+//               onBlur={handleBlur}
+//               value={cardTitle.title}
+//               onChange={handleChange}
+//               placeholder="Enter list title..."
+//             />
+//             <div className="add-card-section">
+//               <button
+//                 className="add-card-btn"
+//                 onMouseDown={handleMouseDown}
+//                 type="submit"
+//               >
+//                 Add card
+//               </button>
+//               <button className="close-card-btn" onClick={handleCloseCard}>
+//                 <CgClose />
+//               </button>
+//             </div>
+//           </form>
+//         ) : (
+//           <button className="add-card" onClick={() => setCardToInput(true)}>
+//             <span className="add-card-icon">
+//               <AiOutlinePlus />
+//               <span className="add-card-text"> Add a card</span>
+//             </span>
+//           </button>
+//         )}
+//       </div>
+//     </>
