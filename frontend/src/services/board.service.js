@@ -1,4 +1,5 @@
 import { asyncStorageService } from "./async-storage.service.js"
+import { httpService } from "./http.service.js"
 import { utilService } from "./util.service.js"
 
 const STORAGE_BOARD_KEY = "boardDB"
@@ -21,11 +22,13 @@ _createDemoData()
 
 async function query(searchBy) {
   var boards = await asyncStorageService.query(STORAGE_BOARD_KEY)
+  // var boards = await httpService.get('board')
   let searchedBoards = boards
   if (searchBy) {
     const regex = new RegExp(searchBy, "i")
     searchedBoards = searchedBoards.filter((board) => regex.test(board.title))
   }
+  console.log(searchedBoards);
   return searchedBoards
 }
 
@@ -42,7 +45,10 @@ function getDefaultFilter() {
   return { title: "" }
 }
 
-function getById(boardId) {
+async function getById(boardId) {
+  // let board = await httpService.get(`board/${boardId}`)
+  // console.log(board);
+  // return httpService.get('board/' + boardId)
   return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
 }
 
@@ -58,7 +64,8 @@ async function save(board) {
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
-    savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
+    savedBoard = await httpService.post('board', board)
+    // savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
   }
   return savedBoard
 }
@@ -90,7 +97,7 @@ function getEmptyLabel() {
   }
 }
 
-function createCard({ title, description, style,archivedAt }) {
+function createCard({ title, description, style, archivedAt }) {
   return {
     title,
     description,
@@ -98,7 +105,7 @@ function createCard({ title, description, style,archivedAt }) {
     id: utilService.makeId(),
     checklists: [],
     labelIds: [],
-    archivedAt:''
+    archivedAt: ''
   }
 }
 
