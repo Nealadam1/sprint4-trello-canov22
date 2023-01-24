@@ -21,7 +21,7 @@ export function ChecklistAction({ card, setCard }) {
       ? [...card.checklists, newChecklist]
       : [newChecklist]
     const updatedCard = { ...card, checklists: updatedChecklist }
-    updateCard(updatedCard)
+    updateCard(updatedCard, "ADD_CHECKLIST")
     setCard(updatedCard)
     closeActionModal()
   }

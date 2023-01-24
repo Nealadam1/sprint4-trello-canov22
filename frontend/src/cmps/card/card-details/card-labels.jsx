@@ -13,7 +13,6 @@ export function CardLabels({ card, cardLabelIds }) {
 
   const board = useSelector((storeState) => storeState.boardModule.board)
   const labels = board.labels
-  console.log("labels", labels)
   return (
     <div className="card-labels">
       {cardLabelIds?.map((labelId) => {

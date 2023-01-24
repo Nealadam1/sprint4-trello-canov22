@@ -6,18 +6,17 @@ import { IoMdCheckboxOutline } from "react-icons/io"
 import { Draggable } from "react-beautiful-dnd"
 import { useRef } from "react"
 
-export function CardPreviewShortcut({ card,title, setTitle}) {
+export function CardPreviewShortcut({ card, title, setTitle }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
   const [currMembers, setCurrMembers] = useState([])
-  const inputRefShortcutTitle=useRef(null)
+  const inputRefShortcutTitle = useRef(null)
 
-  useEffect(()=>{
-    if(inputRefShortcutTitle){
+  useEffect(() => {
+    if (inputRefShortcutTitle) {
       inputRefShortcutTitle.current.focus()
     }
-  },[inputRefShortcutTitle])
+  }, [inputRefShortcutTitle])
 
- 
   useEffect(() => {
     loadMembers()
   }, [card.memberIds])
@@ -45,15 +44,15 @@ export function CardPreviewShortcut({ card,title, setTitle}) {
     })
     return total
   }
-  
-  function handleChange({target}){
+
+  function handleChange({ target }) {
     setTitle(target.value)
   }
 
   return (
     // <Draggable draggableId={card.id} index={idx}>
     // {(provided, snapshot) => (
-    <div className="card-preview" >
+    <div className="card-preview">
       {/* // ref={provided.innerRef}{...provided.draggableProps} {...provided.dragHandleProps}> */}
       {card?.style?.bgColor ? (
         <header
@@ -63,13 +62,15 @@ export function CardPreviewShortcut({ card,title, setTitle}) {
       ) : null}
       <div className="card-info">
         {card?.labelIds && <LabelPreview labels={card.labelIds} />}
-        <p><input className="card-title-input"
-          type="text"
-          ref={inputRefShortcutTitle}
-          value={title}
-          onChange={handleChange} 
+        <p>
+          <input
+            className="card-title-input"
+            type="text"
+            ref={inputRefShortcutTitle}
+            value={title}
+            onChange={handleChange}
           />
-          </p>
+        </p>
         {card?.checklist ||
           (card?.memberIds && (
             <div className="card-details-preview">
@@ -99,7 +100,6 @@ export function CardPreviewShortcut({ card,title, setTitle}) {
     //{/* </Draggable> */}
   )
 }
-
 
 // <div className="card-preview">
 //       {card?.style?.bgColor ? (

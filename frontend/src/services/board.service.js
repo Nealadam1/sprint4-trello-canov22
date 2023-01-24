@@ -14,6 +14,7 @@ export const boardService = {
   createCard,
   createGroup,
   getEmptyLabel,
+  createActivitie,
 }
 window.cs = boardService
 
@@ -62,10 +63,22 @@ async function save(board) {
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
-    savedBoard = await httpService.post('board', board)
+    savedBoard = await httpService.post("board", board)
     // savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
   }
   return savedBoard
+}
+
+function createActivitie(text, fullname, data, userImage) {
+  console.log(text, fullname, data)
+  return {
+    text,
+    fullname,
+    createdAt: Date.now(),
+    data,
+    id: utilService.makeId(),
+    userImage,
+  }
 }
 
 function getEmptyBoard() {
@@ -103,7 +116,7 @@ function createCard({ title, description, style, archivedAt }) {
     id: utilService.makeId(),
     checklists: [],
     labelIds: [],
-    archivedAt:''
+    archivedAt: "",
   }
 }
 
@@ -114,8 +127,6 @@ function createGroup({ title }) {
 function getDefaultSearch() {
   return { title: "" }
 }
-
-
 
 // -------------------------------- Demo data --------------------------------
 

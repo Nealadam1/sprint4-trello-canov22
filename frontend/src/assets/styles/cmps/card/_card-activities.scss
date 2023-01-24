@@ -1,0 +1,40 @@
+.card-activites {
+    background-color: #f4f5f7;
+
+    .activities-title {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 2rem;
+    }
+
+    ul {
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 12px 6px 8px 12px;
+
+
+        .activitie {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+
+        img {
+            width: 25px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .activitie-time {
+            font-size: 12px;
+        }
+
+    }
+
+}

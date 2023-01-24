@@ -12,7 +12,7 @@ export function CardDescription({ card }) {
 
   function handleSaveClick() {
     card.description = newDescription
-    updateCard(card)
+    updateCard(card, "CHANGE_DESCRIPTION")
     setIsEditing(false)
   }
 

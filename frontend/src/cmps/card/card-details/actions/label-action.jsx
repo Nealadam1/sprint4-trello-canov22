@@ -37,11 +37,11 @@ export function LabelAction({ card }) {
 
     if (labelIds.includes(labelId)) {
       card.labelIds = labelIds.filter((id) => id !== labelId)
-      updateCard(card)
       setLabelIds(labelIds.filter((id) => id !== labelId))
+      updateCard(card, "REMOVE_LABEL")
     } else {
       card.labelIds = [...labelIds, labelId]
-      updateCard(card)
+      updateCard(card, "ADD_LABEL")
       setLabelIds([...labelIds, labelId])
     }
 
@@ -76,6 +76,10 @@ export function LabelAction({ card }) {
   function editLabel({ target }) {
     const { value, name } = target
     const editLabel = board.labels.find((label) => label.id === editLabelId)
+    card.labelIds = labelIds.map((label) =>
+      label.id === editLabel.id ? editLabel : label
+    )
+
     setChangeLabel({ ...editLabel, [name]: value })
   }
 
@@ -97,7 +101,7 @@ export function LabelAction({ card }) {
     console.log(labelIdxRemove)
     removeLabelFromBoard(editLabelId, board)
     card.labelIds.splice(labelIdxRemove, 1)
-    updateCard(card)
+    updateCard(card, "REMOVE_LABEL")
   }
 
   return (

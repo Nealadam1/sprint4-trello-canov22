@@ -25,6 +25,8 @@ import {
   SET_LABELS,
 } from "../reducers/label.reducer.js"
 import { httpService } from "../../services/http.service.js"
+import { utilService } from "../../services/util.service.js"
+import { userService } from "../../services/user.service.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -129,7 +131,7 @@ export async function setCardToStoreRef(card) {
     console.log(err)
   }
 }
-export async function updateCard(card) {
+export async function updateCard(card, action) {
   try {
     store.dispatch({
       type: UPDATE_CARD,
@@ -139,7 +141,9 @@ export async function updateCard(card) {
     boardService.save(board)
   } catch (err) {
     console.log(err)
+    return
   }
+  updateActivities(action, card.title)
 }
 
 export async function removeBoard(boardId) {
@@ -209,6 +213,7 @@ export async function addGroup(newGroup) {
   } catch (err) {
     console.log(err)
   }
+  updateActivities("ADDED_GROUP", newGroup.title)
 }
 
 export async function filterCardsBy(
@@ -220,7 +225,7 @@ export async function filterCardsBy(
   })
 }
 
-export async function updateGroup(group) {
+export async function updateGroup(group, action) {
   try {
     const board = structuredClone(store.getState().boardModule.board)
     const updatedGroup = group
@@ -236,6 +241,7 @@ export async function updateGroup(group) {
   } catch (err) {
     console.log(err)
   }
+  updateActivities(action, group.title)
 }
 export async function updateGroups(groups) {
   try {
@@ -252,10 +258,17 @@ export async function updateGroups(groups) {
 
 export async function deleteGroup(groupId) {
   const board = structuredClone(store.getState().boardModule.board)
-  const filteredGroups = board.groups.filter((group) => group.id !== groupId)
-  board.groups = filteredGroups
-  store.dispatch(getActionSetBoard(board))
-  boardService.save(board)
+  try {
+    const filteredGroups = board.groups.filter((group) => group.id !== groupId)
+    board.groups = filteredGroups
+    store.dispatch(getActionSetBoard(board))
+    boardService.save(board)
+  } catch (err) {
+    console.log(err)
+    return
+  }
+  const deletedGroup = board.groups.find((group) => group.id === groupId)
+  updateActivities("ARCHIVED_GROUP", deletedGroup.title)
 }
 
 export async function addCard(newCard, groupId) {
@@ -270,19 +283,67 @@ export async function addCard(newCard, groupId) {
     boardService.save(board)
   } catch (err) {
     console.log(err)
+    return
   }
+  updateActivities("ADDED_CARD", newCard.title)
+}
+
+const activityMessages = {
+  ADDED_CARD: "added the card",
+  ADDED_GROUP: "added the group",
+  ARCHIVED_GROUP: "archived the group",
+  ARCHIVED_CARD: "archived the card",
+  ADDED_TODO: "added a todo in card",
+  CHECKED_TODO: "checked a todo in card",
+  UNCHECKED_TODO: "unchecked a todo in card",
+  DELETE_CHECKLIST: "deleted a checklist in card",
+  DELETE_TODO: "deleted a todo in card",
+  CHANGE_DESCRIPTION: "changed the description in card",
+  EDIT_CARD: "edited the card to",
+  ADD_CHECKLIST: "added a checklist in card",
+  SET_DATE: "set a date in card",
+  ADD_LABEL: "added a label in card",
+  REMOVE_LABEL: "removed a label in card",
+  CHANGE_BACKGROUND: "changed a background color in card",
+  REMOVE_BACKGROUND: "removed a background color in card",
+}
+
+function updateActivities(cmpType, action) {
+  const board = structuredClone(store.getState().boardModule.board)
+  const fullname = userService?.getLoggedinUser()?.fullname || "Guest"
+  const userImage =
+    userService.getLoggedinUser()?.imgUrl ||
+    "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+  const activitie = boardService.createActivitie(
+    action,
+    fullname,
+    activityMessages[cmpType],
+    userImage
+  )
+  const updatedActivites = board.activities
+    ? [activitie, ...board.activities]
+    : [activitie]
+  board.activities = updatedActivites
+  store.dispatch(getActionSetBoard(board))
+  boardService.save(board)
 }
 
 export async function deleteCard(cardId, groupId) {
+  const board = structuredClone(store.getState().boardModule.board)
+  const group = board.groups.find((group) => group.id === groupId)
   try {
-    const board = structuredClone(store.getState().boardModule.board)
-    const group = board.groups.find((group) => group.id === groupId)
     group.cards = group.cards.filter((card) => card.id !== cardId)
     store.dispatch(getActionSetBoard(board))
     boardService.save(board)
   } catch (err) {
     console.log(err)
+    return
   }
+  const archivedCard = (group.cards = group.cards.find(
+    (card) => cardId === card.id
+  ))
+  console.log(archivedCard)
+  updateActivities("ARCHIVED_CARD", archivedCard.title)
 }
 
 export function updateBoard(board) {

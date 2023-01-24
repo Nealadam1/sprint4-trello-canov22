@@ -300,6 +300,11 @@
     }
   }
 
+  .card-date{
+    display: flex;
+    align-self: flex-end;
+  }
+
   .card-content {
     padding: 0px rem(8px) rem(8px) rem(16px);
     padding: em(20px);

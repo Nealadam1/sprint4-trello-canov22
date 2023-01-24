@@ -26,8 +26,10 @@ export function GroupList({
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
   const inputRef = useRef(null)
-  let currGroups = useSelector(storeState => storeState.boardModule.board.groups)
-  currGroups = currGroups?.filter(group => group.archivedAt === '')
+  let currGroups = useSelector(
+    (storeState) => storeState.boardModule.board.groups
+  )
+  // currGroups = currGroups?.filter((group) => group.archivedAt === "")
 
   useEffect(() => {
     if (groupToInput) {
@@ -85,7 +87,7 @@ export function GroupList({
   function onDragEnd(resault, groups) {
     if (!resault.destination) return
     const { source, destination } = resault
-    if (source.droppableId === 'dnd-container') {
+    if (source.droppableId === "dnd-container") {
       const newGroups = groups
       const [removed] = newGroups.splice(source.index, 1)
       newGroups.splice(destination.index, 0, removed)
@@ -105,8 +107,8 @@ export function GroupList({
       newGroups[+source.droppableId] = { ...sourceGroup, cards: sourceCards }
       newGroups[+destination.droppableId] = { ...destGroup, cards: destCards }
       updateGroups(newGroups)
-      eventBus.emit('update-cards', { ...sourceGroup, cards: sourceCards })
-      eventBus.emit('update-cards', { ...destGroup, cards: destCards })
+      eventBus.emit("update-cards", { ...sourceGroup, cards: sourceCards })
+      eventBus.emit("update-cards", { ...destGroup, cards: destCards })
       setBoard({ ...board, groups: newGroups })
       updateBoard({ ...board, groups: newGroups })
     } else {
@@ -118,32 +120,51 @@ export function GroupList({
       const newGroups = [...groups]
       newGroups[+source.droppableId] = group
       updateGroups(newGroups)
-      eventBus.emit('update-cards', group)
+      eventBus.emit("update-cards", group)
       setBoard({ ...board, groups: newGroups })
       updateBoard({ ...board, groups: newGroups })
     }
   }
 
+  function filteredGroups() {
+    if (!groups) return []
+    let updatedGroups = groups
+    return updatedGroups.filter((group) => group.archivedAt === "")
+  }
+
   return (
     <div className="group-list">
-      <DragDropContext onDragEnd={resault => onDragEnd(resault, currGroups)}>
-        <Droppable droppableId="dnd-container" direction="horizontal" type="group">
+      <DragDropContext onDragEnd={(resault) => onDragEnd(resault, currGroups)}>
+        <Droppable
+          droppableId="dnd-container"
+          direction="horizontal"
+          type="group"
+        >
           {(provided, snapshot) => {
             return (
-
-              <div className="dnd-container" {...provided.droppableProps} ref={provided.innerRef} >
-                {groups && groups.map((group, idx) => {
+              <div
+                className="dnd-container"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {filteredGroups()?.map((group, idx) => {
                   return (
                     <div key={group.id} className="scroll-container">
-                      <Draggable key={group.id} draggableId={group.id} index={idx} >
+                      <Draggable
+                        key={group.id}
+                        draggableId={group.id}
+                        index={idx}
+                      >
                         {(provided, snapshot) => {
                           return (
-                           
-                              <div className="group" ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}>
-
-                                {<GroupPreview
+                            <div
+                              className="group"
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              {
+                                <GroupPreview
                                   idx={idx}
                                   key={group._id}
                                   setGroupTitleToInput={setGroupTitleToInput}
@@ -151,24 +172,22 @@ export function GroupList({
                                   updateGroupTitle={updateGroupTitle}
                                   cards={group.cards}
                                   group={group}
-                                  groups={groups} />}
-
-                              </div>
-                            
+                                  groups={groups}
+                                />
+                              }
+                            </div>
                           )
                         }}
                       </Draggable>
-
                     </div>
                   )
                 })}
                 {provided.placeholder}
               </div>
-
             )
           }}
         </Droppable>
-      </DragDropContext >
+      </DragDropContext>
       <div className="add-group-container">
         {groupToInput ? (
           <form
@@ -188,7 +207,11 @@ export function GroupList({
               ref={inputRef}
             />
             <div className="add-group-section">
-              <button className="add-new-group-btn" onMouseDown={handleMouseDown} type="submit">
+              <button
+                className="add-new-group-btn"
+                onMouseDown={handleMouseDown}
+                type="submit"
+              >
                 Add list
               </button>
               <button className="close-group-btn" onClick={handleCloseGroup}>
@@ -198,7 +221,10 @@ export function GroupList({
           </form>
         ) : (
           <div className="add-group-list-btn">
-            <button className="add-group-btn" onClick={() => setGroupToInput(true)}>
+            <button
+              className="add-group-btn"
+              onClick={() => setGroupToInput(true)}
+            >
               <span className="add-group-title-icon">
                 <AiOutlinePlus />
               </span>
@@ -208,7 +234,6 @@ export function GroupList({
         )}
       </div>
       {cardId ? <Outlet /> : null}
-    </div >
+    </div>
   )
-
 }
