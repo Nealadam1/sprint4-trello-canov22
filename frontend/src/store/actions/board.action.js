@@ -87,7 +87,8 @@ export function OpenActionModal(ev, modalType) {
 
 export async function loadBoards(searchBy = "") {
   try {
-    const boards = await boardService.query(searchBy)
+    const boards = await httpService.get('board')
+    // const boards = await boardService.query(searchBy)
     console.log("Boards from DB:", boards)
     store.dispatch({
       type: SET_BOARDS,
@@ -105,6 +106,8 @@ export async function setBoard(board) {
       type: SET_BOARD,
       board,
     })
+
+    console.log('set board', board);
   } catch (err) {
     console.log("Cannot load board", err)
     throw err
@@ -148,7 +151,8 @@ export async function updateCard(card, action) {
 
 export async function removeBoard(boardId) {
   try {
-    await boardService.remove(boardId)
+    // await boardService.remove(boardId)
+    await httpService.delete(boardId)
     store.dispatch(getActionRemoveBoard(boardId))
   } catch (err) {
     console.log("Cannot remove board", err)
@@ -346,18 +350,26 @@ export async function deleteCard(cardId, groupId) {
   updateActivities("ARCHIVED_CARD", archivedCard.title)
 }
 
-export function updateBoard(board) {
-  return boardService
-    .save(board)
-    .then((savedBoard) => {
-      // console.log("Updated Board:", savedBoard)
-      store.dispatch(getActionUpdateBoard(savedBoard))
-      return savedBoard
-    })
-    .catch((err) => {
-      console.log("Cannot save board", err)
-      throw err
-    })
+export async function updateBoard(board) {
+  try {
+    const savedBoard = await boardService.save(board)
+    store.dispatch(getActionUpdateBoard(savedBoard))
+    httpService.put(savedBoard)
+    return savedBoard
+  } catch (err) {
+    console.log("Cannot save board", err)
+  }
+
+  // return boardService.save(board)
+  //   .then((savedBoard) => {
+  //     // console.log("Updated Board:", savedBoard)
+  //     store.dispatch(getActionUpdateBoard(savedBoard))
+  //     return savedBoard
+  //   })
+  //   .catch((err) => {
+  //     console.log("Cannot save board", err)
+  //     throw err
+  //   })
 }
 
 export function getCardById(board, cardId) {
