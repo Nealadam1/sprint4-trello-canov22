@@ -6,18 +6,19 @@ import { utilService } from "../../../services/util.service"
 import { OpenActionModal } from "../../../store/actions/board.action"
 import { DynamicActionModal } from "../../dynamic-modal-cmp"
 
-export function CardLabels({ card, cardLabels }) {
+export function CardLabels({ card, cardLabelIds }) {
   const [isHovered, setIsHovered] = useState(false)
 
   const displayLabels = []
 
-  const labels = useSelector((storeState) => storeState.labelModule.labels)
-
+  const board = useSelector((storeState) => storeState.boardModule.board)
+  const labels = board.labels
+  console.log("labels", labels)
   return (
     <div className="card-labels">
-      {cardLabels?.map((label) => {
-        labels.map((displayLabel) => {
-          if (label === displayLabel.id) displayLabels.push(displayLabel)
+      {cardLabelIds?.map((labelId) => {
+        labels.forEach((label) => {
+          if (labelId === label.id) displayLabels.push(label)
         })
       })}
       {displayLabels.map((label) => (

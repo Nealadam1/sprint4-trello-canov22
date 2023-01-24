@@ -26,6 +26,7 @@ export function GroupActions({group, handleEditButtonClick}){
       function handleArchive(){
         const updatededGroup=group
         updatededGroup.archivedAt = Date.now()
+        console.log(updatededGroup)
         updateGroup(updatededGroup)  
       }
       

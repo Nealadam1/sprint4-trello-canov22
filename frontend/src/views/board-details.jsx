@@ -24,7 +24,7 @@ export function BoardDetails() {
 
   useEffect(() => {
     loadBoard(boardId)
-  }, [])
+  }, [boardId])
 
   async function loadBoard(boardId) {
     await boardService.getById(boardId).then((board) => {
@@ -40,6 +40,7 @@ export function BoardDetails() {
   }
 
   function onDeleteGroup(groupId) {
+    console.log(groupId, "ho")
     deleteGroup(groupId)
   }
 

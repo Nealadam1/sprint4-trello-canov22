@@ -19,6 +19,7 @@ export function BoardHeader({ board }) {
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [starred, setIsStarred] = useState(board.isStarred)
   const [isEditingTitle, setIsEditingTitle] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
@@ -141,12 +142,20 @@ export function BoardHeader({ board }) {
           </div>
           <span className="btn-divider">|</span>
           <div className="board-action-menu">
-            <button className="open-menu-icon" onClick={handleCmpRender}>
+            <button
+              className="open-menu-icon"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
               <RxDotsHorizontal />
             </button>
           </div>
         </div>
       </div>
+      {isMenuOpen && (
+        <div className="menu">
+          <p>Modal Content</p>
+        </div>
+      )}
     </div>
   )
 }

@@ -111,3 +111,17 @@
     margin: 0px 5px;
   }
 }
+
+.menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 330px;
+}
+
+.menu {
+  display: none;
+}
+.menu.show {
+  display: block;
+}

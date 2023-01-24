@@ -5,6 +5,7 @@ export function BoardMembers() {
   const members = useSelector(
     (storeState) => storeState.boardModule.board.members
   )
+  // console.log(members)
 
   return (
     <div className="board-members">

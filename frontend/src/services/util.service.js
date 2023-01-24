@@ -10,17 +10,8 @@ export const utilService = {
   changeContrast,
   handleDragEnd,
   lightenColor,
-  reorder,
+  formatTimestamp,
 }
-
-function reorder(list, startIndex, endIndex) {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
-
-  return result;
-}
-
 
 function makeId(length = 6) {
   var txt = ""
@@ -255,4 +246,26 @@ function lightenColor(color) {
     g = 255
   }
   return "#" + (g | (b << 8) | (r << 16)).toString(16)
+}
+
+function formatTimestamp(timestamp) {
+  var date = new Date(timestamp)
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ]
+  var month = months[date.getMonth()]
+  var day = date.getDate()
+  var formattedTime = day + " " + month
+  return formattedTime
 }
