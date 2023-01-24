@@ -47,7 +47,13 @@ async function getById(boardId) {
   // let board = await httpService.get(`board/${boardId}`)
   // console.log(board);
   // return httpService.get('board/' + boardId)
-  return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
+  // return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
+  try {
+    const board = await httpService.get('board/' + boardId)
+    return board
+  } catch (err) {
+    console.log('Had an issue with getting board');
+  }
 }
 
 async function remove(boardId) {
@@ -103,7 +109,7 @@ function createCard({ title, description, style, archivedAt }) {
     id: utilService.makeId(),
     checklists: [],
     labelIds: [],
-    archivedAt:''
+    archivedAt: ''
   }
 }
 

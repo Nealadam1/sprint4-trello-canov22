@@ -2,7 +2,6 @@ const boardService = require('./board.service')
 
 async function getBoards(req, res) {
     try {
-        console.log('hello query');
         const boards = await boardService.query()
         res.json(boards)
     } catch (err) {
@@ -12,9 +11,9 @@ async function getBoards(req, res) {
 
 async function getBoardById(req, res) {
     try {
+        console.log('hello query');
         const boardId = req.params.id
         const board = await boardService.getById(boardId)
-        console.log(board);
         res.json(board)
     } catch (err) {
         res.status(500).send({ err: 'Failed to get boards' })
