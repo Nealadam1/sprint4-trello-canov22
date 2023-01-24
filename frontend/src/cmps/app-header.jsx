@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faWeebly } from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom"
@@ -9,12 +9,10 @@ import { userService } from "../services/user.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { logout } from "../store/actions/user.action"
 import { RiArrowDropDownLine } from "react-icons/ri"
-import { BoardSearch } from "./board/board-search"
-import { loadBoards, setBoard } from "../store/actions/board.action"
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
-  console.log(user);
+
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
   const headerBackground = board
@@ -81,7 +79,6 @@ export function AppHeader() {
         </div>
       ) : (
         <div className="login-signup-page">
-          <BoardSearch />
           <Link to="/login-signup">
             <FaUser />
           </Link>

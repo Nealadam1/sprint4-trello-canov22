@@ -24,7 +24,6 @@ import {
   REMOVE_LABEL,
   SET_LABELS,
 } from "../reducers/label.reducer.js"
-import { httpService } from "../../services/http.service.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -35,7 +34,6 @@ export function getActionRemoveBoard(boardId) {
 }
 
 export function getActionAddBoard(board) {
-  // httpService.post('board', board)
   return {
     type: ADD_BOARD,
     board,
@@ -229,6 +227,18 @@ export async function updateGroup(group) {
       group.id === updatedGroup.id ? updatedGroup : group
     )
     console.log(updatedGroups)
+    board.groups = updatedGroups
+    console.log(board)
+    store.dispatch(getActionSetBoard(board))
+    boardService.save(board)
+  } catch (err) {
+    console.log(err)
+  }
+}
+export async function updateGroups(groups) {
+  try {
+    const board = structuredClone(store.getState().boardModule.board)
+    const updatedGroups = groups
     board.groups = updatedGroups
     console.log(board)
     store.dispatch(getActionSetBoard(board))

@@ -1,6 +1,5 @@
 import { userService } from "../../services/user.service.js"
 import { store } from "../store"
-import { httpService } from "../../services/http.service.js"
 
 import { showErrorMsg } from "../../services/event-bus.service"
 // import { LOADING_DONE, LOADING_START } from "./system.reducer.js"
@@ -23,9 +22,6 @@ import {
 //   }
 // }
 
-
-
-// prettier-ignore
 export async function removeUser(userId) {
   try {
     await userService.remove(userId)
@@ -34,11 +30,14 @@ export async function removeUser(userId) {
     console.log("UserActions: err in removeUser", err)
   }
 }
-//
+
 export async function login(credentials) {
   try {
     const user = await userService.login(credentials)
-    store.dispatch({ type: SET_USER, user })
+    store.dispatch({
+      type: SET_USER,
+      user,
+    })
     return user
   } catch (err) {
     console.log("Cannot login", err)
@@ -49,7 +48,10 @@ export async function login(credentials) {
 export async function signup(credentials) {
   try {
     const user = await userService.signup(credentials)
-    store.dispatch({ type: SET_USER, user })
+    store.dispatch({
+      type: SET_USER,
+      user,
+    })
     return user
   } catch (err) {
     console.log("Cannot signup", err)
@@ -60,7 +62,10 @@ export async function signup(credentials) {
 export async function logout() {
   try {
     await userService.logout()
-    store.dispatch({ type: SET_USER, user: null, })
+    store.dispatch({
+      type: SET_USER,
+      user: null,
+    })
   } catch (err) {
     console.log("Cannot logout", err)
     throw err

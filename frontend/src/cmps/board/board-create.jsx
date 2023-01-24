@@ -109,7 +109,6 @@ export function CreateBoard() {
           return errors
         }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log('test')
           onCreateBoard(values.title)
           setSubmitting(false)
         }}
