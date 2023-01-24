@@ -12,7 +12,7 @@ import { RiArrowDropDownLine } from "react-icons/ri"
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
-
+  console.log(user);
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
   const headerBackground = board
