@@ -7,6 +7,7 @@ import { BoardDetails } from "./views/board-details"
 import { CardDetails } from "./views/card-details"
 import { LoginSignup } from "./views/login-signup"
 import "./assets/styles/main.scss"
+import { BoardSearch } from "./cmps/board/board-search"
 
 export function App() {
   const location = useLocation()

@@ -8,6 +8,7 @@ import {
   faEllipsis,
 } from "@fortawesome/free-solid-svg-icons"
 import { faStar } from "@fortawesome/free-regular-svg-icons"
+import { HiOutlineStar } from "react-icons/hi"
 
 import { BoardPreview } from "./board-preview"
 import { DynamicActionModal } from "../dynamic-modal-cmp"
@@ -64,7 +65,16 @@ export function BoardList({ boards }) {
   return (
     <ul className="board-list">
       <ul className="favorite-list">
-        {getStarredBoard().length ? <h3>Starred boards</h3> : ""}
+        {getStarredBoard().length ? (
+          <h3>
+            <span>
+              <HiOutlineStar />
+            </span>
+            Starred boards
+          </h3>
+        ) : (
+          ""
+        )}
         {getStarredBoard().map((board) => {
           return (
             <li
@@ -94,8 +104,7 @@ export function BoardList({ boards }) {
           )
         })}
       </ul>
-
-      <h3>My boards</h3>
+      <h3>YOUR WORKSPACES</h3>
       <li
         className="list-item grey-button"
         ref={buttonRef}
