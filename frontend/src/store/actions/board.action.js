@@ -237,6 +237,18 @@ export async function updateGroup(group) {
     console.log(err)
   }
 }
+export async function updateGroups(groups) {
+  try {
+    const board = structuredClone(store.getState().boardModule.board)
+    const updatedGroups = groups
+    board.groups = updatedGroups
+    console.log(board)
+    store.dispatch(getActionSetBoard(board))
+    boardService.save(board)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 export async function deleteGroup(groupId) {
   const board = structuredClone(store.getState().boardModule.board)

@@ -25,16 +25,8 @@ export function CardPreview({ card, idx }) {
   console.log(card)
 
   return (
-    // <Draggable draggableId={card.id} index={idx}>
-    // {(provided, snapshot) => (
     <div className="card-preview">
       {/* // ref={provided.innerRef}{...provided.draggableProps} {...provided.dragHandleProps}> */}
-      {card?.style?.bgColor ? (
-        <header
-          className="card-header"
-          style={{ backgroundColor: card.style.bgColor }}
-        ></header>
-      ) : null}
       <div className="card-preview">
         {card?.style?.bgColor ? (
           <header
@@ -57,26 +49,3 @@ export function CardPreview({ card, idx }) {
     </div>
   )
 }
-
-// {card?.checklist ||
-//   (card?.memberIds && (
-//     <div className="card-details-preview">
-//       {card.checklists ? (
-//         <div className="card-checklist">
-//           {totalTodos(card.checklists) > 0 && (
-//             <span className="todo-checkbox-preview">
-//               <IoMdCheckboxOutline />
-//             </span>
-//           )}
-//           <span className="todos-preview">
-//             {totalTodos(card.checklists) > 0 && (
-//               <span>
-//                 {completedTodos(card.checklists)}/
-//                 {totalTodos(card.checklists)}
-//               </span>
-//             )}
-//           </span>
-//         </div>
-//       ) : null}
-//     </div>
-//   ))}

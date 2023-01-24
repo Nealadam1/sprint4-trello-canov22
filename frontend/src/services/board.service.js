@@ -14,7 +14,6 @@ export const boardService = {
   createCard,
   createGroup,
   getEmptyLabel,
-  updateDrag,
 }
 window.cs = boardService
 
@@ -28,7 +27,6 @@ async function query(searchBy) {
     const regex = new RegExp(searchBy, "i")
     searchedBoards = searchedBoards.filter((board) => regex.test(board.title))
   }
-  console.log(searchedBoards);
   return searchedBoards
 }
 
@@ -105,51 +103,18 @@ function createCard({ title, description, style, archivedAt }) {
     id: utilService.makeId(),
     checklists: [],
     labelIds: [],
-    archivedAt: ''
+    archivedAt:''
   }
 }
 
 function createGroup({ title }) {
-  return { title, id: utilService.makeId(), archivedAt: "", card: [] }
+  return { title, id: utilService.makeId(), archivedAt: "", cards: [] }
 }
 
 function getDefaultSearch() {
   return { title: "" }
 }
 
-// -------------------------------- D & D --------------------------------
-
-function updateDrag(result, board) {
-  // console.log(result);
-  const { source, destination, type } = result
-
-  const update = (type === 'card') ? reorderCards : reorderGroups
-  const saveUpdate = update(source, destination, board.groups)
-
-  console.log('save', saveUpdate)
-  save({ ...board, groups: saveUpdate })
-}
-
-function reorderCards(source, destination, groups) {
-  console.log(source, destination, groups)
-  // console.log('test', groups.find(group => console.log('find', group)));
-
-  const sourceGroup = groups.find((group) => group.id === source.droppableId)
-  const [task] = sourceGroup.cards.splice(source.index, 1)
-  const destinationGroup = groups.find(
-    (group) => group.id === destination.droppableId
-  )
-  destinationGroup.cards.splice(destination.index, 0, task)
-  console.log('groupsCards', groups);
-  return groups
-}
-
-function reorderGroups(source, destination, groups) {
-  const [group] = groups.splice(source.index, 1)
-  groups.splice(destination.index, 0, group)
-  console.log('groups', groups);
-  return groups
-}
 
 
 // -------------------------------- Demo data --------------------------------
