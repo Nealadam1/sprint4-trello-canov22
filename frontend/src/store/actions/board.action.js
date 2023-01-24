@@ -24,6 +24,7 @@ import {
   REMOVE_LABEL,
   SET_LABELS,
 } from "../reducers/label.reducer.js"
+import { httpService } from "../../services/http.service.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -34,6 +35,7 @@ export function getActionRemoveBoard(boardId) {
 }
 
 export function getActionAddBoard(board) {
+  // httpService.post('board', board)
   return {
     type: ADD_BOARD,
     board,

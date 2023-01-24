@@ -4,6 +4,7 @@ import { LabelPreview } from "./card-preview/label-preview"
 import { MemberPreview } from "./card-preview/member-preview"
 import { IoMdCheckboxOutline } from "react-icons/io"
 import { Draggable } from "react-beautiful-dnd"
+import { DatePreview } from "./card-preview/date-preview"
 
 export function CardPreview({ card, idx }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -71,7 +72,9 @@ export function CardPreview({ card, idx }) {
                   </span>
                 </div>
               ) : null}
+
               <MemberPreview members={currMembers} />
+              {card.dueDate && <DatePreview date={card?.dueDate} />}
             </div>
           ))}
       </div>

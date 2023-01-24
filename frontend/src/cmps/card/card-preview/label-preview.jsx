@@ -4,5 +4,5 @@ export function LabelPreview({ labels }) {
 
   // labels.map(label => label)
   if (!labels?.length) return
-  return <div key={labels}>{<CardLabels cardLabels={labels} />}</div>
+  return <div key={labels}>{<CardLabels cardLabelIds={labels} />}</div>
 }

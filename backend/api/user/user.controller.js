@@ -14,11 +14,11 @@ async function getUser(req, res) {
 
 async function getUsers(req, res) {
     try {
-        const filterBy = {
-            txt: req.query?.txt || '',
-            minBalance: +req.query?.minBalance || 0
-        }
-        const users = await userService.query(filterBy)
+        // const filterBy = {
+        //     txt: req.query?.txt || '',
+        //     minBalance: +req.query?.minBalance || 0
+        // }
+        const users = await userService.query()
         res.send(users)
     } catch (err) {
         logger.error('Failed to get users', err)
@@ -47,9 +47,21 @@ async function updateUser(req, res) {
     }
 }
 
+async function addUser(req, res) {
+    try {
+        const user = req.body
+        const savedUser = await userService.add(user)
+        res.send(savedUser)
+        console.log(user);
+    } catch (err) {
+        res.status(500).send({ err: 'Failed to update user' })
+    }
+}
+
 module.exports = {
     getUser,
     getUsers,
+    addUser,
     deleteUser,
     updateUser
 }
