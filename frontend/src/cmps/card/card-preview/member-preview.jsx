@@ -1,4 +1,5 @@
 export function MemberPreview({ members }) {
+  console.log(members)
   return (
     <div className="member-images">
       {members.map((member, idx) => (
