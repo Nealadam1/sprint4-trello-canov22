@@ -3,8 +3,11 @@ import { utilService } from "../../../services/util.service"
 
 export function DatePreview({ date }) {
   return (
-    <span className="date-preview">
-      <MdOutlineWatchLater /> {utilService.formatTimestamp(date)}
-    </span>
+    <div className="date-preview">
+      <span className="date-preview-temp">
+        <MdOutlineWatchLater style={{ fontSize: "17px" }} />
+        <span> {utilService.formatTimestamp(date)}</span>
+      </span>
+    </div>
   )
 }

@@ -74,8 +74,6 @@ export function boardReducer(state = initialState, action) {
           ...state.board.groups.slice(groupIdx + 1),
         ],
       }
-      console.log(newBoard)
-
       newState = { ...state, board: newBoard }
       break
     }
