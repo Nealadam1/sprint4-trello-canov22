@@ -130,9 +130,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
 
   const filteredCards = () => {
     let updatedCards = cards
-    if (updatedCards.archivedAt) {
       updatedCards = updatedCards.filter((card) => !card.archivedAt)
-    }
     if (filterCardBy.title) {
       updatedCards = cards?.filter((card) =>
         card.title.toLowerCase().includes(filterCardBy.title.toLowerCase())
