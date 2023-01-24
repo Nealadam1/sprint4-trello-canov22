@@ -1,5 +1,4 @@
 import { asyncStorageService } from "./async-storage.service.js"
-import { httpService } from "./http.service.js"
 import { utilService } from "./util.service.js"
 
 const STORAGE_BOARD_KEY = "boardDB"
@@ -14,7 +13,6 @@ export const boardService = {
   createCard,
   createGroup,
   getEmptyLabel,
-  updateDrag,
 }
 window.cs = boardService
 
@@ -22,13 +20,11 @@ _createDemoData()
 
 async function query(searchBy) {
   var boards = await asyncStorageService.query(STORAGE_BOARD_KEY)
-  // var boards = await httpService.get('board')
   let searchedBoards = boards
   if (searchBy) {
     const regex = new RegExp(searchBy, "i")
     searchedBoards = searchedBoards.filter((board) => regex.test(board.title))
   }
-  console.log(searchedBoards);
   return searchedBoards
 }
 
@@ -45,10 +41,7 @@ function getDefaultFilter() {
   return { title: "" }
 }
 
-async function getById(boardId) {
-  // let board = await httpService.get(`board/${boardId}`)
-  // console.log(board);
-  // return httpService.get('board/' + boardId)
+function getById(boardId) {
   return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
 }
 
@@ -64,8 +57,7 @@ async function save(board) {
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
-    savedBoard = await httpService.post('board', board)
-    // savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
+    savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
   }
   return savedBoard
 }
@@ -97,7 +89,7 @@ function getEmptyLabel() {
   }
 }
 
-function createCard({ title, description, style, archivedAt }) {
+function createCard({ title, description, style,archivedAt }) {
   return {
     title,
     description,
@@ -105,51 +97,18 @@ function createCard({ title, description, style, archivedAt }) {
     id: utilService.makeId(),
     checklists: [],
     labelIds: [],
-    archivedAt: ''
+    archivedAt:''
   }
 }
 
 function createGroup({ title }) {
-  return { title, id: utilService.makeId(), archivedAt: "", card: [] }
+  return { title, id: utilService.makeId(), archivedAt: "", cards: [] }
 }
 
 function getDefaultSearch() {
   return { title: "" }
 }
 
-// -------------------------------- D & D --------------------------------
-
-function updateDrag(result, board) {
-  // console.log(result);
-  const { source, destination, type } = result
-
-  const update = (type === 'card') ? reorderCards : reorderGroups
-  const saveUpdate = update(source, destination, board.groups)
-
-  console.log('save', saveUpdate)
-  save({ ...board, groups: saveUpdate })
-}
-
-function reorderCards(source, destination, groups) {
-  console.log(source, destination, groups)
-  // console.log('test', groups.find(group => console.log('find', group)));
-
-  const sourceGroup = groups.find((group) => group.id === source.droppableId)
-  const [task] = sourceGroup.cards.splice(source.index, 1)
-  const destinationGroup = groups.find(
-    (group) => group.id === destination.droppableId
-  )
-  destinationGroup.cards.splice(destination.index, 0, task)
-  console.log('groupsCards', groups);
-  return groups
-}
-
-function reorderGroups(source, destination, groups) {
-  const [group] = groups.splice(source.index, 1)
-  groups.splice(destination.index, 0, group)
-  console.log('groups', groups);
-  return groups
-}
 
 
 // -------------------------------- Demo data --------------------------------

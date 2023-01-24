@@ -29,9 +29,11 @@ export function BoardIndex() {
   return (
     <main className="board-index">
       <section className="boards-list">
-        {/* <BoardSearch onSetSearch={setSearch} /> */}
+        <BoardSearch onSetSearch={setSearch} />
+
         <BoardList boards={boards} />
       </section>
+
       <div className="main-side-bar">
         <SideBar />
       </div>

@@ -24,7 +24,6 @@ import { closeActionModal } from "../store/actions/board.action"
 import { store } from "../store/store"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { AiOutlinePlus } from "react-icons/ai"
-import { CardDate } from "../cmps/card/card-details/card-date"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -101,12 +100,11 @@ export function CardDetails() {
                     card={card}
                   />
                 )}
-                {card?.dueDate && <CardDate date={card?.dueDate} />}
                 {card?.labelIds?.length > 0 && (
                   <div>
                     <span className="card-details-labels-title">Labels</span>
                     <div className="card-details-label-container">
-                      <CardLabels card={card} cardLabelIds={card.labelIds} />
+                      <CardLabels card={card} cardLabels={card.labelIds} />
                       <div
                         className="grey-button card-details-add-labels"
                         ref={buttonRefLabelAction}
