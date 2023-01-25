@@ -49,9 +49,13 @@ async function remove(boardId) {
 
 async function update(board) {
     try {
+        console.log('board');
+        console.log(board);
+        console.log();
         const boardToSave = {
             title: board.title,
             isStarred: board.isStarred,
+            archivedAt: board.archivedAt,
             style: board.style,
             labels: board.labels,
             members: board.members,
