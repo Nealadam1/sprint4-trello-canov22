@@ -8,8 +8,10 @@ import { updateCard } from '../../../store/actions/board.action';
 
 export function CardComments({ card }) {
   const { comments } = card
-  const loggedinUser = userService.getLoggedinUser()
+  let loggedinUser = userService.getLoggedinUser()
   const [comment, setComment] = useState(cardCommentService.getEmptyComment())
+
+  if (!loggedinUser) loggedinUser = userService.getGuestUser()
 
   function handleSubmit(ev) {
     ev.preventDefault()
@@ -20,12 +22,19 @@ export function CardComments({ card }) {
     updateCard(card)
   }
 
+  console.log(loggedinUser);
+
   function handleChange({ target }) {
     const { value, name } = target
     setComment({ ...comment, [name]: value })
 
   }
-  console.log('card', card);
+
+  function removeComment(idx, comments) {
+    cardCommentService.remove(idx, comments)
+    card = ({ ...card, comments: [...card.comments] })
+    updateCard(card)
+  }
 
   return (
     <div className="card-comments">
@@ -52,21 +61,28 @@ export function CardComments({ card }) {
 
       <ul className="user-comment-section">
         {comments.map((comment, idx) => (
-          <div key={comment.id} >
-            <img className="member-image" src={comment.createdBy.imgUrl} alt="member" />
-            <span className="user-comment-fullname">
-              {comment.createdBy.fullname}
-            </span>
+          <div className='comment' key={comment.id} >
+            <div className='comment-content'>
+              <img className="member-image" src={comment?.createdBy?.imgUrl} alt="member" />
 
-            <span className="user-comment-sent-at">
-              {utilService.formatTime(comment.createdAt)}
-            </span>
+              <span className="user-comment-fullname">
+                {comment.createdBy?.fullname}
+              </span>
+              <span className="user-comment-sent-at">
+                {utilService.formatTime(comment?.createdAt)}
+              </span>
+            </div>
 
             <span>
 
             </span>
 
             <li className="user-comment">{comment.txt}</li>
+
+            <div className='comment-buttons'>
+              <button>Edit</button>
+              <button onClick={() => removeComment(idx, comments)}>•Delete</button>
+            </div>
           </div>
         ))
         }

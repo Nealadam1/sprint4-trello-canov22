@@ -14,14 +14,14 @@ function save(commentsArr, comment, loggedinUser) {
         comment.createdBy = loggedinUser
         comment.createdAt = Date.now()
         console.log(comment);
-        commentsArr.push(comment)
+        commentsArr.unshift(comment)
 
     }
     return commentsArr
 }
 
-function remove(commentId, idx) {
-
+function remove(idx, comments) {
+    return comments.splice(idx, 1)
 }
 
 function getEmptyComment() {
