@@ -129,6 +129,7 @@ function createCard({ title, description, style, archivedAt }) {
     labelIds: [],
     archivedAt: "",
     attachments: [],
+    comments: [],
     createdBy: userService?.getLoggedinUser()?.fullname || "Guest",
   }
 }
