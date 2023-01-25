@@ -4,15 +4,17 @@ import { TwitterPicker } from "react-color"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { addBoard, closeActionModal } from "../../store/actions/board.action"
 import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
+import { useNavigate } from "react-router"
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
   const [boardPreviewColor, setBoardPreviewColor] = useState('')
   const [boardPreviewImg, setBoardPreviewImg] = useState('')
+  const navigate=useNavigate()
 
   const images = [
     {
-      backgroundColor: "#25D9F5",
+      backgroundColor: "#5D7BAD",
       background:
         "https://images.unsplash.com/photo-1673050460660-2bd7b3bb25a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80",
       thumbnail:
@@ -55,10 +57,13 @@ export function CreateBoard() {
     }
   }
 
-  function onCreateBoard(title) {
+  async function onCreateBoard(title) {
     newBoard.title = title
-    addBoard(newBoard)
+    const savedboard= await addBoard(newBoard)
     closeActionModal()
+    navigate(`/board/${savedboard._id}`)
+    
+    
   }
 
   return (
