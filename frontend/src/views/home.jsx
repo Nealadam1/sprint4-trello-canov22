@@ -27,7 +27,7 @@ export function Home() {
       </header>
       <main className="main">
         <div className="main-content">
-          <h1>Streamline your work processes With Workflow.</h1>
+          <h1>Streamline your work processes with Workflow.</h1>
           <p>
             Introduce the all-in-one task management solution for teams,
             Collaborate in real-time, intuitive interface, added features. Try

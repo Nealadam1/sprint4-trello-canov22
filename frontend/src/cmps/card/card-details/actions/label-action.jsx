@@ -90,11 +90,9 @@ export function LabelAction({ card }) {
   }
 
   function removeLabel() {
-    console.log("remove", editLabelId)
     let labelIdxRemove = card.labelIds.findIndex(
       (label) => editLabelId === label
     )
-    console.log(labelIdxRemove)
     removeLabelFromBoard(editLabelId, board)
     card.labelIds.splice(labelIdxRemove, 1)
     updateCard(card)

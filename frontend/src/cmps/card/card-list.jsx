@@ -22,6 +22,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
   const [isMouseDown, setIsMouseDown] = useState(false)
+  const [isCardDragging, setIsCardDragging] = useState(false)
 
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
   let filterCardBy = useSelector(
@@ -156,13 +157,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                           <li ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={
-                              card?.checklists
-                                ? "checklist"
-                                : "" + " " + card?.labelIds
-                                  ? "labels"
-                                  : ""
-                            }
+                            className={snapshot.isDragging ? 'dragging' : ''}
                           >
                             <Link
                               onClick={toCardDetails}
@@ -199,7 +194,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                       }}
                     </Draggable>
                   ))}
-                <div style={{opacity: 0.3}}>
+                <div style={{ opacity: 0.3 }}>
                   {provided.placeholder}
                 </div>
               </ul>

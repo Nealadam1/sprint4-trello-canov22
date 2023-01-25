@@ -26,7 +26,6 @@ export function CardPreview({ card, idx }) {
 
   return (
     <div className="card-preview">
-      {/* // ref={provided.innerRef}{...provided.draggableProps} {...provided.dragHandleProps}> */}
       <div className="card-preview">
         {card?.style?.bgColor ? (
           <header
