@@ -48,7 +48,7 @@ export function CardDetails() {
 
   useEffect(() => {
     const currCard = getCardById(board, cardId)
-    if (!card?.comments) currCard.comments = []
+    // if (!card?.comments.length) currCard.comments = []
     setCard(currCard)
     setCardTitle(currCard.title)
     setCardToStoreRef(currCard)
@@ -215,7 +215,7 @@ export function CardDetails() {
               </div>
 
               <div>
-                {card?.comments && <CardComments comments={card.comments} />}
+                {card?.comments && <CardComments card={card} setCard={setCard} />}
               </div>
 
             </div>

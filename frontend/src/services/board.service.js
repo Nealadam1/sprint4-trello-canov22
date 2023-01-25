@@ -127,7 +127,8 @@ function createCard({ title, description, style, archivedAt }) {
     checklists: [],
     labelIds: [],
     archivedAt: "",
-    attachments:[]
+    attachments: [],
+    comments: []
   }
 }
 
