@@ -1,0 +1,78 @@
+.card-attachments {
+    padding: 0px;
+
+    h3 {
+        font-size: $card-details-header;
+        font-family: $trello-font;
+        display: flex;
+        font-size: 14px;
+        color: $clr7;
+        margin-bottom: 0.5em;
+
+        i {
+            padding-right: 0.7em;
+            font-size: 18px;
+        }
+    }
+
+    .attachments-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 0 0 1em 26px;
+        padding: 0px;
+    }
+
+    .attachment-preview {
+        background-color: rgba(9, 30, 66, 0.0392156863);
+        border-radius: 3px;
+
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+    }
+
+    .attachment-img {
+        height: 80px;
+        width: 112px;
+        background-color: #091e420a;
+        border-radius: 3px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+        img {
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+        }
+
+    }
+
+    .attachment-details {
+        p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .delete-attachment {
+            text-decoration: underline;
+
+        }
+
+        .delete-cover {
+            text-decoration: underline;
+        }
+
+    }
+
+    .attachment-actions{
+        display: flex;
+        gap: 10px
+    }
+
+
+
+}
