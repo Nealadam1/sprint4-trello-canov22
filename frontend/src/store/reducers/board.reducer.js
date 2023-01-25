@@ -20,6 +20,7 @@ const initialState = {
   label: null,
   lastRemovedBoard: null,
   filterCardBy: "",
+  activites: [],
 }
 
 export function boardReducer(state = initialState, action) {

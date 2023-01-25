@@ -14,13 +14,14 @@ export function CoverAction({ card }) {
   function handleBackgroundChange(backgroundColor) {
     setCardPreviewColor(backgroundColor.hex)
     card.style.bgColor = backgroundColor.hex
-    updateCard(card)
+    updateCard(card, "CHANGE_BACKGROUND")
+    console.log("hi")
   }
 
   function onRemoveCover() {
     card.style = {}
     setCardPreviewColor("")
-    updateCard(card)
+    updateCard(card, "REMOVE_BACKGROUND")
   }
 
   return (

@@ -14,6 +14,7 @@ export const boardService = {
   createCard,
   createGroup,
   getEmptyLabel,
+  createActivitie,
 }
 window.cs = boardService
 
@@ -47,7 +48,13 @@ async function getById(boardId) {
   // let board = await httpService.get(`board/${boardId}`)
   // console.log(board);
   // return httpService.get('board/' + boardId)
-  return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
+  // return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
+  try {
+    const board = await httpService.get("board/" + boardId)
+    return board
+  } catch (err) {
+    console.log("Had an issue with getting board")
+  }
 }
 
 async function remove(boardId) {
@@ -62,10 +69,22 @@ async function save(board) {
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
-    savedBoard = await httpService.post('board', board)
+    savedBoard = await httpService.post("board", board)
     // savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
   }
   return savedBoard
+}
+
+function createActivitie(text, fullname, data, userImage) {
+  console.log(text, fullname, data)
+  return {
+    text,
+    fullname,
+    createdAt: Date.now(),
+    data,
+    id: utilService.makeId(),
+    userImage,
+  }
 }
 
 function getEmptyBoard() {
@@ -103,7 +122,7 @@ function createCard({ title, description, style, archivedAt }) {
     id: utilService.makeId(),
     checklists: [],
     labelIds: [],
-    archivedAt:''
+    archivedAt: "",
   }
 }
 
@@ -114,8 +133,6 @@ function createGroup({ title }) {
 function getDefaultSearch() {
   return { title: "" }
 }
-
-
 
 // -------------------------------- Demo data --------------------------------
 

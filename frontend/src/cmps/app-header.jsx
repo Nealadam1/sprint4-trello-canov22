@@ -14,7 +14,6 @@ import { loadBoards, setBoard } from "../store/actions/board.action"
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
-  console.log(user);
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
   const headerBackground = board

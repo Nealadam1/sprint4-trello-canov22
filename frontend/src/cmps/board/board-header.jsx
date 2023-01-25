@@ -14,6 +14,8 @@ import { VscListFilter } from "react-icons/vsc"
 import { BsSpeedometer2 } from "react-icons/bs"
 import { RxDotsHorizontal } from "react-icons/rx"
 import { CgLoadbarSound } from "react-icons/cg"
+import { CardActivites } from "../card/card-activities"
+import { CgClose } from "react-icons/cg"
 
 export function BoardHeader({ board }) {
   const [boardTitle, setBoardTitle] = useState(board.title)
@@ -151,11 +153,12 @@ export function BoardHeader({ board }) {
           </div>
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="menu">
-          <p>Modal Content</p>
-        </div>
-      )}
+      <div className={isMenuOpen ? "menu show" : "menu"}>
+        <span className="close-menu-icon">
+          <CgClose onClick={() => setIsMenuOpen(false)} />
+        </span>
+        <CardActivites />
+      </div>
     </div>
   )
 }

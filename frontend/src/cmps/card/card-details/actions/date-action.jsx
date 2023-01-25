@@ -4,7 +4,7 @@ import "react-day-picker/dist/style.css"
 import { useSelector } from "react-redux"
 import { updateCard } from "../../../../store/actions/board.action"
 
-export function DateAction() {
+export function DateAction({ setCard }) {
   const [selectedDay, setSelectedDay] = useState(null)
   const [range, setRange] = useState(false)
   const [startEndDate, setStartEndDate] = useState({ start: null, end: null })
@@ -43,7 +43,8 @@ export function DateAction() {
     } else {
       const selectedTime = selectedDay.getTime()
       card.dueDate = selectedTime
-      updateCard(card)
+      updateCard(card, "SET_DATE")
+      // setCard({ ...card, dueDate: selectedTime })
     }
     {
       console.log("Please pick a day.")

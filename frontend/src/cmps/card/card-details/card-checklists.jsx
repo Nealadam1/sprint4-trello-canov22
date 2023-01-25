@@ -33,7 +33,7 @@ export function CardChecklists({ checklists, card, setCard }) {
     setCard({ ...card, checklists })
     setFormData({ ...formData, [checklistId]: "" })
     setTodoToInput({ ...todoToInput, [checklistId]: false })
-    updateCard(card)
+    updateCard(card, "ADDED_TODO")
   }
 
   function handleTodoCheck(checklistId, todoId) {
@@ -43,7 +43,8 @@ export function CardChecklists({ checklists, card, setCard }) {
     const currTodo = currChecklist.todos.find((todo) => todo.id === todoId)
     currTodo.isDone = !currTodo.isDone
     setCard({ ...card, checklists })
-    updateCard(card)
+    const action = currTodo.isDone ? "CHECKED_TODO" : "UNCHECKED_TODO"
+    updateCard(card, action)
   }
 
   function handleFormChange(event, checklistId) {
@@ -68,7 +69,7 @@ export function CardChecklists({ checklists, card, setCard }) {
       (checklist) => checklist.id !== checklistId
     )
     setCard({ ...card, checklists: newChecklists })
-    updateCard({ ...card, checklists: newChecklists })
+    updateCard({ ...card, checklists: newChecklists }, "DELETE_CHECKLIST")
   }
 
   function handleBlur(checklistId) {
@@ -82,7 +83,7 @@ export function CardChecklists({ checklists, card, setCard }) {
       checklist.todos = checklist.todos.filter((todo) => todo.id !== todoId)
     })
     setCard({ ...card, checklists })
-    updateCard(card)
+    updateCard(card, "DELETE_TODO")
   }
 
   return (

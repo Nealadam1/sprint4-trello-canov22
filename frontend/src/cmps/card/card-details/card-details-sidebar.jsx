@@ -9,7 +9,8 @@ import { DynamicActionModal } from "../../dynamic-modal-cmp"
 import { BsTag } from "react-icons/bs"
 import { IoMdCheckboxOutline } from "react-icons/io"
 import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai"
-import {MdOutlineCreditCard} from "react-icons/md"
+import { MdOutlineCreditCard } from "react-icons/md"
+import { CardDetailsShortcut } from "./actions/card-detail-shortcut"
 
 export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
@@ -28,9 +29,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           className="side-bar-btn"
           ref={buttonRefMembers}
           onClick={
-            !isActionModal
-              ? (ev) => OpenActionModal(ev, "add-members")
-              : null
+            !isActionModal ? (ev) => OpenActionModal(ev, "add-members") : null
           }
         >
           {isActionModal && (
@@ -52,9 +51,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           className="side-bar-btn"
           ref={buttonRefLabels}
           onClick={
-            !isActionModal
-              ? (ev) => OpenActionModal(ev, "add-labels")
-              : null
+            !isActionModal ? (ev) => OpenActionModal(ev, "add-labels") : null
           }
         >
           {isActionModal && (
@@ -75,11 +72,8 @@ export function CardDetailsSidebar({ card, setCard }) {
           className="side-bar-btn"
           ref={buttonRefChecklist}
           onClick={
-            !isActionModal
-              ? (ev) => OpenActionModal(ev, "add-checklist")
-              : null
+            !isActionModal ? (ev) => OpenActionModal(ev, "add-checklist") : null
           }
-          
         >
           {isActionModal && (
             <DynamicActionModal
@@ -100,9 +94,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           className="side-bar-btn"
           ref={buttonRefCover}
           onClick={
-            !isActionModal
-              ? (ev) => OpenActionModal(ev, "add-cover")
-              : null
+            !isActionModal ? (ev) => OpenActionModal(ev, "add-cover") : null
           }
         >
           {isActionModal && (
@@ -124,9 +116,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           className="side-bar-btn"
           ref={buttonRefDates}
           onClick={
-            !isActionModal
-              ? (ev) => OpenActionModal(ev, "add-date")
-              : null
+            !isActionModal ? (ev) => OpenActionModal(ev, "add-date") : null
           }
         >
           {isActionModal && (
