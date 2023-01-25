@@ -17,6 +17,7 @@ import { CgLoadbarSound } from "react-icons/cg"
 import { CardActivites } from "../card/card-activities"
 import { CgClose } from "react-icons/cg"
 import { AiOutlineUserAdd } from "react-icons/ai"
+import { Link } from "react-router-dom"
 
 export function BoardHeader({ board }) {
   const [boardTitle, setBoardTitle] = useState(board.title)
@@ -68,7 +69,7 @@ export function BoardHeader({ board }) {
     : 0
   const maxWidth = inputWidth > 0 ? inputWidth * 0.8 : 0
 
-  function handleCmpRender(event) { }
+  function handleCmpRender(event) {}
 
   return (
     <div className="board-header">
@@ -107,15 +108,22 @@ export function BoardHeader({ board }) {
           <span className="btn-divider">|</span>
           <div className="board-action-board">
             <button onClick={handleCmpRender}>
-              <CgLoadbarSound style={{ fontSize: "20px" }} />
-              Board
+              <Link className="dashboard-link" to={`/board/${board._id}`}>
+                <CgLoadbarSound style={{ fontSize: "20px" }} />
+                Board
+              </Link>
             </button>
           </div>
           <span className="btn-divider">|</span>
           <div className="board-action-dashboard">
             <button onClick={handleCmpRender}>
-              <BsSpeedometer2 />
-              Dashboard
+              <Link
+                className="dashboard-link"
+                to={`/board/${board._id}/dashboard`}
+              >
+                <BsSpeedometer2 />
+                Dashboard
+              </Link>
             </button>
           </div>
         </div>
@@ -126,7 +134,9 @@ export function BoardHeader({ board }) {
               className="board-filter-icon"
               ref={buttonRefFilter}
               onClick={
-                !isActionModal ? (ev) => OpenActionModal(ev, "board-filter") : null
+                !isActionModal
+                  ? (ev) => OpenActionModal(ev, "board-filter")
+                  : null
               }
             >
               <VscListFilter /> Filter
@@ -135,7 +145,6 @@ export function BoardHeader({ board }) {
               <DynamicActionModal
                 buttonRef={buttonRefFilter.current}
                 type={"board-filter"}
-
               />
             )}
           </div>
@@ -143,11 +152,15 @@ export function BoardHeader({ board }) {
           <div className="board-action-members">
             <BoardMembers />
           </div>
-          <button className="board-action-invite"
+          <button
+            className="board-action-invite"
             ref={buttonRefInvite}
             onClick={
-              !isActionModal ? (ev) => OpenActionModal(ev, "board-invite") : null
-            }>
+              !isActionModal
+                ? (ev) => OpenActionModal(ev, "board-invite")
+                : null
+            }
+          >
             {isActionModal && (
               <DynamicActionModal
                 buttonRef={buttonRefInvite.current}
@@ -155,14 +168,14 @@ export function BoardHeader({ board }) {
                 board={board}
               />
             )}
-            <AiOutlineUserAdd /> Invite Members</button>
+            <AiOutlineUserAdd /> Invite Members
+          </button>
           <span className="btn-divider">|</span>
           <div className="board-action-menu">
             <button
               className="open-menu-icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-
               <RxDotsHorizontal />
             </button>
           </div>

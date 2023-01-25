@@ -4,7 +4,6 @@
   box-sizing: border-box;
   flex: 1;
   overflow-y: auto;
-  padding: 0px 3px;
 
 
   ul {
@@ -290,15 +289,14 @@
   .add-card {
     background-color: transparent;
     width: 100%;
-    border-radius: $edge-round;
-    height: rem(30px);
+    border-radius: 0.2em;
+    height: 1.875rem;
     font-family: "Open Sans", sans-serif;
     color: #5e6c84;
     text-align: left;
     padding: 16px 8px;
     display: flex;
     align-items: center;
-    margin-top: 0.7em;
 
     .add-card-icon {
       margin-left: 0.5em;

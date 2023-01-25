@@ -26,10 +26,11 @@ import { store } from "../store/store"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { AiOutlinePlus } from "react-icons/ai"
 import { CardDate } from "../cmps/card/card-details/card-date"
+import { useOutletContext } from "react-router"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
-  const [cardTitle, setCardTitle] = useState('')
+  const [cardTitle, setCardTitle] = useState("")
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const navigate = useNavigate()
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -99,7 +100,7 @@ export function CardDetails() {
             left: 0,
             width: "100%",
             height: "100%",
-            overflow: 'auto',
+            overflow: "auto",
           }}
           onClick={handleClose}
         >
@@ -118,15 +119,13 @@ export function CardDetails() {
                 className="card-header"
                 style={{
                   background: card?.style ? card?.style?.bgColor : "fff",
-                  borderRadius: '3px 3px 0 0'
-
+                  borderRadius: "3px 3px 0 0",
                 }}
               >
                 {console.log(card)}
                 {/* {card.style ? <button onClick={handleClose}>
                   <Link to={`/board/${board._id}`}>x</Link>
                 </button> : ''} */}
-
               </header>
             )}
             <div className="side-bar">
@@ -149,16 +148,15 @@ export function CardDetails() {
                   />
                 </h3>
               ) : (
-
-                <h3 className="card-title"
-
-                >
+                <h3 className="card-title">
                   <span className="card-icon-title">
                     <FontAwesomeIcon icon={faWindowMaximize} />
                   </span>
-                  <h3 className="card-title" ref={cardTitleRef}
-
-                    onClick={() => setIsEditingTitle(true)}>
+                  <h3
+                    className="card-title"
+                    ref={cardTitleRef}
+                    onClick={() => setIsEditingTitle(true)}
+                  >
                     {cardTitle}
                   </h3>
                 </h3>
@@ -215,13 +213,11 @@ export function CardDetails() {
               <div>
                 {card?.comments && <CardComments comments={card.comments} />}
               </div>
-
             </div>
           </div>
         </div>
-      )
-      }
-    </div >
+      )}
+    </div>
   )
 }
 
