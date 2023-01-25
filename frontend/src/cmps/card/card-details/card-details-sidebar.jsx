@@ -3,7 +3,9 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import {
   closeActionModal,
+  closeCardDetail,
   OpenActionModal,
+  updateCard,
 } from "../../../store/actions/board.action"
 import { DynamicActionModal } from "../../dynamic-modal-cmp"
 import { BsTag } from "react-icons/bs"
@@ -12,12 +14,15 @@ import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai"
 import { MdOutlineCreditCard } from "react-icons/md"
 import { CardDetailsShortcut } from "./actions/card-detail-shortcut"
 import { GrAttachment } from "react-icons/gr"
-import { BsArrowRight } from "react-icons/bs"
+import { BsArrowRight, BsArchive } from "react-icons/bs"
+import { useNavigate } from "react-router-dom"
+
 
 export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
+  const navigate = useNavigate()
   const buttonRefMembers = useRef(null)
   const buttonRefLabels = useRef(null)
   const buttonRefChecklist = useRef(null)
@@ -25,6 +30,13 @@ export function CardDetailsSidebar({ card, setCard }) {
   const buttonRefDates = useRef(null)
   const buttonRefAttachment = useRef(null)
   const buttonRefMoveCard = useRef(null)
+
+  function handleArchive() {
+    card.archivedAt = Date.now()
+    updateCard(card, "ARCHIVED_CARD")
+    closeCardDetail()
+  }
+
   return (
     <aside className="card-details-sidebar">
       <div>
@@ -183,6 +195,12 @@ export function CardDetailsSidebar({ card, setCard }) {
             Move
           </button>
         </div>
+        <button className="side-bar-btn" onClick={handleArchive}>
+          <span className="archive-icon side-bar-icon">
+            <BsArchive />
+          </span>
+          Archive
+        </button>
       </div>
     </aside>
   )

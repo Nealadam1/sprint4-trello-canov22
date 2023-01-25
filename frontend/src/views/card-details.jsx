@@ -127,7 +127,7 @@ export function CardDetails() {
             )}
 
             <div className="side-bar">
-              <CardDetailsSidebar setCard={setCard} card={card} />
+              <CardDetailsSidebar setCard={setCard} card={card} board={board}/>
             </div>
 
             <div className="card-content">

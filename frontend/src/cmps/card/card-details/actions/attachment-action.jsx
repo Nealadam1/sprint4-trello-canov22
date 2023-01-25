@@ -11,7 +11,7 @@ export function AttachmentAction({ card, setCard }) {
     const fileInputRef = useRef(null)
 
     function handleSaveLink() {
-        card.attachments = [...card.attachments, { id: utilService.makeId(), link: imgLink }]
+        card.attachments = [...card.attachments, { id: utilService.makeId(), link: imgLink ,name: LinkName  }]
         updateCard(card, "ADD_ATTACHMENT")
         closeActionModal()
     }
