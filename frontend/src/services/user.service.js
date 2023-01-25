@@ -1,5 +1,6 @@
 import { asyncStorageService } from "./async-storage.service"
 import { httpService } from "./http.service"
+import { utilService } from "./util.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = "loggedinUser"
 
@@ -13,6 +14,7 @@ export const userService = {
   getById,
   remove,
   update,
+  getGuestUser
 }
 
 window.userService = userService
@@ -83,6 +85,10 @@ function saveLocalUser(user) {
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
   return user
+}
+
+function getGuestUser() {
+  return { _id: utilService.makeId(), fullname: "Guest", imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png", username: 'Guest' }
 }
 
 function getLoggedinUser() {
