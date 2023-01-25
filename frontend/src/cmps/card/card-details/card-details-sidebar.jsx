@@ -160,7 +160,7 @@ export function CardDetailsSidebar({ card, setCard }) {
         </button>
       </div>
       <div>
-        <span>Actions</span>
+        <span className="side-bar-action-title">Actions</span>
         <div>
           <button
             className="side-bar-btn"
