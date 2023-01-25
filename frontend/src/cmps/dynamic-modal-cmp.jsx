@@ -10,6 +10,7 @@ import { CoverAction } from "./card/card-details/actions/cover-action"
 import { DateAction } from "./card/card-details/actions/date-action"
 import { LabelAction } from "./card/card-details/actions/label-action"
 import { MemberAction } from "./card/card-details/actions/member-action"
+import { MoveAction } from "./card/card-details/actions/move-action"
 import { GroupActions } from "./group/group-actions"
 
 export function DynamicActionModal(props) {
@@ -104,6 +105,14 @@ export function DynamicActionModal(props) {
         modal === props.type && (
           <DynamicModalPosition buttonRef={buttonRef}>
             <AttachmentAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
+    case "move-card":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <MoveAction {...props} />
           </DynamicModalPosition>
         )
       )

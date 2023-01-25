@@ -21,6 +21,7 @@ import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { CardDate } from "../cmps/card/card-details/card-date"
+import { CardAttachments } from "../cmps/card/card-details/card-attachments"
 
 
 export function CardDetails() {
@@ -201,9 +202,8 @@ export function CardDetails() {
                   </div>
                 )}
               </div>
-
               <div>{card && <CardDescription card={card} />}</div>
-
+              <div>{card?.attachments && <CardAttachments card={card} />}</div>
               <div>
                 {card?.checklists && (
                   <CardChecklists
