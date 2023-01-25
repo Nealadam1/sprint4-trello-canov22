@@ -24,7 +24,7 @@ import {
   REMOVE_LABEL,
   SET_LABELS,
 } from "../reducers/label.reducer.js"
-import { httpService } from "../../services/http.service.js"
+// import { httpService } from "../../services/http.service.js"
 import { utilService } from "../../services/util.service.js"
 import { userService } from "../../services/user.service.js"
 

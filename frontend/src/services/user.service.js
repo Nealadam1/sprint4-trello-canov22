@@ -47,14 +47,14 @@ async function update({ _id }) {
 async function login(userCred) {
   console.log("userCred", userCred)
 
-  const users = await asyncStorageService.query("user")
+  // const users = await asyncStorageService.query("user")
+  const users = await httpService.get('user')
   console.log("users", users)
 
-  // const user = users.find((user) => user.username === userCred.username)
+  const user = users.find((user) => user.username === userCred.username)
 
   if (!user) return
 
-  const user = await httpService.post('auth/login', userCred)
   // socketService.login(user._id)
   return saveLocalUser(user)
 }

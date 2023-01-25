@@ -49,15 +49,20 @@ async function remove(boardId) {
 
 async function update(board) {
     try {
+        console.log('board');
+        console.log(board);
+        console.log();
         const boardToSave = {
             title: board.title,
             isStarred: board.isStarred,
+            archivedAt: board.archivedAt,
             style: board.style,
             labels: board.labels,
             members: board.members,
             groups: board.groups,
             activities: board.activities
         }
+        console.log(boardToSave);
 
         const collection = await dbGetCollection
         await collection.updateOne({ _id: ObjectId(board._id) }, { $set: boardToSave })

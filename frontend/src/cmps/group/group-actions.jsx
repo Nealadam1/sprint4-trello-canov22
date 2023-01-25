@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { eventBus } from "../../services/event-bus.service"
 import { CgClose } from "react-icons/cg"
-import { updateGroup } from "../../store/actions/board.action"
+import { updateBoard, updateGroup } from "../../store/actions/board.action"
 export function GroupActions({ group, handleEditButtonClick }) {
   useEffect(() => {
     document.addEventListener("click", handleClickOutside)
@@ -26,6 +26,7 @@ export function GroupActions({ group, handleEditButtonClick }) {
     const updatededGroup = group
     updatededGroup.archivedAt = Date.now()
     updateGroup(updatededGroup, "ARCHIVED_GROUP")
+    // updateBoard(updatededGroup)
   }
 
   return (

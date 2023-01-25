@@ -11,6 +11,7 @@ import {
   getCardById,
   OpenActionModal,
   setCardToStoreRef,
+  updateCard,
 } from "../store/actions/board.action"
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
 
@@ -28,6 +29,8 @@ import { CardDate } from "../cmps/card/card-details/card-date"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
+  const [cardTitle, setCardTitle] = useState('')
+  const [isEditingTitle, setIsEditingTitle] = useState(false)
   const navigate = useNavigate()
   const board = useSelector((storeState) => storeState.boardModule.board)
   const modal = useSelector(
@@ -38,9 +41,19 @@ export function CardDetails() {
   )
   const { cardId } = useParams()
   const buttonRefLabelAction = useRef(null)
+  const inputRef = useRef(null)
+  const cardTitleRef = useRef(null)
+
+  useEffect(() => {
+    if (isEditingTitle) {
+      inputRef?.current?.focus()
+    }
+  }, [isEditingTitle])
+
   useEffect(() => {
     const currCard = getCardById(board, cardId)
     setCard(currCard)
+    setCardTitle(currCard.title)
     setCardToStoreRef(currCard)
     if (isActionModal) closeActionModal()
   }, [cardId])
@@ -54,6 +67,25 @@ export function CardDetails() {
         handleClose()
       })
     }
+  }
+
+  function handleTitleChange({ target }) {
+    setCardTitle(target.value)
+  }
+
+  function handleBlur(ev) {
+    if (!ev.target.value) {
+      ev.preventDefault()
+      return
+    } else {
+      handleTitleSave()
+    }
+  }
+
+  function handleTitleSave() {
+    card.title = cardTitle
+    updateCard(card)
+    setIsEditingTitle(false)
   }
 
   return (
@@ -92,13 +124,36 @@ export function CardDetails() {
               <CardDetailsSidebar setCard={setCard} card={card} />
             </div>
             <div className="card-content">
-              <h3 className="card-title">
-                <span className="card-icon-title">
-                  <FontAwesomeIcon icon={faWindowMaximize} />
-                </span>
-                {card?.title}
-              </h3>
+              {isEditingTitle ? (
+                <h3 className="card-title">
+                  <span className="card-icon-title">
+                    <FontAwesomeIcon icon={faWindowMaximize} />
+                  </span>
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    className="card-title-input"
+                    value={cardTitle}
+                    onChange={handleTitleChange}
+                    onBlur={handleBlur}
+                    required
+                  />
+                </h3>
+              ) : (
 
+                <h3 className="card-title"
+                  
+                >
+                  <span className="card-icon-title">
+                  <FontAwesomeIcon icon={faWindowMaximize} />
+                  </span>
+                  <h3  className="card-title" ref={cardTitleRef}
+                  
+                  onClick={() => setIsEditingTitle(true)}>
+                    {cardTitle}
+                  </h3>
+                </h3>
+              )}
               <p className="card-details-group-title">
                 In list <span>{store.getState().boardModule.group.title}</span>
               </p>
@@ -157,8 +212,9 @@ export function CardDetails() {
             </div>
           </div>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   )
 }
 
