@@ -15,6 +15,7 @@ import {
   setBoardById,
   updateBoard,
 } from "../store/actions/board.action"
+import LoadingSpinner from "./spinner/loading-spinner"
 
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
@@ -44,16 +45,15 @@ export function BoardDetails() {
     deleteGroup(groupId)
   }
 
-  if (!board) return <h1>Loading...</h1>
+  if (!board) return <LoadingSpinner />
   return (
     <div
       className="board-details"
       style={{
-        background: `${
-          board.style.img
+        background: `${board.style.img
             ? `url(${board.style.img})`
             : `${board.style.backgroundColor}`
-        }`,
+          }`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
