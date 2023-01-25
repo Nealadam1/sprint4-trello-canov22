@@ -67,6 +67,8 @@ export function AppHeader() {
       </div>
       {loggedInUser ? (
         <div className="user-details">
+          <BoardSearch />
+
           <div className="logged-user">
             <span>{loggedInUser.fullname}</span>
             <img style={{ width: "30px" }} src={loggedInUser.imgUrl} />
