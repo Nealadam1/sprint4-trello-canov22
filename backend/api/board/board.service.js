@@ -58,6 +58,7 @@ async function update(board) {
             groups: board.groups,
             activities: board.activities
         }
+        console.log(boardToSave);
 
         const collection = await dbGetCollection
         await collection.updateOne({ _id: ObjectId(board._id) }, { $set: boardToSave })
