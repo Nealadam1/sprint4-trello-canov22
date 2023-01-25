@@ -17,6 +17,7 @@
   background-color: #ebecf0;
   margin: 50px auto;
   color: $clr7;
+  border-radius: 3px;
 
   .labels-action-header {
     text-align: center;
@@ -178,6 +179,7 @@
       margin-left: 2em;
       font-size: 13px;
       color: $clr14;
+      cursor: pointer;
 
       &:hover {
         background-color: #091e4214;
@@ -246,6 +248,7 @@
     padding-bottom: 2em;
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
     gap: 1.5em;
 
     .members-span {
@@ -312,6 +315,10 @@
     padding: em(20px);
     grid-area: content;
 
+    h3 {
+      margin: 0;
+    }
+
     .card-details-group-title {
       margin: 0 0 1.8em;
       font-size: 13px;
@@ -336,7 +343,7 @@
         font-family: inherit;
         font-weight: inherit;
         line-height: inherit;
-        transform: translate(-8px,-4px);
+        transform: translate(-8px, -4px);
         height: inherit;
         width: 100%;
         border: none;

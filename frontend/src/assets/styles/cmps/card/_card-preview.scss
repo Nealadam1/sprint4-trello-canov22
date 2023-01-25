@@ -104,11 +104,31 @@
         margin-bottom: 3px;
       }
 
+
       .member-images {
         display: flex;
         justify-content: flex-end;
         margin-bottom: 10px;
+        max-width: 140px;
+        // overflow: auto;
+        white-space: normal;
+        // display: grid;
+        // justify-items: center;
+        // grid-template-columns: repeat(auto-fit, 20px);
+        // grid-template-rows: repeat(10, 1fr);
         // margin-top: 1em;
+
+        .member-image {
+          // margin-top: 1em;
+          // position: relative;
+          width: rem(28px);
+          height: rem(28px);
+          border-radius: 20em;
+          margin-left: 0.2em;
+          // position: relative;
+          // left: 75%;
+          display: flex;
+        }
       }
 
       .card-info {
@@ -118,15 +138,7 @@
         align-items: flex-start;
       }
 
-      .member-image {
-        // margin-top: 1em;
-        width: rem(28px);
-        height: rem(28px);
-        border-radius: 20em;
-        margin-left: 0.2em;
-        // position: relative;
-        // left: 75%;
-      }
+
 
       .card-labels {
         display: flex;

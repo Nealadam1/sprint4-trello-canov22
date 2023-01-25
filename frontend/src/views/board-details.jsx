@@ -18,6 +18,7 @@ import {
 } from "../store/actions/board.action"
 import { CardDetails } from "./card-details"
 import { BoardDashboard } from "../cmps/board/board-dashboard"
+import LoadingSpinner from "./spinner/loading-spinner"
 
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
@@ -47,7 +48,7 @@ export function BoardDetails() {
     deleteGroup(groupId)
   }
 
-  if (!board) return <h1>Loading...</h1>
+  if (!board) return <LoadingSpinner />
   return (
     <div
       className="board-details"

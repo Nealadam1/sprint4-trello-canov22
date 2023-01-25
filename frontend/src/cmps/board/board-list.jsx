@@ -15,6 +15,7 @@ import { DynamicActionModal } from "../dynamic-modal-cmp"
 import { OpenActionModal, setBoard, updateBoard } from "../../store/actions/board.action"
 import { boardService } from "../../services/board.service"
 import { BsArchive } from "react-icons/bs"
+import LoadingSpinner from "../../views/spinner/loading-spinner"
 
 export function BoardList({ boards }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -61,7 +62,7 @@ export function BoardList({ boards }) {
     return boards.filter((board) => board.archivedAt === "")
   }
 
-  if (!boards) return <h2>Loading....</h2>
+  if (!boards) return <LoadingSpinner />
 
   return (
     <ul className="board-list">
@@ -81,11 +82,10 @@ export function BoardList({ boards }) {
             <li
               className="list-item"
               style={{
-                background: `${
-                  board.style.thumbnail
-                    ? `url(${board.style.thumbnail})`
-                    : `${board.style.backgroundColor}`
-                }`,
+                background: `${board.style.thumbnail
+                  ? `url(${board.style.thumbnail})`
+                  : `${board.style.backgroundColor}`
+                  }`,
               }}
               key={board._id}
             >
@@ -127,11 +127,10 @@ export function BoardList({ boards }) {
           <li
             className="list-item"
             style={{
-              background: `${
-                board.style.thumbnail
-                  ? `url(${board.style.thumbnail})`
-                  : `${board.style.backgroundColor}`
-              }`,
+              background: `${board.style.thumbnail
+                ? `url(${board.style.thumbnail})`
+                : `${board.style.backgroundColor}`
+                }`,
             }}
             key={board._id}
           >

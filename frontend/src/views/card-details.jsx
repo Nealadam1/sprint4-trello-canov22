@@ -100,6 +100,7 @@ export function CardDetails() {
             left: 0,
             width: "100%",
             height: "100%",
+            overflow: "auto",
           }}
           onClick={handleClose}
         >
@@ -118,8 +119,14 @@ export function CardDetails() {
                 className="card-header"
                 style={{
                   background: card?.style ? card?.style?.bgColor : "fff",
+                  borderRadius: "3px 3px 0 0",
                 }}
-              ></header>
+              >
+                {console.log(card)}
+                {/* {card.style ? <button onClick={handleClose}>
+                  <Link to={`/board/${board._id}`}>x</Link>
+                </button> : ''} */}
+              </header>
             )}
             <div className="side-bar">
               <CardDetailsSidebar setCard={setCard} card={card} />
@@ -206,9 +213,6 @@ export function CardDetails() {
               <div>
                 {card?.comments && <CardComments comments={card.comments} />}
               </div>
-              <button onClick={handleClose}>
-                <Link to={`/board/${board._id}`}>Close</Link>
-              </button>
             </div>
           </div>
         </div>
