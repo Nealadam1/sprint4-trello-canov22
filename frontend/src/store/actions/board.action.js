@@ -100,6 +100,23 @@ export async function loadBoards(searchBy = "") {
   }
 }
 
+export function moveCard(cardId, newGroupId, newPosition) {
+  const board = structuredClone(store.getState().boardModule.board)
+  const group = structuredClone(store.getState().boardModule.group)
+  const currentGroup = board.groups.find((group) =>
+    group.cards.find((card) => card.id === cardId)
+  )
+  const currCard = group.cards.find((card) => card.id === cardId)
+  const currentCardIndex = currentGroup.cards.findIndex(
+    (card) => card.id === cardId
+  )
+  currentGroup.cards.splice(currentCardIndex, 1)
+  const newGroup = board.groups.find((group) => group.id === newGroupId)
+  newGroup.cards.splice(newPosition, 0, currCard)
+  store.dispatch(getActionSetBoard(board))
+  boardService.save(board)
+}
+
 export async function setBoard(board) {
   try {
     store.dispatch({
