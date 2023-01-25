@@ -11,6 +11,7 @@ import { IoMdCheckboxOutline } from "react-icons/io"
 import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai"
 import { MdOutlineCreditCard } from "react-icons/md"
 import { CardDetailsShortcut } from "./actions/card-detail-shortcut"
+import {GrAttachment} from "react-icons/gr"
 
 export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
@@ -21,6 +22,7 @@ export function CardDetailsSidebar({ card, setCard }) {
   const buttonRefChecklist = useRef(null)
   const buttonRefCover = useRef(null)
   const buttonRefDates = useRef(null)
+  const buttonRefAttachment = useRef(null)
   return (
     <aside className="card-details-sidebar">
       <div>
@@ -122,7 +124,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           {isActionModal && (
             <DynamicActionModal
               card={card}
-              buttonRef={buttonRefCover.current}
+              buttonRef={buttonRefDates.current}
               type={"add-date"}
               setCard={setCard}
             />
@@ -133,35 +135,28 @@ export function CardDetailsSidebar({ card, setCard }) {
           Date
         </button>
       </div>
+      <div>
+        <button
+          className="side-bar-btn"
+          ref={buttonRefAttachment}
+          onClick={
+            !isActionModal ? (ev) => OpenActionModal(ev, "add-attachment") : null
+          }
+        >
+          {isActionModal && (
+            <DynamicActionModal
+              card={card}
+              buttonRef={buttonRefAttachment.current}
+              type={"add-attachment"}
+              setCard={setCard}
+            />
+          )}
+          <span className="checklist-icon side-bar-icon">
+            <GrAttachment />
+          </span>
+          Attachment
+        </button>
+      </div>
     </aside>
   )
-
-  // const [showMembers, setShowMembers] = useState(false)
-
-  // const board = useSelector((storeState) => storeState.boardModule.board)
-
-  // function addMember(memberId) {
-  //   if (card.memberIds.find((member) => member === memberId)) {
-  //     return card.memberIds.filter((member) => member !== memberId)
-  //   }
-  //   const updatedCard = [...card.memberIds, memberId]
-  // }
-
-  // return (
-  //   <div className="card-details-sidebar">
-  //     <button onClick={() => setShowMembers((prev) => !prev)}>Members</button>
-  //     {showMembers && (
-  //       <div className="members-list">
-  //         <ul>
-  //           {board.members.map((member) => (
-  //             <li onClick={() => addMember(member._id)}>
-  //               <img className="member-image" src={member.imgUrl} />
-  //               {member.fullname}
-  //             </li>
-  //           ))}
-  //         </ul>
-  //       </div>
-  //     )}
-  //   </div>
-  // )
 }

@@ -21,6 +21,7 @@
 
 .shortcut-actions {
     li {
+        display: flex;
         width: fit-content;
         padding: 0px 7px;
         min-height: 32px;
@@ -34,6 +35,7 @@
         transition: transform 85ms ease-in;
 
         a {
+            display: flex;
             color: #c7d1db;
             &:hover {
 

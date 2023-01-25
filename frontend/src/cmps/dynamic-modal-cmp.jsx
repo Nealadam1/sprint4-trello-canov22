@@ -4,6 +4,7 @@ import { closeActionModal } from "../store/actions/board.action"
 import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
 import { BoardInvite } from "./board/board-invite"
+import { AttachmentAction } from "./card/card-details/actions/attachment-action"
 import { ChecklistAction } from "./card/card-details/actions/checklist-action"
 import { CoverAction } from "./card/card-details/actions/cover-action"
 import { DateAction } from "./card/card-details/actions/date-action"
@@ -98,6 +99,14 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "add-attachment":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <AttachmentAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
     case "group-actions":
       return (
         modal === props.type && (
@@ -121,8 +130,8 @@ const DynamicModalPosition = (props) => {
     }px)`,
     left: `calc(${buttonRef.getBoundingClientRect().left}px `,
     transform:
-      buttonRef.offsetHeight > 80
-        ? `translate(${buttonRef.offsetWidth}px, ${buttonRef.offsetHeight}px)`
+      buttonRef.offsetHeight > 90
+        ? `translate(${buttonRef.offsetWidth}px, -${buttonRef.offsetHeight*2}px)`
         : `translate(0, -${buttonRef.offsetHeight}px)`,
     width: "300px",
   })

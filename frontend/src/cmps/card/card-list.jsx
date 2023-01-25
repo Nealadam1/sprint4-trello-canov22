@@ -62,7 +62,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
       title,
       description: '',
       style: {},
-      archivedAt: ''
+      archivedAt: '',
     }
     addCard(newCard, group.id)
     setCardToInput(false)
