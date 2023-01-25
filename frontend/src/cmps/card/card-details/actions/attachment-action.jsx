@@ -2,20 +2,21 @@ import { useRef } from "react"
 import { useState } from "react"
 import { CgClose } from "react-icons/cg"
 import { uploadImg } from "../../../../services/upload.service"
+import { utilService } from "../../../../services/util.service"
 import { closeActionModal, updateCard } from "../../../../store/actions/board.action"
 
 export function AttachmentAction({ card, setCard }) {
     let [imgLink, setImgLink] = useState('')
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [LinkName, setLinkName] = useState('')
     const fileInputRef = useRef(null)
 
     function handleSaveLink() {
-        card.attachments = [...card.attachments, { link: imgLink }]
+        card.attachments = [...card.attachments, { id: utilService.makeId(), link: imgLink ,name: LinkName  }]
         updateCard(card, "ADD_ATTACHMENT")
         closeActionModal()
     }
 
-    function handleLinkChange({target}) {
+    function handleLinkChange({ target }) {
         setImgLink(target.value)
     }
 
@@ -24,11 +25,15 @@ export function AttachmentAction({ card, setCard }) {
         handleFileUpload(fileToUpload)
     }
 
+    function handleNameChange({ target }) {
+        setLinkName(target.value)
+    }
+
     async function handleFileUpload(fileToUpload) {
         try {
             console.log(fileToUpload)
             imgLink = await uploadImg(fileToUpload);
-            card.attachments = [...card.attachments, { imgUrl: imgLink }]
+            card.attachments = [...card.attachments, { id: utilService.makeId(), imgUrl: imgLink, name: fileToUpload.name }]
             updateCard(card, "ADD_ATTACHMENT")
             closeActionModal()
         } catch (err) {
@@ -56,9 +61,20 @@ export function AttachmentAction({ card, setCard }) {
                     <input className="blue-input" type="text"
                         value={imgLink}
                         onChange={handleLinkChange}
-                        placeholder="Insert Image Link"
+                        placeholder="Insert link..."
                         required
                     />
+                    {imgLink &&
+                        <div>
+                            <p>{`Link name (optianal)`}</p>
+                            <input className="blue-input" type="text"
+                                value={LinkName}
+                                onChange={handleNameChange}
+                                placeholder="Name..."
+                                required
+                            />
+                        </div>
+                    }
                     <button className="grey-button">Attach</button>
                 </form>
             </div>
