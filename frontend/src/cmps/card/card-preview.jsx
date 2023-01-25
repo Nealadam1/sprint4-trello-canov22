@@ -6,7 +6,6 @@ import { DatePreview } from "./card-preview/date-preview"
 import { ChecklistPreview } from "./card-preview/checklist-preview"
 
 export function CardPreview({ card, idx }) {
-  console.log(card)
 
   return (
     <div className="card-preview">
