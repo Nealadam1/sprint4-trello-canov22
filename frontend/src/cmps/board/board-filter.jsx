@@ -61,7 +61,7 @@ export function BoardFilter({ onSetFilter }) {
         <ul className="labels-filter-list">
           <p className="labels-title-filter">Labels</p>
           {board.labels.map((label) => (
-            <label>
+            <label key={label.id}>
               <li
                 className="label-filter-title-preview"
                 style={{ backgroundColor: label.color }}
@@ -83,7 +83,7 @@ export function BoardFilter({ onSetFilter }) {
       <div className="filter-by-members">
         <ul>
           {board.members.map((member) => (
-            <li onClick={() => handleAddMember(member._id)}>
+            <li onClick={() => handleAddMember(member._id)} key={member._id}>
               <div>
                 <img style={{ width: "25px" }} src={member.imgUrl} />
                 <span>{member.fullname}</span>

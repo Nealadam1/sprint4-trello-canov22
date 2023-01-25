@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { closeActionModal } from "../store/actions/board.action"
 import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
+import { BoardInvite } from "./board/board-invite"
 import { ChecklistAction } from "./card/card-details/actions/checklist-action"
 import { CoverAction } from "./card/card-details/actions/cover-action"
 import { DateAction } from "./card/card-details/actions/date-action"
@@ -46,6 +47,14 @@ export function DynamicActionModal(props) {
         modal === props.type && (
           <DynamicModalPosition buttonRef={buttonRef}>
             <BoardFilter {...props} />
+          </DynamicModalPosition>
+        )
+      )
+    case "board-invite":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <BoardInvite {...props} />
           </DynamicModalPosition>
         )
       )

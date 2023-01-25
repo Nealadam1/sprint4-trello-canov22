@@ -8,7 +8,8 @@
   padding: 0em 0.5em 0 8px;
   overflow-y: hidden;
   height: 100%;
-  overflow: visible;
+  overflow: hidden;
+  flex: 1;
 
   .dnd-container {
     display: flex;

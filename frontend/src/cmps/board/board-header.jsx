@@ -16,6 +16,7 @@ import { RxDotsHorizontal } from "react-icons/rx"
 import { CgLoadbarSound } from "react-icons/cg"
 import { CardActivites } from "../card/card-activities"
 import { CgClose } from "react-icons/cg"
+import { AiOutlineUserAdd } from "react-icons/ai"
 
 export function BoardHeader({ board }) {
   const [boardTitle, setBoardTitle] = useState(board.title)
@@ -34,11 +35,8 @@ export function BoardHeader({ board }) {
 
   const inputRef = useRef(null)
   const boardTitleRef = useRef(null)
-
-  const dynmOpenModal = !isActionModal
-    ? (ev) => OpenActionModal(ev, "board-filter")
-    : null
-  const buttonRef = useRef(null)
+  const buttonRefFilter = useRef(null)
+  const buttonRefInvite = useRef(null)
 
   function handleTitleChange({ target }) {
     setBoardTitle(target.value)
@@ -70,7 +68,7 @@ export function BoardHeader({ board }) {
     : 0
   const maxWidth = inputWidth > 0 ? inputWidth * 0.8 : 0
 
-  function handleCmpRender(event) {}
+  function handleCmpRender(event) { }
 
   return (
     <div className="board-header">
@@ -126,28 +124,45 @@ export function BoardHeader({ board }) {
           <div className="board-action-filter">
             <button
               className="board-filter-icon"
-              ref={buttonRef}
-              onClick={dynmOpenModal}
+              ref={buttonRefFilter}
+              onClick={
+                !isActionModal ? (ev) => OpenActionModal(ev, "board-filter") : null
+              }
             >
               <VscListFilter /> Filter
-              {isActionModal && (
-                <DynamicActionModal
-                  buttonRef={buttonRef.current}
-                  type={"board-filter"}
-                />
-              )}
             </button>
+            {isActionModal && (
+              <DynamicActionModal
+                buttonRef={buttonRefFilter.current}
+                type={"board-filter"}
+
+              />
+            )}
           </div>
           <span className="btn-divider">|</span>
           <div className="board-action-members">
             <BoardMembers />
           </div>
+          <button className="board-action-invite"
+            ref={buttonRefInvite}
+            onClick={
+              !isActionModal ? (ev) => OpenActionModal(ev, "board-invite") : null
+            }>
+            {isActionModal && (
+              <DynamicActionModal
+                buttonRef={buttonRefInvite.current}
+                type={"board-invite"}
+                board={board}
+              />
+            )}
+            <AiOutlineUserAdd /> Invite Members</button>
           <span className="btn-divider">|</span>
           <div className="board-action-menu">
             <button
               className="open-menu-icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
+
               <RxDotsHorizontal />
             </button>
           </div>

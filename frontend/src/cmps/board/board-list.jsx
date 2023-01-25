@@ -12,7 +12,7 @@ import { HiOutlineStar } from "react-icons/hi"
 
 import { BoardPreview } from "./board-preview"
 import { DynamicActionModal } from "../dynamic-modal-cmp"
-import { OpenActionModal, setBoard } from "../../store/actions/board.action"
+import { OpenActionModal, setBoard, updateBoard } from "../../store/actions/board.action"
 import { boardService } from "../../services/board.service"
 import { BsArchive } from "react-icons/bs"
 
@@ -45,6 +45,7 @@ export function BoardList({ boards }) {
     ev.stopPropagation()
     board.archivedAt = Date.now()
     board.isStarred = false
+    updateBoard(board)
     setBoard(board)
   }
 

@@ -152,7 +152,7 @@ export async function updateCard(card, action) {
 export async function removeBoard(boardId) {
   try {
     // await boardService.remove(boardId)
-    await httpService.delete(boardId)
+    // await httpService.delete(boardId) MOVE TO BOARDSERVICE
     store.dispatch(getActionRemoveBoard(boardId))
   } catch (err) {
     console.log("Cannot remove board", err)
@@ -354,7 +354,7 @@ export async function updateBoard(board) {
   try {
     const savedBoard = await boardService.save(board)
     store.dispatch(getActionUpdateBoard(savedBoard))
-    httpService.put(savedBoard)
+    // httpService.put(savedBoard) MOVE TO BOARD SERVICE
     return savedBoard
   } catch (err) {
     console.log("Cannot save board", err)
