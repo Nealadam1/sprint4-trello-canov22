@@ -88,7 +88,7 @@ export function CardPreviewShortcut({ card, title, setTitle }) {
                   </span>
                 </div>
               ) : null}
-              <MemberPreview members={currMembers} />
+              <MemberPreview card={card} members={currMembers} />
             </div>
           ))}
       </div>

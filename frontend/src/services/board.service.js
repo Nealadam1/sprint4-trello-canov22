@@ -48,13 +48,13 @@ async function getById(boardId) {
   // let board = await httpService.get(`board/${boardId}`)
   // console.log(board);
   // return httpService.get('board/' + boardId)
-  // return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
-  try {
-    const board = await httpService.get("board/" + boardId)
-    return board
-  } catch (err) {
-    console.log("Had an issue with getting board")
-  }
+  return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
+  // try {
+  //   const board = await httpService.get("board/" + boardId)
+  //   return board
+  // } catch (err) {
+  //   console.log("Had an issue with getting board")
+  // }
 }
 
 async function remove(boardId) {
@@ -69,8 +69,8 @@ async function save(board) {
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
-    savedBoard = await httpService.post("board", board)
-    // savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
+    // savedBoard = await httpService.post("board", board)
+    savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
   }
   return savedBoard
 }

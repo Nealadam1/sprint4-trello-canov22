@@ -12,7 +12,6 @@ export function CardActivites() {
       modalRef.current.style.overflowY = "scroll"
     }
   }, [board.activities.length])
-
   return (
     <div ref={modalRef} className="card-activites">
       <p className="activities-title">Activites</p>
@@ -20,7 +19,7 @@ export function CardActivites() {
       <ul>
         {board.activities.map((activitie) => {
           return (
-            <li className="activitie">
+            <li className="activitie" key={activitie.id}>
               <div className="user-activitie-img">
                 <img src={activitie.userImage} />
               </div>

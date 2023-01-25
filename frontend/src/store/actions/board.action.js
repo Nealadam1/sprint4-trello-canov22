@@ -87,8 +87,8 @@ export function OpenActionModal(ev, modalType) {
 
 export async function loadBoards(searchBy = "") {
   try {
-    const boards = await httpService.get('board')
-    // const boards = await boardService.query(searchBy)
+    // const boards = await httpService.get('board') REMOVE MOVE TO BOARDSERVICE QUERY
+    const boards = await boardService.query(searchBy)
     console.log("Boards from DB:", boards)
     store.dispatch({
       type: SET_BOARDS,

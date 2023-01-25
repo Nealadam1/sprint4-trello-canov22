@@ -21,31 +21,11 @@
     height: 50px;
   }
 
-  animation: tilt 0.2s ease-out;
-
   .dragging {
-    animation-name: tilt-active;
+    transform: rotate(4deg);
+    transition: transform 0.2s ease-out;
   }
 
-  @keyframes tilt {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(3deg);
-    }
-  }
-
-  @keyframes tilt-active {
-    from {
-      transform: rotate(3deg);
-    }
-
-    to {
-      transform: rotate(0deg);
-    }
-  }
 
   li {
     margin-bottom: 0.5em;
