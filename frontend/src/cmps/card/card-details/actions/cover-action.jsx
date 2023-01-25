@@ -15,7 +15,6 @@ export function CoverAction({ card }) {
     setCardPreviewColor(backgroundColor.hex)
     card.style.bgColor = backgroundColor.hex
     updateCard(card, "CHANGE_BACKGROUND")
-    console.log("hi")
   }
 
   function onRemoveCover() {

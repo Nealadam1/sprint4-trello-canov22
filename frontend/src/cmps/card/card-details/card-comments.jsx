@@ -1,14 +1,20 @@
 import { utilService } from "../../../services/util.service"
 import { RxActivityLog } from "react-icons/rx"
+import { CardCommentInput } from "./card-comment-input"
 export function CardComments({ comments }) {
   return (
     <div className="card-comments">
+
       <div className="card-comments-title">
         <span className="comments-icon">
           <RxActivityLog />
         </span>
+
         <h3>Activity</h3>
       </div>
+
+      <CardCommentInput />
+
       <ul className="user-comment-section">
         {comments.map((comment) => (
           <div key={comment.id}>
@@ -28,6 +34,7 @@ export function CardComments({ comments }) {
           </div>
         ))}
       </ul>
+
     </div>
   )
 }

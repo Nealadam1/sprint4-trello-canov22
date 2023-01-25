@@ -1,4 +1,6 @@
 .card-details {
+  font-family: OpenSans-Regular;
+
   header {
     height: rem(115px);
     min-height: rem(115px);
@@ -315,9 +317,9 @@
     padding: em(20px);
     grid-area: content;
 
-    h3 {
-      margin: 0;
-    }
+    // h3 {
+    //   margin: 0;
+    // }
 
     .card-details-group-title {
       margin: 0 0 1.8em;
@@ -337,6 +339,7 @@
       font-family: $trello-font;
       letter-spacing: 0.5px;
       padding-bottom: 5px;
+      margin: 0;
 
       .card-title-input {
         font-size: inherit;

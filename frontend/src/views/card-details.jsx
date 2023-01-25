@@ -4,15 +4,13 @@ import { createDispatchHook, useSelector } from "react-redux"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import { store } from "../store/store"
+import { AiOutlinePlus } from "react-icons/ai"
+
+import { closeActionModal } from "../store/actions/board.action"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  closeCardDetail,
-  getCardById,
-  OpenActionModal,
-  setCardToStoreRef,
-  updateCard,
-} from "../store/actions/board.action"
+import { closeCardDetail, getCardById, OpenActionModal, setCardToStoreRef, updateCard } from "../store/actions/board.action"
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
 
 import { CardDetailsSidebar } from "../cmps/card/card-details/card-details-sidebar"
@@ -21,12 +19,10 @@ import { CardLabels } from "../cmps/card/card-details/card-labels"
 import { CardDescription } from "../cmps/card/card-details/card-description"
 import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
-import { closeActionModal } from "../store/actions/board.action"
-import { store } from "../store/store"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
-import { AiOutlinePlus } from "react-icons/ai"
 import { CardDate } from "../cmps/card/card-details/card-date"
-import { useOutletContext } from "react-router"
+import { CardAttachments } from "../cmps/card/card-details/card-attachments"
+
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -53,10 +49,12 @@ export function CardDetails() {
 
   useEffect(() => {
     const currCard = getCardById(board, cardId)
+    if (!card?.comments) currCard.comments = []
     setCard(currCard)
     setCardTitle(currCard.title)
     setCardToStoreRef(currCard)
     if (isActionModal) closeActionModal()
+
   }, [cardId])
 
   const handleClose = (e) => {
@@ -107,10 +105,10 @@ export function CardDetails() {
           <div
             style={{
               gridTemplateAreas: card?.style?.bgColor
-                ? `"header header header"
-         "content content side-bar"`
+                ? `"header  header  header"
+                   "content content side-bar"`
                 : `"content content side-bar"
-         "content content side-bar"`,
+                   "content content side-bar"`,
             }}
             className="card-details"
           >
@@ -122,15 +120,16 @@ export function CardDetails() {
                   borderRadius: "3px 3px 0 0",
                 }}
               >
-                {console.log(card)}
                 {/* {card.style ? <button onClick={handleClose}>
                   <Link to={`/board/${board._id}`}>x</Link>
                 </button> : ''} */}
               </header>
             )}
+
             <div className="side-bar">
-              <CardDetailsSidebar setCard={setCard} card={card} />
+              <CardDetailsSidebar setCard={setCard} card={card} board={board}/>
             </div>
+
             <div className="card-content">
               {isEditingTitle ? (
                 <h3 className="card-title">
@@ -155,15 +154,16 @@ export function CardDetails() {
                   <h3
                     className="card-title"
                     ref={cardTitleRef}
-                    onClick={() => setIsEditingTitle(true)}
-                  >
+                    onClick={() => setIsEditingTitle(true)}>
                     {cardTitle}
                   </h3>
                 </h3>
               )}
+
               <p className="card-details-group-title">
                 In list <span>{store.getState().boardModule.group.title}</span>
               </p>
+
               <div className="card-detail-data">
                 {card?.memberIds && (
                   <CardMember
@@ -172,7 +172,9 @@ export function CardDetails() {
                     card={card}
                   />
                 )}
+
                 {card?.dueDate && <CardDate date={card?.dueDate} />}
+
                 {card?.labelIds?.length > 0 && (
                   <div>
                     <span className="card-details-labels-title">Labels</span>
@@ -201,6 +203,7 @@ export function CardDetails() {
                 )}
               </div>
               <div>{card && <CardDescription card={card} />}</div>
+              <div>{card?.attachments && <CardAttachments card={card} />}</div>
               <div>
                 {card?.checklists && (
                   <CardChecklists
@@ -210,10 +213,13 @@ export function CardDetails() {
                   />
                 )}
               </div>
+
               <div>
                 {card?.comments && <CardComments comments={card.comments} />}
               </div>
+
             </div>
+
           </div>
         </div>
       )}
