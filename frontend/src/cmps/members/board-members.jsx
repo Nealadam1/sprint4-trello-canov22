@@ -7,7 +7,7 @@ export function BoardMembers() {
   )
 
   return (
-    <div className="board-members">
+    <div style={{ margin: "0" }} className="board-members">
       <div className="member-images">
         {members.map((member, idx) => (
           <img key={idx} className="member-image" alt="" src={member.imgUrl} />

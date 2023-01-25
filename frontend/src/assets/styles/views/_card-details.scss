@@ -8,9 +8,9 @@
   display: grid;
   grid-template-columns: 30px 2.5fr 0.8fr;
   grid-template-rows: 0.3fr 3fr;
-  grid-template-areas:
-    "header header header"
-    "content content side-bar";
+  // grid-template-areas:
+  //   "header header header"
+  //   "content content side-bar";
   width: rem(768px);
   max-width: rem(768px);
   min-height: 87.5vh;
@@ -29,10 +29,12 @@
     font-family: OpenSans-Regular;
     color: #5e6c84;
   }
+
   .card-details-label-container {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .grey-button {
       margin-top: 0px;
       margin-left: 0.2em;
@@ -300,7 +302,7 @@
     }
   }
 
-  .card-date{
+  .card-date {
     display: flex;
     align-self: flex-end;
   }

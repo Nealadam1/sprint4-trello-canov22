@@ -74,30 +74,30 @@ export function BoardHeader({ board }) {
 
   return (
     <div className="board-header">
-      {isEditingTitle ? (
-        <>
-          <input
-            ref={inputRef}
-            style={{ width: inputWidth }}
-            type="text"
-            className="board-title-input blue-input"
-            value={boardTitle}
-            onChange={handleTitleChange}
-            onBlur={handleBlur}
-            required
-          />
-        </>
-      ) : (
-        <div
-          ref={boardTitleRef}
-          className="board-title"
-          onClick={() => setIsEditingTitle(true)}
-        >
-          {boardTitle}
-        </div>
-      )}
       <div className="board-actions">
         <div className="align-left">
+          {isEditingTitle ? (
+            <>
+              <input
+                ref={inputRef}
+                style={{ width: inputWidth }}
+                type="text"
+                className="board-title-input blue-input"
+                value={boardTitle}
+                onChange={handleTitleChange}
+                onBlur={handleBlur}
+                required
+              />
+            </>
+          ) : (
+            <div
+              ref={boardTitleRef}
+              className="board-title"
+              onClick={() => setIsEditingTitle(true)}
+            >
+              {boardTitle}
+            </div>
+          )}
           <div className="board-action-star">
             <button onClick={handleIsStarred}>
               <FontAwesomeIcon

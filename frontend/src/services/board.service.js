@@ -22,7 +22,7 @@ _createDemoData()
 
 async function query(searchBy) {
   var boards = await asyncStorageService.query(STORAGE_BOARD_KEY)
-  // var boards = await httpService.get('board')
+  // var boards = await httpService.get("board")
   let searchedBoards = boards
   if (searchBy) {
     const regex = new RegExp(searchBy, "i")
