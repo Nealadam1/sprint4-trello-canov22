@@ -1,6 +1,9 @@
 
 import { GrAttachment } from "react-icons/gr"
+<<<<<<< HEAD
 import { updateCard } from "../../../store/actions/board.action";
+=======
+>>>>>>> 5bcbe084974e0d8248f0651ce00d091846e0834a
 
 export function CardAttachments({ card }) {
 

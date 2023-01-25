@@ -33,11 +33,12 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
   }, [groupTitleToInput, group.id])
 
   return (
-    
+
     <div className="group-preview">
       <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
         <BsThreeDots />
       </button>
+
       {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
       {groupTitleToInput[group.id] ? (
         <form>
@@ -62,7 +63,6 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
       <CardList setEditCardShortcut={setEditCardShortcut}
         EditCardShortcut={EditCardShortcut} cards={cards} group={group} idx={idx} />
     </div>
-
 
   )
 }

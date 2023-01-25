@@ -32,12 +32,14 @@ export function AppHeader() {
   return (
     <div className="app-header" style={{ backgroundColor: headerBackground }}>
       <div style={{ display: "flex", alignItems: "center" }}>
+
         <div className="logo">
           <Link to="/">
             <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
             <span className="logo-text">orkflow</span>
           </Link>
         </div>
+
         <div className="app-header-links">
           <button className="first app-header-link" href="#">
             Workspaces
@@ -45,31 +47,36 @@ export function AppHeader() {
               <RiArrowDropDownLine />
             </span>
           </button>
+
           <button className="app-header-link" href="#">
             Recent
             <span>
               <RiArrowDropDownLine />
             </span>
           </button>
+
           <button className="app-header-link" href="#">
             Starred
             <span>
               <RiArrowDropDownLine />
             </span>
           </button>
+
           <button className="app-header-link" href="#">
             Templates
             <span>
               <RiArrowDropDownLine />
             </span>
           </button>
+
         </div>
+
       </div>
       {loggedInUser ? (
         <div className="user-details">
           <BoardSearch />
 
-          <div className="logged-user">
+          <div className="logged-user" title="Accout">
             <span>{loggedInUser.fullname}</span>
             <img style={{ width: "30px" }} src={loggedInUser.imgUrl} />
           </div>
