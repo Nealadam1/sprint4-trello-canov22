@@ -70,7 +70,16 @@ export function CardDetails() {
           }}
           onClick={handleClose}
         >
-          <div className="card-details">
+          <div
+            style={{
+              gridTemplateAreas: card?.style?.bgColor
+                ? `"header header header"
+         "content content side-bar"`
+                : `"content content side-bar"
+         "content content side-bar"`,
+            }}
+            className="card-details"
+          >
             {card && card.style && (
               <header
                 className="card-header"

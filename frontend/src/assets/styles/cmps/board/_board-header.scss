@@ -1,10 +1,9 @@
 .board-header {
   font-family: OpenSans-Regular;
-  margin-top: 10px;
-  margin-left: 15px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   // flex-wrap: wrap;
+  min-height: em(35px);
 
   .board-action-filter {
     margin-left: auto;
@@ -46,17 +45,22 @@
 
   .board-actions {
     display: flex;
-    margin: 0 10px;
+    margin: 10px 10px;
     justify-content: space-between;
     flex-grow: 1;
     flex-wrap: wrap;
 
     .align-left {
       display: flex;
+      align-items: center;
+      gap: 0.3em;
+
     }
 
     .align-right {
       display: flex;
+      align-items: center;
+      gap: 0.3em;
 
       .board-action-members {
         display: flex;
@@ -67,11 +71,15 @@
           margin: 0 0 0.4em;
         }
 
+        .member-images {
+          display: flex;
+          align-items: center;
+        }
+
         .member-image {
           width: rem(28px);
           height: rem(28px);
           border-radius: 20em;
-          margin-bottom: 5px;
           // position: relative;
           // left: 75%;
         }
@@ -110,23 +118,23 @@
 
   .btn-divider {
     color: rgba(255, 255, 255, 0.5);
-    margin: 0px 5px;
   }
 }
 
 .menu {
   box-shadow: var(--ds-shadow-overlay, 0 12px 24px -6px #091e4240, 0 0 0 1px var(--ds-border, #091e4214));
-  max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: fixed;
-  left: 100%;
   top: 0;
+  left: 100%;
   min-width: 385px;
   box-sizing: border-box;
   background-color: #fff;
   transition: 0.5s all;
   margin-top: rem(45px);
   z-index: 100;
+  height: calc(100vh - 30px);
+
 
   .close-menu-icon {
     position: absolute;
@@ -143,7 +151,8 @@
 
 
 .menu.show {
-  left: 85%;
+  right: 0;
+  transform: translateX(-100%);
   // transform: translateX(0px);
 
 }

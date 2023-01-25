@@ -39,6 +39,10 @@ export function DateAction({ setCard }) {
       const startTime = startEndDate.start.getTime()
       const endTime = startEndDate.end.getTime()
       console.log(`Start date: ${startTime} End date: ${endTime}`)
+      const selectedTime = { startTime, endTime }
+      card.dueDate = selectedTime
+      updateCard(card, "SET_DATE")
+
       // Save the start and end date to your backend or wherever you want
     } else {
       const selectedTime = selectedDay.getTime()

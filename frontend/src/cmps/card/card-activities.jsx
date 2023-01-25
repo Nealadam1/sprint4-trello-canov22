@@ -7,6 +7,9 @@ export function CardActivites() {
 
   const board = useSelector((storeState) => storeState.boardModule.board)
 
+  // const oneHourAgo = Date.now() - (60 * 60 * 1000);
+  // const filteredActivities = activities.filter(activity => activity.createdAt > oneHourAgo);
+
   useEffect(() => {
     if (modalRef.current.scrollHeight > modalRef.current.clientHeight) {
       modalRef.current.style.overflowY = "scroll"

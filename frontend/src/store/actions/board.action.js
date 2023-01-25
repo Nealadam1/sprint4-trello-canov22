@@ -87,8 +87,8 @@ export function OpenActionModal(ev, modalType) {
 
 export async function loadBoards(searchBy = "") {
   try {
-    const boards = await httpService.get('board')
-    // const boards = await boardService.query(searchBy)
+    // const boards = await httpService.get('board')
+    const boards = await boardService.query(searchBy)
     console.log("Boards from DB:", boards)
     store.dispatch({
       type: SET_BOARDS,
@@ -107,7 +107,7 @@ export async function setBoard(board) {
       board,
     })
 
-    console.log('set board', board);
+    console.log("set board", board)
   } catch (err) {
     console.log("Cannot load board", err)
     throw err
@@ -359,17 +359,6 @@ export async function updateBoard(board) {
   } catch (err) {
     console.log("Cannot save board", err)
   }
-
-  // return boardService.save(board)
-  //   .then((savedBoard) => {
-  //     // console.log("Updated Board:", savedBoard)
-  //     store.dispatch(getActionUpdateBoard(savedBoard))
-  //     return savedBoard
-  //   })
-  //   .catch((err) => {
-  //     console.log("Cannot save board", err)
-  //     throw err
-  //   })
 }
 
 export function getCardById(board, cardId) {
