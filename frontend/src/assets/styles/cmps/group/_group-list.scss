@@ -6,9 +6,8 @@
   list-style: none;
   gap: 0.5rem;
   padding: 0em 0.5em 0 8px;
-  overflow-y: hidden;
   height: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
   flex: 1;
 
   .dnd-container {
@@ -20,14 +19,13 @@
       overflow-y: overlay;
       overflow-y: auto;
       overflow: visible;
-      // height: 100%;
+      
     }
 
     .group {
-      // background-color: $clr19;
       width: rem(273px);
       position: relative;
-      max-height: fit-content;
+      max-height: 98%;
       display: flex;
       flex-direction: column;
       border-radius: $edge-round;
@@ -56,8 +54,7 @@
 
 .add-group-container {
   position: relative;
-  // background-color: yellow;
-
+  
   .add-group-section {
     display: flex;
   }
@@ -143,13 +140,17 @@
 }
 
 .group-preview {
+  display: flex;
+  flex-direction: column;
   border-radius: $edge-round;
-  padding: 1em 0.5em 0.5em 0.5em;
+  padding: 1em 0.2em 0.5em 0.2em;
   font-size: 14px;
   background-color: $clr19;
   box-shadow: (0 1px 0 $clr17);
   min-width: rem(272px);
   font-family: "Open Sans", sans-serif;
+  height: 100%;
+  overflow: hidden;
 
   .group-title-input {
     height: 30px;

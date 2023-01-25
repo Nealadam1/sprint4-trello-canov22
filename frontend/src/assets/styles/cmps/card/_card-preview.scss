@@ -2,6 +2,10 @@
 
 .card-list {
   box-sizing: border-box;
+  flex: 1;
+  overflow-y: auto;
+  padding: 0px 3px;
+
 
   ul {
     list-style: none;

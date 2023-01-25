@@ -10,6 +10,7 @@ import {
   SET_USERS,
   SET_WATCHED_USER,
 } from "../reducers/user.reducer"
+import { boardService } from "../../services/board.service.js"
 
 // export async function loadUsers() {
 //   try {
@@ -22,8 +23,6 @@ import {
 //     store.dispatch({ type: LOADING_DONE })
 //   }
 // }
-
-
 
 // prettier-ignore
 export async function removeUser(userId) {
@@ -60,7 +59,7 @@ export async function signup(credentials) {
 export async function logout() {
   try {
     await userService.logout()
-    store.dispatch({ type: SET_USER, user: null, })
+    store.dispatch({ type: SET_USER, user: null })
   } catch (err) {
     console.log("Cannot logout", err)
     throw err
@@ -74,5 +73,17 @@ export async function loadUser(userId) {
   } catch (err) {
     showErrorMsg("Cannot load user")
     console.log("Cannot load user", err)
+  }
+}
+
+export async function loadUsers() {
+  try {
+    const users = await userService.getUsers()
+    store.dispatch({
+      type: SET_USERS,
+      users,
+    })
+  } catch (err) {
+    console.log(err)
   }
 }

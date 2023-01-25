@@ -12,6 +12,36 @@ html {
   // color: $clr2;
 }
 
+/* Remove default scrollbar */
+::-webkit-scrollbar {
+  padding-left: 2px;
+  width: 5px;
+  height: 15px;
+  border-radius: 10px;
+  margin: 0 10px;
+  
+  /* Width of the scrollbar */
+  background-color: #c9c9c997;
+  /* Background color of the scrollbar */
+}
+
+/* Add custom scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: #b7b7b7;
+  padding: 0px 5px;
+  /* Color of the thumb */
+  border-radius: 10px;
+  /* Rounded corners of the thumb */
+  transition: background-color 0.2s ease-in-out;
+  /* Transition for when the thumb is hovered over */
+}
+
+/* Change the color of the thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555555d4;
+  /* New color of the thumb on hover */
+}
+
 textarea {
   resize: none;
 }
