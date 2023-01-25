@@ -1,6 +1,7 @@
 import { asyncStorageService } from "./async-storage.service.js"
 import { httpService } from "./http.service.js"
 import { utilService } from "./util.service.js"
+import { userService } from "./user.service"
 
 const STORAGE_BOARD_KEY = "boardDB"
 
@@ -68,7 +69,7 @@ async function save(board) {
   if (board._id) {
     // savedBoard = await asyncStorageService.put(STORAGE_BOARD_KEY, board)
     savedBoard = await httpService.put(`board/${board._id}`, board)
-    console.log('savedboard', savedBoard);
+    console.log("savedboard", savedBoard)
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
@@ -127,7 +128,8 @@ function createCard({ title, description, style, archivedAt }) {
     checklists: [],
     labelIds: [],
     archivedAt: "",
-    attachments:[]
+    attachments: [],
+    createdBy: userService?.getLoggedinUser()?.fullname || "Guest",
   }
 }
 
