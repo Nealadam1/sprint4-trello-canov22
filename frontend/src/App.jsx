@@ -6,8 +6,9 @@ import { Home } from "./views/home"
 import { BoardDetails } from "./views/board-details"
 import { CardDetails } from "./views/card-details"
 import { LoginSignup } from "./views/login-signup"
+import { BoardDashboard } from "./cmps/board/board-dashboard"
 import "./assets/styles/main.scss"
-import { BoardSearch } from "./cmps/board/board-search"
+import { GroupList } from "./cmps/group/group-list"
 
 export function App() {
   const location = useLocation()
@@ -19,7 +20,13 @@ export function App() {
         <Route element={<Home />} path="/" />
         <Route element={<BoardIndex />} path="/board" />
         <Route element={<BoardDetails />} path="/board/:boardId">
-          <Route element={<CardDetails />} path="/board/:boardId/:cardId" />
+          <Route
+            element={<BoardDashboard />}
+            path="/board/:boardId/dashboard"
+          />
+          <Route element={<GroupList />} path="/board/:boardId">
+            <Route element={<CardDetails />} path="/board/:boardId/:cardId" />
+          </Route>
         </Route>
         <Route element={<LoginSignup />} path="/login-signup" />
       </Routes>

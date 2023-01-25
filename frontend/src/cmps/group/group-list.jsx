@@ -11,16 +11,12 @@ import { GroupActions } from "./group-actions"
 import { boardService } from "../../services/board.service"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { eventBus } from "../../services/event-bus.service"
+import { useOutletContext } from "react-router"
 
-export function GroupList({
-  groups,
-  onAddGroup,
-  onDeleteGroup,
-  board,
-  placeholderProps,
-}) {
+export function GroupList() {
+  const { groups, onAddGroup, onDeleteGroup, board, placeholderProps } =
+    useOutletContext()
   const { cardId } = useParams()
-  // let [currGroups, setCurrGroups] = useState(groups)
   const [groupToInput, setGroupToInput] = useState(false)
   const [groupTitleToInput, setGroupTitleToInput] = useState(false)
   const [groupTitle, setGroupTitle] = useState({ title: "" })
@@ -29,7 +25,8 @@ export function GroupList({
   let currGroups = useSelector(
     (storeState) => storeState.boardModule.board.groups
   )
-  // currGroups = currGroups?.filter((group) => group.archivedAt === "")
+
+  console.log({ groups, onAddGroup, onDeleteGroup, board, placeholderProps })
 
   useEffect(() => {
     if (groupToInput) {
@@ -233,7 +230,7 @@ export function GroupList({
           </div>
         )}
       </div>
-      {cardId ? <Outlet /> : null}
+      <Outlet />
     </div>
   )
 }

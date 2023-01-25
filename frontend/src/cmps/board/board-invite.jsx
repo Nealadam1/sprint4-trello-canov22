@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { setBoard, updateBoard } from "../../store/actions/board.action"
 import { loadUsers } from "../../store/actions/user.action"
 import { AiOutlineCheck } from "react-icons/ai"
-import { FaUserCheck } from "react-icons/fa"
+import { FaUserCheck, FaUserMinus } from "react-icons/fa"
 import { MdPersonRemove, MdPersonAddAlt1 } from "react-icons/md"
 
 export function BoardInvite({ board }) {
@@ -56,7 +56,11 @@ export function BoardInvite({ board }) {
             className="add-user-to-board"
             onClick={() => handleMember(user._id)}
           >
-            {isUserOnBoard ? <MdPersonRemove /> : <MdPersonAddAlt1 />}
+            {isUserOnBoard ? (
+              <MdPersonRemove style={{ color: "#a63530" }} />
+            ) : (
+              <MdPersonAddAlt1 />
+            )}
           </span>
         </div>
       </li>
@@ -99,6 +103,8 @@ export function BoardInvite({ board }) {
         </ul>
       )}
       <div className="sep-line"></div>
+      <h4>Board members</h4>
+
       <ul className="board-members">
         {board.members.map((member) => (
           <li
@@ -112,7 +118,10 @@ export function BoardInvite({ board }) {
             <div>
               <span className="user-members-icons">
                 {hoveredUserId === member._id ? (
-                  <MdPersonRemove onClick={() => removeMember(member._id)} />
+                  <FaUserMinus
+                    style={{ color: "#a63530" }}
+                    onClick={() => removeMember(member._id)}
+                  />
                 ) : (
                   <FaUserCheck />
                 )}

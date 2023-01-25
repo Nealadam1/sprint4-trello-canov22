@@ -26,10 +26,11 @@ import { store } from "../store/store"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { AiOutlinePlus } from "react-icons/ai"
 import { CardDate } from "../cmps/card/card-details/card-date"
+import { useOutletContext } from "react-router"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
-  const [cardTitle, setCardTitle] = useState('')
+  const [cardTitle, setCardTitle] = useState("")
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const navigate = useNavigate()
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -140,16 +141,15 @@ export function CardDetails() {
                   />
                 </h3>
               ) : (
-
-                <h3 className="card-title"
-                  
-                >
+                <h3 className="card-title">
                   <span className="card-icon-title">
-                  <FontAwesomeIcon icon={faWindowMaximize} />
+                    <FontAwesomeIcon icon={faWindowMaximize} />
                   </span>
-                  <h3  className="card-title" ref={cardTitleRef}
-                  
-                  onClick={() => setIsEditingTitle(true)}>
+                  <h3
+                    className="card-title"
+                    ref={cardTitleRef}
+                    onClick={() => setIsEditingTitle(true)}
+                  >
                     {cardTitle}
                   </h3>
                 </h3>
@@ -212,9 +212,8 @@ export function CardDetails() {
             </div>
           </div>
         </div>
-      )
-      }
-    </div >
+      )}
+    </div>
   )
 }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { Outlet, Routes, Route } from "react-router-dom"
 import { useParams } from "react-router"
 import { BoardHeader } from "../cmps/board/board-header"
 import { GroupList } from "../cmps/group/group-list"
@@ -15,6 +16,8 @@ import {
   setBoardById,
   updateBoard,
 } from "../store/actions/board.action"
+import { CardDetails } from "./card-details"
+import { BoardDashboard } from "../cmps/board/board-dashboard"
 
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
@@ -60,14 +63,24 @@ export function BoardDetails() {
       }}
     >
       <BoardHeader board={board} />
-
-      <GroupList
+      {/* <GroupList
         GroupTitleToEdit={GroupTitleToEdit}
         setGroupTitleToEdit={setGroupTitleToEdit}
         board={board}
         onDeleteGroup={onDeleteGroup}
         onAddGroup={onAddGroup}
         groups={board.groups}
+      /> */}
+
+      <Outlet
+        context={{
+          GroupTitleToEdit,
+          setGroupTitleToEdit,
+          board,
+          onDeleteGroup,
+          onAddGroup,
+          groups: board.groups,
+        }}
       />
     </div>
   )

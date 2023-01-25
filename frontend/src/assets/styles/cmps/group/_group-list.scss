@@ -19,7 +19,7 @@
       overflow-y: overlay;
       overflow-y: auto;
       overflow: visible;
-      
+
     }
 
     .group {
@@ -54,7 +54,7 @@
 
 .add-group-container {
   position: relative;
-  
+
   .add-group-section {
     display: flex;
   }
@@ -143,7 +143,7 @@
   display: flex;
   flex-direction: column;
   border-radius: $edge-round;
-  padding: 1em 0.2em 0.5em 0.2em;
+  padding: 1em 0.4em 0.5em 0.4em;
   font-size: 14px;
   background-color: $clr19;
   box-shadow: (0 1px 0 $clr17);
