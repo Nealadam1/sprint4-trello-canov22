@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRef } from "react"
 import { AiOutlinePlus } from "react-icons/ai"
 import { useSelector } from "react-redux"
@@ -8,11 +8,14 @@ import { DynamicActionModal } from "../../dynamic-modal-cmp"
 
 export function CardLabels({ card, cardLabelIds }) {
   const [isHovered, setIsHovered] = useState(false)
-
   const displayLabels = []
-
   const board = useSelector((storeState) => storeState.boardModule.board)
-  const labels = board.labels
+  let labels = board.labels
+
+  // useEffect(() => {
+  //   // labels = ([...labels])
+  //   // console.log('testlabels', labels);
+  // }, [card, labels, board])
   return (
     <div className="card-labels">
       {cardLabelIds?.map((labelId) => {

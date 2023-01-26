@@ -94,7 +94,7 @@ export function CardDetails() {
     setIsEditingTitle(false)
   }
 
-  console.log(card);
+  // console.log(card);
   // imgURL >> LINK >>> COLOR
 
   return (

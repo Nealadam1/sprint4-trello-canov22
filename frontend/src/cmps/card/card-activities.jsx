@@ -21,7 +21,7 @@ export function CardActivites() {
       <div className="sep-line"></div>
       <ul>
         {board.activities.map((activitie) => {
-          console.log(activitie)
+          // console.log(activitie)
           return (
             <li className="activitie" key={activitie.id}>
               <div className="user-activitie-img">

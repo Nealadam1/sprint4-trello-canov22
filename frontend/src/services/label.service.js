@@ -1,4 +1,4 @@
-import { updateBoard } from "../store/actions/board.action"
+import { setBoard, updateBoard } from "../store/actions/board.action"
 import { asyncStorageService } from "./async-storage.service"
 
 export function saveLabelToBoard(currLabel, board) {
@@ -9,19 +9,13 @@ export function saveLabelToBoard(currLabel, board) {
   })
 
   if (editingLabel) {
-    // console.log('exists', editingLabel)
     editingLabel = currLabel
-    // console.log('edited', editingLabel);
-    let replaceLabel = board.labels.findIndex(
-      (label) => label.id === editingLabel.id
-    )
-    // console.log(replaceLabel);
+    let replaceLabel = board.labels.findIndex((label) => label.id === editingLabel.id)
     board.labels.splice(replaceLabel, 1, editingLabel)
     updateBoard({ ...board, labels: [...board.labels] })
+    setBoard({ ...board, labels: [...board.labels] })
   } else {
-    console.log("dosent exists")
     board.labels.push(currLabel)
-    console.log(board.labels)
     updateBoard(board)
   }
 }
