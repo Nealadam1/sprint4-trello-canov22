@@ -9,6 +9,19 @@
     cursor: pointer;
   }
 
+  .color-label-container {
+    position: relative;
+
+    .circle {
+      position: absolute;
+      left: 0.5em;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      background-color: aliceblue;
+    }
+  }
+
   div {
     margin-left: 13px;
     height: 100%;
