@@ -6,7 +6,6 @@ import {
   closeActionModal,
   updateCard,
 } from "../../../../store/actions/board.action"
-import { CgClose } from "react-icons/cg"
 
 export function CoverAction({ card }) {
   const [cardPreviewColor, setCardPreviewColor] = useState(
