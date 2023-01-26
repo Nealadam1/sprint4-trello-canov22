@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { TwitterPicker } from "react-color"
+import { CgClose } from "react-icons/cg"
 import skeletonCoverPreview from "../../../../assets/img/skeleton-cover-preview.jpg"
 import {
   closeActionModal,
@@ -27,7 +28,7 @@ export function CoverAction({ card }) {
     <section className="add-cover">
       <div className="add-cover-header">
         <h4>Card cover</h4>
-        <i onClick={closeActionModal}>X</i>
+        <i onClick={closeActionModal}><CgClose /></i>
       </div>
       <div className="add-cover-preview">
         <div

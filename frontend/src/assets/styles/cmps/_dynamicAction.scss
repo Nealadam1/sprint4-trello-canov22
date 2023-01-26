@@ -10,7 +10,8 @@
   border-radius: 3px;
   background-color: $clr6;
   cursor: default;
-  transition: opacity 0.3s
+  transition: opacity 0.3s;
+  z-index: 6;
 }
 
 .side-bar-icon {
