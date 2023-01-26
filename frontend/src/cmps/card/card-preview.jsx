@@ -11,6 +11,7 @@ export function CardPreview({ card, idx }) {
     console.log('header icon', card)
 
     if (card?.attachments[0]?.imgUrl) {
+      card.style = { bgColor: "#fffff" }
       return {
         backgroundImage: `url(${card?.attachments[0]?.imgUrl})`,
         objectFit: 'fill',
@@ -21,6 +22,7 @@ export function CardPreview({ card, idx }) {
       }
     }
     else if (card?.attachments[0]?.link) {
+      card.style = { bgColor: "#fffff" }
       return {
         backgroundImage: `url(${card?.attachments[0]?.link})`,
         objectFit: 'fill',

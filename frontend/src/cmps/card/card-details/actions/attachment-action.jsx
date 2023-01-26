@@ -11,7 +11,8 @@ export function AttachmentAction({ card, setCard }) {
     const fileInputRef = useRef(null)
 
     function handleSaveLink() {
-        card.attachments = [...card.attachments, { id: utilService.makeId(), link: imgLink ,name: LinkName  }]
+        card.style = { bgColor: "#fffff" }
+        card.attachments = [...card.attachments, { id: utilService.makeId(), link: imgLink, name: LinkName }]
         updateCard(card, "ADD_ATTACHMENT")
         closeActionModal()
     }
@@ -34,8 +35,9 @@ export function AttachmentAction({ card, setCard }) {
             console.log(fileToUpload)
             imgLink = await uploadImg(fileToUpload);
             card.attachments = [...card.attachments, { id: utilService.makeId(), imgUrl: imgLink, name: fileToUpload.name }]
-            updateCard(card, "ADD_ATTACHMENT")
             closeActionModal()
+            card.style = { bgColor: "#fffff" }
+            updateCard(card, "ADD_ATTACHMENT")
         } catch (err) {
             console.log(err, 'could not upload img')
         }
