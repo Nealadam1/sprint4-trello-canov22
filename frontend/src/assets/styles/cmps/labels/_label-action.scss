@@ -44,3 +44,14 @@
   width: 100%;
   text-align: center;
 }
+
+.label-editor {
+  .twitter-picker {
+    margin-top: 12px;
+  }
+
+  .label-button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
