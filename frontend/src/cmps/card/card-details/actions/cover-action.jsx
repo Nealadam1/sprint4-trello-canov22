@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { TwitterPicker } from "react-color"
+import { CgClose } from "react-icons/cg"
 import skeletonCoverPreview from "../../../../assets/img/skeleton-cover-preview.jpg"
 import {
   closeActionModal,

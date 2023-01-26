@@ -98,8 +98,42 @@ export function CardDetails() {
     setIsEditingTitle(false)
   }
 
-  // console.log(card);
-  // imgURL >> LINK >>> COLOR
+  function displayHeader(card) {
+    console.log("header icon", card)
+
+    if (card?.attachments[0]?.imgUrl) {
+      card.style = { bgColor: "#fffff" }
+      return {
+        backgroundImage: card?.attachments
+          ? `url(${card?.attachments[0]?.imgUrl})`
+          : "fff",
+        objectFit: "fill",
+        width: "100%",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        height: "100px",
+      }
+    } else if (card?.attachments[0]?.link) {
+      card.style = { bgColor: "#fff" }
+      return {
+        backgroundImage: card?.attachments
+          ? `url(${card?.attachments[0]?.link})`
+          : "fff",
+        objectFit: "fill",
+        width: "100%",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        height: "100px",
+      }
+    } else if (card?.style?.bgColor) {
+      return {
+        background: card?.style ? card?.style?.bgColor : "fff",
+        borderRadius: "3px 3px 0 0",
+      }
+    }
+    // console.log(card);
+    // imgURL >> LINK >>> COLOR
+  }
 
   return (
     <div>
@@ -126,14 +160,8 @@ export function CardDetails() {
             }}
             className="card-details"
           >
-            {card && card.style && (
-              <header
-                className="card-header"
-                style={{
-                  background: card?.style ? card?.style?.bgColor : "fff",
-                  borderRadius: "3px 3px 0 0",
-                }}
-              >
+            {(card || card?.attachments[0] || card?.style) && (
+              <header className="card-header" style={displayHeader(card)}>
                 {/* {card.style ? <button onClick={handleClose}>
                   <Link to={`/board/${board._id}`}>x</Link>
                 </button> : ''} */}

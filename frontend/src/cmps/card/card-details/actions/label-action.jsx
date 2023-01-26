@@ -89,7 +89,6 @@ export function LabelAction({ card }) {
 
     setChangeLabel({ ...editLabel, [name]: value })
   }
-  console.log(changeLabel);
 
   function handleColorChange(backgroundColor, backgroundImg) {
     if (isAdding) {
@@ -164,10 +163,11 @@ export function LabelAction({ card }) {
         </button>
       )}
       {isAdding && !isEditing && (
-        <div>
+        <div className="label-editor">
           <form onSubmit={saveLabel}>
             <input
               type="text"
+              className="blue-input"
               name="title"
               value={newLabel.title}
               onChange={onAddLabel}
@@ -176,18 +176,20 @@ export function LabelAction({ card }) {
               color={boardPreviewColor}
               onChange={handleColorChange}
             />
-            <button className="blue-button">Save</button>
+            <button className="blue-button" disabled={changeLabel.title.length < 1}>Save</button>
           </form>
         </div>
       )}
 
       {isEditing && (
-        <div>
-          <form onSubmit={saveLabel}>
+        <div className="label-editor">
+          <form onSubmit={saveLabel} action='onSubmit'>
             <input
               type="text"
               name="title"
               value={changeLabel.title}
+
+              className="blue-input"
               onChange={editLabel}
             />
             <TwitterPicker colors={['#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#F7F0FA', '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1', '#8BBDD9', '#8FDFEB', '#172b4d', '#F9C2E4', '#505F79', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4']}
@@ -195,14 +197,16 @@ export function LabelAction({ card }) {
               onChange={handleColorChange}
             />
 
-            <button className="blue-button">Save</button>
+            <div className="label-button-container">
+              <button className="blue-button" disabled={changeLabel.title.length < 1}>Save</button>
+              <button className="grey-button" style={{ backgroundColor: '#b04632', color: 'white', borderRadius: '2px' }}
+                onClick={() => {
+                  removeLabel()
+                  setIsEditing(false)
+                }}>Delete</button>
+            </div>
           </form>
 
-          <button className="grey-button" style={{ backgroundColor: '#b04632', color: 'white', borderRadius: '2px' }}
-            onClick={() => {
-              removeLabel()
-              setIsEditing(false)
-            }}>Delete</button>
         </div>
       )}
 
