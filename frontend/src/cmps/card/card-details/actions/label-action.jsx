@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { boardService } from "../../../../services/board.service"
-import { addLabel, updateCard } from "../../../../store/actions/board.action"
+import { addLabel, updateBoard, updateCard } from "../../../../store/actions/board.action"
 import { TwitterPicker } from "react-color"
 import {
   removeLabelFromBoard,
@@ -10,13 +10,20 @@ import {
 import { BsPencil } from "react-icons/bs"
 import { FaLessThan } from "react-icons/fa"
 import { MdExpandLess } from "react-icons/md"
+import { utilService } from "../../../../services/util.service"
 
 export function LabelAction({ card }) {
   if (!card.labelIds) card.labelIds = []
 
-  const [board, setBoard] = useState(useSelector((storeState) => storeState.boardModule.board))
-  const [labels, setLabels] = useState(useSelector((storeState) => storeState.labelModule.labels))
-  const [checkedState, setCheckedState] = useState(new Array(labels.length).fill(false))
+  const [board, setBoard] = useState(
+    useSelector((storeState) => storeState.boardModule.board)
+  )
+  const [labels, setLabels] = useState(
+    useSelector((storeState) => storeState.labelModule.labels)
+  )
+  const [checkedState, setCheckedState] = useState(
+    new Array(labels.length).fill(false)
+  )
   const [newLabel, setNewLabel] = useState(boardService.getEmptyLabel())
   const [labelIds, setLabelIds] = useState(card.labelIds)
   const [currCard, setCurrCard] = useState(card)
@@ -26,7 +33,7 @@ export function LabelAction({ card }) {
   const [changeLabel, setChangeLabel] = useState(boardService.getEmptyLabel())
   const [boardPreviewColor, setBoardPreviewColor] = useState("")
 
-  console.log(newLabel);
+  console.log(newLabel)
   useEffect(() => {
     setLabelIds([...labelIds])
   }, [currCard])
@@ -85,11 +92,12 @@ export function LabelAction({ card }) {
   function editLabel({ target }) {
     const { value, name } = target
     const editLabel = board.labels.find((label) => label.id === editLabelId)
-    card.labelIds = labelIds.map((label) => label.id === editLabel.id ? editLabel : label)
+    card.labelIds = labelIds.map((label) =>
+      label.id === editLabel.id ? editLabel : label
+    )
 
     setChangeLabel({ ...editLabel, [name]: value })
   }
-  console.log(changeLabel);
 
   function handleColorChange(backgroundColor, backgroundImg) {
     if (isAdding) {
@@ -99,32 +107,45 @@ export function LabelAction({ card }) {
     if (isEditing) {
       setChangeLabel({ ...changeLabel, color: backgroundColor.hex })
       // changeLabel.color = backgroundColor.hex
-      console.log(changeLabel.color);
+      console.log(changeLabel.color)
     }
   }
 
   function removeLabel() {
-    let labelIdxRemove = card.labelIds.findIndex((label) => editLabelId === label)
+    let labelIdxRemove = card.labelIds.findIndex(
+      (label) => editLabelId === label
+    )
     removeLabelFromBoard(editLabelId, board)
     card.labelIds.splice(labelIdxRemove, 1)
     updateCard(card, "REMOVE_LABEL")
     setLabels([...board.labels])
+    updateBoard({ ...board, labels: [...board.labels] })
   }
 
   return (
     <div>
-      <p className="labels-action-header" style={{ display: 'flex' }}>
-        {(isAdding || isEditing) &&
-          <button style={{ backgroundColor: 'transparent', fontSize: '20px', rotate: '270deg' }}
+      <p className="labels-action-header" style={{ display: "flex" }}>
+        {(isAdding || isEditing) && (
+          <button
+            style={{
+              backgroundColor: "transparent",
+              fontSize: "20px",
+              rotate: "270deg",
+            }}
             onClick={() => {
               setIsAdding(false)
               setIsEditing(false)
-            }}><MdExpandLess /></button>}
-        <span style={{ flexGrow: '1' }}>Labels</span>
+            }}
+          >
+            <MdExpandLess />
+          </button>
+        )}
+        <span style={{ flexGrow: "1" }}>Labels</span>
       </p>
       <div className="sep-labels-action-line"></div>
 
-      {!isAdding && !isEditing &&
+      {!isAdding &&
+        !isEditing &&
         labels.map((label, idx) => {
           return (
             <div className="label-edit-display" key={label.id}>
@@ -135,13 +156,19 @@ export function LabelAction({ card }) {
                 inputid={label.id}
                 type="checkbox"
               />
-              <div>
+              <div className="color-label-container">
                 <label
-                  style={{ backgroundColor: label.color }}
+                  style={{
+                    backgroundColor: utilService.lightenColor(label.color),
+                  }}
                   htmlFor={label.id}
                 >
                   {label.title}
                 </label>
+                <span
+                  style={{ backgroundColor: label.color }}
+                  className="circle"
+                ></span>
                 <button
                   onClick={(ev) => {
                     setIsEditing(!isEditing)
@@ -164,48 +191,116 @@ export function LabelAction({ card }) {
         </button>
       )}
       {isAdding && !isEditing && (
-        <div>
+        <div className="label-editor">
           <form onSubmit={saveLabel}>
             <input
               type="text"
+              className="blue-input"
               name="title"
               value={newLabel.title}
               onChange={onAddLabel}
             />
-            <TwitterPicker colors={['#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#F7F0FA', '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1', '#8BBDD9', '#8FDFEB', '#172b4d', '#F9C2E4', '#505F79', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4']}
+            <TwitterPicker
+              colors={[
+                "#B7DDB0",
+                "#F5EA92",
+                "#FAD29C",
+                "#EFB3AB",
+                "#F7F0FA",
+                "#7BC86C",
+                "#F5DD29",
+                "#FFAF3F",
+                "#EF7564",
+                "#CD8DE5",
+                "#5AAC44",
+                "#E6C60D",
+                "#E79217",
+                "#CF513D",
+                "#A86CC1",
+                "#8BBDD9",
+                "#8FDFEB",
+                "#172b4d",
+                "#F9C2E4",
+                "#505F79",
+                "#5BA4CF",
+                "#29CCE5",
+                "#6DECA9",
+                "#FF8ED4",
+              ]}
               color={boardPreviewColor}
               onChange={handleColorChange}
             />
-            <button className="blue-button">Save</button>
+            <button onClick={saveLabel} className="blue-button" disabled={newLabel.title.length < 1}>Save</button>
           </form>
         </div>
       )}
 
       {isEditing && (
-        <div>
-          <form onSubmit={saveLabel}>
+        <div className="label-editor">
+          <form onSubmit={saveLabel} action="onSubmit">
             <input
               type="text"
               name="title"
               value={changeLabel.title}
+              className="blue-input"
               onChange={editLabel}
             />
-            <TwitterPicker colors={['#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#F7F0FA', '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1', '#8BBDD9', '#8FDFEB', '#172b4d', '#F9C2E4', '#505F79', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4']}
+            <TwitterPicker
+              colors={[
+                "#B7DDB0",
+                "#F5EA92",
+                "#FAD29C",
+                "#EFB3AB",
+                "#F7F0FA",
+                "#7BC86C",
+                "#F5DD29",
+                "#FFAF3F",
+                "#EF7564",
+                "#CD8DE5",
+                "#5AAC44",
+                "#E6C60D",
+                "#E79217",
+                "#CF513D",
+                "#A86CC1",
+                "#8BBDD9",
+                "#8FDFEB",
+                "#172b4d",
+                "#F9C2E4",
+                "#505F79",
+                "#5BA4CF",
+                "#29CCE5",
+                "#6DECA9",
+                "#FF8ED4",
+              ]}
               color={boardPreviewColor}
               onChange={handleColorChange}
             />
 
-            <button className="blue-button">Save</button>
+            <div className="label-button-container">
+              <button
+                className="blue-button"
+                disabled={changeLabel.title.length < 1}
+              >
+                Save
+              </button>
+              <button
+                className="grey-button"
+                style={{
+                  backgroundColor: "#b04632",
+                  color: "white",
+                  borderRadius: "2px",
+                }}
+                onClick={() => {
+                  removeLabel()
+                  setIsEditing(false)
+                }}
+              >
+                Delete
+              </button>
+            </div>
           </form>
-
-          <button className="grey-button" style={{ backgroundColor: '#b04632', color: 'white', borderRadius: '2px' }}
-            onClick={() => {
-              removeLabel()
-              setIsEditing(false)
-            }}>Delete</button>
         </div>
       )}
-
     </div>
   )
 }

@@ -28,13 +28,15 @@
 @mixin aspect-ratio($width, $height) {
   position: relative;
   overflow: hidden;
+
   &::before {
     display: block;
     content: "";
     width: 100%;
     padding-top: calc(($height / $width) * 100%);
   }
-  > * {
+
+  >* {
     position: absolute;
     top: 0;
     left: 0;
@@ -42,7 +44,7 @@
     bottom: 0;
   }
 
-  > img {
+  >img {
     height: 100%;
     object-fit: cover;
   }
@@ -67,6 +69,7 @@
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
   border-radius: 0.2em;
+
   &:hover {
     background-color: $clr4;
   }
@@ -83,11 +86,14 @@
   margin-top: 8px;
   text-align: start;
   color: $clr7;
+
   &:hover {
     background-color: #091e4214;
   }
 }
+
 .grey-button {
+  cursor: pointer;
   @include button;
 }
 

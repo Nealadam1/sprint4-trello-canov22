@@ -28,9 +28,9 @@ export function BoardHeader({ board }) {
     (storeState) => storeState.systemModule.isActionModal
   )
 
-  useEffect(()=>{
+  useEffect(() => {
     setBoardTitle(board.title)
-  },[board])
+  }, [board])
 
   useEffect(() => {
     if (isEditingTitle) {
@@ -73,7 +73,7 @@ export function BoardHeader({ board }) {
     : 0
   const maxWidth = inputWidth > 0 ? inputWidth * 0.8 : 0
 
-  function handleCmpRender(event) {}
+  function handleCmpRender(event) { }
 
   return (
     <div className="board-header">

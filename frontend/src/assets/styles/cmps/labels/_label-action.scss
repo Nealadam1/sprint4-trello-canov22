@@ -9,6 +9,19 @@
     cursor: pointer;
   }
 
+  .color-label-container {
+    position: relative;
+
+    .circle {
+      position: absolute;
+      left: 0.5em;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      background-color: aliceblue;
+    }
+  }
+
   div {
     margin-left: 13px;
     height: 100%;
@@ -43,4 +56,15 @@
 .add-label {
   width: 100%;
   text-align: center;
+}
+
+.label-editor {
+  .twitter-picker {
+    margin-top: 12px;
+  }
+
+  .label-button-container {
+    display: flex;
+    justify-content: space-between;
+  }
 }

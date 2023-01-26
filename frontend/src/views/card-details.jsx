@@ -10,7 +10,13 @@ import { AiOutlinePlus } from "react-icons/ai"
 import { closeActionModal } from "../store/actions/board.action"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { closeCardDetail, getCardById, OpenActionModal, setCardToStoreRef, updateCard } from "../store/actions/board.action"
+import {
+  closeCardDetail,
+  getCardById,
+  OpenActionModal,
+  setCardToStoreRef,
+  updateCard,
+} from "../store/actions/board.action"
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons"
 
 import { CardDetailsSidebar } from "../cmps/card/card-details/card-details-sidebar"
@@ -22,7 +28,6 @@ import { CardComments } from "../cmps/card/card-details/card-comments"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { CardDate } from "../cmps/card/card-details/card-date"
 import { CardAttachments } from "../cmps/card/card-details/card-attachments"
-
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -54,7 +59,6 @@ export function CardDetails() {
     setCardTitle(currCard.title)
     setCardToStoreRef(currCard)
     if (isActionModal) closeActionModal()
-
   }, [cardId])
 
   const handleClose = (e) => {
@@ -84,7 +88,7 @@ export function CardDetails() {
   // function setCardHeader() {
   // // imgURL >> LINK >>> COLOR
   //   if(card?.attachments) {
-  //     return 
+  //     return
   //   }
   // }
 
@@ -94,8 +98,42 @@ export function CardDetails() {
     setIsEditingTitle(false)
   }
 
-  // console.log(card);
-  // imgURL >> LINK >>> COLOR
+  function displayHeader(card) {
+    console.log("header icon", card)
+
+    if (card?.attachments[0]?.imgUrl) {
+      card.style = { bgColor: "#fffff" }
+      return {
+        backgroundImage: card?.attachments
+          ? `url(${card?.attachments[0]?.imgUrl})`
+          : "fff",
+        objectFit: "fill",
+        width: "100%",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        height: "100px",
+      }
+    } else if (card?.attachments[0]?.link) {
+      card.style = { bgColor: "#fff" }
+      return {
+        backgroundImage: card?.attachments
+          ? `url(${card?.attachments[0]?.link})`
+          : "fff",
+        objectFit: "fill",
+        width: "100%",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        height: "100px",
+      }
+    } else if (card?.style?.bgColor) {
+      return {
+        background: card?.style ? card?.style?.bgColor : "fff",
+        borderRadius: "3px 3px 0 0",
+      }
+    }
+    // console.log(card);
+    // imgURL >> LINK >>> COLOR
+  }
 
   return (
     <div>
@@ -122,16 +160,8 @@ export function CardDetails() {
             }}
             className="card-details"
           >
-            {card && card.style && (
-
-
-
-              <header
-                className="card-header"
-                style={{
-                  background: card?.style ? card?.style?.bgColor : "fff",
-                  borderRadius: "3px 3px 0 0",
-                }}>
+            {(card || card?.attachments[0] || card?.style) && (
+              <header className="card-header" style={displayHeader(card)}>
                 {/* {card.style ? <button onClick={handleClose}>
                   <Link to={`/board/${board._id}`}>x</Link>
                 </button> : ''} */}
@@ -166,7 +196,8 @@ export function CardDetails() {
                   <h3
                     className="card-title"
                     ref={cardTitleRef}
-                    onClick={() => setIsEditingTitle(true)}>
+                    onClick={() => setIsEditingTitle(true)}
+                  >
                     {cardTitle}
                   </h3>
                 </h3>
@@ -227,11 +258,11 @@ export function CardDetails() {
               </div>
 
               <div>
-                {card?.comments && <CardComments card={card} setCard={setCard} />}
+                {card?.comments && (
+                  <CardComments card={card} setCard={setCard} />
+                )}
               </div>
-
             </div>
-
           </div>
         </div>
       )}

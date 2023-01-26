@@ -4,6 +4,7 @@ import { updateCard } from "../../../store/actions/board.action"
 export function CardAttachments({ card }) {
 
     function handleDelete(attachmentId) {
+        card.style = {}
         const updatedAttachments = card.attachments.filter(attachment => attachment.id !== attachmentId)
         card.attachments = updatedAttachments
         updateCard(card)

@@ -27,8 +27,13 @@ export function CoverAction({ card }) {
   return (
     <section className="add-cover">
       <div className="add-cover-header">
-        <h4>Card cover</h4>
-        <i onClick={closeActionModal}><CgClose /></i>
+        <p>
+          Cover
+          <i onClick={closeActionModal}>
+            <CgClose />
+          </i>
+        </p>
+        <div className="sep-line"></div>
       </div>
       <div className="add-cover-preview">
         <div
@@ -41,13 +46,31 @@ export function CoverAction({ card }) {
         </div>
       </div>
       <div>
-        <div className="grey-button" onClick={onRemoveCover}>
+        <div
+          style={{ textAlign: "center" }}
+          className="grey-button remove-bg-btn"
+          onClick={onRemoveCover}
+        >
           Remove Cover
         </div>
       </div>
       <div className="background-picker">
-        <h5>Background</h5>
-        <TwitterPicker colors={['#7BC86C', '#F5DD29','#FFAF3F','#EF7564','#CD8DE5','#5BA4CF','#29CCE5','#6DECA9','#FF8ED4','#172B4D']}
+        <p style={{ fontSize: "12px", fontFamily: "Open Sans" }}>Background</p>
+        <div className="sep-line"></div>
+
+        <TwitterPicker
+          colors={[
+            "#7BC86C",
+            "#F5DD29",
+            "#FFAF3F",
+            "#EF7564",
+            "#CD8DE5",
+            "#5BA4CF",
+            "#29CCE5",
+            "#6DECA9",
+            "#FF8ED4",
+            "#172B4D",
+          ]}
           color={cardPreviewColor}
           onChange={handleBackgroundChange}
         />
