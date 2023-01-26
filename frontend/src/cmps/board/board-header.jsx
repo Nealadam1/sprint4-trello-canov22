@@ -28,6 +28,10 @@ export function BoardHeader({ board }) {
     (storeState) => storeState.systemModule.isActionModal
   )
 
+  useEffect(()=>{
+    setBoardTitle(board.title)
+  },[board])
+
   useEffect(() => {
     if (isEditingTitle) {
       inputRef?.current?.focus()

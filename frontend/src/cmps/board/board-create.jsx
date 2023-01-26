@@ -47,6 +47,7 @@ export function CreateBoard() {
     const { style } = newBoard
     if (backgroundColor) {
       setBoardPreviewColor(backgroundColor.hex)
+      if (style.img) style.img=''
       style.backgroundColor = backgroundColor.hex
       setBoardPreviewImg("")
     } else {

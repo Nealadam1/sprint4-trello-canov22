@@ -132,17 +132,17 @@ export function DynamicActionModal(props) {
 const DynamicModalPosition = (props) => {
   const { buttonRef } = props
   const modalRef = useRef(null)
-  const [modalStyles, setModalStyles] = useState({
+  let [modalStyles, setModalStyles] = useState({
     position: "fixed",
-    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${
-      buttonRef.offsetHeight * 2
-    }px)`,
+    top: `calc(${buttonRef.getBoundingClientRect().top}px + ${buttonRef.offsetHeight * 2
+      }px)`,
     left: `calc(${buttonRef.getBoundingClientRect().left}px `,
     transform:
       buttonRef.offsetHeight > 90
-        ? `translate(${buttonRef.offsetWidth}px, -${buttonRef.offsetHeight*2}px)`
+        ? `translate(${buttonRef.offsetWidth}px, -${buttonRef.offsetHeight * 2}px)`
         : `translate(0, -${buttonRef.offsetHeight}px)`,
     width: "300px",
+    opacity: 0
   })
   function handleClose(ev) {
     ev.stopPropagation()
@@ -153,29 +153,34 @@ const DynamicModalPosition = (props) => {
   }
 
   useEffect(() => {
-    if (
-      modalRef.current &&
-      modalRef.current.getBoundingClientRect().bottom > window.innerHeight
-    ) {
-      setModalStyles({
-        ...modalStyles,
-        top: `calc(${buttonRef.getBoundingClientRect().top}px - ${
-          modalRef.current.offsetHeight / 1.5
-        }px)`,
-      })
-    }
+      if (
+        modalRef.current &&
+        (modalRef.current.getBoundingClientRect().bottom) > window.innerHeight
+      ) {
+        console.log('hello')
+        modalStyles={
+          ...modalStyles,
+          top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight * 0.9
+            }px)`,
+           
+        }
+      }
 
-    if (
-      modalRef.current &&
-      modalRef.current.getBoundingClientRect().right > window.innerWidth
-    ) {
+      if (
+        modalRef.current &&
+        modalRef.current.getBoundingClientRect().right > window.innerWidth
+      ) {
+        console.log('hello2')
+        modalStyles={
+          ...modalStyles,
+          left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth
+            }px)`,
+          
+        }
+      }
       setModalStyles({
-        ...modalStyles,
-        left: `calc(${buttonRef.getBoundingClientRect().left}px - ${
-          modalRef.current.offsetWidth
-        }px)`,
+        ...modalStyles, opacity: 1
       })
-    }
   }, [modalRef, buttonRef])
 
   return (
@@ -188,7 +193,7 @@ const DynamicModalPosition = (props) => {
         width: "100%",
         height: "100%",
         cursor: "default",
-        zIndex:5
+        zIndex: 5
       }}
       onClick={handleClose}
     >
