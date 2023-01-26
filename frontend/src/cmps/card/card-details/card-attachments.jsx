@@ -39,7 +39,7 @@ export function CardAttachments({ card }) {
                         </div>
                         <div className="attachment-details">
                             <h3>{attachment.name}</h3>
-                            <p href={attachment?.link||attachment?.imgUrl} target="_blank" rel="noopener noreferrer">{attachment?.link||attachment?.imgUrl}...</p>
+                            <a href={attachment.link ? attachment.link: attachment.imgUrl} target="_blank" rel="noopener noreferrer">{attachment.link ? attachment.link.substring(0,40): attachment.imgUrl.substring(0,40)}...</a>
                             <div className="attachment-actions">
                                 <p className="delete-attachment"
                                     onClick={() => handleDelete(attachment.id)}
