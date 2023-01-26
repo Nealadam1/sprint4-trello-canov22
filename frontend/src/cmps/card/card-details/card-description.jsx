@@ -43,7 +43,7 @@ export function CardDescription({ card }) {
             value={newDescription}
             onChange={handleChange}
           />
-          <div>
+          <div className="card-desc-btns">
             <button
               style={{ padding: "6px 10px" }}
               className="blue-button"

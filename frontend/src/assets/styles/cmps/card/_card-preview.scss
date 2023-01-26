@@ -184,6 +184,7 @@
 .card-checklist {
   display: flex;
   align-items: center;
+  padding: 0.3em;
 
   .todos-preview {
     padding-left: 0.4em;
@@ -213,7 +214,8 @@
 
   .date-preview {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    padding: 0.3em;
 
     .date-preview-temp {
       display: flex;
