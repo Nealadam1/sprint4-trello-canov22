@@ -18,7 +18,13 @@ export function CardActivites() {
   }, [board.activities.length])
   return (
     <div ref={modalRef} className="card-activites">
-      <CardChangeBg />
+      {/* <section>
+        <button className="grey-back" onClick={() => setIsEditing(!isEditing)}>{isEditing ? '<' : 'Change background'}</button>
+        <h3>{isEditing ? 'Change background' : 'Menu'}</h3>
+      </section>
+      <div className="sep-line"></div> */}
+
+      {isEditing && <CardChangeBg board={board} />}
       {!isEditing && <div>
         <p className="activities-title">Activites</p>
         <div className="sep-line"></div>
