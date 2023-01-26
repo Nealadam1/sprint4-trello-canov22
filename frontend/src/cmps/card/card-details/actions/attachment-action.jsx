@@ -47,10 +47,10 @@ export function AttachmentAction({ card, setCard }) {
 
     return (
         <section className="add-attachment">
-            <header className="add-attchment-header">
+            <div className="add-attachment-header">
                 <h4>Attach from...</h4>
                 <i onClick={closeActionModal}><CgClose /></i>
-            </header>
+            </div>
             <ul className="attach-from">
                 <li onClick={() => fileInputRef.current.click()}>Computer</li>
             </ul>

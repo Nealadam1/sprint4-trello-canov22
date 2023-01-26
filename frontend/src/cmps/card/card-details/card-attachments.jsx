@@ -16,6 +16,8 @@ export function CardAttachments({ card }) {
         parent.appendChild(linkText);
     }
 
+    console.log(card.attachments)
+
     return (
         <section className="card-attachments">
             <h3>
@@ -37,7 +39,7 @@ export function CardAttachments({ card }) {
                         </div>
                         <div className="attachment-details">
                             <h3>{attachment.name}</h3>
-                            <p href={attachment.link} target="_blank" rel="noopener noreferrer">{attachment.link.slice(0, 40)}...</p>
+                            <p href={attachment?.link||attachment?.imgUrl} target="_blank" rel="noopener noreferrer">{attachment?.link||attachment?.imgUrl}...</p>
                             <div className="attachment-actions">
                                 <p className="delete-attachment"
                                     onClick={() => handleDelete(attachment.id)}
