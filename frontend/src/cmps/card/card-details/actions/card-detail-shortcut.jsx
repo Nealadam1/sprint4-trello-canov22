@@ -62,7 +62,7 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
           <DynamicMenuPosition cardRef={cardRef.current} handleSave={handleSave}>
 
             <ul className="shortcut-actions">
-              <li>
+              <li className="shortcut-action">
                 <Link
                   onClick={handleOpenCard}
                   to={`/board/${boardId}/${card.id}`}
@@ -115,7 +115,7 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
                 <span className="cover-icon side-bar-icon">
                   <MdOutlineCreditCard />
                 </span>
-                Cover Change cover
+                Cover Change
               </li>
               <li>Move</li>
               <li>Copy</li>
@@ -211,7 +211,7 @@ const DynamicMenuPosition = (props) => {
       <div className="card-detail-shorcut-save "
         style={{
           position: "fixed",
-          top: `calc(${cardRef.getBoundingClientRect().top}px + ${cardRef.offsetHeight}px)`,
+          top: `calc(${cardRef.getBoundingClientRect().top}px + ${cardRef.offsetHeight*1.03}px)`,
           left: `calc(${cardRef.getBoundingClientRect().left}px + 5px)`
 
 
