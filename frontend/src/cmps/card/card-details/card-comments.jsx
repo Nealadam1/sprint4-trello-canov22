@@ -10,24 +10,23 @@ export function CardComments({ card }) {
   const { comments } = card
   let loggedinUser = userService.getLoggedinUser()
   const [comment, setComment] = useState(cardCommentService.getEmptyComment())
-
+  const [editMode, setEditMode] = useState(false)
+  const editClassname = editMode ? 'editing' : ''
+  const btnState = comment.txt.length > 0 ? 'blue' : 'grey'
   if (!loggedinUser) loggedinUser = userService.getGuestUser()
 
   function handleSubmit(ev) {
     ev.preventDefault()
-    console.log('submitting');
     cardCommentService.save(comments, comment, loggedinUser)
     setComment(cardCommentService.getEmptyComment())
     card = ({ ...card, comments: [...card.comments] })
     updateCard(card)
   }
 
-  console.log(loggedinUser);
 
   function handleChange({ target }) {
     const { value, name } = target
     setComment({ ...comment, [name]: value })
-
   }
 
   function removeComment(idx, comments) {
@@ -47,16 +46,20 @@ export function CardComments({ card }) {
         <h3>Activity</h3>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={editClassname}>
         <textarea
-          className='blue-input'
+          onClick={() => setEditMode(true)}
+          className={'blue-input ' + editClassname}
           placeholder="Write a comment..."
           onChange={handleChange}
           value={comment.txt}
           name="txt"
+          required
+          // onBlur={() => setEditMode(false)}
+          minLength={4}
         />
 
-        <button className="blue-button">Save</button>
+        {editMode && <button className={`${btnState}-button`}>Save</button>}
       </form>
 
       <ul className="user-comment-section">
@@ -81,7 +84,8 @@ export function CardComments({ card }) {
 
             <div className='comment-buttons'>
               <button>Edit</button>
-              <button onClick={() => removeComment(idx, comments)}>•Delete</button>
+              <span>•</span>
+              <button onClick={() => removeComment(idx, comments)}>Delete</button>
             </div>
           </div>
         ))

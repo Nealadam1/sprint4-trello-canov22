@@ -13,7 +13,6 @@ function save(commentsArr, comment, loggedinUser) {
         comment.id = utilService.makeId()
         comment.createdBy = loggedinUser
         comment.createdAt = Date.now()
-        console.log(comment);
         commentsArr.unshift(comment)
 
     }
