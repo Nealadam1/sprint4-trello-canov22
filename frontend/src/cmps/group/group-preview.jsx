@@ -43,7 +43,7 @@ export function GroupPreview({
     <div className="group-preview">
       <div className="group-header">
         <button
-          className="group-actions-btn "
+          className="group-actions-btn"
           onClick={(ev) => handleEditButtonClick(ev, group.id)}
         >
           <BsThreeDots />
