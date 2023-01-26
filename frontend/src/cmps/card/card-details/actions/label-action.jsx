@@ -165,7 +165,7 @@ export function LabelAction({ card }) {
               value={newLabel.title}
               onChange={onAddLabel}
             />
-            <TwitterPicker
+            <TwitterPicker colors={['#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#F7F0FA', '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1', '#8BBDD9', '#8FDFEB', '#172b4d', '#F9C2E4', '#505F79', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4']}
               color={boardPreviewColor}
               onChange={handleColorChange}
             />
@@ -183,8 +183,7 @@ export function LabelAction({ card }) {
               value={changeLabel.title}
               onChange={editLabel}
             />
-
-            <TwitterPicker
+            <TwitterPicker colors={['#B7DDB0', '#F5EA92', '#FAD29C', '#EFB3AB', '#F7F0FA', '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1', '#8BBDD9', '#8FDFEB', '#172b4d', '#F9C2E4', '#505F79', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4']}
               color={boardPreviewColor}
               onChange={handleColorChange}
             />
