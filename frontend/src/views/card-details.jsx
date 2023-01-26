@@ -81,11 +81,21 @@ export function CardDetails() {
     }
   }
 
+  // function setCardHeader() {
+  // // imgURL >> LINK >>> COLOR
+  //   if(card?.attachments) {
+  //     return 
+  //   }
+  // }
+
   function handleTitleSave() {
     card.title = cardTitle
     updateCard(card)
     setIsEditingTitle(false)
   }
+
+  console.log(card);
+  // imgURL >> LINK >>> COLOR
 
   return (
     <div>
@@ -113,13 +123,15 @@ export function CardDetails() {
             className="card-details"
           >
             {card && card.style && (
+
+
+
               <header
                 className="card-header"
                 style={{
                   background: card?.style ? card?.style?.bgColor : "fff",
                   borderRadius: "3px 3px 0 0",
-                }}
-              >
+                }}>
                 {/* {card.style ? <button onClick={handleClose}>
                   <Link to={`/board/${board._id}`}>x</Link>
                 </button> : ''} */}
@@ -127,7 +139,7 @@ export function CardDetails() {
             )}
 
             <div className="side-bar">
-              <CardDetailsSidebar setCard={setCard} card={card} board={board}/>
+              <CardDetailsSidebar setCard={setCard} card={card} board={board} />
             </div>
 
             <div className="card-content">

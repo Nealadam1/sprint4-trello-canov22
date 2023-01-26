@@ -1,0 +1,168 @@
+.card-attachments {
+    padding: 0px;
+    margin-bottom: 13px;
+
+    button {
+        margin-top: 0;
+        margin-left: 26px;
+    }
+
+    h3 {
+        font-size: $card-details-header;
+        font-family: $trello-font;
+        display: flex;
+        font-size: 14px;
+        color: $clr7;
+        margin-bottom: 0.5em;
+
+        i {
+            padding-right: 0.7em;
+            font-size: 18px;
+        }
+    }
+
+    .attachments-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 0 0 1em 26px;
+        padding: 0px;
+    }
+
+    .attachment-preview {
+        background-color: rgba(9, 30, 66, 0.0392156863);
+        border-radius: 3px;
+
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+    }
+
+    .attachment-img {
+        height: 80px;
+        width: 112px;
+        background-color: #091e420a;
+        border-radius: 3px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+        img {
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            border-radius: inherit;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+        }
+
+    }
+
+    .attachment-details {
+        p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .delete-attachment {
+            text-decoration: underline;
+
+        }
+
+        .delete-cover {
+            text-decoration: underline;
+        }
+
+        a{
+            color:inherit;
+            font-size: 0.8rem;
+        }
+
+    }
+
+    .attachment-actions {
+        display: flex;
+        gap: 10px
+    }
+
+
+
+}
+
+.add-attachment{
+
+    .add-attachment-header{
+        margin-bottom: 8px;
+        padding: 0 12px;
+        position: relative;
+        text-align: center;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 12px 1fr 12px;
+
+        i {
+            grid-column: 3;
+            grid-row: 1;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            z-index: 2;
+            outline: none;
+        }
+
+        h4 {
+            grid-column: 1 / span 3;
+            grid-row: 1;
+            border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+            color: $clr15;
+            height: 40px;
+            display: block;
+            line-height: 40px;
+            margin: 0;
+            overflow: hidden;
+            padding: 0 32px;
+            position: relative;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    ul{
+        padding: 13px 0px;
+        margin: 13px 13px;
+        border-bottom: 1px solid rgba(9, 30, 66, 0.13);
+    }
+
+    li {
+        color: $clr7;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        margin: 0;
+        padding: 6px 0px;
+        &:hover {
+            background-color: #091e4214;
+        }
+
+        hr{
+            margin: 8px 0px;
+        }
+      
+    }
+
+    input{
+        height: 36px;
+    }
+
+    .add-attachment-link{
+        margin: 0px 13px;
+    }
+    
+
+
+
+}
