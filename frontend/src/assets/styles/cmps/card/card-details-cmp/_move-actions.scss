@@ -1,0 +1,28 @@
+.move-action {
+    padding: 1em;
+
+    .move-action-container {
+        display: flex;
+        padding: 1em;
+
+    }
+
+    label {
+        font-size: 13px;
+        font-family: 'Open Sans';
+    }
+
+    .move-card-btn {
+        margin-left: 1em;
+    }
+
+    .select-group-input,
+    .sdelect-card-input {
+        background-color: #091e420a;
+    }
+
+    .move-action-title {
+        text-align: center;
+        font-family: OpenSans-Regular;
+    }
+}
