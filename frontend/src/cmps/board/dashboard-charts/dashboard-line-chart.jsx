@@ -9,7 +9,6 @@ export function DashboardLineChart({ board, groups }) {
 
   groups.forEach((group) =>
     group.cards.forEach((card) => {
-      console.log(userCards[card.createdBy])
       if (userCards[card.createdBy]) {
         userCards[card.createdBy]++
       }

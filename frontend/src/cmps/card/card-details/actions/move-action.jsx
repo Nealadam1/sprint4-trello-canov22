@@ -39,33 +39,43 @@ export function MoveAction({ card }) {
   }
 
   return (
-    <div>
-      <label>Select Group:</label>
-      <select value={selectedGroup} onChange={handleGroupChange}>
-        <option value="" disabled>
-          Select a group
-        </option>
-        {board.groups.map((group) => (
-          <option key={group.id} value={group.id}>
-            {group.title}
-          </option>
-        ))}
-      </select>
-      <label>Select Card:</label>
-      <select value={selectedCard} onChange={handleCardChange}>
-        <option value="" disabled>
-          Select a card
-        </option>
-        {selectedGroup &&
-          board.groups
-            .find((group) => group.id === selectedGroup)
-            .cards.map((card, index) => (
-              <option key={index} value={index}>
-                {index + 1}
+    <div className="move-action">
+      <p className="move-action-title">Move Card</p>
+      <div className="sep-line"></div>
+      <div className="move-action-container">
+        <div className="select-group-input">
+          <label>Select Group</label>
+          <select value={selectedGroup} onChange={handleGroupChange}>
+            <option value="" disabled>
+              Select a group
+            </option>
+            {board.groups.map((group) => (
+              <option key={group.id} value={group.id}>
+                {group.title}
               </option>
             ))}
-      </select>
-      <button onClick={handleMove}>Move</button>
+          </select>
+        </div>
+        <div className="select-card-input">
+          <label>Select Card</label>
+          <select value={selectedCard} onChange={handleCardChange}>
+            <option value="" disabled>
+              Select a card
+            </option>
+            {selectedGroup &&
+              board.groups
+                .find((group) => group.id === selectedGroup)
+                .cards.map((card, index) => (
+                  <option key={index} value={index}>
+                    {index + 1}
+                  </option>
+                ))}
+          </select>
+        </div>
+      </div>
+      <button className="blue-button move-card-btn" onClick={handleMove}>
+        Move
+      </button>
     </div>
   )
 }

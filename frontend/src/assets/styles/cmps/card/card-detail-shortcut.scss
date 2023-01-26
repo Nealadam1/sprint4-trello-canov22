@@ -33,10 +33,13 @@
         padding: 6px 12px 6px 8px;
         text-decoration: none;
         transition: transform 85ms ease-in;
+        align-items: center;
 
         a {
             display: flex;
             color: #c7d1db;
+            align-items: center;
+
             &:hover {
 
                 color: #fff;
