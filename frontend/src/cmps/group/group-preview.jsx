@@ -4,7 +4,14 @@ import { GroupActions } from "./group-actions"
 import { BsThreeDots } from "react-icons/bs"
 import { Draggable } from "react-beautiful-dnd"
 
-export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provided, idx }) {
+export function GroupPreview({
+  group,
+  cards,
+  updateGroupTitle,
+  isDragging,
+  provided,
+  idx,
+}) {
   const [groupTitleToInput, setGroupTitleToInput] = useState({})
   const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const [newTitle, setNewTitle] = useState(group.title)
@@ -33,38 +40,49 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
   }, [groupTitleToInput, group.id])
 
   return (
-
     <div className="group-preview">
-      <button className="group-actions-btn " onClick={(ev) => handleEditButtonClick(ev, group.id)}>
-        <BsThreeDots />
-      </button>
-
-      {openEditGroupId === group.id && <GroupActions handleEditButtonClick={handleEditButtonClick} group={group} />}
-      {groupTitleToInput[group.id] ? (
-        <form>
-          <input
-            className="group-title-input blue-input"
-            type="text"
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-            onBlur={handleBlur}
-            ref={inputRef}
-          />
-        </form>
-      ) : (
-        <h4
-          onClick={() =>
-            setGroupTitleToInput({ ...groupTitleToInput, [group.id]: true })
-          }
+      <div className="group-header">
+        <button
+          className="group-actions-btn"
+          onClick={(ev) => handleEditButtonClick(ev, group.id)}
         >
-          {newTitle}
-        </h4>
-      )}
-      <CardList setEditCardShortcut={setEditCardShortcut}
-        EditCardShortcut={EditCardShortcut} cards={cards} group={group} idx={idx} />
-    </div>
+          <BsThreeDots />
+        </button>
 
+        {openEditGroupId === group.id && (
+          <GroupActions
+            handleEditButtonClick={handleEditButtonClick}
+            group={group}
+          />
+        )}
+        {groupTitleToInput[group.id] ? (
+          <form>
+            <input
+              className="group-title-input blue-input"
+              type="text"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              onBlur={handleBlur}
+              ref={inputRef}
+            />
+          </form>
+        ) : (
+          <h4
+            onClick={() =>
+              setGroupTitleToInput({ ...groupTitleToInput, [group.id]: true })
+            }
+          >
+            {newTitle}
+          </h4>
+        )}
+      </div>
+      <CardList
+        setEditCardShortcut={setEditCardShortcut}
+        EditCardShortcut={EditCardShortcut}
+        cards={cards}
+        group={group}
+        idx={idx}
+      />
+    </div>
   )
 }
-
-

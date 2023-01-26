@@ -4,6 +4,19 @@
     .move-action-container {
         display: flex;
         padding: 1em;
+        flex-direction: column;
+
+        .select-card-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .select-group-input {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
 
     }
 

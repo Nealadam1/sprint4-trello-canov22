@@ -31,6 +31,9 @@
     font-weight: 600;
     font-family: OpenSans-Regular;
     color: #5e6c84;
+
+
+
   }
 
   .card-details-label-container {
@@ -367,6 +370,8 @@
 
       .card-icon-title {
         padding-right: 0.7em;
+        display: flex;
+        align-items: center;
       }
     }
   }
