@@ -12,10 +12,15 @@ import { HiOutlineStar } from "react-icons/hi"
 
 import { BoardPreview } from "./board-preview"
 import { DynamicActionModal } from "../dynamic-modal-cmp"
-import { OpenActionModal, setBoard, updateBoard } from "../../store/actions/board.action"
+import {
+  OpenActionModal,
+  setBoard,
+  updateBoard,
+} from "../../store/actions/board.action"
 import { boardService } from "../../services/board.service"
 import { BsArchive } from "react-icons/bs"
 import LoadingSpinner from "../../views/spinner/loading-spinner"
+import { AiOutlineUser } from "react-icons/ai"
 
 export function BoardList({ boards }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -82,10 +87,11 @@ export function BoardList({ boards }) {
             <li
               className="list-item"
               style={{
-                background: `${board.style.thumbnail
-                  ? `url(${board.style.thumbnail})`
-                  : `${board.style.backgroundColor}`
-                  }`,
+                background: `${
+                  board.style.thumbnail
+                    ? `url(${board.style.thumbnail})`
+                    : `${board.style.backgroundColor}`
+                }`,
               }}
               key={board._id}
             >
@@ -105,7 +111,7 @@ export function BoardList({ boards }) {
           )
         })}
       </ul>
-      <h3>YOUR WORKSPACES</h3>
+      <h3>Your boards</h3>
       <li
         className="list-item grey-button"
         ref={buttonRef}
@@ -127,10 +133,11 @@ export function BoardList({ boards }) {
           <li
             className="list-item"
             style={{
-              background: `${board.style.thumbnail
-                ? `url(${board.style.thumbnail})`
-                : `${board.style.backgroundColor}`
-                }`,
+              background: `${
+                board.style.thumbnail
+                  ? `url(${board.style.thumbnail})`
+                  : `${board.style.backgroundColor}`
+              }`,
             }}
             key={board._id}
           >

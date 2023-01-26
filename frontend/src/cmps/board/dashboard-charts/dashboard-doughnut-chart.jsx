@@ -20,10 +20,10 @@ export function DashboardDoughnutChart({ groups, labels }) {
         card.labelIds.forEach((labelId) => {
           const label = labels.find((l) => l.id === labelId)
           console.log(label)
-          if (!cardLabels[label.title]) {
-            cardLabels[label.title] = 0
+          if (!cardLabels[label?.title]) {
+            cardLabels[label?.title] = 0
           }
-          cardLabels[label.title]++
+          cardLabels[label?.title]++
         })
       })
     })
