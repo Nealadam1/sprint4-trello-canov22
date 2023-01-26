@@ -160,7 +160,7 @@ const DynamicModalPosition = (props) => {
         console.log('hello')
         modalStyles={
           ...modalStyles,
-          top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight * 0.9
+          top: `calc(${buttonRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight*0.5
             }px)`,
            
         }
@@ -173,7 +173,7 @@ const DynamicModalPosition = (props) => {
         console.log('hello2')
         modalStyles={
           ...modalStyles,
-          left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth
+          left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth/2
             }px)`,
           
         }
@@ -181,7 +181,7 @@ const DynamicModalPosition = (props) => {
       setModalStyles({
         ...modalStyles, opacity: 1
       })
-  }, [modalRef, buttonRef])
+  }, [modalRef,buttonRef])
 
   return (
     <div

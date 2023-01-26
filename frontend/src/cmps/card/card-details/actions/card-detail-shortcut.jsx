@@ -82,14 +82,6 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
                     : null
                 }
               >
-                {isActionModal && (
-                  <DynamicActionModal
-                    card={currCard}
-                    setCard={setCurrCard}
-                    buttonRef={buttonRefLabels.current}
-                    type={"add-labels"}
-                  />
-                )}
                 <span className="labels-icon side-bar-icon">
                   <BsTag />
                 </span>
@@ -104,14 +96,7 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
                     : null
                 }
               >
-                {isActionModal && (
-                  <DynamicActionModal
-                    card={currCard}
-                    setCard={setCurrCard}
-                    buttonRef={buttonRefMembers.current}
-                    type={"add-members"}
-                  />
-                )}
+
                 <span className="memebers-icon side-bar-icon">
                   <AiOutlineUser />
                 </span>
@@ -126,14 +111,7 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
                     : null
                 }
               >
-                {isActionModal && (
-                  <DynamicActionModal
-                    card={currCard}
-                    setCard={setCurrCard}
-                    buttonRef={buttonRefCover.current}
-                    type={"add-cover"}
-                  />
-                )}
+
                 <span className="cover-icon side-bar-icon">
                   <MdOutlineCreditCard />
                 </span>
@@ -151,6 +129,31 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
           </DynamicMenuPosition>
         )}
       </div>
+      {isActionModal && (
+        <DynamicActionModal
+          card={currCard}
+          setCard={setCurrCard}
+          buttonRef={buttonRefLabels.current}
+          type={"add-labels"}
+        />
+      )}
+      {isActionModal && (
+        <DynamicActionModal
+          card={currCard}
+          setCard={setCurrCard}
+          buttonRef={buttonRefMembers.current}
+          type={"add-members"}
+        />
+      )}
+
+      {isActionModal && (
+        <DynamicActionModal
+          card={currCard}
+          setCard={setCurrCard}
+          buttonRef={buttonRefCover.current}
+          type={"add-cover"}
+        />
+      )}
       <div>
         <CardPreviewShortcut
           card={currCard}
