@@ -33,9 +33,10 @@ export function Home() {
             Collaborate in real-time, intuitive interface, added features. Try
             it now and see the difference in your workflows.
           </p>
-        </div>
-        <div className="get-started">
-          <Link to="/board">Get started</Link>
+
+          <div className="get-started">
+            <Link to="/board">Get started</Link>
+          </div>
         </div>
         <div className="hero-container">
           <img src={heroimg} alt="" />

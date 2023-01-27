@@ -15,11 +15,13 @@ export function RecentBoards() {
     
 
     if (user?.visitedBoards) {
-        filteredBoards = boards.filter(board => user.visitedBoards.includes(board._id))
+        filteredBoards = user.visitedBoards.map(visitedBoard => {
+            const boardIndex = boards.findIndex(board => board._id === visitedBoard);
+            return boards[boardIndex];
+          });
+   
     }
-    console.log(user.visitedBoards)
-    console.log(filteredBoards)
-
+    
     return (
         <>
             {!user && <p>
