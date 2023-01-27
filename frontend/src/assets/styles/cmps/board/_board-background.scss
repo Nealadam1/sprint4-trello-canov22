@@ -28,8 +28,6 @@
 
 
 
-
-
     .board-background-btn {
         color: $clr7;
         font-size: 13px;
@@ -39,11 +37,25 @@
         background-color: transparent;
         width: 100%;
 
-        // &:hover {
-        //     background-color: red;
-        // }
+        &:hover {
+            background-color: transparent;
+        }
 
     }
+}
+
+.change-bg-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-right: 10px;
+    padding-left: 8px;
+
+    &:hover {
+        background-color: rgba(9, 30, 66, 0.0784313725);
+        border-radius: 5px;
+    }
+
 }
 
 .background-menu-title {
@@ -96,7 +108,7 @@
 }
 
 .unsplash-container {
-    padding: 0 1em 0 1em;
+    padding: 0 0.4em 0 0.4em;
 
     display: grid;
     place-content: center;

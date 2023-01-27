@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
@@ -14,42 +15,72 @@ export function CardActivites() {
   const [openBackground, setOpenBackground] = useState(false)
   const [unsplashMenu, setUnsplashMenu] = useState(false)
   const [colorsMenu, setColorsMenu] = useState(false)
+  const [activitesMenu, setActivitesMenu] = useState(true)
   const [unsplashImages, setUnsplashImages] = useState([])
 
   function handleUnsplash() {
     setUnsplashMenu(true)
     const unsplashImages = utilService.loadFromStorage("unsplash")
     if (unsplashImages) {
-      console.log("didnt get out")
-
       setUnsplashImages(unsplashImages)
       return
     }
-
-    console.log("did get out")
-
     const apiKey = "MBnE1-xZ0kaxsHG3axcPYu0Z1K6K57Wimfo-j3-VlGc"
     const query = "nature"
     const numberOfImages = 30
-
     fetch(
-      `https://api.unsplash.com/search/photos?query=${query}&per_page=${numberOfImages}&client_id=${apiKey}`
+      `https://api.unsplash.com/search/photos?query=${query}w=1920&h=1020&per_page=${numberOfImages}&client_id=${apiKey}`
     )
       .then((response) => response.json())
       .then((data) => {
-        const images = data?.results?.map((image) => image.urls.small)
+        console.log(data)
+        const images = data?.results?.map((image) => image.urls.regular)
         setUnsplashImages(images)
-        console.log("hi")
         utilService.saveToStorage("unsplash", images)
-
-        // Use the images URLs to display the images in your app
       })
   }
 
+  const colorsBackground = [
+    "rgb(0, 121, 191)",
+    "rgb(210, 144, 52)",
+    "rgb(81, 152, 57)",
+    "rgb(176, 70, 50)",
+    "rgb(137, 96, 158)",
+    "rgb(205, 90, 145)",
+    "rgb(75, 191, 107)",
+    "rgb(0, 174, 204)",
+    "rgb(131, 140, 145)",
+  ]
+
   function setBackgroundImage(image) {
-    if (board?.style?.img) board.style.img = image
-    setBoard(board)
-    updateBoard(board)
+    console.log(image)
+    const updatedBoard = {
+      ...board,
+      style: { img: image, thumbnail: image },
+    }
+    setBoard(updatedBoard)
+    updateBoard(updatedBoard)
+  }
+
+  function setBackgroundColor(color) {
+    const updatedBoard = {
+      ...board,
+      style: { backgroundColor: color, thumbnail: color },
+    }
+
+    setBoard(updatedBoard)
+    updateBoard(updatedBoard)
+    console.log("after change", updatedBoard)
+  }
+
+  function handleActivitesPage() {
+    setOpenBackground(true)
+    setActivitesMenu(false)
+  }
+
+  function handleBackgroundPage() {
+    setOpenBackground(false)
+    setActivitesMenu(true)
   }
 
   useEffect(() => {
@@ -57,24 +88,34 @@ export function CardActivites() {
       modalRef.current.style.overflowY = "scroll"
     }
   }, [board.activities.length])
+
   return (
     <div ref={modalRef} className="card-activites">
-      {!openBackground && !unsplashMenu && !colorsMenu && (
+      {!openBackground && !unsplashMenu && !colorsMenu && activitesMenu && (
         <div>
           <p className="activities-menu-title">Menu</p>
           <div className="sep-line"></div>
           <div className="board-background">
-            <img
-              style={{ width: "25px" }}
-              src={board?.style?.thumbnail || board?.style?.background}
-              alt=""
-            />
-            <button
-              onClick={() => setOpenBackground(true)}
-              className="board-background-btn"
-            >
-              Change background
-            </button>
+            <div className="change-bg-btn">
+              <div
+                style={{
+                  borderRadius: "5px",
+                  width: "20px",
+                  height: "20px",
+                  background: board?.style?.backgroundColor,
+                  backgroundImage: board?.style?.thumbnail
+                    ? `url(${board.style.thumbnail})`
+                    : "none",
+                  backgroundSize: "cover",
+                }}
+              />
+              <button
+                onClick={handleActivitesPage}
+                className="board-background-btn"
+              >
+                Change background
+              </button>
+            </div>
           </div>
           <BoardBackground />
           <div className="activity-title">
@@ -106,13 +147,10 @@ export function CardActivites() {
           </ul>
         </div>
       )}
-      {!unsplashMenu && !colorsMenu && (
+      {!unsplashMenu && !colorsMenu && !activitesMenu && (
         <div className="change-background-menu">
           <p className="background-menu-title">
-            <span
-              onClick={() => setOpenBackground(false)}
-              className="back-to-menu-btn"
-            >
+            <span onClick={handleBackgroundPage} className="back-to-menu-btn">
               <MdArrowBackIos />
             </span>
             Change background
@@ -189,42 +227,15 @@ export function CardActivites() {
           </p>
           <div className="sep-line"></div>
           <div className="colors-container">
-            <div
-              style={{ backgroundColor: "rgb(0, 121, 191)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(210, 144, 52)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(81, 152, 57)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(176, 70, 50)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(0, 121, 191)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(0, 121, 191)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(0, 121, 191)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(0, 121, 191)" }}
-              className="option"
-            ></div>
-            <div
-              style={{ backgroundColor: "rgb(0, 121, 191)" }}
-              className="option"
-            ></div>
+            {colorsBackground.map((color) => {
+              return (
+                <div
+                  onClick={() => setBackgroundColor(color)}
+                  style={{ background: color }}
+                  className="option"
+                ></div>
+              )
+            })}
           </div>
         </div>
       )}
