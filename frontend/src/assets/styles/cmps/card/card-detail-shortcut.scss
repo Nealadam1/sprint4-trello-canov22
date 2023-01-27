@@ -8,10 +8,49 @@
     .card-title-input {
         border: none;
         outline: none;
+        font-family: OpenSans-Regular;
+        
 
         &:focus {
             outline: none;
         }
+    }
+
+    .members-list-title {
+        text-align: center;
+        color: #172b4d;
+        margin: 0 0 1em;
+        font-size: 0.875rem;
+    }
+
+    .members-preview {
+        list-style: none;
+        padding-left: 1em;
+        gap: 0.5em;
+        display: flex;
+        flex-direction: column;
+        margin: 0.8em 0;
+        font-size: 0.8rem;
+
+
+
+
+
+        li {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.2em;
+
+        }
+
+    }
+
+    .member-image {
+        height: 1.75em;
+        border-radius: 25em;
+        width: 1.75em;
+        margin-right: 0.5em;
     }
 
 
@@ -20,6 +59,8 @@
 }
 
 .shortcut-actions {
+    padding-inline-start: 0px;
+
     li {
         display: flex;
         width: fit-content;
@@ -29,7 +70,7 @@
         color: #c7d1db;
         cursor: pointer;
         background: #0009;
-        margin: 0 0 4px 8px;
+        margin: 0 0 4px 0px;
         padding: 6px 12px 6px 8px;
         text-decoration: none;
         transition: transform 85ms ease-in;
@@ -52,6 +93,7 @@
             // transform: translateX(-5px);
         }
     }
+
 
 }
 

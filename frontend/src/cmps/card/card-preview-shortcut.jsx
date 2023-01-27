@@ -60,7 +60,7 @@ export function CardPreviewShortcut({ card, title, setTitle }) {
       <div className="card-info">
         {card?.labelIds && <LabelPreview labels={card.labelIds} />}
         <p>
-          <input
+          <textarea
             className="card-title-input"
             type="text"
             ref={inputRefShortcutTitle}

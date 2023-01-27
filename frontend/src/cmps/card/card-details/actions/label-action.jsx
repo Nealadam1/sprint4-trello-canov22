@@ -229,12 +229,7 @@ export function LabelAction({ card }) {
               color={boardPreviewColor}
               onChange={handleColorChange}
             />
-            <button
-              className="blue-button"
-              disabled={changeLabel.title.length < 1}
-            >
-              Save
-            </button>
+            <button onClick={saveLabel} className="blue-button" disabled={newLabel.title.length < 1}>Save</button>
           </form>
         </div>
       )}
