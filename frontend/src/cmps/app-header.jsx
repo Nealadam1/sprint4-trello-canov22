@@ -42,12 +42,11 @@ export function AppHeader() {
         <div className="logo">
           <Link to="/">
             <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
-            <span className="logo-text">orkflow</span>
+            <span className="logo-text">workflow</span>
           </Link>
         </div>
 
         <div className="app-header-links">
-       
 
           <button className="app-header-link" href="#">
             Recent
@@ -55,6 +54,7 @@ export function AppHeader() {
               <RiArrowDropDownLine />
             </span>
           </button>
+
           <button className="app-header-link" ref={buttonRefStarredBoards}
             onClick={
               !isActionModal ? (ev) => OpenActionModal(ev, "starred-boards") : null
@@ -64,6 +64,7 @@ export function AppHeader() {
               <RiArrowDropDownLine />
             </span>
           </button>
+
           {isActionModal && (
             <DynamicActionModal
               buttonRef={buttonRefStarredBoards.current}
@@ -80,6 +81,8 @@ export function AppHeader() {
               <RiArrowDropDownLine />
             </span>
           </button>
+
+
           {isActionModal && (
             <DynamicActionModal
               buttonRef={buttonRefCreateBoard.current}
@@ -89,6 +92,12 @@ export function AppHeader() {
 
         </div>
 
+        <button className="options app-header-link" href="#">
+          More
+          <span>
+            <RiArrowDropDownLine />
+          </span>
+        </button>
       </div>
       {loggedInUser ? (
         <div className="user-details">
