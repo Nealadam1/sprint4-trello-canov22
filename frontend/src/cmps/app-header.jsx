@@ -82,7 +82,7 @@ export function AppHeader() {
 
           <button className="app-header-link" ref={buttonRefCreateBoard}
             onClick={
-              !isActionModal ? (ev) => OpenActionModal(ev, "create-board") : null
+              !isActionModal ? (ev) => OpenActionModal(ev, "create-board2") : null
             }>
             Create board
             <span>
@@ -94,7 +94,7 @@ export function AppHeader() {
           {isActionModal && (
             <DynamicActionModal
               buttonRef={buttonRefCreateBoard.current}
-              type={"create-board"}
+              type={"create-board2"}
             />
           )}
 

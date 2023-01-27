@@ -1,0 +1,133 @@
+.board-background {
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+
+    .background-modal {
+        box-shadow: var(--ds-shadow-overlay, 0 12px 24px -6px #091e4240, 0 0 0 1px var(--ds-border, #091e4214));
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        left: 100%;
+        min-width: 385px;
+        box-sizing: border-box;
+        background-color: #fff;
+        transition: 0.5s all;
+        margin-top: rem(45px);
+        z-index: 1000;
+        height: calc(100vh - 30px);
+    }
+
+    .background-modal.show {
+        right: 0;
+        transform: translateX(-100%);
+        background-color: #172b4d;
+
+    }
+
+
+
+
+
+
+    .board-background-btn {
+        color: $clr7;
+        font-size: 13px;
+        font-family: "OpenSans-Regular";
+        font-weight: bold;
+        color: #172b4d;
+        width: 100%;
+
+    }
+}
+
+.background-menu-title {
+    display: flex;
+    font-family: 'OpenSans-Regular';
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    color: #172b4d;
+    justify-content: center;
+    margin-top: 1em;
+    position: relative;
+
+    .back-to-menu-btn {
+        position: absolute;
+        left: 5%;
+        top: 0.3rem;
+        cursor: pointer;
+    }
+
+}
+
+.change-background-menu {
+    padding: 0 1em 0 1em;
+
+    .container {
+        display: grid;
+        place-content: center;
+        grid-template-columns: repeat(auto-fill, 150px);
+        grid-template-rows: repeat(auto-fill, 100px);
+        gap: 0.5em;
+
+        .option {
+            border-radius: 10px;
+            cursor: pointer;
+
+            &:hover {
+                background: #dfe1e6;
+            }
+        }
+    }
+
+    .board-option-names {
+        display: flex;
+        padding: 0 1em 0 1em;
+        justify-content: space-around;
+        font-size: 14px;
+        color: $clr7;
+    }
+}
+
+.unsplash-container {
+    padding: 0 1em 0 1em;
+
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: repeat(auto-fill, 100px);
+    gap: 0.4em;
+
+
+    .option {
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #dfe1e6;
+        }
+    }
+
+
+}
+
+.colors-container {
+    padding: 0 1em 0 1em;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: repeat(auto-fill, 100px);
+    gap: 0.5em;
+
+    .option {
+        cursor: pointer;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: #dfe1e6;
+        }
+    }
+
+
+}
