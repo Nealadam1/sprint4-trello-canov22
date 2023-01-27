@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
+import { CgClose } from "react-icons/cg"
 import { useSelector } from "react-redux"
-import { updateCard } from "../../../../store/actions/board.action"
+import { closeActionModal, updateCard } from "../../../../store/actions/board.action"
 
 export function DateAction({ setCard, card }) {
   const [selectedDay, setSelectedDay] = useState(null)
@@ -63,6 +64,15 @@ export function DateAction({ setCard, card }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="add-cover-header">
+        <p>
+          Dates
+          <i onClick={closeActionModal}>
+            <CgClose />
+          </i>
+        </p>
+        <div className="sep-line"></div>
+      </div>
       <DayPicker
         mode={range ? "range" : "single"}
         selected={range ? selectedDay : selectedDay?.to}

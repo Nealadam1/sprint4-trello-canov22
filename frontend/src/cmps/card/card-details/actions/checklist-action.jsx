@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { CgClose } from "react-icons/cg"
 import { utilService } from "../../../../services/util.service"
 import { updateCard } from "../../../../store/actions/board.action"
 import { closeActionModal } from "../../../../store/actions/board.action"
@@ -29,8 +30,15 @@ export function ChecklistAction({ card, setCard }) {
 
   return (
     <div className="checklist-action">
-      <p>Add checklist</p>
-      <div className="sep-line"></div>
+      <div className="add-cover-header">
+        <p>
+          Cover
+          <i onClick={closeActionModal}>
+            <CgClose />
+          </i>
+        </p>
+        <div className="sep-line"></div>
+      </div>
       <label htmlFor="title">Title</label>
       <input
         className="new-checklist-input blue-input"
