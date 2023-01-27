@@ -16,6 +16,7 @@ import {
   setBoard,
 } from "../store/actions/board.action"
 import { DynamicActionModal } from "./dynamic-modal-cmp"
+import { BiSearch } from "react-icons/bi"
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -32,6 +33,10 @@ export function AppHeader() {
     : ""
   const [isOpenModal, setIsOpenModal] = useState(false)
   const openModalClass = isOpenModal ? "modal-open" : ""
+  const [openUserModal, setOpenUserModal] = useState(false)
+  const userModalClass = openUserModal ? 'open-user' : ''
+  const [openSearch, setOpenSearch] = useState(false)
+  const searchClass = openSearch ? 'open-search' : ''
 
   async function onLogout() {
     try {
@@ -143,17 +148,23 @@ export function AppHeader() {
       </div>
       {loggedInUser ? (
         <div className="user-details">
-          <BoardSearch />
 
-          <div className="logged-user" title="Accout">
+          <div className="search-modal" style={{ display: 'flex', alignItems: 'center', padding: '5px 10px', cursor: 'pointer' }} onClick={() => setOpenSearch(!openSearch)}>
+            <BiSearch style={{ width: '22px', height: '22px' }} className='svg-icn' />
+          </div>
+
+          <BoardSearch searchClass={searchClass} />
+
+          <div className={"logged-user " + userModalClass} title="Accout" onClick={() => setOpenUserModal(!openUserModal)}>
             <img style={{ width: "30px" }} src={loggedInUser.imgUrl} />
           </div>
 
-          <div className="logout">
+          {userModalClass && <div className="logout">
             <button onClick={onLogout} className="blue-button">
               Logout
             </button>
-          </div>
+          </div>}
+
         </div>
       ) : (
         <div className="login-signup-page">

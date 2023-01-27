@@ -7,7 +7,7 @@ import { loadBoards } from "../../store/actions/board.action"
 import { useSelector } from "react-redux"
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 
-export function BoardSearch({ onSetSearch }) {
+export function BoardSearch({ searchClass }) {
   const [search, setSearch] = useState("")
   const boards = useSelector((storeState) => storeState.boardModule.boards)
   const [isSearchTriggered, setIsSearchTriggered] = useState(false)
@@ -33,7 +33,7 @@ export function BoardSearch({ onSetSearch }) {
   }
 
   return (
-    <section className="board-search">
+    <section className={"board-search " + searchClass}>
       <form>
         <div className="search-container">
           <span className="search-board-icon">
@@ -56,7 +56,8 @@ export function BoardSearch({ onSetSearch }) {
               <li key={board._id} value={board._id}>
                 <Link to={`/board/${board._id}`}>
                   <div
-                    style={{ height: "32px", width: "40px", borderRadius: "3px",
+                    style={{
+                      height: "32px", width: "40px", borderRadius: "3px",
                       background: `${board.style.thumbnail
                         ? `url(${board.style.thumbnail})`
                         : `${board.style.backgroundColor}`

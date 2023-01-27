@@ -7,6 +7,7 @@
   font-weight: bold;
   flex-wrap: wrap;
   width: 100%;
+  height: 50px;
 
   .logo {
     font-family: Pacifico;
@@ -169,6 +170,7 @@
     display: flex;
     align-items: center;
     gap: 1em;
+    align-items: center;
 
     .logged-user {
       display: flex;
@@ -262,13 +264,52 @@
       background-color: rgba(0, 0, 0, 0.2392156863);
     }
   }
+
+  .logout {
+    position: fixed;
+    background-color: #172B4D;
+    top: 50px;
+    right: 7px;
+    padding: 5px;
+
+    button {
+      margin: 0;
+    }
+  }
 }
 
+.search-modal {
+  visibility: hidden;
 
-@media (max-width:460px) {
-  .search-container {
-    visibility: hidden;
+  .svg-icn {
+    height: 0;
+    width: 0;
+  }
+}
+
+@media (max-width:645px) {
+  .search-modal {
+    visibility: visible;
+  }
+
+  .app-header .board-search {
     position: fixed;
+    top: 50px;
+    background-color: rgb(128, 128, 128);
+    right: 15px;
+    visibility: hidden;
+
+    &.open-search {
+      visibility: visible;
+
+    }
+  }
+
+  .search-modal {
+    visibility: visible;
+    // height: 22px;
+    // width: 22px;
+    // padding: 5px 10px;
   }
 }
 

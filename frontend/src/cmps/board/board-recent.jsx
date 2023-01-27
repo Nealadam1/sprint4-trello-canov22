@@ -8,19 +8,23 @@ export function RecentBoards() {
   const user = useSelector((storeState) => storeState.userModule.user)
   let filteredBoards = []
 
-  useEffect(() => {
-    loadBoards()
-  }, [])
+    useEffect(() => {
+        loadBoards()
+    }, [])
+    
 
-  if (user?.visitedBoards) {
-    filteredBoards = boards.filter((board) =>
-      user.visitedBoards.includes(board._id)
-    )
-  }
-
-  return (
-    <>
-      {!user && <p>Must be logged in</p>}
+    if (user?.visitedBoards) {
+        filteredBoards = user.visitedBoards.map(visitedBoard => {
+            const boardIndex = boards.findIndex(board => board._id === visitedBoard);
+            return boards[boardIndex];
+          });
+   
+    }
+    
+    return (
+        <>
+            {!user && <p>
+                Must be logged in</p>}
 
       {user?.visitedBoards && (
         <ul className="board-starred-list">
