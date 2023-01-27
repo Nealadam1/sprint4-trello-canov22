@@ -1,7 +1,13 @@
 import { useEffect } from "react"
 import { eventBus } from "../../services/event-bus.service"
 import { CgClose } from "react-icons/cg"
-import { updateBoard, updateGroup } from "../../store/actions/board.action"
+import {
+  setBoard,
+  updateBoard,
+  updateGroup,
+} from "../../store/actions/board.action"
+import { useSelector } from "react-redux"
+import { utilService } from "../../services/util.service"
 export function GroupActions({ group, handleEditButtonClick }) {
   useEffect(() => {
     document.addEventListener("click", handleClickOutside)
@@ -9,6 +15,8 @@ export function GroupActions({ group, handleEditButtonClick }) {
       document.removeEventListener("click", handleClickOutside)
     }
   }, [])
+
+  const board = useSelector((storeState) => storeState.boardModule.board)
 
   function handleClickOutside(ev) {
     if (!ev.target.closest(".group-actions-modal")) {
@@ -29,6 +37,15 @@ export function GroupActions({ group, handleEditButtonClick }) {
     // updateBoard(updatededGroup)
   }
 
+  function handleCopyList() {
+    const copiedGroup = { ...group }
+    copiedGroup.id = utilService.makeId() // assign a new id to the copied group
+
+    const updatedGroups = [...board.groups, copiedGroup]
+    setBoard({ ...board, groups: updatedGroups })
+    updateBoard({ ...board, groups: updatedGroups }, "ADD_GROUP")
+  }
+
   return (
     <section className="group-actions-modal">
       <header className="group-actions-header">
@@ -39,7 +56,7 @@ export function GroupActions({ group, handleEditButtonClick }) {
       </header>
       <ul className="group-actions">
         <li onClick={(ev) => handleEmitAddCard(ev)}>Add card...</li>
-        <li>Copy List...</li>
+        <li onClick={handleCopyList}>Copy List...</li>
         <li className="list-last">Move List...</li>
         <hr />
         <li onClick={handleArchive}>Archive this list</li>

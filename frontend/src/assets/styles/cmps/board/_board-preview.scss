@@ -15,9 +15,10 @@
     padding: 0;
     list-style: none;
     display: flex;
-    margin-top: 71px;
+    margin-top: 2.5em;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 0.5em;
+    margin-bottom: 2.5em;
   }
 
   li:last-child {
@@ -41,15 +42,13 @@
     width: 100%;
     justify-content: space-around;
     background: rgb(0, 0, 0);
-    background: linear-gradient(
-      113deg,
-      rgba(0, 0, 0, 0.19) 0%,
-      rgba(204, 204, 204, 0.05) 100%
-    );
+    background: linear-gradient(113deg,
+        rgba(0, 0, 0, 0.19) 0%,
+        rgba(204, 204, 204, 0.05) 100%);
 
     .board-preview {
-      margin-left: 7.1px;
-      margin-top: 8px;
+      margin-left: 0.5rem;
+      margin-top: 0.3rem;
 
       p {
         color: $clr6;
@@ -87,10 +86,9 @@
   }
 
   .list-item {
-    margin-bottom: 5px;
     width: 12em;
+    /* margin-left: 2px; */
     height: 6em;
-    margin-left: 2px;
     border-radius: 3px;
     overflow: hidden;
     font-size: 16px;
@@ -100,6 +98,7 @@
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
+    font-family: OpenSans-Regular;
 
     div {
       p {
