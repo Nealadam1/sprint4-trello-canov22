@@ -4,6 +4,7 @@ import { closeActionModal } from "../store/actions/board.action"
 import { CreateBoard } from "./board/board-create"
 import { BoardFilter } from "./board/board-filter"
 import { BoardInvite } from "./board/board-invite"
+import { StarredBoards } from "./board/board-starred"
 import { AttachmentAction } from "./card/card-details/actions/attachment-action"
 import { ChecklistAction } from "./card/card-details/actions/checklist-action"
 import { CoverAction } from "./card/card-details/actions/cover-action"
@@ -129,6 +130,14 @@ export function DynamicActionModal(props) {
         modal === props.type && (
           <DynamicModalPosition buttonRef={buttonRef}>
             <GroupActions {...props} />
+          </DynamicModalPosition>
+        )
+      )
+    case "starred-boards":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <StarredBoards {...props} />
           </DynamicModalPosition>
         )
       )

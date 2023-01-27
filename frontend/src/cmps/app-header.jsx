@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faWeebly } from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom"
@@ -10,12 +10,18 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { logout } from "../store/actions/user.action"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { BoardSearch } from "./board/board-search"
-import { loadBoards, setBoard } from "../store/actions/board.action"
+import { loadBoards, OpenActionModal, setBoard } from "../store/actions/board.action"
+import { DynamicActionModal } from "./dynamic-modal-cmp"
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
+  const isActionModal = useSelector(
+    (storeState) => storeState.systemModule.isActionModal
+  )
+  const buttonRefCreateBoard = useRef(null)
+  const buttonRefStarredBoards = useRef(null)
   const headerBackground = board
     ? utilService.darken(board?.style?.backgroundColor, -40)
     : ""
@@ -41,12 +47,7 @@ export function AppHeader() {
         </div>
 
         <div className="app-header-links">
-          <button className="first app-header-link" href="#">
-            Workspaces
-            <span>
-              <RiArrowDropDownLine />
-            </span>
-          </button>
+       
 
           <button className="app-header-link" href="#">
             Recent
@@ -54,20 +55,37 @@ export function AppHeader() {
               <RiArrowDropDownLine />
             </span>
           </button>
-
-          <button className="app-header-link" href="#">
+          <button className="app-header-link" ref={buttonRefStarredBoards}
+            onClick={
+              !isActionModal ? (ev) => OpenActionModal(ev, "starred-boards") : null
+            }>
             Starred
             <span>
               <RiArrowDropDownLine />
             </span>
           </button>
+          {isActionModal && (
+            <DynamicActionModal
+              buttonRef={buttonRefStarredBoards.current}
+              type={"starred-boards"}
+            />
+          )}
 
-          <button className="app-header-link" href="#">
-            Templates
+          <button className="app-header-link" ref={buttonRefCreateBoard}
+            onClick={
+              !isActionModal ? (ev) => OpenActionModal(ev, "create-board") : null
+            }>
+            Create board
             <span>
               <RiArrowDropDownLine />
             </span>
           </button>
+          {isActionModal && (
+            <DynamicActionModal
+              buttonRef={buttonRefCreateBoard.current}
+              type={"create-board"}
+            />
+          )}
 
         </div>
 
@@ -77,7 +95,6 @@ export function AppHeader() {
           <BoardSearch />
 
           <div className="logged-user" title="Accout">
-            <span>{loggedInUser.fullname}</span>
             <img style={{ width: "30px" }} src={loggedInUser.imgUrl} />
           </div>
 
