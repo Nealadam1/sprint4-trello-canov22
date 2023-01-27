@@ -64,12 +64,16 @@ export function DateAction({ setCard, card }) {
   return (
     <form onSubmit={handleSubmit}>
       <DayPicker
+        styles={{
+          rdp: { margin: "0" },
+        }}
         mode={range ? "range" : "single"}
         selected={range ? selectedDay : selectedDay?.to}
         onSelect={setSelectedDay}
         footer={footer}
         onChange={handleChange}
         showOutsideDays
+        modifiersStyles={{ margin: "0em" }}
       />
       <label>
         <input type="checkbox" onChange={handleChange} />

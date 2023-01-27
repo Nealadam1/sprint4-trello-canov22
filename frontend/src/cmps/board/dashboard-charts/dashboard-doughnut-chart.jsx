@@ -16,8 +16,8 @@ export function DashboardDoughnutChart({ groups, labels }) {
     return <div>Loading...</div>
   } else {
     groups.forEach((group) => {
-      group.cards.forEach((card) => {
-        card.labelIds.forEach((labelId) => {
+      group?.cards?.forEach((card) => {
+        card?.labelIds?.forEach((labelId) => {
           const label = labels.find((l) => l.id === labelId)
           console.log(label)
           if (!cardLabels[label?.title]) {

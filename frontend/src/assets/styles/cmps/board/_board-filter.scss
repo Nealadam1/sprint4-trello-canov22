@@ -1,10 +1,20 @@
 .board-filter {
+
+  .board-filter-title {
+    color: var(--ds-text-subtle, #5e6c84);
+    padding: 0.5em;
+    text-align: center;
+  }
+
   .filter-keyword {
-    text-align: start;
-    padding: 0;
-    margin: 0;
+    color: var(--ds-text-subtle, #5e6c84);
     font-size: 12px;
-    font-family: "Open Sans";
+    font-weight: 600;
+    line-height: 16px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    margin-left: 0.5em;
+
   }
 
   .search-input {
@@ -23,32 +33,75 @@
       box-shadow: inset 0 0 0 2px var(--ds-border-focused, #0079bf);
     }
   }
+
   ul {
     list-style: none;
   }
+
+  .members-filter-title {
+    color: var(--ds-text-subtle, #5e6c84);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    margin-left: 0.5em;
+  }
+
   .labels-filter-list {
     padding: 0;
+
+    .labels-title-filter {
+      color: var(--ds-text-subtle, #5e6c84);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      margin-left: 0.5em;
+
+    }
+
+
+
     .label-filter-title-preview {
       .label-item {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        margin-inline: 2em;
-        padding: 0 12px;
-        min-width: 48px;
-        border-radius: 0.3em;
+        gap: 1em;
         height: 32px;
-        display: flex;
-        font-size: 14px;
-        position: relative;
         color: black;
+        margin-bottom: 0.4em;
       }
+
+
+
       .filter-label-title {
-        font-family: OpenSans-Regular;
-        font-weight: 600;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 32px;
+        position: relative;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .label-filter-title {
+        margin-left: 3em;
+        font-size: 13px;
+      }
+
+
+      .circle {
+        position: absolute;
+        left: 1rem;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
       }
     }
   }
+
   .filter-by-members {
     ul {
       padding: 0;
@@ -56,15 +109,18 @@
       display: flex;
       gap: 0.5em;
       flex-direction: column;
+
       li {
         display: flex;
         align-items: center;
         justify-content: space-between;
         cursor: pointer;
+
         div {
           gap: 0.5em;
           display: flex;
           align-items: center;
+
           img {
             margin-left: 0.5em;
             width: rem(35px);
@@ -74,6 +130,7 @@
         }
       }
     }
+
     .filter-member-check {
       margin-right: 0.5em;
     }

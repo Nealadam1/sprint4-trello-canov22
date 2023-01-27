@@ -65,6 +65,7 @@
     margin-bottom: 1em;
   }
 
+
   .card-label {
     // height: 8px;
     padding: 0 12px;
@@ -77,6 +78,11 @@
     color: black;
     position: relative;
     padding-left: 32px;
+
+    .label-filter-title {
+      margin-left: 3em;
+    }
+
 
     .circle {
       position: absolute;
@@ -247,7 +253,7 @@
       color: #5e6c84;
     }
 
-    
+
 
     .sep-line {
       border-bottom: 1px solid rgba(9, 30, 66, 0.13);
@@ -283,10 +289,10 @@
       width: 4.5rem;
     }
 
-    
+
   }
 
-  
+
 
   .card-detail-data {
     padding-left: 2em;
@@ -365,7 +371,7 @@
     // }
 
     .card-details-group-title {
-      margin: 0 0 1.8em;
+      margin: 0.5em 0 1.8em;
       font-size: 13px;
       padding-left: 2.5em;
       font-family: OpenSans-Regular;
@@ -381,7 +387,6 @@
       font-size: 18px;
       font-family: $trello-font;
       letter-spacing: 0.5px;
-      padding-bottom: 5px;
       margin: 0;
 
       .card-title-input {

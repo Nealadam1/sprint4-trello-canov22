@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import { filterCardsBy } from "../../store/actions/board.action"
 import { FiCheck } from "react-icons/fi"
+import { utilService } from "../../services/util.service"
 
 export function BoardFilter({ onSetFilter }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -46,7 +47,7 @@ export function BoardFilter({ onSetFilter }) {
 
   return (
     <div className="board-filter">
-      <p>Filter</p>
+      <h3 className="board-filter-title">Filter</h3>
       <div className="sep-line"></div>
       <p className="filter-keyword">Keyword</p>
       <input
@@ -62,24 +63,35 @@ export function BoardFilter({ onSetFilter }) {
           <p className="labels-title-filter">Labels</p>
           {board.labels.map((label) => (
             <label key={label.id}>
-              <li
-                className="label-filter-title-preview"
-                style={{ backgroundColor: label.color }}
-              >
+              <li className="label-filter-title-preview">
                 <div className="label-item">
                   <input
                     value={label.id}
                     onChange={handleCheckbox}
                     type="checkbox"
                   />
-                  <span className="filter-label-title">{label.title}</span>
+
+                  <span
+                    style={{
+                      backgroundColor: utilService.lightenColor(label.color),
+                    }}
+                    className="filter-label-title"
+                  >
+                    <span
+                      style={{
+                        backgroundColor: label.color,
+                      }}
+                      className="circle"
+                    ></span>
+                    <span className="label-filter-title">{label.title}</span>
+                  </span>
                 </div>
               </li>
             </label>
           ))}
         </ul>
       </div>
-      <p>Members</p>
+      <p className="members-filter-title">Members</p>
       <div className="filter-by-members">
         <ul>
           {board.members.map((member) => (

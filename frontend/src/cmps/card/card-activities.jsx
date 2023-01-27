@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { utilService } from "../../services/util.service"
 import { CardChangeBg } from "./card-preview/card-changeBg"
+import { RxActivityLog } from "react-icons/rx"
 
 export function CardActivites() {
   const modalRef = useRef(null)
@@ -25,35 +26,39 @@ export function CardActivites() {
       <div className="sep-line"></div> */}
 
       {isEditing && <CardChangeBg board={board} />}
-      {!isEditing && <div>
-        <p className="activities-title">Activites</p>
-        <div className="sep-line"></div>
-        <ul>
-          {board.activities.map((activitie) => {
-            // console.log(activitie)
-            return (
-              <li className="activitie" key={activitie.id}>
-                <div className="user-activitie-img">
-                  <img src={activitie.userImage} />
-                </div>
-                <div className="user-activitie-info">
-                  <p>
-                    {activitie.fullname +
-                      " " +
-                      activitie.data +
-                      " " +
-                      activitie.text}
-                  </p>
-                  <span className="activitie-time">
-                    {utilService.formatTime(activitie.createdAt)}
-                  </span>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </div>}
-
+      {!isEditing && (
+        <div>
+          <p className="activities-menu-title">Menu</p>
+          <div className="sep-line"></div>
+          <div className="activity-title">
+            <span>
+              <RxActivityLog />
+            </span>
+            <p className="activities-title">Activity</p>
+          </div>
+          <ul>
+            {board.activities.map((activitie) => {
+              // console.log(activitie)
+              return (
+                <li className="activitie" key={activitie.id}>
+                  <div className="user-activitie-img">
+                    <img src={activitie.userImage} />
+                  </div>
+                  <div className="user-activitie-info">
+                    <p>
+                      <b>{activitie.fullname}</b> {activitie.data}{" "}
+                      {activitie.text}
+                    </p>
+                    <span className="activitie-time">
+                      {utilService.formatTime(activitie.createdAt)}
+                    </span>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }
