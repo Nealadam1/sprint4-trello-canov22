@@ -28,8 +28,6 @@
 
 
 
-
-
     .board-background-btn {
         color: $clr7;
         font-size: 13px;
@@ -39,6 +37,14 @@
         width: 100%;
 
     }
+}
+
+.change-bg-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+
 }
 
 .background-menu-title {
@@ -91,7 +97,7 @@
 }
 
 .unsplash-container {
-    padding: 0 1em 0 1em;
+    padding: 0 0.4em 0 0.4em;
 
     display: grid;
     place-content: center;
@@ -123,6 +129,7 @@
     .option {
         cursor: pointer;
         border-radius: 10px;
+        height: 100px;
 
         &:hover {
             background-color: #dfe1e6;
