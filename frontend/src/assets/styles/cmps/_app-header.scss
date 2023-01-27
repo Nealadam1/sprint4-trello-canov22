@@ -267,7 +267,6 @@
 
   /* tablet, landscape iPad, lo-res laptops ands desktops */
   .app-header {
-    background-color: green;
 
     .options {
       visibility: visible;
@@ -276,11 +275,24 @@
 
     .app-header-links {
       flex-direction: column;
+      opacity: 0;
       position: fixed;
-      left: 100px;
-      background: black;
-      top: 22px;
+      left: 150px;
+      background: #EBECF0;
+      top: 49px;
       z-index: 10;
+      align-items: flex-start;
+      padding-top: 8px;
+
+      .app-header-link {
+        color: #172B4D;
+        padding: 5px;
+        width: 100%;
+      }
+
+      &.modal-open {
+        opacity: 1;
+      }
     }
 
   }

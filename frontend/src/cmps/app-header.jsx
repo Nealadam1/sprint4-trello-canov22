@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faWeebly } from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom"
@@ -17,15 +17,13 @@ export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
-  const isActionModal = useSelector(
-    (storeState) => storeState.systemModule.isActionModal
-  )
+  const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
   const buttonRefCreateBoard = useRef(null)
   const buttonRefStarredBoards = useRef(null)
   const buttonRefRecentBoards = useRef(null)
-  const headerBackground = board
-    ? utilService.darken(board?.style?.backgroundColor, -40)
-    : ""
+  const headerBackground = board ? utilService.darken(board?.style?.backgroundColor, -40) : ""
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const openModalClass = isOpenModal ? 'modal-open' : ''
 
   async function onLogout() {
     try {
@@ -47,7 +45,7 @@ export function AppHeader() {
           </Link>
         </div>
 
-        <div className="app-header-links">
+        <div className={"app-header-links " + openModalClass}>
 
 
           <button className="app-header-link" ref={buttonRefRecentBoards}
@@ -102,7 +100,7 @@ export function AppHeader() {
 
         </div>
 
-        <button className="options app-header-link" href="#">
+        <button className="options app-header-link" href="#" onClick={() => setIsOpenModal(!isOpenModal)}>
           More
           <span>
             <RiArrowDropDownLine />
