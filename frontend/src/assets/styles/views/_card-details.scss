@@ -13,7 +13,7 @@
   // grid-template-areas:
   //   "header header header"
   //   "content content side-bar";
-  width: rem(768px);
+  width: 100%;
   max-width: rem(768px);
   min-height: 87.5vh;
   background-color: #ebecf0;
@@ -247,7 +247,7 @@
       color: #5e6c84;
     }
 
-    
+
 
     .sep-line {
       border-bottom: 1px solid rgba(9, 30, 66, 0.13);
@@ -283,10 +283,10 @@
       width: 4.5rem;
     }
 
-    
+
   }
 
-  
+
 
   .card-detail-data {
     padding-left: 2em;

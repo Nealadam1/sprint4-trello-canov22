@@ -5,6 +5,7 @@
   padding: 5px;
   color: $clr6;
   font-weight: bold;
+
   .logo {
     font-family: Pacifico;
     display: flex;
@@ -16,9 +17,11 @@
     display: flex;
     align-items: center;
     gap: 1em;
+
     .first {
       margin-left: 1.5em;
     }
+
     .app-header-link {
       background-color: inherit;
       font-family: OpenSans-Regular;
@@ -33,12 +36,14 @@
       // display: flex;
       display: flex;
       align-items: center;
+
       span {
         font-size: 26px;
         position: relative;
         display: flex;
         align-items: center;
       }
+
       &:hover {
         background-color: #0000003d;
       }
@@ -48,6 +53,7 @@
   .board-search {
     padding: 2px;
     position: relative;
+
     .search-container {
       display: flex;
       align-items: center;
@@ -63,6 +69,7 @@
       box-shadow: none;
       background-color: rgba(255, 255, 255, 0.2);
       color: var(--ds-text-subtlest, #ffffff);
+
       input {
         box-shadow: none;
         color: var(--ds-text-subtlest, #ffffff);
@@ -74,12 +81,14 @@
         padding: 0px 6px 0px 10px;
         font-size: 14px;
         box-shadow: none;
+
         &::placeholder {
           color: #fff;
           font-family: OpenSans-Regular;
           font-size: 14px;
         }
       }
+
       span {
         display: flex;
         font-size: 16px;
@@ -90,11 +99,9 @@
   .filtered-results-board {
     z-index: 100;
     position: absolute;
-    box-shadow: var(
-      --ds-shadow-raised,
-      0 1px 1px rgba(9, 30, 66, 0.25),
-      0 0 0 1px var(--ds-border, rgba(9, 30, 66, 0.08))
-    );
+    box-shadow: var(--ds-shadow-raised,
+        0 1px 1px rgba(9, 30, 66, 0.25),
+        0 0 0 1px var(--ds-border, rgba(9, 30, 66, 0.08)));
     background: var(--ds-surface-raised, #ffffff);
     border: 1px solid var(--ds-border, rgba(9, 30, 66, 0.08));
     border-radius: 3px;
@@ -105,9 +112,11 @@
     list-style: none;
     font-family: OpenSans-Regular;
     padding: 0;
+
     .filtered-boards-title {
       padding: 0.5em 0.6em;
     }
+
     p {
       color: var(--ds-text-subtle, #5e6c84);
       font-size: 12px;
@@ -122,6 +131,7 @@
 
       padding-left: 1.5em;
     }
+
     a {
       padding: 0;
       margin: 0;
@@ -130,8 +140,10 @@
       display: flex;
       align-items: center;
     }
+
     li {
       padding: 0.5em;
+
       &:hover {
         background-color: #e6e7fb;
       }
@@ -141,6 +153,7 @@
   .login-signup-page {
     display: flex;
     margin-right: 15px;
+
     a {
       display: flex;
       align-items: center;
@@ -151,9 +164,11 @@
     display: flex;
     align-items: center;
     gap: 1em;
+
     .logged-user {
       display: flex;
       align-items: center;
+
       span {
         font-family: OpenSans-Regular;
       }
@@ -168,8 +183,7 @@
 
     background-color: initial;
 
-    svg {
-    }
+    svg {}
 
     &:active {
       color: $clr6;
@@ -218,6 +232,24 @@
     margin: 10px;
   }
 
-  nav .active {
+  nav .active {}
+}
+
+
+
+@media (min-width:961px) {
+
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .app-header {
+    background-color: green;
+  }
+
+}
+
+@media (min-width:1025px) {
+
+  /* big landscape tablets, laptops, and desktops */
+  .app-header {
+    background-color: green;
   }
 }
