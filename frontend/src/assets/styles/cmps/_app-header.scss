@@ -169,6 +169,7 @@
     display: flex;
     align-items: center;
     gap: 1em;
+    align-items: center;
 
     .logged-user {
       display: flex;
@@ -264,11 +265,37 @@
   }
 }
 
+.search-modal {
+  visibility: hidden;
 
-@media (max-width:460px) {
-  .search-container {
-    visibility: hidden;
+  .svg-icn {
+    height: 0;
+    width: 0;
+  }
+}
+
+@media (max-width:645px) {
+  .search-modal {
+    visibility: visible;
+  }
+
+  .app-header .board-search {
     position: fixed;
+    top: 44px;
+    background-color: black;
+    right: 15px;
+
+    &.open-search {
+      visibility: visible;
+
+    }
+  }
+
+  .search-modal {
+    visibility: visible;
+    // height: 22px;
+    // width: 22px;
+    // padding: 5px 10px;
   }
 }
 

@@ -5,6 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  padding-bottom: 25px;
 
   .grey-button {
     margin-top: 0;
@@ -19,6 +20,7 @@
     flex-wrap: wrap;
     gap: 0.5em;
     margin-bottom: 2.5em;
+    width: 100%;
   }
 
   li:last-child {
@@ -114,6 +116,28 @@
     div p:last-child {
       font-weight: normal;
       font-size: 14px;
+    }
+  }
+}
+
+
+@media (max-width:970px) {
+
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .board-list {
+
+    justify-content: center;
+
+    h3 {
+      text-align: center;
+    }
+
+    .favorite-list {
+      justify-content: center;
+
+      h3 {
+        text-align: center;
+      }
     }
   }
 }

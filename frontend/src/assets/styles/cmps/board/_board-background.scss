@@ -36,7 +36,12 @@
         font-family: "OpenSans-Regular";
         font-weight: bold;
         color: #172b4d;
+        background-color: transparent;
         width: 100%;
+
+        // &:hover {
+        //     background-color: red;
+        // }
 
     }
 }
@@ -123,6 +128,7 @@
     .option {
         cursor: pointer;
         border-radius: 10px;
+        height: 100px;
 
         &:hover {
             background-color: #dfe1e6;
