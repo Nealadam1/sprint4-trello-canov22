@@ -8,7 +8,7 @@ import { FaUser } from "react-icons/fa"
 import { userService } from "../services/user.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { logout } from "../store/actions/user.action"
-import { RiArrowDropDownLine } from "react-icons/ri"
+import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri"
 import { BoardSearch } from "./board/board-search"
 import { loadBoards, OpenActionModal, setBoard } from "../store/actions/board.action"
 import { DynamicActionModal } from "./dynamic-modal-cmp"
@@ -41,7 +41,7 @@ export function AppHeader() {
         <div className="logo">
           <Link to="/">
             <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
-            <span className="logo-text">workflow</span>
+            <span className="logo-text">orkflow</span>
           </Link>
         </div>
 
@@ -54,7 +54,7 @@ export function AppHeader() {
             }>
             Recent
             <span>
-              <RiArrowDropDownLine />
+              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
             </span>
           </button>
           {isActionModal && (
@@ -69,7 +69,7 @@ export function AppHeader() {
             }>
             Starred
             <span>
-              <RiArrowDropDownLine />
+              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
             </span>
           </button>
 
@@ -86,7 +86,7 @@ export function AppHeader() {
             }>
             Create board
             <span>
-              <RiArrowDropDownLine />
+              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
             </span>
           </button>
 
