@@ -2,9 +2,13 @@
     padding: 0px;
     margin-bottom: 13px;
 
-    button {
+    .attachment-btn {
         margin-top: 0;
         margin-left: 26px;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        flex-wrap: wrap;
     }
 
     h3 {
@@ -75,8 +79,8 @@
             text-decoration: underline;
         }
 
-        a{
-            color:inherit;
+        a {
+            color: inherit;
             font-size: 0.8rem;
         }
 
@@ -91,9 +95,9 @@
 
 }
 
-.add-attachment{
+.add-attachment {
 
-    .add-attachment-header{
+    .add-attachment-header {
         margin-bottom: 8px;
         padding: 0 12px;
         position: relative;
@@ -131,7 +135,7 @@
         }
     }
 
-    ul{
+    ul {
         padding: 13px 0px;
         margin: 13px 13px;
         border-bottom: 1px solid rgba(9, 30, 66, 0.13);
@@ -144,24 +148,25 @@
         text-decoration: none;
         margin: 0;
         padding: 6px 0px;
+
         &:hover {
             background-color: #091e4214;
         }
 
-        hr{
+        hr {
             margin: 8px 0px;
         }
-      
+
     }
 
-    input{
+    input {
         height: 36px;
     }
 
-    .add-attachment-link{
+    .add-attachment-link {
         margin: 0px 13px;
     }
-    
+
 
 
 

@@ -28,6 +28,7 @@ import { CardComments } from "../cmps/card/card-details/card-comments"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { CardDate } from "../cmps/card/card-details/card-date"
 import { CardAttachments } from "../cmps/card/card-details/card-attachments"
+import { CgClose } from "react-icons/cg"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -99,9 +100,7 @@ export function CardDetails() {
   }
 
   function displayHeader(card) {
-    console.log("header icon", card)
-
-    if (card?.attachments[0]?.imgUrl) {
+    if (card?.attachments && card.attachments[0]?.imgUrl) {
       card.style = { bgColor: "#fffff" }
       return {
         backgroundImage: card?.attachments
@@ -113,7 +112,7 @@ export function CardDetails() {
         backgroundPosition: "center",
         height: "100px",
       }
-    } else if (card?.attachments[0]?.link) {
+    } else if (card?.attachments && card.attachments[0]?.link) {
       card.style = { bgColor: "#fff" }
       return {
         backgroundImage: card?.attachments
@@ -150,6 +149,7 @@ export function CardDetails() {
           }}
           onClick={handleClose}
         >
+
           <div
             style={{
               gridTemplateAreas: card?.style?.bgColor
@@ -167,6 +167,9 @@ export function CardDetails() {
                 </button> : ''} */}
               </header>
             )}
+            <button onClick={handleClose} className="close-card-detail">
+              <Link to={`/board/${board._id}`}><i><CgClose/></i></Link>
+            </button>
 
             <div className="side-bar">
               <CardDetailsSidebar setCard={setCard} card={card} board={board} />
@@ -222,7 +225,11 @@ export function CardDetails() {
                   <div>
                     <span className="card-details-labels-title">Labels</span>
                     <div className="card-details-label-container">
-                      <CardLabels card={card} cardLabelIds={card.labelIds} />
+                      <CardLabels
+                        setCard={setCard}
+                        card={card}
+                        cardLabelIds={card.labelIds}
+                      />
                       <div
                         className="grey-button card-details-add-labels"
                         ref={buttonRefLabelAction}

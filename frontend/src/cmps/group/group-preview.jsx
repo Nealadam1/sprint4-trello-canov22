@@ -16,6 +16,7 @@ export function GroupPreview({
   const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const [newTitle, setNewTitle] = useState(group.title)
   const [EditCardShortcut, setEditCardShortcut] = useState(null)
+
   const inputRef = useRef(null)
 
   const handleBlur = (event) => {
@@ -27,6 +28,7 @@ export function GroupPreview({
     if (openEditGroupId === groupId) {
       ev.stopPropagation()
       setOpenEditGroupId(null)
+
     } else {
       ev.stopPropagation()
       setOpenEditGroupId(groupId)

@@ -11,17 +11,21 @@
     form {
       margin-top: 10rem;
     }
+
     padding: 0;
+
     .search-boards-input {
       width: 12rem;
       height: 2rem;
       border: none;
       outline: none;
+
       &::placeholder {
         font-family: OpenSans-Regular;
         color: #5e6c84;
       }
     }
+
     .board-search-label {
       color: var(--ds-text-subtle, #5e6c84);
       display: block;
@@ -31,6 +35,7 @@
       margin-bottom: 4px;
       margin-top: 12px;
     }
+
     .search-container {
       display: flex;
       align-items: center;
@@ -54,6 +59,7 @@
       /* width: 100%; */
       margin-bottom: 0;
     }
+
     .search-board-icon {
       display: flex;
       font-size: 14px;
@@ -61,17 +67,42 @@
   }
 
   .favorite-list {
+    color: #172b4d;
+    font-family: Arial, Helvetica, sans-serif;
+
     h3 {
+      width: 100%;
+      font-size: 16px;
+      font-weight: 700;
+      white-space: nowrap;
+      margin: 0;
+
+
+    }
+
+    span {
+      font-family: Roboto;
+
       display: flex;
       align-items: center;
       gap: 1em;
-      width: 100%;
-      font-size: 16px;
+      color: #172b4d;
+
     }
+  }
+
+  .your-boards {
+    color: #172b4d;
+
+    // font-family: HelveticaNeue Bold;
+
     span {
-      margin-left: 0.5em;
-      font-size: 22px;
       display: flex;
+      align-items: center;
+      gap: 1em;
+      color: #172b4d;
+      font-family: Roboto;
+
     }
   }
 
@@ -80,14 +111,14 @@
     width: 53%;
     height: 95vh;
     padding: 0;
+
     h3 {
       width: 100%;
       font-size: 16px;
       font-weight: 700;
-      line-height: 24px;
-      margin: 20px 0;
       white-space: nowrap;
       color: #5e6c84;
+      margin: 0;
     }
   }
 

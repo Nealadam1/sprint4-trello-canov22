@@ -5,7 +5,7 @@ import { uploadImg } from "../../../../services/upload.service"
 import { utilService } from "../../../../services/util.service"
 import { closeActionModal, updateCard } from "../../../../store/actions/board.action"
 
-export function AttachmentAction({ card, setCard }) {
+export function AttachmentAction({ card }) {
     let [imgLink, setImgLink] = useState('')
     const [LinkName, setLinkName] = useState('')
     const fileInputRef = useRef(null)

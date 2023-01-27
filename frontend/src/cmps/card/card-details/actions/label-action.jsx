@@ -120,7 +120,6 @@ export function LabelAction({ card }) {
     card.labelIds.splice(labelIdxRemove, 1)
     updateCard(card, "REMOVE_LABEL")
     setLabels([...board.labels])
-    updateBoard({ ...board, labels: [...board.labels] })
   }
 
   return (
