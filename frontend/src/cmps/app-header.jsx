@@ -41,7 +41,7 @@ export function AppHeader() {
         <div className="logo">
           <Link to="/">
             <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
-            <span className="logo-text">workflow</span>
+            <span className="logo-text">orkflow</span>
           </Link>
         </div>
 
