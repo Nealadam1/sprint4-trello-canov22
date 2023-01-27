@@ -1,7 +1,14 @@
+import { useRef } from "react"
 import { GrAttachment } from "react-icons/gr"
-import { updateCard } from "../../../store/actions/board.action"
+import { useSelector } from "react-redux"
+import { OpenActionModal, updateCard } from "../../../store/actions/board.action"
+import { DynamicActionModal } from "../../dynamic-modal-cmp"
 
 export function CardAttachments({ card }) {
+    const isActionModal = useSelector(
+        (storeState) => storeState.systemModule.isActionModal
+    )
+    const buttonRefAttachment = useRef(null)
 
     function handleDelete(attachmentId) {
         card.style = {}
@@ -54,7 +61,31 @@ export function CardAttachments({ card }) {
                 ))}
             </ul>
 
-            {card?.attachments.length > 0 && <button className="grey-button">Add Attachment</button>}
+            {card?.attachments.length > 0 &&
+                <div>
+                    <button
+                        className="grey-button attachment-btn"
+                        ref={buttonRefAttachment}
+                        onClick={
+                            !isActionModal ? (ev) => OpenActionModal(ev, "add-attachment2") : null
+                        }
+                    >
+                        {isActionModal && (
+                            <DynamicActionModal
+                                card={card}
+                                buttonRef={buttonRefAttachment.current}
+                                type={"add-attachment2"}
+                            />
+                        )}
+                        <span className="checklist-icon side-bar-icon">
+                            <GrAttachment />
+                        </span>
+                        Add Attachment
+                       
+                    </button>
+                </div>
+            }
+
 
 
 

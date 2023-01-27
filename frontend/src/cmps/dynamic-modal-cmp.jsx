@@ -108,6 +108,14 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "add-attachment2":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <AttachmentAction {...props} />
+          </DynamicModalPosition>
+        )
+      )
     case "move-card":
       return (
         modal === props.type && (

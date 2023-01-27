@@ -1,6 +1,7 @@
 .members-action-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   .members-action-info {
     display: flex;
     li {
@@ -8,6 +9,7 @@
       display: flex;
       align-items: center;
       gap: 0.2em;
+      width: 100%;
     }
   }
   .members-action-detail {

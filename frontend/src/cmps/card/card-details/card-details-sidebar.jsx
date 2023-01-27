@@ -162,7 +162,6 @@ export function CardDetailsSidebar({ card, setCard }) {
               card={card}
               buttonRef={buttonRefAttachment.current}
               type={"add-attachment"}
-              setCard={setCard}
             />
           )}
           <span className="checklist-icon side-bar-icon">
