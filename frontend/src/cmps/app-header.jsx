@@ -22,6 +22,7 @@ export function AppHeader() {
   )
   const buttonRefCreateBoard = useRef(null)
   const buttonRefStarredBoards = useRef(null)
+  const buttonRefRecentBoards = useRef(null)
   const headerBackground = board
     ? utilService.darken(board?.style?.backgroundColor, -40)
     : ""
@@ -48,13 +49,22 @@ export function AppHeader() {
 
         <div className="app-header-links">
 
-          <button className="app-header-link" href="#">
+
+          <button className="app-header-link" ref={buttonRefRecentBoards}
+            onClick={
+              !isActionModal ? (ev) => OpenActionModal(ev, "recent-boards") : null
+            }>
             Recent
             <span>
               <RiArrowDropDownLine />
             </span>
           </button>
-
+          {isActionModal && (
+            <DynamicActionModal
+              buttonRef={buttonRefRecentBoards.current}
+              type={"recent-boards"}
+            />
+          )}
           <button className="app-header-link" ref={buttonRefStarredBoards}
             onClick={
               !isActionModal ? (ev) => OpenActionModal(ev, "starred-boards") : null
