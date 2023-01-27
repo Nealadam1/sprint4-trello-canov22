@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { boardService } from "../../../../services/board.service"
-import { addLabel, updateBoard, updateCard } from "../../../../store/actions/board.action"
+import { addLabel, updateCard } from "../../../../store/actions/board.action"
 import { TwitterPicker } from "react-color"
 import {
   removeLabelFromBoard,
@@ -119,7 +119,6 @@ export function LabelAction({ card }) {
     card.labelIds.splice(labelIdxRemove, 1)
     updateCard(card, "REMOVE_LABEL")
     setLabels([...board.labels])
-    updateBoard({ ...board, labels: [...board.labels] })
   }
 
   return (

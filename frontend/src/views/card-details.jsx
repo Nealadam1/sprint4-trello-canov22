@@ -100,9 +100,7 @@ export function CardDetails() {
   }
 
   function displayHeader(card) {
-    console.log("header icon", card)
-
-    if (card?.attachments[0]?.imgUrl) {
+    if (card?.attachments && card.attachments[0]?.imgUrl) {
       card.style = { bgColor: "#fffff" }
       return {
         backgroundImage: card?.attachments
@@ -114,7 +112,7 @@ export function CardDetails() {
         backgroundPosition: "center",
         height: "100px",
       }
-    } else if (card?.attachments[0]?.link) {
+    } else if (card?.attachments && card.attachments[0]?.link) {
       card.style = { bgColor: "#fff" }
       return {
         backgroundImage: card?.attachments
@@ -227,7 +225,11 @@ export function CardDetails() {
                   <div>
                     <span className="card-details-labels-title">Labels</span>
                     <div className="card-details-label-container">
-                      <CardLabels card={card} cardLabelIds={card.labelIds} />
+                      <CardLabels
+                        setCard={setCard}
+                        card={card}
+                        cardLabelIds={card.labelIds}
+                      />
                       <div
                         className="grey-button card-details-add-labels"
                         ref={buttonRefLabelAction}

@@ -20,7 +20,7 @@ import {
 import { boardService } from "../../services/board.service"
 import { BsArchive } from "react-icons/bs"
 import LoadingSpinner from "../../views/spinner/loading-spinner"
-import { AiOutlineUser } from "react-icons/ai"
+import { HiOutlineUser } from "react-icons/hi"
 
 export function BoardList({ boards }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -75,9 +75,11 @@ export function BoardList({ boards }) {
         {getStarredBoard().length ? (
           <h3>
             <span>
-              <HiOutlineStar />
+              <HiOutlineStar
+                style={{ fontSize: "22px", marginLeft: "0.5rem" }}
+              />
+              Starred boards
             </span>
-            Starred boards
           </h3>
         ) : (
           ""
@@ -98,11 +100,17 @@ export function BoardList({ boards }) {
               <Link to={`/board/${board._id}`}>
                 <BoardPreview board={board} />
                 <button onClick={(ev) => onArchiveBoard(ev, board)}>
-                  {<BsArchive />}
+                  {/* {<BsArchive />} */}
                 </button>
                 <button onClick={(ev) => starBoard(ev, board)}>
                   <FontAwesomeIcon
-                    className="btn-icon"
+                    style={{
+                      marginRight: "1rem",
+                      marginBottom: "0.5rem",
+                      fontSize: "12px",
+                      color: board.isStarred ? "gold" : "inherit",
+                    }}
+                    className="btn-star-icon"
                     icon={board.isStarred ? faFullStar : faStar}
                   />
                 </button>
@@ -111,7 +119,12 @@ export function BoardList({ boards }) {
           )
         })}
       </ul>
-      <h3>Your boards</h3>
+      <h3 className="your-boards">
+        <span>
+          <HiOutlineUser style={{ fontSize: "22px", marginLeft: "0.5rem" }} />
+          Your boards
+        </span>
+      </h3>
       <li
         className="list-item grey-button"
         ref={buttonRef}
@@ -134,9 +147,9 @@ export function BoardList({ boards }) {
             className="list-item"
             style={{
               background: `${
-                board.style.thumbnail
-                  ? `url(${board.style.thumbnail})`
-                  : `${board.style.backgroundColor}`
+                board?.style?.thumbnail
+                  ? `url(${board?.style?.thumbnail})`
+                  : `${board?.style?.backgroundColor}`
               }`,
             }}
             key={board._id}
@@ -145,10 +158,16 @@ export function BoardList({ boards }) {
               <BoardPreview board={board} />
 
               <button onClick={(ev) => onArchiveBoard(ev, board)}>
-                {<BsArchive />}
+                {/* {<BsArchive />} */}
               </button>
               <button onClick={(ev) => starBoard(ev, board)}>
                 <FontAwesomeIcon
+                  style={{
+                    marginRight: "1rem",
+                    marginBottom: "0.5rem",
+                    fontSize: "12px",
+                    color: board.isStarred ? "gold" : "inherit",
+                  }}
                   className="btn-icon"
                   icon={board.isStarred ? faFullStar : faStar}
                 />

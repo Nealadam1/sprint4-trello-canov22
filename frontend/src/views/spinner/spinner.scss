@@ -1,20 +1,43 @@
-@keyframes spinner {
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 10px;
+    height: 28px;
+    margin: 0 8px;
+    border-radius: 4px;
+    animation: upDown 1s ease-in-out infinite;
+}
+
+.bar1 {
+    background-color: #3498db;
+}
+
+.bar2 {
+    background-color: #3498db;
+    animation-delay: 0.2s;
+}
+
+.bar3 {
+    background-color: #3498db;
+    animation-delay: 0.4s;
+}
+
+@keyframes upDown {
     0% {
-        transform: rotate(0deg);
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
     }
 
     100% {
-        transform: rotate(360deg);
+        transform: translateY(0);
     }
-}
-
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 10px solid #f3f3f3;
-    /* Light grey */
-    border-top: 10px solid #383636;
-    /* Black */
-    border-radius: 50%;
-    animation: spinner 1.5s linear infinite;
 }

@@ -4,11 +4,11 @@ import "react-day-picker/dist/style.css"
 import { useSelector } from "react-redux"
 import { updateCard } from "../../../../store/actions/board.action"
 
-export function DateAction({ setCard }) {
+export function DateAction({ setCard, card }) {
   const [selectedDay, setSelectedDay] = useState(null)
   const [range, setRange] = useState(false)
   const [startEndDate, setStartEndDate] = useState({ start: null, end: null })
-  const card = useSelector((storeState) => storeState.boardModule.card)
+  // const card = useSelector((storeState) => storeState.boardModule.card)
 
   const footer = startEndDate.start ? null : selectedDay ? ( // </p> //   End date: {new Date(startEndDate.end).toDateString()} //   <br /> //   Start date: {new Date(startEndDate.start).toDateString()} // <p>
     <p>Selected date: {new Date(selectedDay).toDateString()}</p>
@@ -17,6 +17,8 @@ export function DateAction({ setCard }) {
   )
 
   function handleChange({ target }) {
+    console.log(target)
+
     let { checked } = target
     if (checked) {
       setRange(true)
@@ -26,16 +28,21 @@ export function DateAction({ setCard }) {
         from: prevDay,
         to: selectedDay,
       })
+      console.log(selectedDay)
+
       setStartEndDate({ start: prevDay, end: selectedDay })
     } else {
       setRange(false)
       setStartEndDate({ start: null, end: selectedDay })
+      console.log(startEndDate)
     }
   }
 
   function handleSubmit(event) {
     event.preventDefault()
     if (startEndDate.start) {
+      console.log(startEndDate)
+
       const startTime = startEndDate.start.getTime()
       const endTime = startEndDate.end.getTime()
       console.log(`Start date: ${startTime} End date: ${endTime}`)
@@ -46,9 +53,8 @@ export function DateAction({ setCard }) {
       // Save the start and end date to your backend or wherever you want
     } else {
       const selectedTime = selectedDay.getTime()
-      card.dueDate = selectedTime
-      updateCard(card, "SET_DATE")
-      // setCard({ ...card, dueDate: selectedTime })
+      updateCard({ ...card, dueDate: selectedTime }, "SET_DATE")
+      setCard({ ...card, dueDate: selectedTime })
     }
     {
       console.log("Please pick a day.")
@@ -62,6 +68,7 @@ export function DateAction({ setCard }) {
         selected={range ? selectedDay : selectedDay?.to}
         onSelect={setSelectedDay}
         footer={footer}
+        onChange={handleChange}
         showOutsideDays
       />
       <label>

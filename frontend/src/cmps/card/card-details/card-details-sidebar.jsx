@@ -13,10 +13,9 @@ import { IoMdCheckboxOutline } from "react-icons/io"
 import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai"
 import { MdOutlineCreditCard } from "react-icons/md"
 import { CardDetailsShortcut } from "./actions/card-detail-shortcut"
-import { GrAttachment } from "react-icons/gr"
+import { ImAttachment } from "react-icons/im"
 import { BsArrowRight, BsArchive } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
-
 
 export function CardDetailsSidebar({ card, setCard }) {
   const isActionModal = useSelector(
@@ -73,6 +72,7 @@ export function CardDetailsSidebar({ card, setCard }) {
           {isActionModal && (
             <DynamicActionModal
               card={card}
+              setCard={setCard}
               buttonRef={buttonRefLabels.current}
               type={"add-labels"}
             />
@@ -154,7 +154,9 @@ export function CardDetailsSidebar({ card, setCard }) {
           className="side-bar-btn"
           ref={buttonRefAttachment}
           onClick={
-            !isActionModal ? (ev) => OpenActionModal(ev, "add-attachment") : null
+            !isActionModal
+              ? (ev) => OpenActionModal(ev, "add-attachment")
+              : null
           }
         >
           {isActionModal && (
@@ -165,7 +167,7 @@ export function CardDetailsSidebar({ card, setCard }) {
             />
           )}
           <span className="checklist-icon side-bar-icon">
-            <GrAttachment />
+            <ImAttachment />
           </span>
           Attachment
         </button>

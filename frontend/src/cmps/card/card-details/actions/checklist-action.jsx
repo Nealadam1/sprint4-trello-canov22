@@ -23,6 +23,7 @@ export function ChecklistAction({ card, setCard }) {
     const updatedCard = { ...card, checklists: updatedChecklist }
     updateCard(updatedCard, "ADD_CHECKLIST")
     setCard(updatedCard)
+    console.log("after checklist", card)
     closeActionModal()
   }
 

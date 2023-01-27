@@ -152,6 +152,8 @@ export async function setCardToStoreRef(card) {
   }
 }
 export async function updateCard(card, action) {
+  console.log("card from action", card)
+
   try {
     store.dispatch({
       type: UPDATE_CARD,

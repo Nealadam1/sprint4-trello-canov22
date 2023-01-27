@@ -53,9 +53,8 @@ export function BoardDetails() {
     <div
       className="board-details"
       style={{
-        backgroundColor: board.style.backgroundColor,
-        backgroundImage: `url(${board.style.img})`,
-
+        backgroundColor: board?.style?.backgroundColor,
+        backgroundImage: `url(${board?.style?.img})`,
 
         // background: `${
         //   board.style.img
