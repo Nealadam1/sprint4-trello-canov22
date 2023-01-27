@@ -10,20 +10,28 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { logout } from "../store/actions/user.action"
 import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri"
 import { BoardSearch } from "./board/board-search"
-import { loadBoards, OpenActionModal, setBoard } from "../store/actions/board.action"
+import {
+  loadBoards,
+  OpenActionModal,
+  setBoard,
+} from "../store/actions/board.action"
 import { DynamicActionModal } from "./dynamic-modal-cmp"
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
-  const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
+  const isActionModal = useSelector(
+    (storeState) => storeState.systemModule.isActionModal
+  )
   const buttonRefCreateBoard = useRef(null)
   const buttonRefStarredBoards = useRef(null)
   const buttonRefRecentBoards = useRef(null)
-  const headerBackground = board ? utilService.darken(board?.style?.backgroundColor, -40) : ""
+  const headerBackground = board
+    ? utilService.darken(board?.style?.backgroundColor, -40)
+    : ""
   const [isOpenModal, setIsOpenModal] = useState(false)
-  const openModalClass = isOpenModal ? 'modal-open' : ''
+  const openModalClass = isOpenModal ? "modal-open" : ""
 
   async function onLogout() {
     try {
@@ -37,7 +45,6 @@ export function AppHeader() {
   return (
     <div className="app-header" style={{ backgroundColor: headerBackground }}>
       <div style={{ display: "flex", alignItems: "center" }}>
-
         <div className="logo">
           <Link to="/">
             <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
@@ -46,15 +53,22 @@ export function AppHeader() {
         </div>
 
         <div className={"app-header-links " + openModalClass}>
-
-
-          <button className="app-header-link" ref={buttonRefRecentBoards}
+          <button
+            className="app-header-link"
+            ref={buttonRefRecentBoards}
             onClick={
-              !isActionModal ? (ev) => OpenActionModal(ev, "recent-boards") : null
-            }>
+              !isActionModal
+                ? (ev) => OpenActionModal(ev, "recent-boards")
+                : null
+            }
+          >
             Recent
             <span>
-              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
+              {openModalClass ? (
+                <RiArrowDropRightLine />
+              ) : (
+                <RiArrowDropDownLine />
+              )}
             </span>
           </button>
           {isActionModal && (
@@ -63,13 +77,22 @@ export function AppHeader() {
               type={"recent-boards"}
             />
           )}
-          <button className="app-header-link" ref={buttonRefStarredBoards}
+          <button
+            className="app-header-link"
+            ref={buttonRefStarredBoards}
             onClick={
-              !isActionModal ? (ev) => OpenActionModal(ev, "starred-boards") : null
-            }>
+              !isActionModal
+                ? (ev) => OpenActionModal(ev, "starred-boards")
+                : null
+            }
+          >
             Starred
             <span>
-              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
+              {openModalClass ? (
+                <RiArrowDropRightLine />
+              ) : (
+                <RiArrowDropDownLine />
+              )}
             </span>
           </button>
 
@@ -80,16 +103,24 @@ export function AppHeader() {
             />
           )}
 
-          <button className="app-header-link" ref={buttonRefCreateBoard}
+          <button
+            className="app-header-link"
+            ref={buttonRefCreateBoard}
             onClick={
-              !isActionModal ? (ev) => OpenActionModal(ev, "create-board2") : null
-            }>
+              !isActionModal
+                ? (ev) => OpenActionModal(ev, "create-board2")
+                : null
+            }
+          >
             Create board
             <span>
-              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
+              {openModalClass ? (
+                <RiArrowDropRightLine />
+              ) : (
+                <RiArrowDropDownLine />
+              )}
             </span>
           </button>
-
 
           {isActionModal && (
             <DynamicActionModal
@@ -97,12 +128,15 @@ export function AppHeader() {
               type={"create-board2"}
             />
           )}
-
         </div>
 
-        <button className="options app-header-link" href="#" onClick={() => setIsOpenModal(!isOpenModal)}>
+        <button
+          className="options app-header-link"
+          href="#"
+          onClick={() => setIsOpenModal(!isOpenModal)}
+        >
           More
-          <span>
+          <span style={{ display: "flex" }}>
             <RiArrowDropDownLine />
           </span>
         </button>

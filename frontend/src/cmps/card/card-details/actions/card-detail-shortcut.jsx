@@ -5,6 +5,7 @@ import { BsArchive, BsArrowRight, BsTag } from "react-icons/bs"
 import { MdOutlineCreditCard } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { FaCopy } from "react-icons/fa"
 import {
   OpenActionModal,
   openCardDetail,
@@ -15,7 +16,12 @@ import {
 import { DynamicActionModal } from "../../../dynamic-modal-cmp"
 import { CardPreviewShortcut } from "../../card-preview-shortcut"
 
-export function CardDetailsShortcut({ card, setEditCardShortcut, group, cardRef }) {
+export function CardDetailsShortcut({
+  card,
+  setEditCardShortcut,
+  group,
+  cardRef,
+}) {
   const boardId = useSelector((storeState) => storeState.boardModule.board._id)
   const [title, setTitle] = useState(card.title)
   const [currCard, setCurrCard] = useState(card)
@@ -54,9 +60,10 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group, cardRef 
     updateCard(currCard, "ARCHIVED_CARD")
   }
 
-
   if (cardRef.current) {
-    console.log(cardRef.current.getBoundingClientRect().top + cardRef.current.offsetHeight)
+    console.log(
+      cardRef.current.getBoundingClientRect().top + cardRef.current.offsetHeight
+    )
     console.log(cardRef.current.offsetHeight)
     console.log(cardRef.current.getBoundingClientRect().top)
   }
@@ -64,8 +71,10 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group, cardRef 
     <section className="card-detail-shorcut" ref={cardRef}>
       <div className="card-detail-shortcut-menu">
         {isUseRef && (
-          <DynamicMenuPosition cardRef={cardRef.current} handleSave={handleSave}>
-
+          <DynamicMenuPosition
+            cardRef={cardRef.current}
+            handleSave={handleSave}
+          >
             <ul className="shortcut-actions">
               <li className="shortcut-action">
                 <Link
@@ -134,7 +143,12 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group, cardRef 
                 </span>
                 Move
               </li>
-              <li>Copy</li>
+              <li>
+                <span className="side-bar-icon">
+                  <FaCopy />
+                </span>
+                Copy
+              </li>
               <li onClick={handleArchive}>
                 <span className="archive-icon side-bar-icon">
                   <BsArchive />
@@ -143,13 +157,19 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group, cardRef 
               </li>
             </ul>
 
-            <div className="card-detail-shorcut-save "
+            <div
+              className="card-detail-shorcut-save "
               style={{
                 position: "fixed",
-                left: `calc(${cardRef.current.getBoundingClientRect().left}px + 5px)`,
-                top: `calc(${cardRef.current.getBoundingClientRect().top}px + ${cardRef.current.offsetHeight}px)`
-              }}>
-              <button className="blue-button" onClick={handleSave} >
+                left: `calc(${
+                  cardRef.current.getBoundingClientRect().left
+                }px + 5px)`,
+                top: `calc(${cardRef.current.getBoundingClientRect().top}px + ${
+                  cardRef.current.offsetHeight
+                }px)`,
+              }}
+            >
+              <button className="blue-button" onClick={handleSave}>
                 Save
               </button>
             </div>
@@ -195,10 +215,7 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group, cardRef 
           title={title}
           setTitle={setTitle}
         />
-
       </div>
-
-
     </section>
   )
 }
@@ -210,8 +227,9 @@ const DynamicMenuPosition = (props) => {
   const [modalStyles, setModalStyles] = useState({
     position: "fixed",
     top: `calc(${cardRef.getBoundingClientRect().top}px`,
-    left: `calc(${cardRef.getBoundingClientRect().left}px + ${cardRef.offsetWidth
-      }px)`,
+    left: `calc(${cardRef.getBoundingClientRect().left}px + ${
+      cardRef.offsetWidth
+    }px)`,
     width: "200px",
   })
 
@@ -222,8 +240,9 @@ const DynamicMenuPosition = (props) => {
     ) {
       setModalStyles({
         ...modalStyles,
-        top: `calc(${cardRef.getBoundingClientRect().top}px - ${modalRef.current.offsetHeight / 1.5
-          }px)`,
+        top: `calc(${cardRef.getBoundingClientRect().top}px - ${
+          modalRef.current.offsetHeight / 1.5
+        }px)`,
       })
     }
 
@@ -233,8 +252,9 @@ const DynamicMenuPosition = (props) => {
     ) {
       setModalStyles({
         ...modalStyles,
-        left: `calc(${cardRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth
-          }px)`,
+        left: `calc(${cardRef.getBoundingClientRect().left}px - ${
+          modalRef.current.offsetWidth
+        }px)`,
       })
     }
   }, [modalRef, cardRef])
