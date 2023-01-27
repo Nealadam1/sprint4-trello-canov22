@@ -253,7 +253,11 @@ export function CardDetails() {
                 )}
               </div>
               <div>{card && <CardDescription card={card} />}</div>
-              <div>{card?.attachments && <CardAttachments card={card} />}</div>
+              <div>
+                {card?.attachments && card?.attachments?.length > 0 && (
+                  <CardAttachments card={card} />
+                )}
+              </div>
               <div>
                 {card?.checklists && (
                   <CardChecklists
