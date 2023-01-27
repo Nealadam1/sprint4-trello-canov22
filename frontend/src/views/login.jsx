@@ -25,8 +25,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="#">
+        Workflow
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -113,9 +113,7 @@ export function Login({ setIsSignup }) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+
               </Grid>
               <Grid item>
                 <button

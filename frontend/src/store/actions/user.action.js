@@ -33,6 +33,16 @@ export async function removeUser(userId) {
     console.log("UserActions: err in removeUser", err)
   }
 }
+export async function updateUser(user){
+  try{
+    const updatedUser= await userService.update(user)
+    store.dispatch({type: SET_USER, user})
+    return updatedUser
+  } catch(err){
+    throw err
+  }
+}
+
 //
 export async function login(credentials) {
   try {

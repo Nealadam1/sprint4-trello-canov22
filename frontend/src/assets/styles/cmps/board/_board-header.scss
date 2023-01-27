@@ -191,20 +191,22 @@
 }
 
 @media (max-width:460px) {
+
   .board-header .board-actions .align-right .board-action-members .member-images {
     grid-template-columns: repeat(auto-fit, 12px);
   }
-}
 
+  .board-header button {
+    font-size: 10px;
+  }
+}
 
 @media (max-width:970px) {
 
   /* tablet, landscape iPad, lo-res laptops ands desktops */
-  .board-header button {
-    font-size: 10px;
-  }
+
 
   .member-images {
-    grid-template-columns: repeat(auto-fit, 12px) important;
+    grid-template-columns: repeat(auto-fit, 12px);
   }
 }

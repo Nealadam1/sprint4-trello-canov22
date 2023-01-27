@@ -38,6 +38,7 @@
       // display: flex;
       display: flex;
       align-items: center;
+      transition: background-color .07s;
 
       span {
         font-size: 26px;
@@ -47,7 +48,7 @@
       }
 
       &:hover {
-        background-color: #0000003d;
+        background-color: #0000001c;
       }
     }
   }
@@ -268,7 +269,6 @@
 
   /* tablet, landscape iPad, lo-res laptops ands desktops */
   .app-header {
-    background-color: green;
 
     .options {
       visibility: visible;
@@ -277,11 +277,32 @@
 
     .app-header-links {
       flex-direction: column;
+      opacity: 0;
       position: fixed;
-      left: 100px;
-      background: black;
-      top: 22px;
+      left: 150px;
+      background: #EBECF0;
+      width: 300px;
+      top: 49px;
       z-index: 10;
+      align-items: flex-start;
+      padding-top: 8px;
+      gap: 0;
+      box-shadow: var(--ds-shadow-raised, 0 1px 2px -1px rgba(9, 30, 66, 0.2509803922), 0 0 0 1px var(--ds-border, rgba(9, 30, 66, 0.0784313725)));
+      padding-bottom: 8px;
+
+
+      .app-header-link {
+        color: #172B4D;
+        padding: 5px;
+        padding-left: 8px;
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      &.modal-open {
+        opacity: 1;
+        justify-content: end;
+      }
     }
 
   }

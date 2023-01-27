@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faWeebly } from "@fortawesome/free-brands-svg-icons"
 import { Link } from "react-router-dom"
@@ -8,7 +8,7 @@ import { FaUser } from "react-icons/fa"
 import { userService } from "../services/user.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { logout } from "../store/actions/user.action"
-import { RiArrowDropDownLine } from "react-icons/ri"
+import { RiArrowDropDownLine, RiArrowDropRightLine } from "react-icons/ri"
 import { BoardSearch } from "./board/board-search"
 import { loadBoards, OpenActionModal, setBoard } from "../store/actions/board.action"
 import { DynamicActionModal } from "./dynamic-modal-cmp"
@@ -17,15 +17,13 @@ export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const loggedInUser = userService.getLoggedinUser()
   const board = useSelector((storeState) => storeState.boardModule.board)
-  const isActionModal = useSelector(
-    (storeState) => storeState.systemModule.isActionModal
-  )
+  const isActionModal = useSelector((storeState) => storeState.systemModule.isActionModal)
   const buttonRefCreateBoard = useRef(null)
   const buttonRefStarredBoards = useRef(null)
   const buttonRefRecentBoards = useRef(null)
-  const headerBackground = board
-    ? utilService.darken(board?.style?.backgroundColor, -40)
-    : ""
+  const headerBackground = board ? utilService.darken(board?.style?.backgroundColor, -40) : ""
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const openModalClass = isOpenModal ? 'modal-open' : ''
 
   async function onLogout() {
     try {
@@ -43,11 +41,11 @@ export function AppHeader() {
         <div className="logo">
           <Link to="/">
             <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
-            <span className="logo-text">workflow</span>
+            <span className="logo-text">orkflow</span>
           </Link>
         </div>
 
-        <div className="app-header-links">
+        <div className={"app-header-links " + openModalClass}>
 
 
           <button className="app-header-link" ref={buttonRefRecentBoards}
@@ -56,7 +54,7 @@ export function AppHeader() {
             }>
             Recent
             <span>
-              <RiArrowDropDownLine />
+              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
             </span>
           </button>
           {isActionModal && (
@@ -71,7 +69,7 @@ export function AppHeader() {
             }>
             Starred
             <span>
-              <RiArrowDropDownLine />
+              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
             </span>
           </button>
 
@@ -84,11 +82,11 @@ export function AppHeader() {
 
           <button className="app-header-link" ref={buttonRefCreateBoard}
             onClick={
-              !isActionModal ? (ev) => OpenActionModal(ev, "create-board") : null
+              !isActionModal ? (ev) => OpenActionModal(ev, "create-board2") : null
             }>
             Create board
             <span>
-              <RiArrowDropDownLine />
+              {openModalClass ? <RiArrowDropRightLine /> : <RiArrowDropDownLine />}
             </span>
           </button>
 
@@ -96,13 +94,13 @@ export function AppHeader() {
           {isActionModal && (
             <DynamicActionModal
               buttonRef={buttonRefCreateBoard.current}
-              type={"create-board"}
+              type={"create-board2"}
             />
           )}
 
         </div>
 
-        <button className="options app-header-link" href="#">
+        <button className="options app-header-link" href="#" onClick={() => setIsOpenModal(!isOpenModal)}>
           More
           <span>
             <RiArrowDropDownLine />
