@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { addMember, removeMember } from "../../../../store/actions/board.action"
+import { addMember, closeActionModal, removeMember } from "../../../../store/actions/board.action"
 import { FiCheck } from "react-icons/fi"
+import { CgClose } from "react-icons/cg"
 
 export function MemberAction({ card, setCard }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -25,7 +26,14 @@ export function MemberAction({ card, setCard }) {
 
   return (
     <div className="members-list">
-      <p className="members-list-title">Members</p>
+      <div className="members-list-title add-cover-header">
+        <p>
+          Members
+          <i onClick={closeActionModal}>
+            <CgClose />
+          </i>
+        </p>
+      </div>
       <div className="sep-line"></div>
       <ul className="members-preview">
         {board.members?.map((member, idx) => (

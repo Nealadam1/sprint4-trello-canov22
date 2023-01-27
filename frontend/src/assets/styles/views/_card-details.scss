@@ -43,7 +43,7 @@
   // grid-template-areas:
   //   "header header header"
   //   "content content side-bar";
-  width: rem(768px);
+  width: 100%;
   max-width: rem(768px);
   min-height: 87.5vh;
   background-color: #ebecf0;
@@ -271,10 +271,15 @@
     align-items: flex-start;
     padding: 1em;
 
+    .add-cover-header {
+      width: 100%;
+    }
+
     p {
       display: flex;
       align-self: center;
       color: #5e6c84;
+      justify-content: center;
     }
 
 

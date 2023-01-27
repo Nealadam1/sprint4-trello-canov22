@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { boardService } from "../../../../services/board.service"
-import { addLabel, updateCard } from "../../../../store/actions/board.action"
+import { addLabel, closeActionModal, updateBoard, updateCard } from "../../../../store/actions/board.action"
 import { TwitterPicker } from "react-color"
 import {
   removeLabelFromBoard,
@@ -11,6 +11,7 @@ import { BsPencil } from "react-icons/bs"
 import { FaLessThan } from "react-icons/fa"
 import { MdExpandLess } from "react-icons/md"
 import { utilService } from "../../../../services/util.service"
+import { CgClose } from "react-icons/cg"
 
 export function LabelAction({ card }) {
   if (!card.labelIds) card.labelIds = []
@@ -139,7 +140,14 @@ export function LabelAction({ card }) {
             <MdExpandLess />
           </button>
         )}
-        <span style={{ flexGrow: "1" }}>Labels</span>
+        <div style={{ flexGrow: "1" }} className="add-cover-header">
+          <p>
+            Labels
+            <i onClick={closeActionModal}>
+              <CgClose />
+            </i>
+          </p>
+        </div>
       </p>
       <div className="sep-labels-action-line"></div>
 
