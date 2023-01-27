@@ -19,15 +19,27 @@ import {
 import { CardDetails } from "./card-details"
 import { BoardDashboard } from "../cmps/board/board-dashboard"
 import LoadingSpinner from "./spinner/loading-spinner"
+import { updateUser } from "../store/actions/user.action"
 
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
   const board = useSelector((storeState) => storeState.boardModule.board)
+  const user = useSelector((storeState) => storeState.userModule.user)
   const { boardId } = useParams()
   // const [board, setBoard] = useState({})
 
   useEffect(() => {
     loadBoard(boardId)
+    if (user) {
+      if (user.visitedBoards) {
+        if (user.visitedBoards.length>8) user.visitedBoards.pop()
+        user.visitedBoards = [boardId,...user.visitedBoards]
+      } else {
+        user.visitedBoards = []
+        user.visitedBoards = [boardId,...user.visitedBoards]
+      }
+      updateUser(user)
+    }
   }, [boardId])
 
   async function loadBoard(boardId) {

@@ -30,6 +30,14 @@ export function DynamicActionModal(props) {
           </DynamicModalPosition>
         )
       )
+    case "create-board2":
+      return (
+        modal === props.type && (
+          <DynamicModalPosition buttonRef={buttonRef}>
+            <CreateBoard {...props} />
+          </DynamicModalPosition>
+        )
+      )
     case "add-members":
       return (
         modal === props.type && (

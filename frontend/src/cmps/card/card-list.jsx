@@ -156,7 +156,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
               <ul className="card-list-ul" {...provided.droppableProps} ref={provided.innerRef}>
                 {cards &&
                   filteredCards()?.map((card, idx) => (
-                    <Draggable key={card.id} draggableId={card.id} index={idx} isDragDisabled={isDrag}>
+                    <Draggable key={card.id} draggableId={card.id} index={idx}>
                       {(provided, snapshot) => {
                         return (
                           <li ref={provided.innerRef}
