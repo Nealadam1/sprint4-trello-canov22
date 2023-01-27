@@ -71,7 +71,6 @@
 
 .main {
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   margin: 100px 10px 0;
@@ -79,6 +78,11 @@
 }
 
 .main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+align-items: center;
+
   h1 {
     font-size: 2rem;
     line-height: 1.25;

@@ -30,17 +30,27 @@ export function BoardDetails() {
 
   useEffect(() => {
     loadBoard(boardId)
+    updateVisitedBoard(user)
+  }, [boardId])
+
+
+  function updateVisitedBoard(user) {
     if (user) {
       if (user.visitedBoards) {
-        if (user.visitedBoards.length>8) user.visitedBoards.pop()
-        user.visitedBoards = [boardId,...user.visitedBoards]
+        user.visitedBoards.forEach((visitedBoard, idx) => {
+          if (visitedBoard === boardId) {
+            user.visitedBoards.splice(idx, 1);
+          }
+        })
+        if (user.visitedBoards.length > 5) user.visitedBoards.pop()
+        user.visitedBoards = [boardId, ...user.visitedBoards]
       } else {
         user.visitedBoards = []
-        user.visitedBoards = [boardId,...user.visitedBoards]
+        user.visitedBoards = [boardId, ...user.visitedBoards]
       }
       updateUser(user)
     }
-  }, [boardId])
+  }
 
   async function loadBoard(boardId) {
     await boardService.getById(boardId).then((board) => {
