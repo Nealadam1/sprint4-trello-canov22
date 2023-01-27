@@ -28,15 +28,14 @@ export function CardActivites() {
     const apiKey = "MBnE1-xZ0kaxsHG3axcPYu0Z1K6K57Wimfo-j3-VlGc"
     const query = "nature"
     const numberOfImages = 30
-
     fetch(
-      `https://api.unsplash.com/search/photos?query=${query}&per_page=${numberOfImages}&client_id=${apiKey}`
+      `https://api.unsplash.com/search/photos?query=${query}w=1920&h=1020&per_page=${numberOfImages}&client_id=${apiKey}`
     )
       .then((response) => response.json())
       .then((data) => {
-        const images = data?.results?.map((image) => image.urls.small)
+        console.log(data)
+        const images = data?.results?.map((image) => image.urls.regular)
         setUnsplashImages(images)
-        console.log("hi")
         utilService.saveToStorage("unsplash", images)
       })
   }
@@ -54,9 +53,13 @@ export function CardActivites() {
   ]
 
   function setBackgroundImage(image) {
-    if (board?.style?.img) board.style.img = image
-    setBoard(board)
-    updateBoard(board)
+    console.log(image)
+    const updatedBoard = {
+      ...board,
+      style: { img: image, thumbnail: image },
+    }
+    setBoard(updatedBoard)
+    updateBoard(updatedBoard)
   }
 
   function setBackgroundColor(color) {
@@ -97,8 +100,8 @@ export function CardActivites() {
               <div
                 style={{
                   borderRadius: "5px",
-                  width: "25px",
-                  height: "25px",
+                  width: "20px",
+                  height: "20px",
                   background: board?.style?.backgroundColor,
                   backgroundImage: board?.style?.thumbnail
                     ? `url(${board.style.thumbnail})`
