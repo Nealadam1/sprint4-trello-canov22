@@ -53,10 +53,11 @@ export function CardActivites() {
   ]
 
   function setBackgroundImage(image) {
-    console.log(image)
+    const thumbnailImage = image.replace("w=1080", "w=200")
+    console.log(thumbnailImage)
     const updatedBoard = {
       ...board,
-      style: { img: image, thumbnail: image },
+      style: { img: image, thumbnail: thumbnailImage },
     }
     setBoard(updatedBoard)
     updateBoard(updatedBoard)
@@ -67,10 +68,8 @@ export function CardActivites() {
       ...board,
       style: { backgroundColor: color, thumbnail: color },
     }
-
     setBoard(updatedBoard)
     updateBoard(updatedBoard)
-    console.log("after change", updatedBoard)
   }
 
   function handleActivitesPage() {
@@ -191,7 +190,7 @@ export function CardActivites() {
             </span>
             Photos by
             <span style={{ textDecoration: "underline", marginLeft: "0.3em" }}>
-              Unslpash
+              Unsplash
             </span>
           </p>
           <div className="sep-line"></div>
