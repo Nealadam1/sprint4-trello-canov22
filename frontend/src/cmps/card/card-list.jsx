@@ -22,7 +22,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
   const [isMouseDown, setIsMouseDown] = useState(false)
-  const [isCardDragging, setIsCardDragging] = useState(false)
+  const [isDrag,setIsDrag]=useState(true)
 
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
   let filterCardBy = useSelector(
@@ -31,6 +31,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   const groupIdx = currBoard.groups.findIndex(g => group.id === g.id)
 
   const inputRef = useRef(null)
+  const cardRef=useRef(null)
 
   useEffect(() => {
     const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
@@ -136,11 +137,15 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
     if (EditCardShortcut === cardId) {
       ev.stopPropagation()
       setEditCardShortcut(null)
+      setIsDrag(false)
     } else {
       ev.stopPropagation()
       setEditCardShortcut(cardId)
+      setIsDrag(true)
     }
   }
+
+  console.log(isDrag)
 
   return (
     <>
@@ -151,7 +156,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
               <ul className="card-list-ul" {...provided.droppableProps} ref={provided.innerRef}>
                 {cards &&
                   filteredCards()?.map((card, idx) => (
-                    <Draggable key={card.id} draggableId={card.id} index={idx}>
+                    <Draggable key={card.id} draggableId={card.id} index={idx} isDragDisabled={isDrag}>
                       {(provided, snapshot) => {
                         return (
                           <li ref={provided.innerRef}
@@ -159,7 +164,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                             {...provided.dragHandleProps}
                             className='card-list-item'
                           >
-                            <Link
+                            <Link ref={cardRef}
                               onClick={toCardDetails}
                               to={`/board/${boardId}/${card.id}`}
                             >
@@ -179,6 +184,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                                 <CardDetailsShortcut
                                   setEditCardShortcut={
                                     setEditCardShortcut} group={group} card={card}
+                                    cardRef={cardRef}
                                 />
                               )}
                               {EditCardShortcut === card.id && (

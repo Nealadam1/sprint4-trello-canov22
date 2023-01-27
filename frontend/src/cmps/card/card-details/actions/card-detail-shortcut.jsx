@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { useState } from "react"
 import { AiOutlineUser } from "react-icons/ai"
-import { BsArchive, BsTag } from "react-icons/bs"
+import { BsArchive, BsArrowRight, BsTag } from "react-icons/bs"
 import { MdOutlineCreditCard } from "react-icons/md"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
@@ -15,7 +15,7 @@ import {
 import { DynamicActionModal } from "../../../dynamic-modal-cmp"
 import { CardPreviewShortcut } from "../../card-preview-shortcut"
 
-export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
+export function CardDetailsShortcut({ card, setEditCardShortcut, group, cardRef }) {
   const boardId = useSelector((storeState) => storeState.boardModule.board._id)
   const [title, setTitle] = useState(card.title)
   const [currCard, setCurrCard] = useState(card)
@@ -23,11 +23,10 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
   const isActionModal = useSelector(
     (storeState) => storeState.systemModule.isActionModal
   )
-  const cardRef = useRef(null)
   const buttonRefMembers = useRef(null)
   const buttonRefLabels = useRef(null)
-  const buttonRefChecklist = useRef(null)
   const buttonRefCover = useRef(null)
+  const buttonRefMove = useRef(null)
 
   useEffect(() => {
     if (cardRef.current) {
@@ -55,6 +54,12 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
     updateCard(currCard, "ARCHIVED_CARD")
   }
 
+
+  if (cardRef.current) {
+    console.log(cardRef.current.getBoundingClientRect().top + cardRef.current.offsetHeight)
+    console.log(cardRef.current.offsetHeight)
+    console.log(cardRef.current.getBoundingClientRect().top)
+  }
   return (
     <section className="card-detail-shorcut" ref={cardRef}>
       <div className="card-detail-shortcut-menu">
@@ -96,7 +101,6 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
                     : null
                 }
               >
-
                 <span className="memebers-icon side-bar-icon">
                   <AiOutlineUser />
                 </span>
@@ -111,13 +115,25 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
                     : null
                 }
               >
-
                 <span className="cover-icon side-bar-icon">
                   <MdOutlineCreditCard />
                 </span>
                 Cover Change
               </li>
-              <li>Move</li>
+              <li
+                className="shortcut-menu-btn"
+                ref={buttonRefMove}
+                onClick={
+                  !isActionModal
+                    ? (ev) => OpenActionModal(ev, "move-card")
+                    : null
+                }
+              >
+                <span className="move-icon side-bar-icon">
+                  <BsArrowRight />
+                </span>
+                Move
+              </li>
               <li>Copy</li>
               <li onClick={handleArchive}>
                 <span className="archive-icon side-bar-icon">
@@ -126,6 +142,17 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
                 Archive
               </li>
             </ul>
+
+            <div className="card-detail-shorcut-save "
+              style={{
+                position: "fixed",
+                left: `calc(${cardRef.current.getBoundingClientRect().left}px + 5px)`,
+                top: `calc(${cardRef.current.getBoundingClientRect().top}px + ${cardRef.current.offsetHeight}px)`
+              }}>
+              <button className="blue-button" onClick={handleSave} >
+                Save
+              </button>
+            </div>
           </DynamicMenuPosition>
         )}
       </div>
@@ -154,16 +181,23 @@ export function CardDetailsShortcut({ card, setEditCardShortcut, group }) {
           type={"add-cover"}
         />
       )}
+      {isActionModal && (
+        <DynamicActionModal
+          card={currCard}
+          setCard={setCurrCard}
+          buttonRef={buttonRefMove.current}
+          type={"move-card"}
+        />
+      )}
       <div>
         <CardPreviewShortcut
           card={currCard}
           title={title}
           setTitle={setTitle}
-
-
         />
 
       </div>
+
 
     </section>
   )
@@ -208,18 +242,6 @@ const DynamicMenuPosition = (props) => {
   return (
     <section ref={modalRef} style={modalStyles}>
       {props.children}
-      <div className="card-detail-shorcut-save "
-        style={{
-          position: "fixed",
-          top: `calc(${cardRef.getBoundingClientRect().top}px + ${cardRef.offsetHeight*1.03}px)`,
-          left: `calc(${cardRef.getBoundingClientRect().left}px + 5px)`
-
-
-        }}>
-        <button className="blue-button" onClick={handleSave} >
-          Save
-        </button>
-      </div>
     </section>
   )
 }

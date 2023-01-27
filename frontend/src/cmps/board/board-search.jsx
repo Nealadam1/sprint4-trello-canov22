@@ -55,7 +55,14 @@ export function BoardSearch({ onSetSearch }) {
             {boards.map((board) => (
               <li key={board._id} value={board._id}>
                 <Link to={`/board/${board._id}`}>
-                  <img style={{ width: "55px" }} src={board.style.thumbnail} />
+                  <div
+                    style={{ height: "32px", width: "40px", borderRadius: "3px",
+                      background: `${board.style.thumbnail
+                        ? `url(${board.style.thumbnail})`
+                        : `${board.style.backgroundColor}`
+                        }`,
+                    }}>
+                  </div>
                   <p>{board.title}</p>
                 </Link>
               </li>

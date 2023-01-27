@@ -1,5 +1,35 @@
 .card-details {
   font-family: OpenSans-Regular;
+  position: relative;
+
+  .close-card-detail {
+    border-radius: 50%;
+    color: var(--ds-icon, #42526e);
+    height: 32px;
+    margin: 4px;
+    overflow: hidden;
+    padding: 4px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: background-color 85ms, color 85ms;
+    width: 32px;
+    background-color: transparent;
+    font-size: 1.3rem;
+
+
+    i {
+      color: black;
+      line-height: 1.5;
+    }
+
+    &:hover {
+      background: #00000012;
+      border-radius: 50%;
+
+    }
+
+  }
 
   header {
     height: rem(115px);
@@ -13,7 +43,7 @@
   // grid-template-areas:
   //   "header header header"
   //   "content content side-bar";
-  width: rem(768px);
+  width: 100%;
   max-width: rem(768px);
   min-height: 87.5vh;
   background-color: #ebecf0;
@@ -247,10 +277,15 @@
     align-items: flex-start;
     padding: 1em;
 
+    .add-cover-header {
+      width: 100%;
+    }
+
     p {
       display: flex;
       align-self: center;
       color: #5e6c84;
+      justify-content: center;
     }
 
 

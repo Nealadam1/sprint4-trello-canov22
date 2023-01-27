@@ -1,15 +1,21 @@
+import { useRef } from "react"
 import { ImAttachment } from "react-icons/im"
-import { updateCard } from "../../../store/actions/board.action"
+import { useSelector } from "react-redux"
+import { OpenActionModal, updateCard } from "../../../store/actions/board.action"
+import { DynamicActionModal } from "../../dynamic-modal-cmp"
 
 export function CardAttachments({ card }) {
-  function handleDelete(attachmentId) {
-    card.style = {}
-    const updatedAttachments = card.attachments.filter(
-      (attachment) => attachment.id !== attachmentId
+    const isActionModal = useSelector(
+        (storeState) => storeState.systemModule.isActionModal
     )
-    card.attachments = updatedAttachments
-    updateCard(card)
-  }
+    const buttonRefAttachment = useRef(null)
+
+    function handleDelete(attachmentId) {
+        card.style = {}
+        const updatedAttachments = card.attachments.filter(attachment => attachment.id !== attachmentId)
+        card.attachments = updatedAttachments
+        updateCard(card)
+    }
 
   function handleError(event) {
     event.target.style.display = "none"
@@ -70,9 +76,36 @@ export function CardAttachments({ card }) {
         ))}
       </ul>
 
-      {card?.attachments.length > 0 && (
-        <button className="grey-button">Add Attachment</button>
-      )}
-    </section>
-  )
+            {card?.attachments.length > 0 &&
+                <div>
+                    <button
+                        className="grey-button attachment-btn"
+                        ref={buttonRefAttachment}
+                        onClick={
+                            !isActionModal ? (ev) => OpenActionModal(ev, "add-attachment2") : null
+                        }
+                    >
+                        {isActionModal && (
+                            <DynamicActionModal
+                                card={card}
+                                buttonRef={buttonRefAttachment.current}
+                                type={"add-attachment2"}
+                            />
+                        )}
+                        <span className="checklist-icon side-bar-icon">
+                            <ImAttachment />
+                        </span>
+                        Add Attachment
+                       
+                    </button>
+                </div>
+            }
+
+
+
+
+
+        </section>
+    )
+
 }

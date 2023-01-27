@@ -1,0 +1,46 @@
+.board-starred-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-evenly;
+    margin: 8px 0px;
+    list-style: none;
+    
+    padding: 0;
+
+    a {
+        color: $clr7;
+        
+    }
+
+    .board-starred-item-preview {
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        gap: 10px;
+
+        div {
+            display: flex;
+            width: em(45px);
+            height: em(35px);
+            background-size: cover;
+            border-radius: 3px;
+
+           
+        }
+        p{
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 500;
+            letter-spacing: normal;
+            margin: 0;
+            
+        }
+
+
+
+
+    }
+
+
+}

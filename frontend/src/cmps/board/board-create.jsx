@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik"
 import { addBoard, closeActionModal } from "../../store/actions/board.action"
 import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 import { useNavigate } from "react-router"
+import { CgClose } from "react-icons/cg"
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
@@ -71,7 +72,7 @@ export function CreateBoard() {
     <section className="create-board">
       <header className="create-board-header">
         <h4>Create Board</h4>
-        <i onClick={closeActionModal}>X</i>
+        <i onClick={closeActionModal}> <CgClose/></i>
       </header>
 
       <div className="create-board-preview">
