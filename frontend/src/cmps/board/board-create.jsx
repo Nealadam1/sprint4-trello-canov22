@@ -64,8 +64,13 @@ export function CreateBoard() {
     newBoard.title = title
     const savedboard = await addBoard(newBoard)
     closeActionModal()
+    console.log(savedboard)
     navigate(`/board/${savedboard._id}`)
-    socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
+    setTimeout(() => {
+      socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
+      
+    }, 500);
+    
   }
 
   return (
