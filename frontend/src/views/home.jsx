@@ -20,8 +20,8 @@ export function Home() {
           </div>
 
           <div className="user-actions">
-            <Link className="login" to={"/login-signup"}>Log in</Link>
-            <Link className="signup" to={"/login-signup"}>Get Workflow for free</Link>
+            <Link className="login" to={"/login"}>Log in</Link>
+            <Link className="signup" to={"/signup"}>Get Workflow for free</Link>
           </div>
         </header>
         <main className="main">

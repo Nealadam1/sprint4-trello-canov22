@@ -160,7 +160,7 @@ export function AppHeader() {
       ) : (
         <div className="login-signup-page">
           <BoardSearch />
-          <Link to="/login-signup">
+          <Link to="/login">
             <FaUser />
           </Link>
         </div>
