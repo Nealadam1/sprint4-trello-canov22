@@ -8,7 +8,7 @@ const http = require('http').createServer(app)
 
 // Express App Config
 app.use(cookieParser())
-app.use(express.json())
+app.use(express.json({limit: '4mb'}))
 
 
 if (process.env.NODE_ENV === 'production') {

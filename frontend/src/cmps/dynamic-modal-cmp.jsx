@@ -207,7 +207,7 @@ const DynamicModalPosition = (props) => {
         console.log('hello2')
         modalStyles={
           ...modalStyles,
-          left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth/2
+          left: `calc(${buttonRef.getBoundingClientRect().left}px - ${modalRef.current.offsetWidth*0.5
             }px)`,
           
         }
