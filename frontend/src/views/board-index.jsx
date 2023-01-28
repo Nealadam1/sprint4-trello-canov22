@@ -16,7 +16,6 @@ export function BoardIndex() {
     if (board) setBoard(null)
     loadBoards()
     socketService.on(SOCKET_EVENT_UPDATE_BOARDS, loadBoards)
-
     return () => {
       socketService.off(SOCKET_EVENT_UPDATE_BOARDS)
     }
