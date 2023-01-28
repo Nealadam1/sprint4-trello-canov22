@@ -29,6 +29,7 @@ import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { CardDate } from "../cmps/card/card-details/card-date"
 import { CardAttachments } from "../cmps/card/card-details/card-attachments"
 import { CgClose } from "react-icons/cg"
+import { socketService, SOCKET_EMIT_UPDATE_CARD, SOCKET_EVENT_UPDATE_CARD } from "../services/socket.service"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
@@ -48,6 +49,17 @@ export function CardDetails() {
   const cardTitleRef = useRef(null)
 
   useEffect(() => {
+    socketService.on(SOCKET_EVENT_UPDATE_CARD, ans => {
+      setCard({ ...card })
+
+    })
+
+    return () => {
+      // socketService.off(SOCKET_EVENT_UPDATE_CARD)
+    }
+  }, [])
+
+  useEffect(() => {
     if (isEditingTitle) {
       inputRef?.current?.focus()
     }
@@ -60,6 +72,8 @@ export function CardDetails() {
     setCardTitle(currCard.title)
     setCardToStoreRef(currCard)
     if (isActionModal) closeActionModal()
+
+
   }, [cardId])
 
   const handleClose = (e) => {
@@ -97,6 +111,7 @@ export function CardDetails() {
     card.title = cardTitle
     updateCard(card)
     setIsEditingTitle(false)
+    // socketService.emit(SOCKET_EMIT_UPDATE_CARD, { ...card })
   }
 
   function displayHeader(card) {

@@ -68,9 +68,9 @@ export function CreateBoard() {
     navigate(`/board/${savedboard._id}`)
     setTimeout(() => {
       socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
-      
+
     }, 500);
-    
+
   }
 
   return (

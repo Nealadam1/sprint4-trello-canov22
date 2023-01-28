@@ -15,13 +15,19 @@ function setupSocketAPI(http) {
         })
 
         socket.on('update-boards', data => {
-            console.log(data);
+            // console.log(data);
             gIo.emit('update-boards-event', data)
         })
 
         socket.on('update-board', data => {
-            console.log(data);
+            // console.log(data);
             gIo.emit('update-board-event', data)
+        })
+
+        socket.on('update-card', data => {
+            console.log(`-------------------------`);
+            console.log(data);
+            gIo.emit('update-card-event', data)
         })
 
         socket.on('set-user-socket', userId => {
