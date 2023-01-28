@@ -20,6 +20,7 @@ import { CardDetails } from "./card-details"
 import { BoardDashboard } from "../cmps/board/board-dashboard"
 import LoadingSpinner from "./spinner/loading-spinner"
 import { updateUser } from "../store/actions/user.action"
+import { socketService, SOCKET_EVENT_UPDATE_BOARD } from "../services/socket.service"
 
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
@@ -31,6 +32,8 @@ export function BoardDetails() {
   useEffect(() => {
     loadBoard(boardId)
     updateVisitedBoard(user)
+
+    socketService.on(SOCKET_EVENT_UPDATE_BOARD, board)
   }, [boardId])
 
   function updateVisitedBoard(user) {

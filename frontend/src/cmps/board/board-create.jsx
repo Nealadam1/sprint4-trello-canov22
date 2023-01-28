@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { boardService } from "../../services/board.service"
 import { TwitterPicker } from "react-color"
 import { Formik, Form, Field, ErrorMessage } from "formik"
@@ -6,12 +6,17 @@ import { addBoard, closeActionModal } from "../../store/actions/board.action"
 import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 import { useNavigate } from "react-router"
 import { CgClose } from "react-icons/cg"
+import { socketService, SOCKET_EMIT_UPDATE_BOARD, SOCKET_EVENT_UPDATE_BOARD } from "../../services/socket.service"
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
   const [boardPreviewColor, setBoardPreviewColor] = useState('')
   const [boardPreviewImg, setBoardPreviewImg] = useState('')
-  const navigate=useNavigate()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    socketService.on(SOCKET_EVENT_UPDATE_BOARD, newBoard)
+  }, [])
 
   const images = [
     {
@@ -48,7 +53,7 @@ export function CreateBoard() {
     const { style } = newBoard
     if (backgroundColor) {
       setBoardPreviewColor(backgroundColor.hex)
-      if (style.img) style.img=''
+      if (style.img) style.img = ''
       style.backgroundColor = backgroundColor.hex
       setBoardPreviewImg("")
     } else {
@@ -61,29 +66,28 @@ export function CreateBoard() {
 
   async function onCreateBoard(title) {
     newBoard.title = title
-    const savedboard= await addBoard(newBoard)
+    const savedboard = await addBoard(newBoard)
     closeActionModal()
     navigate(`/board/${savedboard._id}`)
-    
-    
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedboard)
+
   }
 
   return (
     <section className="create-board">
       <header className="create-board-header">
         <h4>Create Board</h4>
-        <i onClick={closeActionModal}> <CgClose/></i>
+        <i onClick={closeActionModal}> <CgClose /></i>
       </header>
 
       <div className="create-board-preview">
         <div
           className="background-preview"
           style={{
-            background: `${
-              boardPreviewImg
-                ? `url(${boardPreviewImg})`
-                : `${boardPreviewColor}`
-            }`,
+            background: `${boardPreviewImg
+              ? `url(${boardPreviewImg})`
+              : `${boardPreviewColor}`
+              }`,
           }}
         >
           <img src={skeletonBoardPreview} alt="preview" />
@@ -91,7 +95,7 @@ export function CreateBoard() {
       </div>
       <div className="background-picker">
         <h5>Background</h5>
-        <TwitterPicker colors={['#7BC86C', '#F5DD29','#FFAF3F','#EF7564','#CD8DE5','#5BA4CF','#29CCE5','#6DECA9','#FF8ED4','#172B4D']}
+        <TwitterPicker colors={['#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4', '#172B4D']}
           color={boardPreviewColor}
           onChange={handleBackgroundChange}
         />
@@ -125,7 +129,7 @@ export function CreateBoard() {
             <h5>Board Title</h5>
             <Field type="text" name="title" placeholder="Enter a title" />
             <ErrorMessage name="title" component="div" className="error" />
-            <button 
+            <button
               id="createbtn"
               className="board-create-button"
               type="submit"

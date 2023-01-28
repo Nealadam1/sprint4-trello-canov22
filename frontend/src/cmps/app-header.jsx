@@ -111,19 +111,10 @@ export function AppHeader() {
           <button
             className="app-header-link"
             ref={buttonRefCreateBoard}
-            onClick={
-              !isActionModal
-                ? (ev) => OpenActionModal(ev, "create-board2")
-                : null
-            }
-          >
+            onClick={!isActionModal ? (ev) => OpenActionModal(ev, "create-board2") : null}>
             Create board
             <span>
-              {openModalClass ? (
-                <RiArrowDropRightLine />
-              ) : (
-                <RiArrowDropDownLine />
-              )}
+              {openModalClass ? (<RiArrowDropRightLine />) : (<RiArrowDropDownLine />)}
             </span>
           </button>
 

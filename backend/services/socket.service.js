@@ -10,11 +10,15 @@ function setupSocketAPI(http) {
     })
     gIo.on('connection', socket => {
         logger.info(`New connected socket [id: ${socket.id}]`)
-        console.log(`tatatew`);
         socket.on('disconnect', socket => {
             logger.info(`Socket disconnected [id: ${socket.id}]`)
         })
-        socket.on('updated-board')
+
+        socket.on('update-emit-board', data => {
+            console.log(data);
+            gIo.emit('update-event-board', data)
+        })
+
         socket.on('chat-set-topic', topic => {
             if (socket.myTopic === topic) return
             if (socket.myTopic) {

@@ -2,6 +2,7 @@ import { asyncStorageService } from "./async-storage.service.js"
 import { httpService } from "./http.service.js"
 import { utilService } from "./util.service.js"
 import { userService } from "./user.service"
+import { socketService, SOCKET_EMIT_UPDATE_BOARD } from "./socket.service.js"
 
 const STORAGE_BOARD_KEY = "boardDB"
 
@@ -76,6 +77,7 @@ async function save(board) {
     // savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
     savedBoard = await httpService.post(`board`, board)
   }
+  socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
   return savedBoard
 }
 
