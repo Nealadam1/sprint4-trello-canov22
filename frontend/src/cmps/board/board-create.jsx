@@ -6,17 +6,13 @@ import { addBoard, closeActionModal } from "../../store/actions/board.action"
 import skeletonBoardPreview from "../../assets/img/board-preview-skeleton.svg"
 import { useNavigate } from "react-router"
 import { CgClose } from "react-icons/cg"
-import { socketService, SOCKET_EMIT_UPDATE_BOARD, SOCKET_EVENT_UPDATE_BOARD } from "../../services/socket.service"
+import { socketService, SOCKET_EMIT_UPDATE_BOARDS } from "../../services/socket.service"
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
   const [boardPreviewColor, setBoardPreviewColor] = useState("")
   const [boardPreviewImg, setBoardPreviewImg] = useState("")
   const navigate = useNavigate()
-
-  useEffect(() => {
-    socketService.on(SOCKET_EVENT_UPDATE_BOARD, newBoard)
-  }, [])
 
   const images = [
     {
@@ -68,9 +64,8 @@ export function CreateBoard() {
     newBoard.title = title
     const savedboard = await addBoard(newBoard)
     closeActionModal()
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
     navigate(`/board/${savedboard._id}`)
-    socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedboard)
-
   }
 
   return (

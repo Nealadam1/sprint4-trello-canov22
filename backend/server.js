@@ -8,7 +8,7 @@ const http = require("http").createServer(app)
 
 // Express App Config
 app.use(cookieParser())
-app.use(express.json({limit: '4mb'}))
+app.use(express.json({ limit: '4mb' }))
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "public")))
@@ -37,7 +37,7 @@ app.use("/api/review", reviewRoutes)
 app.use("/api/board", boardRoutes)
 app.use("/api/google", googleRoutes)
 // app.use('/api/car', carRoutes)
-// setupSocketAPI(http)
+setupSocketAPI(http)
 
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with

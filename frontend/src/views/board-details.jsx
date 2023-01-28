@@ -20,7 +20,7 @@ import { CardDetails } from "./card-details"
 import { BoardDashboard } from "../cmps/board/board-dashboard"
 import LoadingSpinner from "./spinner/loading-spinner"
 import { updateUser } from "../store/actions/user.action"
-import { socketService, SOCKET_EVENT_UPDATE_BOARD } from "../services/socket.service"
+import { socketService, SOCKET_EMIT_UPDATE_BOARD, SOCKET_EVENT_UPDATE_BOARD } from "../services/socket.service"
 
 export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
@@ -33,7 +33,9 @@ export function BoardDetails() {
     loadBoard(boardId)
     updateVisitedBoard(user)
 
-    socketService.on(SOCKET_EVENT_UPDATE_BOARD, board)
+    socketService.on(SOCKET_EVENT_UPDATE_BOARD, ans => {
+      loadBoard(boardId)
+    })
   }, [boardId])
 
   function updateVisitedBoard(user) {
@@ -65,11 +67,13 @@ export function BoardDetails() {
       title,
     }
     addGroup(newGroup)
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARD, board)
   }
 
   function onDeleteGroup(groupId) {
     console.log(groupId, "ho")
     deleteGroup(groupId)
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARD, board)
   }
 
   if (!board) return <LoadingSpinner />
