@@ -1,4 +1,4 @@
-const logger = require('./logger.service')
+const logger = require("./logger.service")
 
 var gIo = null
 
@@ -53,7 +53,7 @@ function setupSocketAPI(http) {
 }
 
 function emitTo({ type, data, label }) {
-    if (label) gIo.to('watching:' + label.toString()).emit(type, data)
+    if (label) gIo.to("watching:" + label.toString()).emit(type, data)
     else gIo.emit(type, data)
 }
 
@@ -62,7 +62,9 @@ async function emitToUser({ type, data, userId }) {
     const socket = await _getUserSocket(userId)
 
     if (socket) {
-        logger.info(`Emiting event: ${type} to user: ${userId} socket [id: ${socket.id}]`)
+        logger.info(
+            `Emiting event: ${type} to user: ${userId} socket [id: ${socket.id}]`
+        )
         socket.emit(type, data)
     } else {
         logger.info(`No active socket for user: ${userId}`)
@@ -70,7 +72,7 @@ async function emitToUser({ type, data, userId }) {
     }
 }
 
-// If possible, send to all sockets BUT not the current socket 
+// If possible, send to all sockets BUT not the current socket
 // Optionally, broadcast to a room / to all
 async function broadcast({ type, data, room = null, userId }) {
     userId = userId.toString()
@@ -94,7 +96,7 @@ async function broadcast({ type, data, room = null, userId }) {
 
 async function _getUserSocket(userId) {
     const sockets = await _getAllSockets()
-    const socket = sockets.find(s => s.userId === userId)
+    const socket = sockets.find((s) => s.userId === userId)
     return socket
 }
 async function _getAllSockets() {

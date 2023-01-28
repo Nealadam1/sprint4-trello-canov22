@@ -10,8 +10,8 @@ import { socketService, SOCKET_EMIT_UPDATE_BOARD, SOCKET_EVENT_UPDATE_BOARD } fr
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
-  const [boardPreviewColor, setBoardPreviewColor] = useState('')
-  const [boardPreviewImg, setBoardPreviewImg] = useState('')
+  const [boardPreviewColor, setBoardPreviewColor] = useState("")
+  const [boardPreviewImg, setBoardPreviewImg] = useState("")
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export function CreateBoard() {
     const { style } = newBoard
     if (backgroundColor) {
       setBoardPreviewColor(backgroundColor.hex)
-      if (style.img) style.img = ''
+      if (style.img) style.img = ""
       style.backgroundColor = backgroundColor.hex
       setBoardPreviewImg("")
     } else {
@@ -136,7 +136,7 @@ export function CreateBoard() {
               disabled={isSubmitting}
             >
               Create
-            </button >
+            </button>
           </Form>
         )}
       </Formik>

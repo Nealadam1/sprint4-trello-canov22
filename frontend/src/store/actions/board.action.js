@@ -27,6 +27,10 @@ import {
 // import { httpService } from "../../services/http.service.js"
 import { utilService } from "../../services/util.service.js"
 import { userService } from "../../services/user.service.js"
+import {
+  socketService,
+  SOCKET_EMIT_UPDATE_BOARD,
+} from "../../services/socket.service.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -181,6 +185,7 @@ export async function removeBoard(boardId) {
 
 export async function addBoard(board) {
   try {
+    console.log("add board func")
     const savedBoard = await boardService.save(board)
     console.log("Added Board", savedBoard)
     store.dispatch(getActionAddBoard(savedBoard))
