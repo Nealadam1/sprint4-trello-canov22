@@ -137,7 +137,6 @@ export function CardActivites() {
           </div>
           <ul>
             {board.activities.map((activitie) => {
-              console.log(activitie)
               return (
                 <li className="activitie" key={activitie.id}>
                   <div className="user-activitie-img">

@@ -5,7 +5,15 @@ import { BoardList } from "../cmps/board/board-list"
 import { BoardSearch } from "../cmps/board/board-search"
 import { SideBar } from "../cmps/side-bar"
 import { boardService } from "../services/board.service"
-import { loadBoards, setBoard } from "../store/actions/board.action"
+import {
+  socketService,
+  SOCKET_EVENT_UPDATE_BOARD,
+} from "../services/socket.service"
+import {
+  loadBoards,
+  setBoard,
+  updateBoard,
+} from "../store/actions/board.action"
 
 export function BoardIndex() {
   const boards = useSelector((storeState) => storeState.boardModule.boards)

@@ -191,12 +191,38 @@
 
 @media (max-width:460px) {
 
+  .board-header .board-actions .align-right {
+    padding: 0.3em;
+    padding-left: 0.7em;
+  }
+
   .board-header .board-actions .align-right .board-action-members .member-images {
     grid-template-columns: repeat(auto-fit, 12px);
   }
 
+  .board-header .board-actions {
+    justify-content: center
+  }
+
+  .board-header {
+    padding: 0.5em 0.5em 0 0.5em;
+  }
+
+  .app-header .app-header-links {
+    left: 0;
+  }
+
+
+
   .board-header button {
     font-size: 10px;
+  }
+
+  .board-action-dashboard {
+    button {
+      padding: 0 6px 0 6px;
+    }
+
   }
 }
 

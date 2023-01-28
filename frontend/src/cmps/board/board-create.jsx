@@ -9,9 +9,9 @@ import { CgClose } from "react-icons/cg"
 
 export function CreateBoard() {
   const [newBoard, setNewBoard] = useState(boardService.getEmptyBoard())
-  const [boardPreviewColor, setBoardPreviewColor] = useState('')
-  const [boardPreviewImg, setBoardPreviewImg] = useState('')
-  const navigate=useNavigate()
+  const [boardPreviewColor, setBoardPreviewColor] = useState("")
+  const [boardPreviewImg, setBoardPreviewImg] = useState("")
+  const navigate = useNavigate()
 
   const images = [
     {
@@ -48,7 +48,7 @@ export function CreateBoard() {
     const { style } = newBoard
     if (backgroundColor) {
       setBoardPreviewColor(backgroundColor.hex)
-      if (style.img) style.img=''
+      if (style.img) style.img = ""
       style.backgroundColor = backgroundColor.hex
       setBoardPreviewImg("")
     } else {
@@ -61,18 +61,19 @@ export function CreateBoard() {
 
   async function onCreateBoard(title) {
     newBoard.title = title
-    const savedboard= await addBoard(newBoard)
+    const savedboard = await addBoard(newBoard)
     closeActionModal()
     navigate(`/board/${savedboard._id}`)
-    
-    
   }
 
   return (
     <section className="create-board">
       <header className="create-board-header">
         <h4>Create Board</h4>
-        <i onClick={closeActionModal}> <CgClose/></i>
+        <i onClick={closeActionModal}>
+          {" "}
+          <CgClose />
+        </i>
       </header>
 
       <div className="create-board-preview">
@@ -91,7 +92,19 @@ export function CreateBoard() {
       </div>
       <div className="background-picker">
         <h5>Background</h5>
-        <TwitterPicker colors={['#7BC86C', '#F5DD29','#FFAF3F','#EF7564','#CD8DE5','#5BA4CF','#29CCE5','#6DECA9','#FF8ED4','#172B4D']}
+        <TwitterPicker
+          colors={[
+            "#7BC86C",
+            "#F5DD29",
+            "#FFAF3F",
+            "#EF7564",
+            "#CD8DE5",
+            "#5BA4CF",
+            "#29CCE5",
+            "#6DECA9",
+            "#FF8ED4",
+            "#172B4D",
+          ]}
           color={boardPreviewColor}
           onChange={handleBackgroundChange}
         />
@@ -125,14 +138,14 @@ export function CreateBoard() {
             <h5>Board Title</h5>
             <Field type="text" name="title" placeholder="Enter a title" />
             <ErrorMessage name="title" component="div" className="error" />
-            <button 
+            <button
               id="createbtn"
               className="board-create-button"
               type="submit"
               disabled={isSubmitting}
             >
               Create
-            </button >
+            </button>
           </Form>
         )}
       </Formik>
