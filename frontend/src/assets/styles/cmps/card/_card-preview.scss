@@ -184,7 +184,7 @@
 .card-checklist {
   display: flex;
   align-items: center;
-  padding: 0.3em;
+  padding: 0.4em;
 
   .todos-preview {
     padding-left: 0.4em;
@@ -208,6 +208,7 @@
 
   .card-preview-left-icons {
     display: flex;
+    align-items: center;
     color: $clr7;
     gap: 0.5em;
   }
@@ -215,7 +216,7 @@
   .date-preview {
     display: flex;
     align-items: center;
-    padding: 0.3em;
+    padding: 0.1em;
 
     .date-preview-temp {
       display: flex;
@@ -223,6 +224,16 @@
       font-size: 12px;
 
     }
+  }
+
+  .date-preview-upcoming {
+    background-color: #f2d600;
+    color: white;
+  }
+
+  .date-preview-past {
+    background-color: #eb5a46;
+    color: white;
   }
 
 
