@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useEffect } from "react"
 import Avatar from "@mui/material/Avatar"
 import Button from "@mui/material/Button"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -49,6 +50,11 @@ export function Signup({ setIsSignup }) {
     })
     navigate("/board")
   }
+
+  // useEffect(() => {
+  //   /* global google */
+  //   google
+  // }, [])
 
   return (
     <ThemeProvider theme={theme}>
@@ -125,6 +131,7 @@ export function Signup({ setIsSignup }) {
               </Grid>
             </Grid>
           </Box>
+
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
