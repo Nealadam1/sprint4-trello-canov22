@@ -41,6 +41,20 @@
 
     .todo-btns {
       padding-left: 2em;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      margin-top: 0.5em;
+    }
+
+    .blue-button {
+      margin: 0;
+      height: 32px;
+      padding: 6px 16px
+    }
+
+    .grey-button {
+      margin: 0;
     }
 
     .todo-input {

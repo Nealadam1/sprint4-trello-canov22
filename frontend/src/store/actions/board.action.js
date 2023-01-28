@@ -165,7 +165,7 @@ export async function updateCard(card, action) {
     console.log(err)
     return
   }
-  updateActivities(action, card.title)
+  updateActivities(action, card)
 }
 
 export async function removeBoard(boardId) {
@@ -236,7 +236,7 @@ export async function addGroup(newGroup) {
   } catch (err) {
     console.log(err)
   }
-  updateActivities("ADDED_GROUP", newGroup.title)
+  updateActivities("ADDED_GROUP", newGroup)
 }
 
 export async function filterCardsBy(
@@ -264,7 +264,7 @@ export async function updateGroup(group, action) {
   } catch (err) {
     console.log(err)
   }
-  updateActivities(action, group.title)
+  updateActivities(action, group)
 }
 export async function updateGroups(groups) {
   try {
@@ -291,12 +291,13 @@ export async function deleteGroup(groupId) {
     return
   }
   const deletedGroup = board.groups.find((group) => group.id === groupId)
-  updateActivities("ARCHIVED_GROUP", deletedGroup.title)
+  updateActivities("ARCHIVED_GROUP", deletedGroup)
 }
 
 export async function addCard(newCard, groupId) {
+  const card = boardService.createCard(newCard)
+
   try {
-    const card = boardService.createCard(newCard)
     const board = structuredClone(store.getState().boardModule.board)
     const group = board.groups.find((group) => group.id === groupId)
     group.cards
@@ -308,7 +309,7 @@ export async function addCard(newCard, groupId) {
     console.log(err)
     return
   }
-  updateActivities("ADDED_CARD", newCard.title)
+  updateActivities("ADDED_CARD", card)
 }
 
 const activityMessages = {
@@ -332,13 +333,17 @@ const activityMessages = {
 }
 
 function updateActivities(cmpType, action) {
+  console.log(action)
+  const { title, id } = action
+  console.log(title, id)
   const board = structuredClone(store.getState().boardModule.board)
   const fullname = userService?.getLoggedinUser()?.fullname || "Guest"
   const userImage =
     userService.getLoggedinUser()?.imgUrl ||
     "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
   const activitie = boardService.createActivitie(
-    action,
+    title,
+    id,
     fullname,
     activityMessages[cmpType],
     userImage
@@ -366,7 +371,7 @@ export async function deleteCard(cardId, groupId) {
     (card) => cardId === card.id
   ))
   console.log(archivedCard)
-  updateActivities("ARCHIVED_CARD", archivedCard.title)
+  updateActivities("ARCHIVED_CARD", archivedCard)
 }
 
 export async function updateBoard(board) {

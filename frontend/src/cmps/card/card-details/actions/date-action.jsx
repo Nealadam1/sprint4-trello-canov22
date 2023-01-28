@@ -1,9 +1,14 @@
 import { useState } from "react"
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
+// import './day-picker.css';
+
 import { CgClose } from "react-icons/cg"
 import { useSelector } from "react-redux"
-import { closeActionModal, updateCard } from "../../../../store/actions/board.action"
+import {
+  closeActionModal,
+  updateCard,
+} from "../../../../store/actions/board.action"
 
 export function DateAction({ setCard, card }) {
   const [selectedDay, setSelectedDay] = useState(null)
@@ -83,7 +88,6 @@ export function DateAction({ setCard, card }) {
         footer={footer}
         onChange={handleChange}
         showOutsideDays
-        modifiersStyles={{ margin: "0em" }}
       />
       <label>
         <input type="checkbox" onChange={handleChange} />

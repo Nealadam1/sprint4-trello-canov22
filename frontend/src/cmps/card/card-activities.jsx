@@ -6,8 +6,14 @@ import { CardChangeBg } from "./card-preview/card-changeBg"
 import { RxActivityLog } from "react-icons/rx"
 import { BoardBackground } from "../board/board-background"
 import { MdArrowBackIos } from "react-icons/md"
-import { setBoard, updateBoard } from "../../store/actions/board.action"
+import {
+  openCardDetail,
+  setBoard,
+  setGroup,
+  updateBoard,
+} from "../../store/actions/board.action"
 import backgroundImage from "../../assets/img/background-pexels.jpg"
+import { Link } from "react-router-dom"
 
 export function CardActivites() {
   const modalRef = useRef(null)
@@ -64,9 +70,11 @@ export function CardActivites() {
   }
 
   function setBackgroundColor(color) {
+    const thumbnailImage = color.replace("w=1080", "w=200")
+
     const updatedBoard = {
       ...board,
-      style: { backgroundColor: color, thumbnail: color },
+      style: { backgroundColor: color, thumbnail: thumbnailImage },
     }
     setBoard(updatedBoard)
     updateBoard(updatedBoard)
@@ -87,6 +95,10 @@ export function CardActivites() {
       modalRef.current.style.overflowY = "scroll"
     }
   }, [board.activities.length])
+
+  function handleCard() {
+    openCardDetail()
+  }
 
   return (
     <div ref={modalRef} className="card-activites">
@@ -125,7 +137,7 @@ export function CardActivites() {
           </div>
           <ul>
             {board.activities.map((activitie) => {
-              // console.log(activitie)
+              console.log(activitie)
               return (
                 <li className="activitie" key={activitie.id}>
                   <div className="user-activitie-img">
@@ -133,8 +145,21 @@ export function CardActivites() {
                   </div>
                   <div className="user-activitie-info">
                     <p>
-                      <b>{activitie.fullname}</b> {activitie.data}{" "}
-                      {activitie.text}
+                      <b>{activitie.fullname}</b> <span>{activitie.data} </span>
+                      {activitie.cardId ? (
+                        <Link
+                          style={{
+                            color: "#172b4d",
+                            textDecoration: "underline",
+                          }}
+                          onClick={handleCard}
+                          to={`/board/${board._id}/${activitie.cardId}`}
+                        >
+                          <span>{activitie.text}</span>
+                        </Link>
+                      ) : (
+                        <span> {activitie.text}</span>
+                      )}
                     </p>
                     <span className="activitie-time">
                       {utilService.formatTime(activitie.createdAt)}

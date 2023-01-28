@@ -25,7 +25,7 @@ export function BoardDetails() {
   const [GroupTitleToEdit, setGroupTitleToEdit] = useState(false)
   const board = useSelector((storeState) => storeState.boardModule.board)
   const user = useSelector((storeState) => storeState.userModule.user)
-  const { boardId } = useParams()
+  const { boardId, cardId } = useParams()
   // const [board, setBoard] = useState({})
 
   useEffect(() => {
@@ -33,13 +33,12 @@ export function BoardDetails() {
     updateVisitedBoard(user)
   }, [boardId])
 
-
   function updateVisitedBoard(user) {
     if (user) {
       if (user.visitedBoards) {
         user.visitedBoards.forEach((visitedBoard, idx) => {
           if (visitedBoard === boardId) {
-            user.visitedBoards.splice(idx, 1);
+            user.visitedBoards.splice(idx, 1)
           }
         })
         if (user.visitedBoards.length > 5) user.visitedBoards.pop()

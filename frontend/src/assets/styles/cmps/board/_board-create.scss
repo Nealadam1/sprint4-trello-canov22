@@ -1,11 +1,12 @@
 .create-board {
 
-    .twitter-picker{
+    .twitter-picker {
         margin-top: 12px;
     }
-    .image-select{
+
+    .image-select {
         width: 276px;
-        list-style:  none;
+        list-style: none;
         padding: 0;
         margin: 0;
         margin-top: 10px;
@@ -17,19 +18,19 @@
         border: 0px solid rgba(0, 0, 0, 0.25);
         height: 40px;
         align-items: center;
-        
-        li{
-            
+
+        li {
+
             height: 30px;
             width: 30px;
         }
 
-        button{
+        button {
             border-radius: 4px;
             height: 30px;
             width: 30px;
         }
-        
+
     }
 
     form {
@@ -42,8 +43,8 @@
             color: $clr7;
             margin-bottom: 15px;
             border-radius: 3px;
-            box-shadow: inset 0 0 0 2px  #dfe1e6;
-            background-color:  #fafbfc;
+            box-shadow: inset 0 0 0 2px #dfe1e6;
+            background-color: #fafbfc;
             padding: 8px 12px;
 
         }
@@ -88,7 +89,7 @@
     h4 {
         grid-column: 1 / span 3;
         grid-row: 1;
-        border-bottom: 1px solid  rgba(9, 30, 66, 0.13);
+        border-bottom: 1px solid rgba(9, 30, 66, 0.13);
         color: $clr15;
         height: 40px;
         display: block;

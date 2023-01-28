@@ -32,7 +32,7 @@ export function ChecklistAction({ card, setCard }) {
     <div className="checklist-action">
       <div className="add-cover-header">
         <p>
-          Cover
+          Checklist
           <i onClick={closeActionModal}>
             <CgClose />
           </i>

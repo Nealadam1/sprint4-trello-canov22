@@ -160,14 +160,14 @@ export function CardChecklists({ checklists, card, setCard }) {
               <input
                 className="todo-input blue-input"
                 ref={inputRef}
-                onBlur={() => handleBlur(checklist.id)}
+                // onBlur={() => handleBlur(checklist.id)}
                 type="text"
                 value={formData[checklist.id]}
                 onChange={(event) => handleFormChange(event, checklist.id)}
               />
               <div className="todo-btns flex">
                 <button className="blue-button" type="submit">
-                  Add Todo
+                  Add
                 </button>
                 <button className="grey-button">Cancel</button>
               </div>
