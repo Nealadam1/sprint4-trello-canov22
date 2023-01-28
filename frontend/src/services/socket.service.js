@@ -9,8 +9,12 @@ export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
 export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'
 export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
 
-export const SOCKET_EVENT_UPDATE_BOARD = 'update-event-board'
-export const SOCKET_EMIT_UPDATE_BOARD = 'update-emit-board'
+export const SOCKET_EVENT_UPDATE_BOARDS = 'update-boards-event'
+export const SOCKET_EMIT_UPDATE_BOARDS = 'update-boards'
+
+export const SOCKET_EVENT_UPDATE_BOARD = 'update-board-event'
+export const SOCKET_EMIT_UPDATE_BOARD = 'update-board'
+
 
 const SOCKET_EMIT_LOGIN = "set-user-socket"
 const SOCKET_EMIT_LOGOUT = "unset-user-socket"
@@ -25,37 +29,38 @@ window.socketService = socketService
 socketService.setup()
 
 function createSocketService() {
-  var socket = null;
-  const socketService = {
-    setup() {
-      socket = io(baseUrl)
-      setTimeout(() => {
-        const user = userService.getLoggedinUser()
-        if (user) this.login(user._id)
-      }, 500)
-    },
-    on(eventName, cb) {
-      console.log('socket', cb);
-      socket.on(eventName, cb)
-    },
-    off(eventName, cb = null) {
-      if (!socket) return;
-      if (!cb) socket.removeAllListeners(eventName)
-      else socket.off(eventName, cb)
-    },
-    emit(eventName, data) {
-      socket.emit(eventName, data)
-    },
-    login(userId) {
-      socket.emit(SOCKET_EMIT_LOGIN, userId)
-    },
-    logout() {
-      socket.emit(SOCKET_EMIT_LOGOUT)
-    },
-    terminate() {
-      socket = null
-    },
+    var socket = null;
+    const socketService = {
+        setup() {
+            socket = io(baseUrl)
+            setTimeout(() => {
+                const user = userService.getLoggedinUser()
+                if (user) this.login(user._id)
+            }, 500)
+        },
+        on(eventName, cb) {
+            console.log('socket', cb);
+            socket.on(eventName, cb)
+        },
+        off(eventName, cb = null) {
+            if (!socket) return;
+            if (!cb) socket.removeAllListeners(eventName)
+            else socket.off(eventName, cb)
+        },
+        emit(eventName, data) {
+            console.log('socket emit', data);
+            socket.emit(eventName, data)
+        },
+        login(userId) {
+            socket.emit(SOCKET_EMIT_LOGIN, userId)
+        },
+        logout() {
+            socket.emit(SOCKET_EMIT_LOGOUT)
+        },
+        terminate() {
+            socket = null
+        },
 
-  }
-  return socketService
+    }
+    return socketService
 }

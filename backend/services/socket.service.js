@@ -14,9 +14,14 @@ function setupSocketAPI(http) {
             logger.info(`Socket disconnected [id: ${socket.id}]`)
         })
 
-        socket.on('update-emit-board', data => {
+        socket.on('update-boards', data => {
             console.log(data);
-            gIo.emit('update-event-board', data)
+            gIo.emit('update-boards-event', data)
+        })
+
+        socket.on('update-board', data => {
+            console.log(data);
+            gIo.emit('update-board-event', data)
         })
 
         socket.on('chat-set-topic', topic => {

@@ -18,19 +18,11 @@ import {
   SET_FILTER_CARD_BY,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
-import {
-  ADD_LABEL,
-  PUT_LABEL,
-  REMOVE_LABEL,
-  SET_LABELS,
-} from "../reducers/label.reducer.js"
+import { ADD_LABEL, PUT_LABEL, REMOVE_LABEL, SET_LABELS } from "../reducers/label.reducer.js"
 // import { httpService } from "../../services/http.service.js"
 import { utilService } from "../../services/util.service.js"
 import { userService } from "../../services/user.service.js"
-import {
-  socketService,
-  SOCKET_EMIT_UPDATE_BOARD,
-} from "../../services/socket.service.js"
+import { socketService, SOCKET_EMIT_UPDATE_BOARD, } from "../../services/socket.service.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
