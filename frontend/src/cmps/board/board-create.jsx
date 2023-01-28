@@ -66,10 +66,10 @@ export function CreateBoard() {
     closeActionModal()
     console.log(savedboard)
     navigate(`/board/${savedboard._id}`)
-    setTimeout(() => {
-      socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
 
-    }, 500);
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
+
+
 
   }
 

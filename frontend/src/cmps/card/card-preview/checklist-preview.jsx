@@ -18,13 +18,39 @@ export function ChecklistPreview({ card }) {
   }
 
   return (
-    <div className="card-checklist">
+    <div
+      style={{
+        backgroundColor:
+          completedTodos(card.checklists) === totalTodos(card.checklists)
+            ? "#61bd4f"
+            : "inherit",
+        borderRadius: "3px",
+        height: "24px",
+      }}
+      className="card-checklist"
+    >
       {totalTodos(card.checklists) > 0 && (
-        <span className="todo-checkbox-preview">
+        <span
+          style={{
+            color:
+              completedTodos(card.checklists) === totalTodos(card.checklists)
+                ? "white"
+                : "inherit",
+          }}
+          className="todo-checkbox-preview"
+        >
           <IoMdCheckboxOutline />
         </span>
       )}
-      <span className="todos-preview">
+      <span
+        style={{
+          color:
+            completedTodos(card.checklists) === totalTodos(card.checklists)
+              ? "white"
+              : "inherit",
+        }}
+        className="todos-preview"
+      >
         {totalTodos(card.checklists) > 0 && (
           <span>
             {completedTodos(card.checklists)}/{totalTodos(card.checklists)}

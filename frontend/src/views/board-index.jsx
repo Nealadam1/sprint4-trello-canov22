@@ -5,7 +5,7 @@ import { BoardList } from "../cmps/board/board-list"
 import { BoardSearch } from "../cmps/board/board-search"
 import { SideBar } from "../cmps/side-bar"
 import { boardService } from "../services/board.service"
-import { socketService, SOCKET_EVENT_UPDATE_BOARDS } from "../services/socket.service"
+import { socketService, SOCKET_EVENT_UPDATE_BOARD, SOCKET_EVENT_UPDATE_BOARDS } from "../services/socket.service"
 import { loadBoards, setBoard } from "../store/actions/board.action"
 
 export function BoardIndex() {
@@ -16,6 +16,8 @@ export function BoardIndex() {
     if (board) setBoard(null)
     loadBoards()
     socketService.on(SOCKET_EVENT_UPDATE_BOARDS, loadBoards)
+    socketService.off(SOCKET_EVENT_UPDATE_BOARD)
+
     return () => {
       socketService.off(SOCKET_EVENT_UPDATE_BOARDS)
     }

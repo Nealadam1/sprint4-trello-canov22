@@ -70,14 +70,15 @@ async function save(board) {
   if (board._id) {
     // savedBoard = await asyncStorageService.put(STORAGE_BOARD_KEY, board)
     savedBoard = await httpService.put(`board/${board._id}`, board)
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
   } else {
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
     // savedBoard = await httpService.post("board", board)
     // savedBoard = await asyncStorageService.post(STORAGE_BOARD_KEY, board)
     savedBoard = await httpService.post(`board`, board)
+    
   }
-  socketService.emit(SOCKET_EMIT_UPDATE_BOARD, savedBoard)
   return savedBoard
 }
 

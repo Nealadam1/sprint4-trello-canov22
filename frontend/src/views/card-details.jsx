@@ -124,8 +124,9 @@ export function CardDetails() {
         objectFit: "fill",
         width: "100%",
         backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100px",
+        height: "auto",
       }
     } else if (card?.attachments && card.attachments[0]?.link) {
       card.style = { bgColor: "#fff" }
@@ -136,8 +137,9 @@ export function CardDetails() {
         objectFit: "fill",
         width: "100%",
         backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100px",
+        height: "auto",
       }
     } else if (card?.style?.bgColor) {
       return {
