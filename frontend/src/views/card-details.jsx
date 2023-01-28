@@ -149,7 +149,6 @@ export function CardDetails() {
           }}
           onClick={handleClose}
         >
-
           <div
             style={{
               gridTemplateAreas: card?.style?.bgColor
@@ -168,7 +167,11 @@ export function CardDetails() {
               </header>
             )}
             <button onClick={handleClose} className="close-card-detail">
-              <Link to={`/board/${board._id}`}><i><CgClose/></i></Link>
+              <Link to={`/board/${board._id}`}>
+                <i>
+                  <CgClose />
+                </i>
+              </Link>
             </button>
 
             <div className="side-bar">
@@ -207,7 +210,8 @@ export function CardDetails() {
               )}
 
               <p className="card-details-group-title">
-                In list <span>{store.getState().boardModule.group.title}</span>
+                In list{" "}
+                <span>{store.getState().boardModule?.group?.title}</span>
               </p>
 
               <div className="card-detail-data">

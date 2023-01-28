@@ -44,8 +44,13 @@ export function MoveAction({ card }) {
       <div className="sep-line"></div>
       <div className="move-action-container">
         <div className="select-group-input">
-          <label>Select Group</label>
-          <select value={selectedGroup} onChange={handleGroupChange}>
+          <label className="group-label">Group</label>
+          <span>{selectedGroup}</span>
+          <select
+            className="selected-group-action"
+            value={selectedGroup}
+            onChange={handleGroupChange}
+          >
             <option value="" disabled>
               Select a group
             </option>
@@ -57,8 +62,13 @@ export function MoveAction({ card }) {
           </select>
         </div>
         <div className="select-card-input">
-          <label>Select Card</label>
-          <select value={selectedCard} onChange={handleCardChange}>
+          <label className="position-label">Position</label>
+          <span>{selectedCard}</span>
+          <select
+            className="selected-card-action"
+            value={selectedCard}
+            onChange={handleCardChange}
+          >
             <option value="" disabled>
               Select a card
             </option>

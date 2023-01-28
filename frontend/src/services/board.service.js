@@ -79,7 +79,7 @@ async function save(board) {
   return savedBoard
 }
 
-function createActivitie(text, fullname, data, userImage) {
+function createActivitie(text, cardId, fullname, data, userImage) {
   console.log(text, fullname, data)
   return {
     text,
@@ -88,6 +88,7 @@ function createActivitie(text, fullname, data, userImage) {
     data,
     id: utilService.makeId(),
     userImage,
+    cardId,
   }
 }
 

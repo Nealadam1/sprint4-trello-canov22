@@ -61,11 +61,40 @@
 .label-editor {
   .twitter-picker {
     margin-top: 12px;
+    margin-left: 0.5em;
   }
 
   .label-button-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 0.5em 0.5em 0 0.5em;
+  }
+
+
+  .blue-button {
+    background-color: #0079bf;
+    border: none;
+    box-shadow: none;
+    color: var(--ds-text-inverse, #fff);
+    padding: 6px 12px;
+    min-height: 32px;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 0.2em;
+  }
+
+  .grey-button {
+    cursor: pointer;
+    padding: 6px 12px;
+    height: 32px;
+    background-color: rgba(9, 30, 66, 0.0392156863);
+    text-align: start;
+    color: #172b4d;
+  }
+
+  button {
+    margin: 0;
   }
 }
 
