@@ -14,7 +14,7 @@ export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provi
   const inputRef = useRef(null)
 
   useEffect(() => {
-    socketService.on(SOCKET_EVENT_UPDATE_BOARD,)
+    // socketService.on(SOCKET_EVENT_UPDATE_BOARD)
 
   }, [])
 

@@ -4,8 +4,14 @@ import { MemberPreview } from "./card-preview/member-preview"
 import { Draggable } from "react-beautiful-dnd"
 import { DatePreview } from "./card-preview/date-preview"
 import { ChecklistPreview } from "./card-preview/checklist-preview"
+import { socketService, SOCKET_EVENT_UPDATE_CARD } from "../../services/socket.service"
 
 export function CardPreview({ card, idx }) {
+
+  useEffect(() => {
+    // socketService.on(SOCKET_EVENT_UPDATE_CARD)
+  }, [])
+
   function displayHeader(card) {
     if (card?.attachments[0]?.imgUrl) {
       card.style = { bgColor: "#fffff" }
@@ -14,6 +20,7 @@ export function CardPreview({ card, idx }) {
         objectFit: "fill",
         width: "100%",
         backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100px",
       }
@@ -25,6 +32,7 @@ export function CardPreview({ card, idx }) {
         width: "100%",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
+        backgroundSize: "cover",
         height: "100px",
       }
     } else if (card?.style?.bgColor) {

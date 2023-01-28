@@ -36,6 +36,7 @@ export function BoardDetails() {
     socketService.on(SOCKET_EVENT_UPDATE_BOARD, ans => {
       loadBoard(boardId)
     })
+
   }, [boardId])
 
   function updateVisitedBoard(user) {

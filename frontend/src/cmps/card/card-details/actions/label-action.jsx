@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { boardService } from "../../../../services/board.service"
-import { addLabel, closeActionModal, updateBoard, updateCard } from "../../../../store/actions/board.action"
+import {
+  addLabel,
+  closeActionModal,
+  updateBoard,
+  updateCard,
+} from "../../../../store/actions/board.action"
 import { TwitterPicker } from "react-color"
 import {
   removeLabelFromBoard,
@@ -173,7 +178,9 @@ export function LabelAction({ card }) {
                   {label.title}
                 </label>
                 <span
-                  style={{ backgroundColor: label.color }}
+                  style={{
+                    backgroundColor: label.color,
+                  }}
                   className="circle"
                 ></span>
                 <button
@@ -237,7 +244,13 @@ export function LabelAction({ card }) {
               color={boardPreviewColor}
               onChange={handleColorChange}
             />
-            <button onClick={saveLabel} className="blue-button" disabled={newLabel.title.length < 1}>Save</button>
+            <button
+              onClick={saveLabel}
+              className="blue-button"
+              disabled={newLabel.title.length < 1}
+            >
+              Save
+            </button>
           </form>
         </div>
       )}

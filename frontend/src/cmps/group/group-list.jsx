@@ -39,6 +39,7 @@ export function GroupList() {
     onSetLabels()
 
     socketService.on(SOCKET_EVENT_UPDATE_BOARD, setBoard({ ...board }))
+
   }, [])
 
   function updateGroupTitle(group, title) {

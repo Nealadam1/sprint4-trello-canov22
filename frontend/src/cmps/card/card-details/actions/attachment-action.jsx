@@ -14,6 +14,7 @@ export function AttachmentAction({ card }) {
   const fileInputRef = useRef(null)
 
   function handleSaveLink() {
+    imgLink = `${imgLink}?w_300,h_100`
     card.style = { bgColor: "#fffff" }
     card.attachments = [
       ...card.attachments,
@@ -38,8 +39,9 @@ export function AttachmentAction({ card }) {
 
   async function handleFileUpload(fileToUpload) {
     try {
-      console.log(fileToUpload)
+      imgLink = `${imgLink}?w_300,h_100`
       imgLink = await uploadImg(fileToUpload)
+      console.log(imgLink)
       card.attachments = [
         ...card.attachments,
         { id: utilService.makeId(), imgUrl: imgLink, name: fileToUpload.name },

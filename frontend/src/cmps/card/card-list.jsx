@@ -6,11 +6,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { HiOutlinePencil } from "react-icons/hi"
 import { CgClose } from "react-icons/cg"
 import { AiOutlinePlus } from "react-icons/ai"
-import {
-  addCard,
-  openCardDetail,
-  setGroup,
-} from "../../store/actions/board.action"
+import { addCard, openCardDetail, setGroup, } from "../../store/actions/board.action"
 import { CardPreview } from "./card-preview"
 import { useRef } from "react"
 import { ADD_CARD, eventBus, UPDATE_CARDS } from "../../services/event-bus.service"
@@ -22,7 +18,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   const [cardTitle, setCardTitle] = useState({ title: "" })
   const [cards, updateCards] = useState(group.cards)
   const [isMouseDown, setIsMouseDown] = useState(false)
-  const [isDrag,setIsDrag]=useState(true)
+  const [isDrag, setIsDrag] = useState(true)
 
   let currBoard = useSelector((storeState) => storeState.boardModule.board)
   let filterCardBy = useSelector(
@@ -31,7 +27,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   const groupIdx = currBoard.groups.findIndex(g => group.id === g.id)
 
   const inputRef = useRef(null)
-  const cardRef=useRef(null)
+  const cardRef = useRef(null)
 
   useEffect(() => {
     const callAddCard = eventBus.on(ADD_CARD, (groupId) => {
@@ -184,7 +180,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
                                 <CardDetailsShortcut
                                   setEditCardShortcut={
                                     setEditCardShortcut} group={group} card={card}
-                                    cardRef={cardRef}
+                                  cardRef={cardRef}
                                 />
                               )}
                               {EditCardShortcut === card.id && (

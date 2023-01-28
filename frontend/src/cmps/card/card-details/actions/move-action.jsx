@@ -45,7 +45,9 @@ export function MoveAction({ card }) {
       <div className="move-action-container">
         <div className="select-group-input">
           <label className="group-label">Group</label>
-          <span>{selectedGroup}</span>
+          <span>
+            {board.groups.find((group) => group.id === selectedGroup)?.title}
+          </span>
           <select
             className="selected-group-action"
             value={selectedGroup}
@@ -63,7 +65,13 @@ export function MoveAction({ card }) {
         </div>
         <div className="select-card-input">
           <label className="position-label">Position</label>
-          <span>{selectedCard}</span>
+          <span>
+            {
+              <span>
+                {selectedCard !== "" ? parseInt(selectedCard) + 1 : ""}
+              </span>
+            }
+          </span>
           <select
             className="selected-card-action"
             value={selectedCard}
