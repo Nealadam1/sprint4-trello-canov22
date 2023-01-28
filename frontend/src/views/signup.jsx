@@ -134,7 +134,6 @@ export function Signup({ setIsSignup }) {
 
         </Box>
         <Copyright sx={{ mt: 5 }} />
-        <button onClick={userService.googleLogin}>Google test</button>
       </Container>
     </ThemeProvider>
   )

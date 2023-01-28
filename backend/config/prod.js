@@ -1,4 +1,4 @@
 module.exports = {
-  dbURL: 'mongodb+srv://theUser:thePass@cluster0-klgzh.mongodb.net/test?retryWrites=true&w=majority',
-  dbName : 'tester_db'
+  dbURL: 'mongodb+srv://liron:liron@cluster0.jmo6llf.mongodb.net/?retryWrites=true&w=majority',
+  dbName: 'workflow_db'
 }

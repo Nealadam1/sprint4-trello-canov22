@@ -1,5 +1,6 @@
 import { asyncStorageService } from "./async-storage.service"
 import { httpService } from "./http.service"
+import { socketService } from "./socket.service"
 import { utilService } from "./util.service"
 
 const STORAGE_KEY_LOGGEDIN_USER = "loggedinUser"
@@ -58,7 +59,7 @@ async function login(userCred) {
 
   if (!user) return
 
-  // socketService.login(user._id)
+  socketService.login(user._id)
   const loggedInUser = await httpService.post('auth/login', userCred)
   return saveLocalUser(loggedInUser)
 }
@@ -69,7 +70,7 @@ async function signup(userCred) {
       "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
   // const user = await asyncStorageService.post("user", userCred)
   const user = await httpService.post('auth/signup', userCred)
-  // socketService.login(user._id)
+  socketService.login(user._id)
   return saveLocalUser(user)
 }
 async function logout() {
