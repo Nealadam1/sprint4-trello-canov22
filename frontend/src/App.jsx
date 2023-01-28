@@ -5,10 +5,11 @@ import { BoardIndex } from "./views/board-index"
 import { Home } from "./views/home"
 import { BoardDetails } from "./views/board-details"
 import { CardDetails } from "./views/card-details"
-import { LoginSignup } from "./views/login-signup"
 import { BoardDashboard } from "./cmps/board/board-dashboard"
 import "./assets/styles/main.scss"
 import { GroupList } from "./cmps/group/group-list"
+import { Login } from "./views/login"
+import { Signup } from "./views/signup"
 
 export function App() {
   const location = useLocation()
@@ -28,7 +29,8 @@ export function App() {
             <Route element={<CardDetails />} path="/board/:boardId/:cardId" />
           </Route>
         </Route>
-        <Route element={<LoginSignup />} path="/login-signup" />
+        <Route element={<Login />} path="/login" />
+        <Route element={<Signup />} path="/signup" />
       </Routes>
     </div>
   )

@@ -16,6 +16,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { userService } from "../services/user.service"
 import { useNavigate } from "react-router-dom"
 import { signup } from "../store/actions/user.action"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faWeebly } from "@fortawesome/free-brands-svg-icons"
+import SignupLeft from "../assets/img/signup-left.svg"
+import SignupRight from "../assets/img/signup-right.svg"
 
 function Copyright(props) {
   return (
@@ -51,90 +55,116 @@ export function Signup({ setIsSignup }) {
     navigate("/board")
   }
 
+  function navToLogin() {
+    navigate("/login")
+  }
+
   // useEffect(() => {
   //   /* global google */
   //   google
   // }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+    <section className="login-signup">
+
+      <div className="logo-login-signup">
+        <Link to="/board">
+          <span className="logo-icon">
+            <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
+          </span>
+          <span className="logo-text">orkflow</span>
+        </Link>
+      </div>
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
           <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginTop: 30,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              boxShadow: 5,
+              borderRadius: 3,
+              padding:8,
+              backgroundColor: '#fff',
+            }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="full-name"
-                  name="fullname"
-                  required
-                  fullWidth
-                  id="fullname"
-                  label="Fullname"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
-                  autoComplete="user-name"
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+            <Typography component="h1" variant="h5">
+              Sign up for your account
+            </Typography>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 3 }}
             >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="center">
-              <Grid item>
-                <button onClick={() => setIsSignup(true)} variant="body3">
-                  Already have an account? Sign in
-                </button>
-              </Grid>
-            </Grid>
-          </Box>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="full-name"
+                    name="fullname"
+                    required
+                    fullWidth
+                    id="fullname"
+                    label="Fullname"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="username"
+                    label="Username"
+                    name="username"
+                    autoComplete="user-name"
+                  />
+                </Grid>
 
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+              <Grid container justifyContent="center">
+                <Grid item>
+                  <button onClick={navToLogin} variant="body3">
+                    Already have an account? Sign in
+                  </button>
+                </Grid>
+              </Grid>
+            </Box>
+
+          </Box>
+          <Copyright sx={{ mt: 5 }} />
+        </Container>
+      </ThemeProvider>
+      <section className="signup-footer">
+        <img className="signup-left" src={SignupLeft} alt="" />
+        <img className="signup-right" src={SignupRight} alt="" />
+
+      </section>
+    </section>
+
   )
 }
