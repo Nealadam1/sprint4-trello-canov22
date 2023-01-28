@@ -15,6 +15,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { useNavigate } from "react-router-dom"
 import { userService } from "../services/user.service"
 import { login } from "../store/actions/user.action"
+import SignupLeft from "../assets/img/signup-left.svg"
+import SignupRight from "../assets/img/signup-right.svg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faWeebly } from "@fortawesome/free-brands-svg-icons"
 
 function Copyright(props) {
   return (
@@ -55,29 +59,47 @@ export function Login({ setIsSignup }) {
     navigate("/board")
   }
 
+  function navToSignup() {
+    navigate("/signup")
+  }
+
   return (
+    <section className="login-signup">
+      
+      <div className="logo-login-signup">
+            <Link to="/board">
+              <span className="logo-icon">
+                <FontAwesomeIcon className="btn-icon" icon={faWeebly} />
+              </span>
+              <span className="logo-text">orkflow</span>
+            </Link>
+          </div>
+      
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 30,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            boxShadow: 5,
+            borderRadius: 3,
+            padding:8,
+            backgroundColor: '#fff',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in to Workflow
           </Typography>
           <Box
+
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 1 }}
+            sx={{ mt: 1}}
+            
           >
             <TextField
               margin="normal"
@@ -109,20 +131,20 @@ export function Login({ setIsSignup }) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Continue
             </Button>
             <Grid container>
               <Grid item xs>
 
               </Grid>
               <Grid item>
-                <button
-                  onClick={() => setIsSignup(false)}
+                <a
+                  onClick={navToSignup}
                   href="#"
                   variant="body2"
                 >
                   {"Don't have an account? Sign Up"}
-                </button>
+                </a>
               </Grid>
             </Grid>
           </Box>
@@ -130,5 +152,12 @@ export function Login({ setIsSignup }) {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    <section className="signup-footer"> 
+      <img className="signup-left" src={SignupLeft} alt="" />
+      <img className="signup-right" src={SignupRight} alt="" />
+      
+       </section>
+    </section>
+
   )
 }

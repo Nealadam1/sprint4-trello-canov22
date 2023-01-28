@@ -1,0 +1,57 @@
+.signup-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh;
+    gap: 15vw;
+    z-index: -1;
+
+    .signup-left {
+        flex-basis: 40%;
+        width: 50%;
+    }
+
+    .signup-right {
+        flex-basis: 40%;
+        width: 50%;
+    }
+}
+
+.login-signup{
+    font-family: OpenSans-Regular;
+}
+
+.logo-login-signup{
+    position: absolute;
+    left:50%;
+    top: 15vh;
+    transform: translateX(-50%);
+
+    a {
+      color: rgb(0, 60, 255);
+      font-size: 3rem;
+      text-decoration: none;
+    }
+
+    .logo-text {
+      text-decoration: none;
+      font-family: Pacifico;
+      letter-spacing: 2px;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .logo-icon {
+      font-size: 3rem;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }

@@ -4,8 +4,14 @@ import { MemberPreview } from "./card-preview/member-preview"
 import { Draggable } from "react-beautiful-dnd"
 import { DatePreview } from "./card-preview/date-preview"
 import { ChecklistPreview } from "./card-preview/checklist-preview"
+import { socketService, SOCKET_EVENT_UPDATE_CARD } from "../../services/socket.service"
 
 export function CardPreview({ card, idx }) {
+
+  useEffect(() => {
+    // socketService.on(SOCKET_EVENT_UPDATE_CARD)
+  }, [])
+
   function displayHeader(card) {
     if (card?.attachments[0]?.imgUrl) {
       card.style = { bgColor: "#fffff" }

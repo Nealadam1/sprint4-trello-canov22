@@ -12,6 +12,7 @@ import { boardService } from "../../services/board.service"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { eventBus } from "../../services/event-bus.service"
 import { useOutletContext } from "react-router"
+import { socketService, SOCKET_EMIT_UPDATE_BOARD, SOCKET_EVENT_UPDATE_BOARD } from "../../services/socket.service"
 
 export function GroupList() {
   const { groups, onAddGroup, onDeleteGroup, board, placeholderProps } =
@@ -26,7 +27,7 @@ export function GroupList() {
     (storeState) => storeState.boardModule.board.groups
   )
 
-  console.log({ groups, onAddGroup, onDeleteGroup, board, placeholderProps })
+  // console.log({ groups, onAddGroup, onDeleteGroup, board, placeholderProps })
 
   useEffect(() => {
     if (groupToInput) {
@@ -36,6 +37,9 @@ export function GroupList() {
 
   useEffect(() => {
     onSetLabels()
+
+    socketService.on(SOCKET_EVENT_UPDATE_BOARD, setBoard({ ...board }))
+
   }, [])
 
   function updateGroupTitle(group, title) {
@@ -45,6 +49,8 @@ export function GroupList() {
     )
     setBoard({ ...board, groups: updatedGroups })
     updateBoard({ ...board, groups: updatedGroups })
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARD, { ...board, groups: updatedGroups })
+
   }
 
   function onSetLabels() {
