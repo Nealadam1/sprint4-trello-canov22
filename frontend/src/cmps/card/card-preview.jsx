@@ -14,6 +14,7 @@ export function CardPreview({ card, idx }) {
         objectFit: "fill",
         width: "100%",
         backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100px",
       }
@@ -25,6 +26,7 @@ export function CardPreview({ card, idx }) {
         width: "100%",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
+        backgroundSize: "cover",
         height: "100px",
       }
     } else if (card?.style?.bgColor) {
