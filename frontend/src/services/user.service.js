@@ -14,7 +14,8 @@ export const userService = {
   getById,
   remove,
   update,
-  getGuestUser
+  getGuestUser,
+  googleLogin
 }
 
 window.userService = userService
@@ -94,6 +95,10 @@ function getGuestUser() {
 
 function getLoggedinUser() {
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+}
+
+async function googleLogin() {
+
 }
 
 // ;(async ()=>{
