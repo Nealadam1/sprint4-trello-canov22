@@ -26,6 +26,7 @@ export function DatePreview({ date }) {
     color: isUpcoming(date) || isPassed(date) ? "white" : "",
     padding: "0.25em",
     borderRadius: "3px",
+    paddingRight: "0.35em",
     backgroundColor: isUpcoming(date)
       ? "#f2d600"
       : isPassed(date)

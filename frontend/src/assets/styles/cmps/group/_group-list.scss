@@ -36,8 +36,9 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 0.3rem;
-        right: 0.3rem;
+        top: 0.2rem;
+        right: 0.2rem;
+        color: #6b778c;
         width: 2.1875em;
         height: 2.1875em;
         background-color: transparent;
@@ -46,6 +47,7 @@
 
         &:hover {
           background-color: #091e4214;
+          color: $clr7;
         }
       }
     }
@@ -144,15 +146,16 @@
 .group-preview {
   display: flex;
   flex-direction: column;
-  border-radius: $edge-round;
-  padding: 0.5em 0.5em 0.5em 0.5em;
+  border-radius: 0.2em;
+  padding: 0.6em 0.5em 0.5em 0.5em;
   font-size: 14px;
-  background-color: $clr19;
-  box-shadow: (0 1px 0 $clr17);
-  min-width: rem(272px);
+  background-color: #ebecf0;
+  box-shadow: 0 1px 0 rgb(9 30 66 / 25%);
+  min-width: 17rem;
   font-family: "Open Sans", sans-serif;
   height: 100%;
   overflow: hidden;
+
 
   .group-title-input {
     height: 30px;
@@ -162,7 +165,7 @@
   h4 {
     color: #253e68;
     font-family: "Open Sans", sans-serif;
-    padding: 0em 0 0.5em 0.5em;
+    padding: 0em 0 0.6em 0.5em;
     margin: 0;
     line-height: normal;
   }
