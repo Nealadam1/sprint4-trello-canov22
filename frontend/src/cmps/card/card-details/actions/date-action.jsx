@@ -53,6 +53,7 @@ export function DateAction({ setCard, card }) {
       const selectedTime = selectedDay.getTime()
       updateCard({ ...card, dueDate: selectedTime }, "SET_DATE")
       setCard({ ...card, dueDate: selectedTime })
+      closeActionModal()
     }
   }
 
