@@ -60,7 +60,11 @@ export function CardPreview({ card, idx }) {
         ></header>
       ) : null}
       <div className="card-info">
-        {card?.labelIds && <LabelPreview labels={card.labelIds} />}
+        {card?.labelIds && (
+          <span>
+            <LabelPreview labels={card.labelIds} />
+          </span>
+        )}
         <p>{card.title}</p>
         <div className="card-details-preview">
           <div className="card-preview-left-icons">

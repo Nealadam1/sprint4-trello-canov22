@@ -10,6 +10,16 @@ import { Bar } from "react-chartjs-2"
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
+const theme = {
+  backgroundColor: "rgba(66, 82, 110, 0.2)",
+  borderColor: "#42526E",
+  borderWidth: 2,
+  pointBackgroundColor: "#42526E",
+  pointBorderColor: "#fff",
+  pointHoverBackgroundColor: "#fff",
+  pointHoverBorderColor: "#42526E",
+}
+
 export function DashboardActivities({ board }) {
   const userActivities = {}
 
@@ -26,24 +36,53 @@ export function DashboardActivities({ board }) {
       {
         label: "Activities per user",
         data: Object.values(userActivities),
-        backgroundColor: "#42526E",
-        borderColor: "black",
-        borderWidth: 1,
+        ...theme,
       },
     ],
   }
 
   const options = {
+    legend: {
+      display: false,
+    },
     scales: {
       y: {
         beginAtZero: true,
+        gridLines: {
+          color: "rgba(255, 255, 255, 0.2)",
+        },
+        ticks: {
+          fontColor: "#fff",
+        },
+      },
+      x: {
+        gridLines: {
+          color: "rgba(255, 255, 255, 0.2)",
+        },
+        ticks: {
+          fontColor: "#fff",
+        },
+      },
+    },
+    tooltips: {
+      mode: "index",
+      intersect: false,
+      callbacks: {
+        label: function (tooltipItem, data) {
+          var label = data.datasets[tooltipItem.datasetIndex].label || ""
+          if (label) {
+            label += ": "
+          }
+          label += tooltipItem.yLabel
+          return label
+        },
       },
     },
   }
 
   return (
     <div>
-      <h3>Activities per user</h3>
+      <h3 style={{ color: "#fff" }}>Activities per user</h3>
       <Bar data={data} options={options} />
     </div>
   )

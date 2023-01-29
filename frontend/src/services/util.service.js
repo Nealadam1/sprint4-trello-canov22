@@ -270,15 +270,15 @@ function lightenColor(color) {
     console.log("Invalid color format. Please use either RGB or Hex format.")
     return
   }
-  let r = (colorInt >> 16) + 25
+  let r = (colorInt >> 16) + 40
   if (r > 255) {
     r = 255
   }
-  let b = ((colorInt >> 8) & 0x00ff) + 25
+  let b = ((colorInt >> 8) & 0x00ff) + 40
   if (b > 255) {
     b = 255
   }
-  let g = (colorInt & 0x0000ff) + 25
+  let g = (colorInt & 0x0000ff) + 40
   if (g > 255) {
     g = 255
   }

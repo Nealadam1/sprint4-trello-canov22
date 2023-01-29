@@ -8,6 +8,7 @@ import { DynamicActionModal } from "../../dynamic-modal-cmp"
 
 export function CardLabels({ card, cardLabelIds }) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const displayLabels = []
   const board = useSelector((storeState) => storeState.boardModule.board)
   let labels = board.labels

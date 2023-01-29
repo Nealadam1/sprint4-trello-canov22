@@ -32,8 +32,8 @@ export function CardActivites() {
       return
     }
     const apiKey = "MBnE1-xZ0kaxsHG3axcPYu0Z1K6K57Wimfo-j3-VlGc"
-    const query = "nature"
-    const numberOfImages = 30
+    const query = "random"
+    const numberOfImages = 50
     fetch(
       `https://api.unsplash.com/search/photos?query=${query}w=1920&h=1020&per_page=${numberOfImages}&client_id=${apiKey}`
     )
