@@ -1,24 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.0403c7cd.css",
-    "main.js": "/static/js/main.a5d45638.js",
+    "main.css": "/static/css/main.61893ae4.css",
+    "main.js": "/static/js/main.f32037ec.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
-    "static/media/home-hero.png": "/static/media/home-hero.f649f253954a4ee9a651.png",
     "static/media/background-pexels.jpg": "/static/media/background-pexels.44eb281b4d9f5b6e49d7.jpg",
     "static/media/Pacifico-Regular.ttf": "/static/media/Pacifico-Regular.c0d735fc04154e03a691.ttf",
+    "static/media/workflow-example.png": "/static/media/workflow-example.bd26931f24ab6c967248.png",
+    "static/media/TrelloUICollage_4x.png": "/static/media/TrelloUICollage_4x.c47b7ed4a68f72cb4408.png",
     "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/OpenSans-Regular.ttf": "/static/media/OpenSans-Regular.77c09223204154ae8d43.ttf",
+    "static/media/OpenSans-Bold.ttf": "/static/media/OpenSans-Bold.fa428cdd2e334e2be904.ttf",
+    "static/media/signup-left.svg": "/static/media/signup-left.fac0ed4db46e8217b5cac4e70f5ea1e6.svg",
     "service-worker.js": "/service-worker.js",
     "static/media/HelveticaNeue Regular.ttf": "/static/media/HelveticaNeue Regular.fe4c68c768ad00e80434.ttf",
     "static/media/HelveticaNeue Medium.ttf": "/static/media/HelveticaNeue Medium.64ab5024acf8e1619abc.ttf",
-    "static/media/board-preview-skeleton.svg": "/static/media/board-preview-skeleton.25c287ae7ad9fc2da090aeeddd284374.svg",
+    "static/media/signup-right.svg": "/static/media/signup-right.ec4a17b579a582acaedd1e7b81bfd6d9.svg",
+    "static/media/board-preview-skeleton.svg": "/static/media/board-preview-skeleton.14cda5dc635d1f13bc4828f5113d1e86.svg",
     "index.html": "/index.html",
-    "main.0403c7cd.css.map": "/static/css/main.0403c7cd.css.map",
-    "main.a5d45638.js.map": "/static/js/main.a5d45638.js.map",
+    "static/media/white-wave-bg.svg": "/static/media/white-wave-bg.974bc409085f971a4ec4500510b799e7.svg",
+    "main.61893ae4.css.map": "/static/css/main.61893ae4.css.map",
+    "main.f32037ec.js.map": "/static/js/main.f32037ec.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0403c7cd.css",
-    "static/js/main.a5d45638.js"
+    "static/css/main.61893ae4.css",
+    "static/js/main.f32037ec.js"
   ]
 }

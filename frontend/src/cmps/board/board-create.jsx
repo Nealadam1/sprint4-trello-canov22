@@ -67,10 +67,10 @@ export function CreateBoard() {
     console.log(savedboard)
     navigate(`/board/${savedboard._id}`)
 
-      socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
-      
-    
-    
+    socketService.emit(SOCKET_EMIT_UPDATE_BOARDS, savedboard)
+
+
+
   }
 
   return (

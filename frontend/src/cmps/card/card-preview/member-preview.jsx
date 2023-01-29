@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { socketService, SOCKET_EVENT_UPDATE_CARD } from "../../../services/socket.service"
 
 export function MemberPreview({ card }) {
   const board = useSelector((storeState) => storeState.boardModule.board)
@@ -9,7 +8,6 @@ export function MemberPreview({ card }) {
 
   useEffect(() => {
     loadMembers()
-    socketService.on(SOCKET_EVENT_UPDATE_CARD, loadMembers)
   }, [card.memberIds])
 
   function loadMembers() {
