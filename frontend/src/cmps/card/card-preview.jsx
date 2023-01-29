@@ -13,7 +13,6 @@ import { AttachmentsPreview } from "./card-preview/attachments-preview"
 import { CommentsPreview } from "./card-preview/comments-preview"
 
 export function CardPreview({ card, idx }) {
-  const [isClicked, setIsClicked] = useState(false)
 
   useEffect(() => {
     // socketService.on(SOCKET_EVENT_UPDATE_CARD)
