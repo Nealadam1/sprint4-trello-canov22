@@ -25,6 +25,8 @@ export function CardDescription({ card }) {
     setNewDescription(target.value)
   }
 
+  console.log(card)
+
   return (
     <div className="card-description">
       <h3>
@@ -60,7 +62,15 @@ export function CardDescription({ card }) {
           </div>
         </div>
       ) : (
-        <p onClick={handleEditClick}>
+        <p
+          // style={{
+          //   background:
+          //     card?.title === "Add a more detailed description..."
+          //       ? "inherit"
+          //       : "rgba(9, 30, 66, 0.0392156863)",
+          // }}
+          onClick={handleEditClick}
+        >
           {newDescription
             ? newDescription
             : "Add a more detailed description..."}

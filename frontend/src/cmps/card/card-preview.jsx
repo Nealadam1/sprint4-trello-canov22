@@ -4,7 +4,13 @@ import { MemberPreview } from "./card-preview/member-preview"
 import { Draggable } from "react-beautiful-dnd"
 import { DatePreview } from "./card-preview/date-preview"
 import { ChecklistPreview } from "./card-preview/checklist-preview"
-import { socketService, SOCKET_EVENT_UPDATE_CARD } from "../../services/socket.service"
+import {
+  socketService,
+  SOCKET_EVENT_UPDATE_CARD,
+} from "../../services/socket.service"
+import { Card } from "@mui/material"
+import { AttachmentsPreview } from "./card-preview/attachments-preview"
+import { CommentsPreview } from "./card-preview/comments-preview"
 
 export function CardPreview({ card, idx }) {
   const [isClicked, setIsClicked] = useState(false)
@@ -61,8 +67,14 @@ export function CardPreview({ card, idx }) {
         <div className="card-details-preview">
           <div className="card-preview-left-icons">
             {card?.dueDate && <DatePreview date={card.dueDate} />}
+            {card?.attachments && card.attachments.length > 0 && (
+              <AttachmentsPreview card={card} />
+            )}
             {card?.checklists && card.checklists.length > 0 && (
               <ChecklistPreview card={card} />
+            )}
+            {card?.comments && card.comments.length > 0 && (
+              <CommentsPreview card={card} />
             )}
           </div>
           {card?.memberIds && card.memberIds.length > 0 && (

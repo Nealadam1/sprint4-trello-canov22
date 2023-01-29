@@ -24,8 +24,9 @@ export function DatePreview({ date }) {
 
   const dateStyle = {
     color: isUpcoming(date) || isPassed(date) ? "white" : "",
-    padding: "0.2em",
-    borderRadius: "2px",
+    padding: "0.25em",
+    borderRadius: "3px",
+    paddingRight: "0.35em",
     backgroundColor: isUpcoming(date)
       ? "#f2d600"
       : isPassed(date)
@@ -37,7 +38,10 @@ export function DatePreview({ date }) {
     <div className="date-preview">
       <span className="date-preview-temp" style={dateStyle}>
         <MdOutlineWatchLater style={{ fontSize: "17px" }} />
-        <span> {utilService.formatTimestamp(date)}</span>
+        <span style={{ fontSize: "11px" }}>
+          {" "}
+          {utilService.formatTimestamp(date)}
+        </span>
       </span>
     </div>
   )
