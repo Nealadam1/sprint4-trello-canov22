@@ -140,9 +140,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
       setIsDrag(true)
     }
   }
-
-  console.log(isDrag)
-
+  
   return (
     <>
       <div className="card-list">

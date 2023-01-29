@@ -68,8 +68,6 @@ export function BoardInvite({ board }) {
   }
 
   function removeMember(memberId) {
-    console.log(memberId)
-
     const updatedBoardMembers = board.members.filter(
       (member) => member._id !== memberId
     )

@@ -12,7 +12,6 @@ export function RecentBoards() {
     loadBoards()
   }, [])
 
-
   if (user?.visitedBoards) {
     filteredBoards = user.visitedBoards.map(visitedBoard => {
       const boardIndex = boards.findIndex(board => board._id === visitedBoard)
@@ -21,13 +20,7 @@ export function RecentBoards() {
     });
 
   }
-
-  console.log(filteredBoards)
-
-
-
-
-
+  
   return (
     <>
       {!user && <p>

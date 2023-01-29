@@ -26,9 +26,6 @@ export function GroupList() {
   let currGroups = useSelector(
     (storeState) => storeState.boardModule.board.groups
   )
-
-  // console.log({ groups, onAddGroup, onDeleteGroup, board, placeholderProps })
-
   useEffect(() => {
     if (groupToInput) {
       inputRef.current.focus()

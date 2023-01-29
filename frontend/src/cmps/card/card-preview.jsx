@@ -48,8 +48,6 @@ export function CardPreview({ card, idx }) {
         borderRadius: "3px 3px 0 0",
       }
     }
-    // console.log(card);
-    // imgURL >> LINK >>> COLOR
   }
 
   return (

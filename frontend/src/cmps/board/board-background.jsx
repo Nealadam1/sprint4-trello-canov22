@@ -4,8 +4,7 @@ import { useSelector } from "react-redux"
 export function BoardBackground() {
   const [openBackgroundModal, setOpenBackgroundModal] = useState(false)
   const board = useSelector((storeState) => storeState.boardModule.board)
-
-  console.log(openBackgroundModal)
+  
   return (
     <div className="board-background">
       {openBackgroundModal && (
