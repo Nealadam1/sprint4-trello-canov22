@@ -39,7 +39,6 @@ export function CardActivites() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         const images = data?.results?.map((image) => image.urls.regular)
         setUnsplashImages(images)
         utilService.saveToStorage("unsplash", images)
@@ -60,7 +59,6 @@ export function CardActivites() {
 
   function setBackgroundImage(image) {
     const thumbnailImage = image.replace("w=1080", "w=200")
-    console.log(thumbnailImage)
     const updatedBoard = {
       ...board,
       style: { img: image, thumbnail: thumbnailImage },

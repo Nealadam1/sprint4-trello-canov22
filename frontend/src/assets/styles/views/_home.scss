@@ -9,7 +9,7 @@
 
 .hero {
 
-  color: rgb(9, 30, 66);
+  color: #fff;
   background: linear-gradient(60deg, rgb(82, 67, 170), rgb(237, 80, 180)) 0% 0% / auto repeat scroll padding-box border-box rgb(82, 67, 170);
   overflow: hidden;
   text-align: center;
@@ -62,7 +62,6 @@
       text-decoration: none;
     }
   }
-
   &:hover {
     box-shadow: rgb(9 30 66 / 15%) 0px 0.3rem 1rem 0px;
   }
@@ -149,8 +148,11 @@
 }
 
 .get-started {
+  margin-top: em(40px);
   margin-bottom: em(40px);
-  align-self: center;
+  align-self: flex-start;
+  font-size: 1.7rem;
+
 
 
   a {
@@ -158,7 +160,7 @@
     border-radius: 34px;
     text-decoration: none;
     color: #fff;
-    padding: 1.1rem 1.4rem;
+    padding: 1.5rem 1.4rem;
     transition: background-color 0.3s;
 
     &:hover {
@@ -251,6 +253,10 @@
       font-size: 0.8em;
       width: 160px;
     }
+  }
+
+  .get-started {
+    align-self: center;
   }
 
   .main-content {

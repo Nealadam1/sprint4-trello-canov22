@@ -48,7 +48,6 @@ function getDefaultFilter() {
 
 async function getById(boardId) {
   // let board = await httpService.get(`board/${boardId}`)
-  // console.log(board);
   // return httpService.get('board/' + boardId)
   // return asyncStorageService.get(STORAGE_BOARD_KEY, boardId)
   try {
@@ -83,7 +82,6 @@ async function save(board) {
 }
 
 function createActivitie(text, cardId, fullname, data, userImage) {
-  console.log(text, fullname, data)
   return {
     text,
     fullname,
@@ -1344,9 +1342,6 @@ function _createDemoData() {
     utilService.saveToStorage(STORAGE_BOARD_KEY, demoData)
   }
 }
-
-// TEST DATA
-// asyncStorageService.post(STORAGE_BOARD_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
 
 const demo = [
   {

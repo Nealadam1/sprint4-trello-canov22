@@ -2,13 +2,8 @@ import React from "react"
 import { setBoard, updateBoard } from "../../../store/actions/board.action";
 export function BoardColors({ board }) {
     let colors = ['#B7DDB0', '#F5EA92', '#FAD29C', '#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5AAC44', '#E6C60D', '#E79217', '#CF513D', '#A86CC1', '#8BBDD9', '#8FDFEB', '#172b4d', '#F9C2E4', '#505F79', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4']
-
+    
     function setBoardColor(color) {
-        console.log(color, board);
-    }
-
-    function setBoardColor(color) {
-
         board = ({ ...board, style: { backgroundColor: color } })
         setBoard(board)
         updateBoard(board)
@@ -42,7 +37,6 @@ export function BoardColors({ board }) {
         //         borderRadius: "3px 3px 0 0",
         //     }
         // }
-        console.log(board);
         // imgURL >> LINK >>> COLOR
     }
 

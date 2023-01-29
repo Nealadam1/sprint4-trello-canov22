@@ -25,8 +25,6 @@ export function CardDescription({ card }) {
     setNewDescription(target.value)
   }
 
-  console.log(card)
-
   return (
     <div className="card-description">
       <h3>

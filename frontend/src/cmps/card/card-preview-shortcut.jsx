@@ -14,8 +14,6 @@ export function CardPreviewShortcut({ card, idx , title, setTitle}) {
   }, [inputRefShortcutTitle])
 
   function displayHeader(card) {
-    console.log('header icon', card)
-
     if (card?.attachments[0]?.imgUrl) {
       card.style = { bgColor: "#fffff" }
       return {

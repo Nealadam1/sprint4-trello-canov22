@@ -52,7 +52,6 @@ async function addUser(req, res) {
         const user = req.body
         const savedUser = await userService.add(user)
         res.send(savedUser)
-        console.log(user);
     } catch (err) {
         res.status(500).send({ err: 'Failed to update user' })
     }

@@ -24,8 +24,6 @@ export function CardAttachments({ card }) {
     parent.appendChild(linkText)
   }
 
-  // console.log(card.attachments)
-
   return (
     <section className="card-attachments">
       <h3>

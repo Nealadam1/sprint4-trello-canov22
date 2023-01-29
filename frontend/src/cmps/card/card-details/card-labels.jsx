@@ -11,11 +11,6 @@ export function CardLabels({ card, cardLabelIds }) {
   const displayLabels = []
   const board = useSelector((storeState) => storeState.boardModule.board)
   let labels = board.labels
-
-  // useEffect(() => {
-  //   // labels = ([...labels])
-  //   // console.log('testlabels', labels);
-  // }, [card, labels, board])
   return (
     <div className="card-labels">
       {cardLabelIds?.map((labelId) => {
