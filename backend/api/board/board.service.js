@@ -19,7 +19,6 @@ async function getById(boardId) {
     try {
         const collection = await dbGetCollection
         const board = await collection.findOne({ _id: ObjectId(boardId) })
-        // console.log(board);
         return board
     } catch (err) {
         throw err
@@ -38,7 +37,6 @@ async function add(board) {
 
 async function remove(boardId) {
     try {
-        // console.log(boardId);
         const collection = await dbGetCollection
         await collection.deleteOne({ _id: ObjectId(boardId) })
         return boardId
@@ -49,9 +47,6 @@ async function remove(boardId) {
 
 async function update(board) {
     try {
-        // console.log('board');
-        // console.log(board);
-        // console.log();
         const boardToSave = {
             title: board.title,
             isStarred: board.isStarred,
@@ -62,8 +57,6 @@ async function update(board) {
             groups: board.groups,
             activities: board.activities
         }
-        // console.log(boardToSave);
-
         const collection = await dbGetCollection
         await collection.updateOne({ _id: ObjectId(board._id) }, { $set: boardToSave })
         return board

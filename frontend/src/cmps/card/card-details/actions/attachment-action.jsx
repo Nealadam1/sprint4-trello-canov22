@@ -41,7 +41,6 @@ export function AttachmentAction({ card }) {
     try {
       imgLink = `${imgLink}?w_300,h_100`
       imgLink = await uploadImg(fileToUpload)
-      console.log(imgLink)
       card.attachments = [
         ...card.attachments,
         { id: utilService.makeId(), imgUrl: imgLink, name: fileToUpload.name },

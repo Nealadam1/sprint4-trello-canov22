@@ -13,6 +13,7 @@ import { AttachmentsPreview } from "./card-preview/attachments-preview"
 import { CommentsPreview } from "./card-preview/comments-preview"
 
 export function CardPreview({ card, idx }) {
+
   useEffect(() => {
     // socketService.on(SOCKET_EVENT_UPDATE_CARD)
   }, [])
@@ -46,8 +47,6 @@ export function CardPreview({ card, idx }) {
         borderRadius: "3px 3px 0 0",
       }
     }
-    // console.log(card);
-    // imgURL >> LINK >>> COLOR
   }
 
   return (

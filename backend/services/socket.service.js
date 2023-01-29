@@ -15,18 +15,16 @@ function setupSocketAPI(http) {
         })
 
         socket.on('update-boards', data => {
-            // console.log(data);
+          
             gIo.emit('update-boards-event', data)
         })
 
         socket.on('update-board', data => {
-            // console.log(data);
+     
             gIo.emit('update-board-event', data)
         })
 
         socket.on('update-card', data => {
-            console.log(`-------------------------`);
-            console.log(data);
             gIo.emit('update-card-event', data)
         })
 
@@ -97,11 +95,10 @@ async function _getAllSockets() {
 
 async function _printSockets() {
     const sockets = await _getAllSockets()
-    console.log(`Sockets: (count: ${sockets.length}):`)
     sockets.forEach(_printSocket)
 }
 function _printSocket(socket) {
-    console.log(`Socket - socketId: ${socket.id} userId: ${socket.userId}`)
+    // console.log(`Socket - socketId: ${socket.id} userId: ${socket.userId}`)
 }
 
 module.exports = {

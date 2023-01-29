@@ -10,9 +10,6 @@ export function CardChecklists({ checklists, card, setCard }) {
   const [todoToInput, setTodoToInput] = useState({})
   const [isHovered, setIsHovered] = useState({})
   const [hoveredTodoId, setHoveredTodoId] = useState(null)
-
-  // console.log(isHovered)
-
   const inputRef = useRef(null)
 
   useEffect(() => {

@@ -2,7 +2,6 @@ import React from "react"
 import { ImAttachment } from "react-icons/im"
 
 export function AttachmentsPreview({ card }) {
-  console.log(card)
   return (
     <div className="attachments-preview">
       <ImAttachment style={{ fontSize: "12px" }} />

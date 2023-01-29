@@ -60,13 +60,6 @@ export function CardDetailsShortcut({
     updateCard(currCard, "ARCHIVED_CARD")
   }
 
-  if (cardRef.current) {
-    console.log(
-      cardRef.current.getBoundingClientRect().top + cardRef.current.offsetHeight
-    )
-    console.log(cardRef.current.offsetHeight)
-    console.log(cardRef.current.getBoundingClientRect().top)
-  }
   return (
     <section className="card-detail-shorcut" ref={cardRef}>
       <div className="card-detail-shortcut-menu">

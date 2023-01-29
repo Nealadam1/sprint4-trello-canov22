@@ -9,7 +9,7 @@
 
 .hero {
 
-  color: rgb(9, 30, 66);
+  color: #fff;
   background: linear-gradient(60deg, rgb(82, 67, 170), rgb(237, 80, 180)) 0% 0% / auto repeat scroll padding-box border-box rgb(82, 67, 170);
   overflow: hidden;
   text-align: center;
@@ -62,7 +62,6 @@
       text-decoration: none;
     }
   }
-
   &:hover {
     box-shadow: rgb(9 30 66 / 15%) 0px 0.3rem 1rem 0px;
   }
@@ -110,7 +109,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 35vw;
+  height: 85vh;
   padding: 0px 10vw;
 
 }
@@ -149,8 +148,11 @@
 }
 
 .get-started {
+  margin-top: em(40px);
   margin-bottom: em(40px);
-  align-self: center;
+  align-self: flex-start;
+  font-size: 1.7rem;
+
 
 
   a {
@@ -158,7 +160,7 @@
     border-radius: 34px;
     text-decoration: none;
     color: #fff;
-    padding: 1.1rem 1.4rem;
+    padding: 1.5rem 1.4rem;
     transition: background-color 0.3s;
 
     &:hover {
@@ -170,93 +172,109 @@
 .details {
   padding: 0px 10vw;
   color: rgb(9, 30, 66);
-  h4{
+
+  h4 {
     font-size: 1rem;
     text-transform: uppercase;
-   
+
   }
-  h1{
+
+  h1 {
     font-size: 2em;
   }
 
-  p{
+  p {
     font-size: 1em;
   }
 }
 
-.example{
+.example {
   padding: 0px 10vw;
- 
+
 }
 
-.example-container{
+.example-container {
   color: rgb(9, 30, 66);
-   display: flex;
-   gap: 4vw;
+  display: flex;
+  gap: 4vw;
 
-   .example-text{
+  .example-text {
     flex-basis: 30%;
-    h5{
+
+    h5 {
       font-size: 1em;
     }
-    p{
+
+    p {
       font-size: 1em;
     }
-   }
+  }
 
 
 
-   .example-img{
+  .example-img {
     flex-basis: 70%;
-   }
+  }
 
 }
 
-@media (max-width:1420px){
+@media (max-width:1420px) {
 
-  .main{
-    height: 60vh;
+  .main {
+    height: 85vh;
   }
-  
-  .get-started{
+
+  .get-started {
     margin-top: 30px;
   }
 
+  .home-header {}
 
 }
 
-@media (max-width:1000px){
+@media (max-width:1000px) {
 
-  .main{
-    height: 75vh;
+
+  .main {
+    height: fit-content;
   }
-  
-  .get-started{
+
+  .get-started {
     margin-top: 30px;
   }
 
-  .user-actions{
-    .login{
+  .user-actions {
+    .login {
       font-size: 0.8em;
       width: 90px;
     }
 
-  .signup{
-    font-size: 0.8em;
-    width: 160px;
+    .signup {
+      font-size: 0.8em;
+      width: 160px;
+    }
   }
-}
-  .main-content{
+
+  .get-started {
+    align-self: center;
+  }
+
+  .main-content {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 
-    img{
+    img {
       width: 65%;
     }
 
 
   }
- 
+
+}
+
+@media (max-width:500px) {
+  .home-header {}
+
 }

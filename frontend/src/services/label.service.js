@@ -2,8 +2,6 @@ import { setBoard, updateBoard } from "../store/actions/board.action"
 import { asyncStorageService } from "./async-storage.service"
 
 export function saveLabelToBoard(currLabel, board) {
-  console.log("service", currLabel, "\n", board.labels)
-
   let editingLabel = board.labels.find((label) => {
     return label.id === currLabel.id
   })
@@ -22,7 +20,7 @@ export function saveLabelToBoard(currLabel, board) {
 
 export function removeLabelFromBoard(labelId, board) {
   let remIdx = board.labels.findIndex((label) => labelId === label.id)
-  console.log(remIdx)
   board.labels.splice(remIdx, 1)
   updateBoard(board)
 }
+

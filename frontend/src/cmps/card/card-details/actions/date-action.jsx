@@ -23,8 +23,6 @@ export function DateAction({ setCard, card }) {
   )
 
   function handleChange({ target }) {
-    console.log(target)
-
     let { checked } = target
     if (checked) {
       setRange(true)
@@ -34,24 +32,18 @@ export function DateAction({ setCard, card }) {
         from: prevDay,
         to: selectedDay,
       })
-      console.log(selectedDay)
-
       setStartEndDate({ start: prevDay, end: selectedDay })
     } else {
       setRange(false)
       setStartEndDate({ start: null, end: selectedDay })
-      console.log(startEndDate)
     }
   }
 
   function handleSubmit(event) {
     event.preventDefault()
     if (startEndDate.start) {
-      console.log(startEndDate)
-
       const startTime = startEndDate.start.getTime()
       const endTime = startEndDate.end.getTime()
-      console.log(`Start date: ${startTime} End date: ${endTime}`)
       const selectedTime = { startTime, endTime }
       card.dueDate = selectedTime
       updateCard(card, "SET_DATE")
@@ -61,9 +53,6 @@ export function DateAction({ setCard, card }) {
       const selectedTime = selectedDay.getTime()
       updateCard({ ...card, dueDate: selectedTime }, "SET_DATE")
       setCard({ ...card, dueDate: selectedTime })
-    }
-    {
-      console.log("Please pick a day.")
     }
   }
 

@@ -141,7 +141,6 @@ export function BoardList({ boards }) {
         </div>
       </li>
       {getBoards().map((board) => {
-        // console.log(board.style);
         return (
           <li
             className="list-item"

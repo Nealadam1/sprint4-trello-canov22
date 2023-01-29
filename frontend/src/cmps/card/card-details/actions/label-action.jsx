@@ -39,7 +39,6 @@ export function LabelAction({ card }) {
   const [changeLabel, setChangeLabel] = useState(boardService.getEmptyLabel())
   const [boardPreviewColor, setBoardPreviewColor] = useState("")
 
-  console.log(newLabel)
   useEffect(() => {
     setLabelIds([...labelIds])
   }, [currCard])
@@ -113,7 +112,6 @@ export function LabelAction({ card }) {
     if (isEditing) {
       setChangeLabel({ ...changeLabel, color: backgroundColor.hex })
       // changeLabel.color = backgroundColor.hex
-      console.log(changeLabel.color)
     }
   }
 

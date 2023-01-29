@@ -34,7 +34,6 @@ function createSocketService() {
             }, 500)
         },
         on(eventName, cb) {
-            console.log('socket', cb);
             socket.on(eventName, cb)
         },
         off(eventName, cb = null) {
@@ -43,7 +42,6 @@ function createSocketService() {
             else socket.off(eventName, cb)
         },
         emit(eventName, data) {
-            console.log('socket emit', data);
             socket.emit(eventName, data)
         },
         login(userId) {

@@ -18,7 +18,7 @@ import {
   SET_FILTER_CARD_BY,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
-import { ADD_LABEL, PUT_LABEL, REMOVE_LABEL, SET_LABELS } from "../reducers/label.reducer.js"
+import { ADD_LABEL, PUT_LABEL, REMOVE_LABEL, SET_LABELS, SET_LABEL_STATE } from "../reducers/label.reducer.js"
 // import { httpService } from "../../services/http.service.js"
 import { utilService } from "../../services/util.service.js"
 import { userService } from "../../services/user.service.js"
@@ -85,7 +85,6 @@ export async function loadBoards(searchBy = "") {
   try {
     // const boards = await httpService.get('board') REMOVE MOVE TO BOARDSERVICE QUERY
     const boards = await boardService.query(searchBy)
-    console.log("Boards from DB:", boards)
     store.dispatch({
       type: SET_BOARDS,
       boards,
@@ -119,8 +118,6 @@ export async function setBoard(board) {
       type: SET_BOARD,
       board,
     })
-
-    console.log("set board", board)
   } catch (err) {
     console.log("Cannot load board", err)
     throw err
@@ -148,8 +145,6 @@ export async function setCardToStoreRef(card) {
   }
 }
 export async function updateCard(card, action) {
-  console.log("card from action", card)
-
   try {
     store.dispatch({
       type: UPDATE_CARD,
@@ -177,9 +172,7 @@ export async function removeBoard(boardId) {
 
 export async function addBoard(board) {
   try {
-    console.log("add board func")
     const savedBoard = await boardService.save(board)
-    console.log("Added Board", savedBoard)
     store.dispatch(getActionAddBoard(savedBoard))
     return savedBoard
   } catch (err) {
@@ -249,13 +242,10 @@ export async function updateGroup(group, action) {
   try {
     const board = structuredClone(store.getState().boardModule.board)
     const updatedGroup = group
-    console.log(updatedGroup)
     const updatedGroups = board.groups.map((group) =>
       group.id === updatedGroup.id ? updatedGroup : group
     )
-    console.log(updatedGroups)
     board.groups = updatedGroups
-    console.log(board)
     store.dispatch(getActionSetBoard(board))
     boardService.save(board)
   } catch (err) {
@@ -268,7 +258,6 @@ export async function updateGroups(groups) {
     const board = structuredClone(store.getState().boardModule.board)
     const updatedGroups = groups
     board.groups = updatedGroups
-    console.log(board)
     store.dispatch(getActionSetBoard(board))
     boardService.save(board)
   } catch (err) {
@@ -330,9 +319,7 @@ const activityMessages = {
 }
 
 function updateActivities(cmpType, action) {
-  console.log(action)
   const { title, id } = action
-  console.log(title, id)
   const board = structuredClone(store.getState().boardModule.board)
   const fullname = userService?.getLoggedinUser()?.fullname || "Guest"
   const userImage =
@@ -367,7 +354,6 @@ export async function deleteCard(cardId, groupId) {
   const archivedCard = (group.cards = group.cards.find(
     (card) => cardId === card.id
   ))
-  console.log(archivedCard)
   updateActivities("ARCHIVED_CARD", archivedCard)
 }
 
@@ -391,7 +377,6 @@ export function getCardById(board, cardId) {
 }
 
 export async function setLabels(labels) {
-  console.log("setLabels action", labels)
   store.dispatch({
     type: SET_LABELS,
     labels,
@@ -399,7 +384,6 @@ export async function setLabels(labels) {
 }
 
 export function addLabel(label) {
-  // console.log('redux', label)
   store.dispatch({
     type: ADD_LABEL,
     label,
@@ -417,6 +401,13 @@ export function removeLabel(labelId) {
   store.dispatch({
     type: REMOVE_LABEL,
     labelId,
+  })
+}
+
+export function setLabelState(isOpen) {
+  store.dispatch({
+    type: SET_LABEL_STATE,
+    isOpen
   })
 }
 
