@@ -23,3 +23,4 @@ export function removeLabelFromBoard(labelId, board) {
   board.labels.splice(remIdx, 1)
   updateBoard(board)
 }
+

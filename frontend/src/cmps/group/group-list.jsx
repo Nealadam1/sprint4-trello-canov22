@@ -23,9 +23,12 @@ export function GroupList() {
   const [groupTitle, setGroupTitle] = useState({ title: "" })
   const [isMouseDown, setIsMouseDown] = useState(false)
   const inputRef = useRef(null)
-  let currGroups = useSelector(
-    (storeState) => storeState.boardModule.board.groups
-  )
+  let currGroups = useSelector((storeState) => storeState.boardModule.board.groups)
+  const isOpen = useSelector((storeState) => storeState.labelModule.isOpen)
+  const openLabelClass = isOpen ? 'open-label' : ''
+
+  // console.log({ groups, onAddGroup, onDeleteGroup, board, placeholderProps })
+
   useEffect(() => {
     if (groupToInput) {
       inputRef.current.focus()
@@ -36,8 +39,6 @@ export function GroupList() {
     onSetLabels()
 
     socketService.on(SOCKET_EVENT_UPDATE_BOARD, setBoard({ ...board }))
-
-
   }, [])
 
   function updateGroupTitle(group, title) {
@@ -134,7 +135,7 @@ export function GroupList() {
   }
 
   return (
-    <div className="group-list">
+    <div className={"group-list " + openLabelClass}>
       <DragDropContext onDragEnd={(resault) => onDragEnd(resault, currGroups)}>
         <Droppable
           droppableId="dnd-container"

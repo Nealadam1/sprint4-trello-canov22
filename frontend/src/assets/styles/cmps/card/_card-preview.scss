@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
 
+.group-list.open-label .group .card-preview .card-label {
+  height: 8px;
+  min-width: 40px;
+  max-width: 40px;
+  color: transparent;
+  padding: 0;
+
+  .circle {
+    opacity: 0;
+    position: fixed;
+  }
+}
+
 .card-list {
   box-sizing: border-box;
   flex: 1;
@@ -145,6 +158,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
+        min-height: 15px;
+        align-items: center;
       }
 
       .card-label {

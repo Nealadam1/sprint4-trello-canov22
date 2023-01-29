@@ -18,7 +18,7 @@ import {
   SET_FILTER_CARD_BY,
 } from "../reducers/board.reducer"
 import { CARD_DETAIL_OPEN, CARD_DETAIL_CLOSE } from "../reducers/system.reducer"
-import { ADD_LABEL, PUT_LABEL, REMOVE_LABEL, SET_LABELS } from "../reducers/label.reducer.js"
+import { ADD_LABEL, PUT_LABEL, REMOVE_LABEL, SET_LABELS, SET_LABEL_STATE } from "../reducers/label.reducer.js"
 // import { httpService } from "../../services/http.service.js"
 import { utilService } from "../../services/util.service.js"
 import { userService } from "../../services/user.service.js"
@@ -403,6 +403,17 @@ export function removeLabel(labelId) {
     labelId,
   })
 }
+
+export function setLabelState(isOpen) {
+  store.dispatch({
+    type: SET_LABEL_STATE,
+    isOpen
+  })
+}
+
+// export async function saveLabelToBoard(label, board) {
+//   console.log('board', label, board);
+// }
 
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
