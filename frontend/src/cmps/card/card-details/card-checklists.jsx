@@ -121,7 +121,10 @@ export function CardChecklists({ checklists, card, setCard }) {
                 onMouseLeave={() => setHoveredTodoId(null)}
                 className="todo-container"
               >
-                <div className="todo-display">
+                <div
+                  style={{ display: "flex", alignItems: "center" }}
+                  className="todo-display"
+                >
                   <input
                     type="checkbox"
                     id={`todo-${todo.id}`}
