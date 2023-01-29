@@ -72,7 +72,10 @@ export function CardDetails() {
     setCardTitle(currCard.title)
     setCardToStoreRef(currCard)
     if (isActionModal) closeActionModal()
+    socketService.on(SOCKET_EVENT_UPDATE_CARD, ans => {
+      setCard({ ...card })
 
+    })
 
   }, [cardId])
 

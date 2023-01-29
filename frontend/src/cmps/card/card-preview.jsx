@@ -7,6 +7,7 @@ import { ChecklistPreview } from "./card-preview/checklist-preview"
 import { socketService, SOCKET_EVENT_UPDATE_CARD } from "../../services/socket.service"
 
 export function CardPreview({ card, idx }) {
+  const [isClicked, setIsClicked] = useState(false)
 
   useEffect(() => {
     // socketService.on(SOCKET_EVENT_UPDATE_CARD)

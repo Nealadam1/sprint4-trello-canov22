@@ -226,10 +226,21 @@
   }
 }
 
+@media (max-width:890px) {
+  .board-actions {
+    flex-direction: column;
+  }
+
+  .align-right {
+    padding: 0.2em 0 0 0;
+
+  }
+}
+
+
 @media (max-width:970px) {
 
   /* tablet, landscape iPad, lo-res laptops ands desktops */
-
 
   .member-images {
     grid-template-columns: repeat(auto-fit, 12px);
