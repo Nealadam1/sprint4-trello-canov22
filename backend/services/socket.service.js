@@ -20,10 +20,9 @@ function setupSocketAPI(http) {
         })
 
         socket.on('update-board', data => {
-     
-            gIo.emit('update-board-event', data)
-        })
-
+            socket.broadcast.emit('update-board-event', data)
+          })
+          
         socket.on('update-card', data => {
             gIo.emit('update-card-event', data)
         })
