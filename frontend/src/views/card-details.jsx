@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { store } from "../store/store"
 import { AiOutlinePlus } from "react-icons/ai"
+import { RxActivityLog } from "react-icons/rx"
 
 import { closeActionModal } from "../store/actions/board.action"
 
@@ -25,14 +26,20 @@ import { CardLabels } from "../cmps/card/card-details/card-labels"
 import { CardDescription } from "../cmps/card/card-details/card-description"
 import { CardChecklists } from "../cmps/card/card-details/card-checklists"
 import { CardComments } from "../cmps/card/card-details/card-comments"
+import { CardActivites } from "../cmps/card/card-details/card-details-activties"
 import { DynamicActionModal } from "../cmps/dynamic-modal-cmp"
 import { CardDate } from "../cmps/card/card-details/card-date"
 import { CardAttachments } from "../cmps/card/card-details/card-attachments"
 import { CgClose } from "react-icons/cg"
-import { socketService, SOCKET_EMIT_UPDATE_CARD, SOCKET_EVENT_UPDATE_CARD } from "../services/socket.service"
+import {
+  socketService,
+  SOCKET_EMIT_UPDATE_CARD,
+  SOCKET_EVENT_UPDATE_CARD,
+} from "../services/socket.service"
 
 export function CardDetails() {
   const [card, setCard] = useState(null)
+  const [showActivities, setShowActivities] = useState(false)
   const [cardTitle, setCardTitle] = useState("")
   const [isEditingTitle, setIsEditingTitle] = useState(false)
   const navigate = useNavigate()
@@ -49,9 +56,8 @@ export function CardDetails() {
   const cardTitleRef = useRef(null)
 
   useEffect(() => {
-    socketService.on(SOCKET_EVENT_UPDATE_CARD, ans => {
+    socketService.on(SOCKET_EVENT_UPDATE_CARD, (ans) => {
       setCard({ ...card })
-
     })
 
     return () => {
@@ -72,11 +78,9 @@ export function CardDetails() {
     setCardTitle(currCard.title)
     setCardToStoreRef(currCard)
     if (isActionModal) closeActionModal()
-    socketService.on(SOCKET_EVENT_UPDATE_CARD, ans => {
+    socketService.on(SOCKET_EVENT_UPDATE_CARD, (ans) => {
       setCard({ ...card })
-
     })
-
   }, [cardId])
 
   const handleClose = (e) => {
@@ -291,12 +295,37 @@ export function CardDetails() {
                   />
                 )}
               </div>
-
+              <div className="card-comments-title">
+                <div className="activity-title">
+                  <span className="comments-icon">
+                    <RxActivityLog />
+                  </span>
+                  <h3>Activity</h3>
+                </div>
+                <div className="activity-btn">
+                  {showActivities ? (
+                    <button
+                      onClick={() => setShowActivities(!showActivities)}
+                      className="grey-button"
+                    >
+                      Hide details
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setShowActivities(!showActivities)}
+                      className="grey-button"
+                    >
+                      Show details
+                    </button>
+                  )}
+                </div>
+              </div>
               <div>
                 {card?.comments && (
                   <CardComments card={card} setCard={setCard} />
                 )}
               </div>
+              {showActivities && <CardActivites card={card} board={board} />}
             </div>
           </div>
         </div>

@@ -257,6 +257,12 @@
     left: 0;
   }
 
+  .action-modal {
+    max-width: max-content;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
 
 
   .board-header button {
