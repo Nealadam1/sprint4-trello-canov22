@@ -143,7 +143,7 @@ export function CardList({ group, EditCardShortcut, setEditCardShortcut }) {
   
   return (
     <>
-      <div className="card-list">
+      <div className="card-list" >
         <Droppable droppableId={`${groupIdx}`} type="card">
           {(provided, snapshot) => {
             return (

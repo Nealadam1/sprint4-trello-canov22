@@ -5,7 +5,7 @@ import { BsThreeDots } from "react-icons/bs"
 import { Draggable } from "react-beautiful-dnd"
 import { socketService, SOCKET_EVENT_UPDATE_BOARD } from "../../services/socket.service"
 
-export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provided, idx, }) {
+export function GroupPreview({ group, cards, updateGroupTitle, isDragging, provided, idx}) {
   const [groupTitleToInput, setGroupTitleToInput] = useState({})
   const [openEditGroupId, setOpenEditGroupId] = useState(null)
   const [newTitle, setNewTitle] = useState(group.title)
