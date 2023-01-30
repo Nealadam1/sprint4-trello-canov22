@@ -81,7 +81,7 @@ export function DashboardActivities({ board }) {
   }
 
   return (
-    <div>
+    <div style={{ width: "85%" }}>
       <h3 style={{ color: "#fff" }}>Activities per user</h3>
       <Bar data={data} options={options} />
     </div>

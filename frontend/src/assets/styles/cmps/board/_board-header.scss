@@ -191,6 +191,39 @@
 
 @media (max-width:460px) {
 
+
+  .main {
+    padding: 0px 5vw;
+    margin-top: 70px;
+  }
+
+  .home-header {
+    padding: 0;
+
+    .logo {
+      padding: 0;
+
+      .logo-icon {
+        font-size: 1.5rem
+      }
+
+      a {
+        display: flex;
+        align-items: flex-end;
+        margin-left: 0.3em;
+      }
+    }
+
+    .user-actions .signup {
+      width: 130px;
+      margin: 0;
+    }
+
+    .user-actions .login {
+      width: 70px;
+    }
+  }
+
   .board-header .board-actions .align-right {
     padding: 0.3em;
     padding-left: 0.7em;
