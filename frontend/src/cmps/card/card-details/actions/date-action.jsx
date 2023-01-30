@@ -56,6 +56,12 @@ export function DateAction({ setCard, card }) {
       closeActionModal()
     }
   }
+  function handleDelete(ev) {
+    ev.preventDefault()
+    card.dueDate = null
+    updateCard(card, "SET_DATE")
+
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -83,9 +89,14 @@ export function DateAction({ setCard, card }) {
         <input type="checkbox" onChange={handleChange} />
         Start date
       </label>
-      <button className="blue-button" type="submit">
-        Save
-      </button>
+      <div className="crud-buttons">
+        <button className="blue-button" type="submit">
+          Save
+        </button>
+        <button onClick={handleDelete} className="grey-button" type="submit">
+          Remove
+        </button>
+      </div>
     </form>
   )
 }

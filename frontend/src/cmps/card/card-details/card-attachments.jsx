@@ -51,8 +51,8 @@ export function CardAttachments({ card }) {
                 rel="noopener noreferrer"
               >
                 {attachment.link
-                  ? attachment.link.substring(0, 40)
-                  : attachment.imgUrl.substring(0, 40)}
+                  ? attachment.link?.substring(0, 40)
+                  : attachment.imgUrl?.substring(0, 40)}
                 ...
               </a>
               <div className="attachment-actions">
