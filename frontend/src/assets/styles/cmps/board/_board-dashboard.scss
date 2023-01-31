@@ -1,34 +1,31 @@
 .dashboard {
 
-    background: linear-gradient(to right, #f9f9f9, #fff);
+    background: aliceblue;
     height: 100%;
     place-content: center;
-    padding: 5em;
+    padding: 3em;
     display: grid;
-    grid-template-columns: repeat(4, minmax(100px, 0.25fr));
-    grid-template-rows: 150px 600px;
+    grid-template-columns: repeat(3, minmax(100px, 0.25fr));
+    grid-template-rows: 250px 600px;
     gap: 2em;
     grid-template-areas:
-        'board-one board-two board-three board-four'
-        'doughnut-dashboard line-dashboard line-dashboard line-dashboard';
-
-
-
+        'board-one board-two board-three'
+        'doughnut-dashboard line-dashboard line-dashboard';
 
 
     .board-info-one {
-        background: linear-gradient(to right, #00b0ff, #0091ea);
-        border-radius: 15px;
-
+        background: #fefdfd;
+        border-radius: 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         width: 100%;
         height: 100%;
         grid-area: board-one;
     }
 
     .board-info-two {
-        background: linear-gradient(to right, #ff416c, #ff4b2b);
-        border-radius: 15px;
-
+        background: #fefdfd;
+        border-radius: 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         width: 100%;
         height: 100%;
         grid-area: board-two;
@@ -36,24 +33,19 @@
     }
 
     .board-info-three {
-        background: linear-gradient(#11998e, #38ef7d);
-        border-radius: 15px;
-
+        background: #fefdfd;
+        border-radius: 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         width: 100%;
         height: 100%;
         grid-area: board-three;
     }
 
-    .board-info-four {
-        background: linear-gradient(to right, #9c27b0, #6a1b9a);
-        border-radius: 15px;
-        width: 100%;
-        height: 100%;
-        grid-area: board-four;
-    }
+
 
     .doughnut-dashboard {
         display: flex;
+
         align-items: center;
         justify-content: center;
         width: 100%;
@@ -70,17 +62,7 @@
         grid-area: line-dashboard;
     }
 
-    // height: 100%;
 
-    // display: grid;
-    // box-sizing: border-box;
-    // grid-template-columns: repeat(2, minmax(0, 1000px));
-    // grid-auto-rows: minmax(550px, 0.5fr);
-    // grid-column-gap: 32px;
-    // grid-row-gap: 32px;
-    // overflow-y: auto;
-    // -webkit-overflow-scrolling: touch;
-    // -webkit-transform: translate3d(0, 0, 0);
 }
 
 .board-dashboard {

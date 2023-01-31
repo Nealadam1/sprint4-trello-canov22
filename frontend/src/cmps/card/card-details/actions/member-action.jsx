@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { addMember, closeActionModal, removeMember } from "../../../../store/actions/board.action"
+import {
+  addMember,
+  closeActionModal,
+  removeMember,
+} from "../../../../store/actions/board.action"
 import { FiCheck } from "react-icons/fi"
 import { CgClose } from "react-icons/cg"
 
@@ -20,6 +24,8 @@ export function MemberAction({ card, setCard }) {
       setCard({ ...card, memberIds: updatedMemberIds })
       return
     }
+    if (card.memberIds.length > 1) return
+
     addMember(memberId, card)
     setCard({ ...card, memberIds: updatedMembers })
   }

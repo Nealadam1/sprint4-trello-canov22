@@ -56,7 +56,6 @@ export function CardComments({ card }) {
           // onBlur={() => setEditMode(false)}
           minLength={4}
         />
-
         {editMode && <button className={`${btnState}-button`}>Save</button>}
       </form>
 
