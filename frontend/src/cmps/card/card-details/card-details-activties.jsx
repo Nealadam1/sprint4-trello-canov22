@@ -19,7 +19,10 @@ export const CardActivites = ({ card, board }) => {
         return (
           <li className="activitie" key={activity.id}>
             <div className="user-activitie-img">
-              <img style={{ width: "31.5px" }} src={activity.userImage} />
+              <img
+                style={{ width: "31.5px", borderRadius: "50%" }}
+                src={activity.userImage}
+              />
             </div>
             <div className="user-activitie-info">
               <p>
